@@ -1965,6 +1965,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "admin@workspace:apps/admin"
   dependencies:
+    "@emotion/react": "npm:^11.14.0"
+    "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^9.19.0"
     "@linenow/design-system": "portal:../../packages/design-system"
     "@types/react": "npm:^19.0.8"
@@ -4441,6 +4443,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "service@workspace:apps/service"
   dependencies:
+    "@emotion/react": "npm:^11.14.0"
+    "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^9.19.0"
     "@linenow/design-system": "portal:../../packages/design-system"
     "@types/react": "npm:^19.0.8"

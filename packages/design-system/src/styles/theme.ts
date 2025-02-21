@@ -1,7 +1,10 @@
 import { backgroundColors, borderColors, fontColors } from "./colors";
 
+export type FontColorType = typeof fontColors;
+export type FontColorKey = keyof FontColorType;
+
 export type CustomTheme = {
-  fontColors: typeof fontColors;
+  fontColors: FontColorType;
   borderColors: typeof borderColors;
   backgroundColors: typeof backgroundColors;
 };

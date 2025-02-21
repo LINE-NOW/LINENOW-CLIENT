@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
     "@linenow/design-system": "portal:../../packages/design-system",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
