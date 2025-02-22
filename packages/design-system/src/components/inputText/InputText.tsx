@@ -2,16 +2,17 @@ import * as S from "./InputText.styled";
 
 import Label from "../label/Label";
 import Icon from "../icon/Icon";
+import { CommonButton } from "../buttonExtension/ButtonExtension";
 
-type IconProps = React.ComponentProps<typeof Icon>;
+type IconButtonProps = React.ComponentProps<typeof Icon> &
+  React.ComponentProps<typeof CommonButton>;
 
 export interface InputTextProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   label?: string;
-  rightIcon?: IconProps;
+  rightIcon?: IconButtonProps;
   errorMessage?: string;
-  rightIconClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const InputText = (props: InputTextProps) => {
@@ -19,7 +20,6 @@ const InputText = (props: InputTextProps) => {
     width = "100%",
     label,
     rightIcon,
-    rightIconClick,
     errorMessage,
     type = "text",
     ...inputProps
@@ -37,13 +37,13 @@ const InputText = (props: InputTextProps) => {
           type={type}
           placeholder={props.placeholder}
           css={S.getInputStyle()}
+          {...inputProps}
         />
 
         {rightIcon && (
-          // TODO:- button component화 필요
-          <button onClick={rightIconClick}>
+          <CommonButton onClick={rightIcon.onClick}>
             <Icon {...rightIcon} />
-          </button>
+          </CommonButton>
         )}
       </S.InputTextField>
       {errorMessage && (
