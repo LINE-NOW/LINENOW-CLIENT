@@ -4,6 +4,9 @@ export { default as LinenowProvider } from "./src/components/themeProvider/Linen
 export { type CustomTheme } from "./src/styles/theme";
 export { fonts } from "./src/styles/fonts";
 
+// hooks
+export { default as useModal } from "./src/hooks/useModal";
+
 // components
 export { default as Icon } from "./src/components/icon/Icon";
 export { default as Label } from "./src/components/label/Label";
@@ -19,3 +22,5 @@ export { default as Chip } from "./src/components/chip/Chip";
 
 export { default as InputText } from "./src/components/inputText/InputText";
 export { default as InputPassword } from "./src/components/inputText/InputPassword";
+
+export { default as Modal } from "./src/components/modal/Modal";
