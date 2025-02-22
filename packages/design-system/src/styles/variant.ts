@@ -2,9 +2,9 @@ import { css } from "@emotion/react";
 
 import { BackgroundColorKey, BorderColorKey, FontColorKey } from "./theme";
 
-export type Varient = "blue" | "lime" | "blueLight" | "limeLight" | "outline";
+export type Variant = "blue" | "lime" | "blueLight" | "limeLight" | "outline";
 
-interface VarientStyle {
+interface VariantStyle {
   fontColor: FontColorKey;
   backgroundColor?: BackgroundColorKey;
   borderColor?: BorderColorKey;
@@ -13,9 +13,9 @@ interface VarientStyle {
   disabled_borderColor?: BorderColorKey;
 }
 
-interface VarientStyles extends Record<Varient, VarientStyle> {}
+interface VariantStyles extends Record<Variant, VariantStyle> {}
 
-const varientStyles: VarientStyles = {
+const variantStyles: VariantStyles = {
   outline: {
     fontColor: "gray",
     borderColor: "gray",
@@ -42,8 +42,8 @@ const varientStyles: VarientStyles = {
   },
 };
 
-export const getVarientStyle = (varient: Varient) => {
-  const style = varientStyles[varient];
+export const getVariantStyle = (variant: Variant) => {
+  const style = variantStyles[variant];
 
   return (theme: any) => css`
     color: ${theme.fontColors[style.fontColor]};

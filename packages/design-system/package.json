@@ -3,7 +3,8 @@
   "packageManager": "yarn@4.6.0",
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0"
+    "@emotion/styled": "^11.14.0",
+    "react-router-dom": "^7.2.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",

@@ -1,10 +1,20 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-
+// import React from "react";
+import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+// mocks
+import { worker } from "./mocks/browser.ts";
+
+worker
+  .start({
+    onUnhandledRequest: "bypass",
+  })
+  .then(() => {
+    ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
+  });
+
+// ReactDOM.createRoot(document.getElementById('root')!).render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
