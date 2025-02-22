@@ -13,8 +13,16 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@linenow/design-system": "portal:../../packages/design-system",
+    "@marsidev/react-turnstile": "^1.1.0",
+    "@tanstack/react-query": "^5.66.9",
+    "axios": "^1.7.9",
+    "jotai": "^2.12.1",
+    "msw": "^2.7.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.2.0",
+    "swiper": "^11.2.4",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
