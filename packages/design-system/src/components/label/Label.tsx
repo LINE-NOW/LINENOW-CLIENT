@@ -3,7 +3,7 @@ import * as S from "./Label.styled";
 import { FontStyleKey } from "../../styles/fonts";
 import { FontColorKey } from "../../styles/theme";
 
-type LabelProps<T extends React.ElementType> = {
+export type LabelProps<T extends React.ElementType> = {
   as?: T;
   font?: FontStyleKey;
   color?: FontColorKey;

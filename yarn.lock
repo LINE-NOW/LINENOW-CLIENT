@@ -973,6 +973,7 @@ __metadata:
     "@storybook/test": "npm:^8.5.8"
     "@types/react": "npm:^19.0.10"
     "@types/react-dom": "npm:^19.0.4"
+    paths: "npm:^0.1.1"
     prop-types: "npm:^15.8.1"
     storybook: "npm:^8.5.8"
   languageName: unknown
@@ -4019,6 +4020,15 @@ __metadata:
   version: 4.0.0
   resolution: "path-type@npm:4.0.0"
   checksum: 10c0/666f6973f332f27581371efaf303fd6c272cc43c2057b37aa99e3643158c7e4b2626549555d88626e99ea9e046f82f32e41bbde5f1508547e9a11b149b52387c
+  languageName: node
+  linkType: hard
+
+"paths@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "paths@npm:0.1.1"
+  bin:
+    paths: ./paths
+  checksum: 10c0/11c60be23b6d987709396e73f46782a26757a482f69c22e93c26797b0fd887dc7e5d47c14d21cc8362f80edddde42b84eb8f132a777e9db9cbb01948737b7601
   languageName: node
   linkType: hard
 
