@@ -11,7 +11,7 @@ export interface InputTextProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   label?: string;
-  rightIcon?: IconButtonProps;
+  rightIconButton?: IconButtonProps;
   errorMessage?: string;
 }
 
@@ -19,7 +19,7 @@ const InputText = (props: InputTextProps) => {
   const {
     width = "100%",
     label,
-    rightIcon,
+    rightIconButton,
     errorMessage,
     type = "text",
     ...inputProps
@@ -40,9 +40,9 @@ const InputText = (props: InputTextProps) => {
           {...inputProps}
         />
 
-        {rightIcon && (
-          <CommonButton onClick={rightIcon.onClick}>
-            <Icon {...rightIcon} />
+        {rightIconButton && (
+          <CommonButton onClick={rightIconButton.onClick}>
+            <Icon {...rightIconButton} />
           </CommonButton>
         )}
       </S.InputTextField>

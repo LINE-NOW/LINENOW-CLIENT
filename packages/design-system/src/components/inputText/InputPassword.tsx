@@ -14,12 +14,12 @@ const InputPassword = ({ label, ...props }: InputTextProps) => {
   return (
     <InputText
       label={label}
-      rightIcon={{
+      rightIconButton={{
         name: isPasswordVisible ? "eye_open_gray" : "eye_close_gray", // 아이콘 이름 변경
         size: "1.5rem",
+        onClick: togglePasswordVisibility,
       }}
       type={isPasswordVisible ? "text" : "password"}
-      rightIconClick={togglePasswordVisibility}
       {...props}
     />
   );

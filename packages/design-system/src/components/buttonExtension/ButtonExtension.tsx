@@ -9,9 +9,11 @@ interface LinkButtonProps extends React.ComponentProps<typeof Link> {
 
 export const LinkButton = (props: LinkButtonProps) => {
   const { to, children, disabled = false } = props;
-  <Link to={to} css={disabled || S.getAnimation()}>
-    {children}
-  </Link>;
+  return (
+    <Link to={to} css={disabled || S.getAnimation()}>
+      {children}
+    </Link>
+  );
 };
 
 export const CommonButton = (props: CommonButtonProps) => {

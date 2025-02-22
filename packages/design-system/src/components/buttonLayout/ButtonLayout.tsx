@@ -2,6 +2,7 @@ import * as S from "./ButtonLayout.styled";
 
 interface ButtonLayoutProps extends React.ComponentPropsWithoutRef<"section"> {
   colCount: number;
+  colTemplate?: string;
   rowGap?: string;
   colGap?: string;
 }
@@ -9,6 +10,7 @@ interface ButtonLayoutProps extends React.ComponentPropsWithoutRef<"section"> {
 const ButtonLayout = (props: ButtonLayoutProps) => {
   const {
     colCount,
+    colTemplate,
     rowGap = "0.5rem",
     colGap = "0.5rem",
     children,
@@ -16,7 +18,10 @@ const ButtonLayout = (props: ButtonLayoutProps) => {
   } = props;
 
   return (
-    <section css={[S.getLayout(colCount, colGap, rowGap)]} {...sectionProps}>
+    <section
+      css={[S.getLayout(colCount, colGap, rowGap, colTemplate)]}
+      {...sectionProps}
+    >
       {children}
     </section>
   );

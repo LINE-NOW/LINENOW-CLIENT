@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 //components
 import * as S from "./IconLabel.styled";
 import Icon, { IconProps } from "../icon/Icon";
