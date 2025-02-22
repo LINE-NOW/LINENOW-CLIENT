@@ -973,6 +973,7 @@ __metadata:
     "@storybook/test": "npm:^8.5.8"
     "@types/react": "npm:^19.0.10"
     "@types/react-dom": "npm:^19.0.4"
+    paths: "npm:^0.1.1"
     prop-types: "npm:^15.8.1"
     storybook: "npm:^8.5.8"
   languageName: unknown
@@ -1965,6 +1966,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "admin@workspace:apps/admin"
   dependencies:
+    "@emotion/react": "npm:^11.14.0"
+    "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^9.19.0"
     "@linenow/design-system": "portal:../../packages/design-system"
     "@types/react": "npm:^19.0.8"
@@ -4020,6 +4023,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"paths@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "paths@npm:0.1.1"
+  bin:
+    paths: ./paths
+  checksum: 10c0/11c60be23b6d987709396e73f46782a26757a482f69c22e93c26797b0fd887dc7e5d47c14d21cc8362f80edddde42b84eb8f132a777e9db9cbb01948737b7601
+  languageName: node
+  linkType: hard
+
 "pathval@npm:^2.0.0":
   version: 2.0.0
   resolution: "pathval@npm:2.0.0"
@@ -4441,6 +4453,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "service@workspace:apps/service"
   dependencies:
+    "@emotion/react": "npm:^11.14.0"
+    "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^9.19.0"
     "@linenow/design-system": "portal:../../packages/design-system"
     "@types/react": "npm:^19.0.8"
