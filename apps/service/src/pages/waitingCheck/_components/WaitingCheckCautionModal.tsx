@@ -1,12 +1,11 @@
 import InfoBottomButton from "@components/infobottomButton/InfoBottomButton";
-import Button from "@components/button/Button";
-import ButtonLayout from "@components/button/ButtonLayout";
 
 import { useState } from "react";
 import * as S from "./WaitingCheckPeople.styled";
 import iconBefore from "/icons/icon_checkBox_before.svg";
 import iconAfter from "/icons/icon_checkBox_after.svg";
 import { usePostWaitingRegister } from "@hooks/apis/waiting";
+import { Button, ButtonLayout } from "@linenow/design-system";
 
 interface WaitingCheckModalProps {
   onClose: () => void;
@@ -44,11 +43,11 @@ const WaitingCheckCautionModal = ({
         />
         <span>숙지했어요</span>
       </S.CheckBoxWrapper>
-      <ButtonLayout $col={2}>
-        <Button scheme="grayLight" shape="outline" onClick={handleCancel}>
+      <ButtonLayout colCount={2}>
+        <Button variant="outline" onClick={handleCancel}>
           <span>취소하기</span>
         </Button>
-        <Button scheme="blue" onClick={handleConfirm} disabled={!checked}>
+        <Button variant="blue" onClick={handleConfirm} disabled={!checked}>
           <span>대기 줄 서기</span>
         </Button>
       </ButtonLayout>

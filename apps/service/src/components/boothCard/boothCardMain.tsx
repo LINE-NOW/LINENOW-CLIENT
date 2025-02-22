@@ -10,18 +10,18 @@ interface BoothCardProps {
 const BoothCardMain = ({ booth }: BoothCardProps) => {
   const getWaitingChip = () => {
     if (booth.isWaiting) {
-      return <Chip scheme="lime">대기 중</Chip>;
+      return <Chip variant="lime">대기 중</Chip>;
     }
   };
   const getChip = () => {
     switch (booth.isOperated) {
       case "not_started":
-        return <Chip scheme="grayLight">운영 전</Chip>;
+        return <Chip variant="grayLight">운영 전</Chip>;
       case "finished":
-        return <Chip scheme="grayLight">운영 종료</Chip>;
+        return <Chip variant="grayLight">운영 종료</Chip>;
       default:
         return (
-          <Chip scheme="blueLight">대기 {booth.totalWaitingTeams} 팀</Chip>
+          <Chip variant="blueLight">대기 {booth.totalWaitingTeams} 팀</Chip>
         );
     }
   };

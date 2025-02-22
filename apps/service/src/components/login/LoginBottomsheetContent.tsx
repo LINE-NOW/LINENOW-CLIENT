@@ -1,20 +1,20 @@
 // components
-import * as S from './LoginBottomsheetContent.styled';
-import Button from '@components/button/Button';
-import ButtonLayout from '@components/button/ButtonLayout';
+import * as S from "./LoginBottomsheetContent.styled";
+
+import { Button, ButtonLayout } from "@linenow/design-system";
 
 // hooks
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const LoginBottomsheetContent = () => {
   const navigate = useNavigate();
 
   const handleLoginButton = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   const handleSignipButton = () => {
-    navigate('/signup');
+    navigate("/signup");
   };
 
   return (
@@ -29,14 +29,14 @@ const LoginBottomsheetContent = () => {
         </S.LoginBottomsheetContentTopSubTitle>
       </S.LoginBottomsheetContentTopWrapper>
 
-      <ButtonLayout $col={1}>
+      <ButtonLayout colCount={1}>
         <Button
           onClick={handleLoginButton}
-          style={{ backgroundColor: '#D1FF25', color: '#333740' }}
+          style={{ backgroundColor: "#D1FF25", color: "#333740" }}
         >
           전화번호로 로그인하기
         </Button>
-        <Button onClick={handleSignipButton} shape="outline" scheme="grayLight">
+        <Button onClick={handleSignipButton} variant="outline">
           라인나우 회원가입하기
         </Button>
       </ButtonLayout>

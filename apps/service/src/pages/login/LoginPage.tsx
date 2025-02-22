@@ -1,7 +1,6 @@
 import * as S from "./LoginPage.styled";
 import InputText from "@components/inputText/InputText";
 import useForm from "@hooks/useForm";
-import Button from "@components/button/Button";
 
 import {
   initialLoginValues,
@@ -10,6 +9,7 @@ import {
 } from "./LoginValidateConfig";
 import validateConfigs from "@utils/validateConfig";
 import { usePostLogin } from "@hooks/apis/auth";
+import { Button } from "@linenow/design-system";
 
 const LoginPage = () => {
   const getErrors = (values: LoginFormValues) => {

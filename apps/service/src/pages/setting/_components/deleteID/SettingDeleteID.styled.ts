@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { fonts } from "@linenow/design-system";
 
 export const SettingDeleteIDComponentWrapper = styled.div`
   display: flex;
@@ -7,7 +8,8 @@ export const SettingDeleteIDComponentWrapper = styled.div`
 `;
 
 export const SettingDeleteIDComponentText = styled.button`
-  ${({ theme }) => theme.fonts.chip};
+  /* TODO:-chips */
+  ${fonts.button2}
   color: ${({ theme }) => theme.fontColors.gray};
 
   cursor: pointer;

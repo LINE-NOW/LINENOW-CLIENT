@@ -9,8 +9,8 @@ import { Waiting } from "@interfaces/waiting";
 import { useWaitingCard } from "./_hooks/useWaitingCard";
 import { useNavigate } from "react-router-dom";
 import useModal from "@hooks/useModal";
-import Button from "@components/button/Button";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
+import { Button } from "@linenow/design-system";
 
 interface WaitingCardProps {
   waiting: Pick<
@@ -89,7 +89,7 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
         {config.isValidate ? (
           <ChipButton
             onClick={handleCancelButton}
-            scheme="grayLight"
+            variant="grayLight"
             shape="outline"
           >
             취소하기
@@ -119,9 +119,7 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
           </S.BoothInformaitonLabelWrapper>
         </S.BoothInformationWrapper>
 
-        {config.button && (
-          <Button size={"large"} shape={"fill"} {...config.button} />
-        )}
+        {config.button && <Button size={"large"} {...config.button} />}
       </S.WaitingCardContentWrapper>
     </S.WaitingCardWrapper>
   );

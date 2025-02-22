@@ -1,5 +1,3 @@
-import Button from "@components/button/Button";
-import ButtonLayout from "@components/button/ButtonLayout";
 import BoothCardDetail from "@components/boothCard/boothCardDetail";
 import * as S from "./Entrance.styled";
 import { handleConfirmEntry, handleCancelEntry } from "./entranceUtils";
@@ -12,6 +10,7 @@ import { usePostConfirm } from "@hooks/apis/entry";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
 import { Waiting } from "@interfaces/waiting";
 import { getWaiting } from "@apis/domains/waiting/apis";
+import { Button, ButtonLayout } from "@linenow/design-system";
 
 export interface EntranceProps {
   targetTime: string;
@@ -63,18 +62,16 @@ export const Entrance = ({ waitingID, targetTime }: EntranceProps) => {
         </S.EntranceBoothCardWrapper>
       </S.EntranceContentWrapper>
 
-      <ButtonLayout $col={1}>
+      <ButtonLayout colCount={1}>
         <Button
-          scheme="lime"
+          variant="lime"
           onClick={() => handleConfirmEntry(openModal, closeModal, postConfirm)}
         >
           <span>입장할게요!</span>
           <span>{getTime("MMSS")}</span>
         </Button>
         <Button
-          scheme="grayLight"
-          disabled={false}
-          shape="outline"
+          variant="outline"
           onClick={() =>
             handleCancelEntry(openModal, closeModal, () => {
               postCancel(waitingID || 0);

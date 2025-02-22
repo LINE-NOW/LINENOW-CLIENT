@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 
 // components
-import { ButtonProps } from "@components/button/Button";
 
 // types
 import { WaitingStatus } from "@linenow-types/status";
@@ -11,6 +10,7 @@ import useCountdown from "@hooks/useCountdown";
 import useModal from "@hooks/useModal";
 import { ModalProps } from "@components/modal/Modal";
 import { usePostConfirm } from "@hooks/apis/entry";
+import { Button } from "@linenow/design-system";
 
 interface WaitingCardProps {
   waitingID: number;
@@ -19,9 +19,10 @@ interface WaitingCardProps {
   targetTime?: string | null;
 }
 
-interface WaitingCardButtonProps extends Omit<ButtonProps, "size" | "shape"> {
-  children: ReactNode;
-}
+type WaitingCardButtonProps = Omit<
+  React.ComponentProps<typeof Button>,
+  "size" | "shape"
+>;
 
 interface WaitingCardConfig {
   titleContent: ReactNode;
@@ -50,7 +51,7 @@ export const useWaitingCard = ({
     title: "다른 대기가 취소돼요",
     sub: "입장을 확정하면 다른 대기는 취소돼요.\n 입장을 확정하시겠어요?",
     primaryButton: {
-      scheme: "lime",
+      variant: "lime",
       children: "입장 확정하기",
       onClick: () => {
         postConfirm();
@@ -97,7 +98,7 @@ export const useWaitingCard = ({
       ),
       isValidate: true,
       button: {
-        scheme: "lime",
+        variant: "lime",
         onClick: handleConfirmButton,
         children: [
           <span key={1}>입장 확정하기</span>,
@@ -114,7 +115,7 @@ export const useWaitingCard = ({
       ),
       isValidate: true,
       button: {
-        scheme: "limeLight",
+        variant: "limeLight",
         children: [
           <span key={1}>시간 내에 입장 해주세요</span>,
           <span key={2}>{getTime("MMSS")}</span>,

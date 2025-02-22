@@ -2,7 +2,7 @@ import BottomButton from "@components/bottomButton/BottomButton";
 import * as S from "./SignupPage.styled";
 import InputText from "@components/inputText/InputText";
 import useForm from "@hooks/useForm";
-import Button from "@components/button/Button";
+
 import { Turnstile } from "@marsidev/react-turnstile";
 
 import {
@@ -13,6 +13,7 @@ import {
 import validateConfigs from "@utils/validateConfig";
 import { usePostSignup } from "@hooks/apis/auth";
 import { useState } from "react";
+import { Button } from "@linenow/design-system";
 
 const SignupPage = () => {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null); // Turnstile 토큰 상태

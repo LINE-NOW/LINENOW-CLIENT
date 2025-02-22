@@ -7,14 +7,14 @@ import { SchemeType, ShapeType } from "@linenow-types/style";
 import { ChipWrapper } from "./Chip.styled";
 
 export interface ChipProps {
-  scheme?: SchemeType;
+  variant?: SchemeType;
   shape?: ShapeType;
   children?: ReactNode;
 }
 
-const Chip = ({ scheme = "blue", shape = "fill", children }: ChipProps) => {
+const Chip = ({ variant = "blue", shape = "fill", children }: ChipProps) => {
   return (
-    <ChipWrapper $scheme={scheme} $shape={shape}>
+    <ChipWrapper $variant={variant} $shape={shape}>
       {children}
     </ChipWrapper>
   );

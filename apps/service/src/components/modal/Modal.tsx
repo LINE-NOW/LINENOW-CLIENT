@@ -1,11 +1,11 @@
 // component
 import * as S from "./Modal.styled";
 
-import Button, { ButtonProps } from "@components/button/Button";
-import ButtonLayout from "@components/button/ButtonLayout";
-
 // hook
 import useModal from "@hooks/useModal";
+import { Button, ButtonLayout } from "@linenow/design-system";
+
+type ButtonProps = Omit<React.ComponentProps<typeof Button>, "size" | "shape">;
 
 export interface ModalProps {
   isOpen: boolean;
@@ -28,12 +28,11 @@ const Modal = () => {
         </S.ModalTextWrapper>
 
         {/* 버튼 부분 */}
-        <ButtonLayout $col={2}>
+        <ButtonLayout colCount={2}>
           <Button
             onClick={closeModal}
             size="large"
-            scheme="grayLight"
-            shape="outline"
+            variant="outline"
             {...modal.secondButton}
           >
             {modal.secondButton?.children || "이전으로"}
@@ -42,8 +41,7 @@ const Modal = () => {
           <Button
             onClick={closeModal}
             size="large"
-            scheme="blue"
-            shape="fill"
+            variant="blue"
             {...modal.primaryButton}
           >
             {modal.primaryButton?.children || "확인"}

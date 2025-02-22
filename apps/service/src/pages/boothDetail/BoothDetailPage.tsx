@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
-import Button from "@components/button/Button";
+
 import Separator from "@components/separator/Separator";
 import { useGetBooth } from "@hooks/apis/booth";
 import Spinner from "@components/spinner/Spinner";
@@ -18,6 +18,7 @@ import LoginBottomsheetContent from "@components/login/LoginBottomsheetContent";
 import useModal from "@hooks/useModal";
 import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
+import { Button } from "@linenow/design-system";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -89,7 +90,7 @@ const BoothDetailPage = () => {
     if (booth?.isWaiting) {
       return (
         <>
-          <Button scheme="blueLight">
+          <Button variant="blueLight">
             <span>내 앞으로 지금</span>
             <span className="blue">{booth.waitingTeamsAhead}팀</span>
           </Button>
@@ -145,7 +146,7 @@ const BoothDetailPage = () => {
               getInformationButton()
             ) : (
               // 로그인 하지 않은 경우
-              <Button scheme="lime" onClick={handleLoginButtonClick}>
+              <Button variant="lime" onClick={handleLoginButtonClick}>
                 <span>로그인하고 이용하기</span>
               </Button>
             )}

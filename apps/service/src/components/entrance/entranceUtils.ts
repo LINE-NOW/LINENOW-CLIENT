@@ -14,7 +14,7 @@ export const handleConfirmEntry = (
     },
     primaryButton: {
       children: "입장 확정하기",
-      scheme: "lime",
+      variant: "lime",
       onClick: () => {
         postConfirm();
       },

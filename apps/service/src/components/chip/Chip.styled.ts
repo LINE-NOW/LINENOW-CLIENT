@@ -5,7 +5,7 @@ import { SchemeType, ShapeType } from "@linenow-types/style";
 import { fonts } from "@linenow/design-system";
 
 interface ChipWrapperProps {
-  $scheme: SchemeType;
+  $variant: SchemeType;
   $shape: ShapeType;
 }
 
@@ -21,7 +21,7 @@ export const ChipWrapper = styled.div<ChipWrapperProps>`
   // TODO: - fonts
   ${fonts.button2}
 
-  // TODO: - scheme
+  // TODO: - variant
   // 버튼의 스타일이 outline일때
   ${({ $shape }) => {
     if ($shape == "outline") {

@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import * as S from "./WaitingCheckPage.styled";
 import BottomButton from "@components/bottomButton/BottomButton";
-import Button from "@components/button/Button";
+
 import Separator from "@components/separator/Separator";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 import WaitingDetailCaution from "@pages/waitingDetail/_components/WaitingDetailCaution";
 import WaitingCheckCautionModal from "./_components/WaitingCheckCautionModal";
+import { Button } from "@linenow/design-system";
 
 const WaitingCheckPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -54,7 +55,7 @@ const WaitingCheckPage = () => {
       <WaitingDetailCaution />
 
       <BottomButton>
-        <Button scheme="blue" onClick={handleOpenModal}>
+        <Button variant="blue" onClick={handleOpenModal}>
           <span>계속 진행하기</span>
         </Button>
       </BottomButton>

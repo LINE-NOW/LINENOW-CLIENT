@@ -1,10 +1,11 @@
 import * as S from "./WaitingCard.styled";
 
 // hooks
-import Button from "@components/button/Button";
+
 import WaitingCardMypage from "./WaitingCardLayout";
 import useBottomsheet from "@hooks/useBottomsheet";
 import LoginBottomsheetContent from "@components/login/LoginBottomsheetContent";
+import { Button } from "@linenow/design-system";
 
 const WaitingCardLogin = () => {
   const { openBottomsheet } = useBottomsheet();
@@ -25,7 +26,7 @@ const WaitingCardLogin = () => {
         </S.BoothInformaitonLabelWrapper>
       </S.BoothInformationWrapper>
 
-      <Button scheme="lime" onClick={handleOpenBottomSheetButton}>
+      <Button variant="lime" onClick={handleOpenBottomSheetButton}>
         로그인하고 이용하기
       </Button>
     </WaitingCardMypage>

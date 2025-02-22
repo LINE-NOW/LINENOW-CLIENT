@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as S from "./BottomButton.styled";
-import ButtonLayout from "@components/button/ButtonLayout";
+import { ButtonLayout } from "@linenow/design-system";
 
 interface BottomButtonProps {
   children?: React.ReactNode;
@@ -31,7 +31,7 @@ const BottomButton = ({
             {informationSub && <span className="blue">{informationSub}</span>}
           </S.BottomButtonInformationWrapper>
         )}
-        <ButtonLayout $col={1}>{children}</ButtonLayout>
+        <ButtonLayout colCount={1}>{children}</ButtonLayout>
       </S.BottomButtonWrapper>
       <S.BottomButtonPadding $height={height} />
     </>

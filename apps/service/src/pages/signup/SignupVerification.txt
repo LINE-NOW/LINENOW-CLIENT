@@ -127,7 +127,7 @@ const SignupPage = () => {
                 false ||
                 errors.phonenumber != undefined,
               children: "인증번호 받기",
-              scheme: "blueLight",
+              variant: "blueLight",
               onClick: getVerificationCode,
             }}
           />
@@ -142,7 +142,7 @@ const SignupPage = () => {
               disabled:
                 !isVerificationCodeAble || isVerificationCodeChecked || false,
               children: "인증번호 확인",
-              scheme: "blueLight",
+              variant: "blueLight",
               onClick: checkVerificationCode,
             }}
           />

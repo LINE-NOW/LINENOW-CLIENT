@@ -4,12 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./WaitingDetailPage.styled";
 import BoothCardDetail from "@components/boothCard/boothCardDetail";
 import BottomButton from "@components/bottomButton/BottomButton";
-import Button from "@components/button/Button";
 import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
 import useModal from "@hooks/useModal";
 import Spinner from "@components/spinner/Spinner";
 import { useGetWaiting, usePostWaitingCancel } from "@hooks/apis/waiting";
+import { Button } from "@linenow/design-system";
 
 const WaitingDetailPage = () => {
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ const WaitingDetailPage = () => {
         informationTitle="전체 대기"
         informationSub={`${waitingDetail?.totalWaitingTeams || 0}팀`}
       >
-        <Button scheme="blueLight">
+        <Button variant="blueLight">
           <span>내 앞으로 지금</span>
           <span>{waitingDetail?.waitingTeamsAhead || 0}팀</span>
         </Button>

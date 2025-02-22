@@ -1,7 +1,10 @@
+import { Button } from "@linenow/design-system";
 import * as S from "./InputText.styled";
-import Button, { ButtonProps } from "@components/button/Button";
 
-interface InputTextButtonProps extends Omit<ButtonProps, "size" | "shape"> {}
+type InputTextButtonProps = Omit<
+  React.ComponentProps<typeof Button>,
+  "size" | "shape"
+>;
 
 export interface InputTextProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
