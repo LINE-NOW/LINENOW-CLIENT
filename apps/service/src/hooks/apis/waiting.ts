@@ -9,7 +9,7 @@ import {
 } from "@apis/domains/waiting/apis";
 
 import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
-import useModal from "@hooks/useModal";
+import { useModal } from "@linenow/design-system";
 import useIsLoading from "@hooks/useIsLoading";
 import {
   postWaitingRegister,

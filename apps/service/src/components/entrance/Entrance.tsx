@@ -4,13 +4,13 @@ import { handleConfirmEntry, handleCancelEntry } from "./entranceUtils";
 
 // import useTimer from "@hooks/useTimer";
 import { useEffect, useState } from "react";
-import useModal from "@hooks/useModal";
+
 import useCountdown from "@hooks/useCountdown";
 import { usePostConfirm } from "@hooks/apis/entry";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
 import { Waiting } from "@interfaces/waiting";
 import { getWaiting } from "@apis/domains/waiting/apis";
-import { Button, ButtonLayout } from "@linenow/design-system";
+import { Button, ButtonLayout, useModal } from "@linenow/design-system";
 
 export interface EntranceProps {
   targetTime: string;

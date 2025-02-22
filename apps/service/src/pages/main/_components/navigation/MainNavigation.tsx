@@ -3,10 +3,6 @@ import { useEffect, useState } from "react";
 //component
 import * as S from "./MainNavigation.styled";
 import Spinner from "@components/spinner/Spinner";
-import {
-  IconLabelLinkButton,
-  IconLinkButton,
-} from "@components/button/CustomButton";
 
 import WaitingCard from "@components/waitingCard/WaitingCard";
 
@@ -23,6 +19,7 @@ import WaitingCardLogin from "@components/waitingCard/WaitingCardLogin";
 // types
 import { Waiting } from "@interfaces/waiting";
 import WaitingCardNoCard from "@components/waitingCard/WaitingCardNoCard";
+import { Icon, IconLabel, Label, LinkButton } from "@linenow/design-system";
 
 interface MainNavigationProps {
   isFold: boolean;
@@ -61,24 +58,23 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
     if (isLogin) {
       return (
         <>
-          <IconLabelLinkButton
-            to="my-waiting"
-            iconPosition="right"
-            gap="0.25rem"
-            icon="right_white"
-            iconSize="1rem"
-          >
-            <S.MainNavigationTitleLabel className={isFold ? "fold" : "unfold"}>
+          <LinkButton to="my-waiting">
+            <IconLabel
+              iconPosition="right"
+              gap="0.25rem"
+              icon={{ name: "right_white", size: "1rem" }}
+              css={S.getNavigationTitleStyle()}
+              font={isFold ? "head2" : "head3"}
+              color="white"
+            >
               <span>나의 대기</span>
-              <span className="lime">{waitings.length}개</span>
-            </S.MainNavigationTitleLabel>
-          </IconLabelLinkButton>
+              <Label color="lime">{waitings.length}개</Label>
+            </IconLabel>
+          </LinkButton>
 
-          <IconLinkButton
-            to="/setting"
-            icon="setting_white"
-            iconSize="1.5rem"
-          />
+          <LinkButton to="/setting">
+            <Icon name="setting_white" size="1.5rem" />
+          </LinkButton>
         </>
       );
     } else {

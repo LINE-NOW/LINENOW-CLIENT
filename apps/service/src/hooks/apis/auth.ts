@@ -6,7 +6,8 @@ import { SignupResponse } from "@apis/domains/auth/signup/_interfaces";
 import { postSignup } from "@apis/domains/auth/signup/apis";
 import useAuth from "@hooks/useAuth";
 import useIsLoading from "@hooks/useIsLoading";
-import useModal from "@hooks/useModal";
+import { useModal } from "@linenow/design-system";
+
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
@@ -114,7 +115,7 @@ export const usePostSignup = () => {
         password1: requestBody.password1,
         password2: requestBody.password2,
         turnstile_token: requestBody.turnstile_token,
-      })
+      });
     },
     onSuccess: async (response: SignupResponse) => {
       login({

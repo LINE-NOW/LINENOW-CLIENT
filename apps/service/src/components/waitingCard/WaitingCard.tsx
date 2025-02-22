@@ -1,16 +1,19 @@
 import * as S from "./WaitingCard.styled";
-import IconLabel from "@components/label/IconLabel";
-import { ChipButton } from "@components/button/CustomButton";
-
 // interfaces
 import { Waiting } from "@interfaces/waiting";
 
 // hooks
 import { useWaitingCard } from "./_hooks/useWaitingCard";
 import { useNavigate } from "react-router-dom";
-import useModal from "@hooks/useModal";
+
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
-import { Button } from "@linenow/design-system";
+import {
+  Button,
+  Chip,
+  CommonButton,
+  IconLabel,
+  useModal,
+} from "@linenow/design-system";
 
 interface WaitingCardProps {
   waiting: Pick<
@@ -87,13 +90,9 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>{config.titleContent}</S.WaitingCardTitleLabel>
         {config.isValidate ? (
-          <ChipButton
-            onClick={handleCancelButton}
-            variant="grayLight"
-            shape="outline"
-          >
-            취소하기
-          </ChipButton>
+          <CommonButton onClick={handleCancelButton}>
+            <Chip variant="outline">취소하기</Chip>
+          </CommonButton>
         ) : null}
       </S.WaitingCardTitleWrapper>
 
@@ -111,7 +110,10 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
               <span>{waiting.booth?.name || "부스명 없음"}</span>
             </S.BoothInformationNameLabel>
 
-            <IconLabel icon="location_gray_light" iconSize="1rem" gap="0.12rem">
+            <IconLabel
+              icon={{ name: "location_gray_light", size: "1rem" }}
+              gap="0.12rem"
+            >
               <S.BoothInformationPositionLabel>
                 {waiting.booth?.location || "위치 없음"}
               </S.BoothInformationPositionLabel>

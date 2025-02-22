@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import IconLabel from "@components/label/IconLabel";
 
 // style
 import { changeFoldStateAnimation } from "@styles/animation";
-import { fonts } from "@linenow/design-system";
+import { IconLabel } from "@linenow/design-system";
+import { css } from "@emotion/react";
 
 export const MainNavigationWrapper = styled.section`
   display: flex;
@@ -30,20 +30,7 @@ export const MainNavigationTitleWrapper = styled.div`
 
 export const MainNavigationTitleLabelButton = styled(IconLabel)``;
 
-export const MainNavigationTitleLabel = styled.h3`
+export const getNavigationTitleStyle = () => css`
   display: flex;
   gap: 0.25rem;
-
-  &.fold {
-    ${fonts.head2}
-  }
-  &.unfold {
-    ${fonts.head3}
-  }
-
-  color: ${({ theme }) => theme.fontColors.white};
-
-  .lime {
-    color: ${({ theme }) => theme.fontColors.lime};
-  }
 `;

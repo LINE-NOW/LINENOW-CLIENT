@@ -1,4 +1,4 @@
-import IconLabel from "@components/label/IconLabel";
+import { IconLabel } from "@linenow/design-system";
 import * as S from "./BoothCard.styled";
 
 interface BoothCardProps {
@@ -37,8 +37,7 @@ const BoothCardLayout = ({
 
           <IconLabel
             gap={"0.13rem"}
-            icon={"location_gray_light"}
-            iconSize={"1rem"}
+            icon={{ name: "location_gray_light", size: "1rem" }}
           >
             <S.BoothCardInformationLocationLabel>
               {boothLocationInfo}

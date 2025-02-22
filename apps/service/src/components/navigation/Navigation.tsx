@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./Navigation.styled";
-import { IconButton } from "@components/button/CustomButton";
+import { CommonButton, Icon } from "@linenow/design-system";
 
 const Navigation = () => {
   const location = useLocation();
@@ -37,11 +37,10 @@ const Navigation = () => {
 
   return (
     <S.NavigationWrapper>
-      <IconButton
-        onClick={handleBackButton}
-        icon="left_gray"
-        iconSize="1.5rem"
-      />
+      <CommonButton onClick={handleBackButton}>
+        <Icon name="left_gray" size="1.5rem" />
+      </CommonButton>
+
       {getNavigationTitle()}
     </S.NavigationWrapper>
   );

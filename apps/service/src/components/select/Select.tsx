@@ -1,4 +1,4 @@
-import IconLabel from "@components/label/IconLabel";
+import { IconLabel } from "@linenow/design-system";
 import * as S from "./Select.styled";
 
 export interface OptionProps
@@ -15,8 +15,7 @@ const Select = ({ options, ...props }: SelectProps) => {
     <IconLabel
       iconPosition="right"
       gap={"0.25rem"}
-      icon={"down_gray_light"}
-      iconSize={"1rem"}
+      icon={{ name: "down_gray_light", size: "1rem" }}
     >
       <S.SelectWrapper {...props}>
         {options.map((option) => (

@@ -1,7 +1,9 @@
-import { ModalProps } from "@components/modal/Modal";
+import { Modal } from "@linenow/design-system";
 
 export const handleConfirmEntry = (
-  openModal: (modalProps: Omit<ModalProps, "isOpen">) => void, // openModal 전달
+  openModal: (
+    modalProps: Omit<React.ComponentProps<typeof Modal>, "isOpen">
+  ) => void, // openModal 전달
   closeModal: () => void,
   postConfirm: () => void
 ) => {
@@ -24,7 +26,9 @@ export const handleConfirmEntry = (
 
 // 입장 취소 핸들러
 export const handleCancelEntry = (
-  openModal: (modalProps: Omit<ModalProps, "isOpen">) => void,
+  openModal: (
+    modalProps: Omit<React.ComponentProps<typeof Modal>, "isOpen">
+  ) => void,
   closeModal: () => void,
   postCancel: () => void
 ) => {

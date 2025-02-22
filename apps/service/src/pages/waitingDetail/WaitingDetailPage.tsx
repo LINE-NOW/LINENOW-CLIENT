@@ -6,10 +6,10 @@ import BoothCardDetail from "@components/boothCard/boothCardDetail";
 import BottomButton from "@components/bottomButton/BottomButton";
 import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
-import useModal from "@hooks/useModal";
+
 import Spinner from "@components/spinner/Spinner";
 import { useGetWaiting, usePostWaitingCancel } from "@hooks/apis/waiting";
-import { Button } from "@linenow/design-system";
+import { Button, useModal } from "@linenow/design-system";
 
 const WaitingDetailPage = () => {
   const navigate = useNavigate();

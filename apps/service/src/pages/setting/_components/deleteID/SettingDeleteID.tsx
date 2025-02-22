@@ -1,5 +1,6 @@
+import { useModal } from "@linenow/design-system";
 import * as S from "./SettingDeleteID.styled";
-import useModal from "@hooks/useModal";
+
 import { usePostDeleteID } from "@hooks/apis/auth";
 
 const SettingDeleteID = () => {

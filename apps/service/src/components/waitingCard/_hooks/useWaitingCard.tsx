@@ -7,10 +7,9 @@ import { WaitingStatus } from "@linenow-types/status";
 
 // hooks
 import useCountdown from "@hooks/useCountdown";
-import useModal from "@hooks/useModal";
-import { ModalProps } from "@components/modal/Modal";
+
 import { usePostConfirm } from "@hooks/apis/entry";
-import { Button } from "@linenow/design-system";
+import { Button, Modal, useModal } from "@linenow/design-system";
 
 interface WaitingCardProps {
   waitingID: number;
@@ -47,7 +46,7 @@ export const useWaitingCard = ({
     waitingID: waitingID,
   });
 
-  const confirmModal: Omit<ModalProps, "isOpen"> = {
+  const confirmModal: Omit<React.ComponentProps<typeof Modal>, "isOpen"> = {
     title: "다른 대기가 취소돼요",
     sub: "입장을 확정하면 다른 대기는 취소돼요.\n 입장을 확정하시겠어요?",
     primaryButton: {

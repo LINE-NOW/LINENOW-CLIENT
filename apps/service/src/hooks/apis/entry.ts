@@ -1,7 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { PostConfirmRequest, postEntryConfirm } from "@apis/domains/entry/api";
-import useModal from "@hooks/useModal";
+
 import useIsLoading from "@hooks/useIsLoading";
+import { useModal } from "@linenow/design-system";
 
 export const usePostConfirm = ({ ...props }: PostConfirmRequest) => {
   const { closeModal } = useModal();

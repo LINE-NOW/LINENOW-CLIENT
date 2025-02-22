@@ -1,5 +1,6 @@
+import { Chip } from "@linenow/design-system";
 import * as S from "./BoothCard.styled";
-import Chip from "@components/chip/Chip";
+
 import BoothCardLayout from "./boothCardLayout";
 import { BoothsElement } from "@interfaces/booth";
 
@@ -16,9 +17,9 @@ const BoothCardMain = ({ booth }: BoothCardProps) => {
   const getChip = () => {
     switch (booth.isOperated) {
       case "not_started":
-        return <Chip variant="grayLight">운영 전</Chip>;
+        return <Chip variant="outline">운영 전</Chip>;
       case "finished":
-        return <Chip variant="grayLight">운영 종료</Chip>;
+        return <Chip variant="outline">운영 종료</Chip>;
       default:
         return (
           <Chip variant="blueLight">대기 {booth.totalWaitingTeams} 팀</Chip>

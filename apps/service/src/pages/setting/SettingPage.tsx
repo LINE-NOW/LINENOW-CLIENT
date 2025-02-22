@@ -1,10 +1,11 @@
 import * as S from "./SettingPage.styled";
 import SettingItem from "./_components/settingItem/SettingItem";
 import SettingDeleteID from "./_components/deleteID/SettingDeleteID";
-import useModal from "@hooks/useModal";
+
 // import { useAtom } from 'jotai';
 // import { languageAtom } from '@atoms/language';
 import { usePostLogout } from "@hooks/apis/auth";
+import { useModal } from "@linenow/design-system";
 
 const SettingPage = () => {
   const { openModal } = useModal();
