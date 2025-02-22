@@ -194,8 +194,8 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
         </S.SidebarButtonWrapper>
 
         <ButtonLayout
-          $col={1}
-          $colGap="0.5rem"
+          colCount={1}
+          colGap="0.5rem"
           style={{ padding: `1.25rem 0.75rem 2rem 0.75rem` }}
         >
           {getButton()}

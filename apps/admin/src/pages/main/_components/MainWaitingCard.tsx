@@ -68,9 +68,7 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
 
           {config.isValidate ? (
             <CommonButton onClick={handleCancelWaitingButton}>
-              <Chip scheme="grayLight" shape="outline">
-                대기취소
-              </Chip>
+              <Chip variant="outline">대기취소</Chip>
             </CommonButton>
           ) : null}
         </S.MainWaitingCardHeader>
@@ -88,8 +86,8 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
             <IconLabel
               gap={"0.25rem"}
               icon={{ name: "call_gray", size: "1rem" }}
-              font={"b3"}
-              fontColor={"gray"}
+              font="body3"
+              fontColor="gray"
             >
               <span style={{ textDecoration: "underline" }}>
                 {waiting.user.phoneNumber}
@@ -99,13 +97,13 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
         </S.MainWaitingCardInfoBox>
 
         <ButtonLayout
-          $col={config.secondButton ? 2 : 1}
-          $colTemplate={config.secondButton ? "1fr 6.25rem" : ""}
+          colCount={config.secondButton ? 2 : 1}
+          colTemplate={config.secondButton ? "1fr 6.25rem" : ""}
         >
-          <Button size="medium" shape="fill" {...config.primaryButton} />
+          <Button size="medium" {...config.primaryButton} />
 
           {config.secondButton && (
-            <Button size="medium" shape="fill" {...config.secondButton} />
+            <Button size="medium" {...config.secondButton} />
           )}
         </ButtonLayout>
       </S.MainWaitingCardContentWrapper>

@@ -2,10 +2,11 @@ import {
   usePostBoothOperation,
   usePostBoothStatus,
 } from "@hooks/apis/boothManaging";
-import { useModal } from "@linenow/design-system";
-import { ModalProps } from "@linenow/design-system/components/modal/Modal";
 
-interface ModalExtensionProps extends Omit<ModalProps, "isOpen"> {}
+import { Modal, useModal } from "@linenow/design-system";
+
+interface ModalExtensionProps
+  extends Omit<React.ComponentProps<typeof Modal>, "isOpen"> {}
 
 const useSidebarModalConfig = () => {
   const { closeModal } = useModal();

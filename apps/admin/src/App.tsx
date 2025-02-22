@@ -1,6 +1,3 @@
-// styles
-import LocalStyle from "@styles/local";
-
 // routers
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/router";
@@ -17,7 +14,6 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <LinenowProvider>
         <FullSpinner />
-        <LocalStyle />
         <RouterProvider router={router} />
       </LinenowProvider>
     </QueryClientProvider>

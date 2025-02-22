@@ -1,5 +1,4 @@
-import { useModal } from "@linenow/design-system";
-import { ButtonProps } from "@linenow/design-system/components/button/Button";
+import { Button, useModal } from "@linenow/design-system";
 
 import { WaitingStatus } from "@linenow-types/status";
 import useMainWaitingCardModalConfig from "./useMainWaitingCardModalConfig";
@@ -13,7 +12,7 @@ interface MainWaitingCardProps {
 }
 
 interface MainWaitingCardButtonProps
-  extends Omit<ButtonProps, "size" | "width" | "shape"> {}
+  extends Omit<React.ComponentProps<typeof Button>, "size"> {}
 
 interface MainWaitingCardConfig {
   backgroundColor: string;
@@ -49,7 +48,7 @@ export const useMainWaitingCard = ({
 
   const callWaitingButton: MainWaitingCardButtonProps = {
     children: "대기 호출하기",
-    scheme: "blue",
+    variant: "blue",
     onClick: handleCallWaitingButton,
   };
 
@@ -57,7 +56,7 @@ export const useMainWaitingCard = ({
     abled: boolean
   ): MainWaitingCardButtonProps => ({
     children: "입장완료",
-    scheme: "blueLight",
+    variant: "blueLight",
     disabled: !abled,
     onClick: handleApproveWaitingButton,
   });
@@ -75,7 +74,7 @@ export const useMainWaitingCard = ({
       isValidate: true,
       primaryButton: {
         children: "손님이 입장을 확정중이에요",
-        scheme: "limeLight",
+        variant: "limeLight",
       },
       secondButton: approveWaitingButton(false),
     },
@@ -88,7 +87,7 @@ export const useMainWaitingCard = ({
           <span key={1}>손님이 오고 있어요!</span>,
           <span key={2}>{getTime("MMSS")}</span>,
         ],
-        scheme: "lime",
+        variant: "lime",
       },
       secondButton: approveWaitingButton(true),
     },
@@ -98,7 +97,7 @@ export const useMainWaitingCard = ({
       isValidate: false,
       primaryButton: {
         children: "입장을 완료했어요",
-        scheme: "grayLight",
+        variant: "outline",
         disabled: true,
       },
       userInfoOpacity: "20%",
@@ -109,7 +108,7 @@ export const useMainWaitingCard = ({
       isValidate: false,
       primaryButton: {
         children: "대기가 취소되었어요",
-        scheme: "grayLight",
+        variant: "outline",
         disabled: true,
       },
       partySizeColor: "grayLight",
@@ -120,7 +119,7 @@ export const useMainWaitingCard = ({
       isValidate: false,
       primaryButton: {
         children: "대기 시간이 초과되었어요",
-        scheme: "grayLight",
+        variant: "outline",
         disabled: true,
       },
       partySizeColor: "grayLight",

@@ -1,8 +1,9 @@
-import { useModal } from "@linenow/design-system";
-import { ModalProps } from "@linenow/design-system/components/modal/Modal";
+import { Modal, useModal } from "@linenow/design-system";
+
 import { usePostWaitingAction } from "@hooks/apis/boothManaging";
 
-interface ModalExtensionProps extends Omit<ModalProps, "isOpen"> {}
+interface ModalExtensionProps
+  extends Omit<React.ComponentProps<typeof Modal>, "isOpen"> {}
 
 const useMainWaitingCardModalConfig = (waitingID: number) => {
   const { closeModal } = useModal();
