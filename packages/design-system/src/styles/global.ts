@@ -18,14 +18,4 @@ export const global = css({
   a: {
     textDecoration: "none",
   },
-
-  input: {
-    border: "none",
-    outline: "none",
-  },
-  button: {
-    border: "none",
-    outline: "none",
-    backgroundColor: "transparent",
-  },
 });
