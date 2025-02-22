@@ -1057,6 +1057,7 @@ __metadata:
     "@types/react": "npm:^19.0.10"
     "@types/react-dom": "npm:^19.0.4"
     prop-types: "npm:^15.8.1"
+    react-router-dom: "npm:^7.2.0"
     storybook: "npm:^8.5.8"
   languageName: unknown
   linkType: soft
