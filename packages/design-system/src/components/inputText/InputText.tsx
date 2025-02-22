@@ -1,6 +1,9 @@
-import { CommonButton } from "@components/button/ButtonExtension";
 import * as S from "./InputText.styled";
-import Icon, { IconProps } from "@components/icon/Icon";
+
+import Label from "../label/Label";
+import Icon from "../icon/Icon";
+
+type IconProps = React.ComponentProps<typeof Icon>;
 
 export interface InputTextProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -11,32 +14,44 @@ export interface InputTextProps
   rightIconClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const InputText = ({
-  width = "100%",
-  label,
-  rightIcon,
-  rightIconClick,
-  errorMessage,
-  type = "text",
-  ...props
-}: InputTextProps) => {
+const InputText = (props: InputTextProps) => {
+  const {
+    width = "100%",
+    label,
+    rightIcon,
+    rightIconClick,
+    errorMessage,
+    type = "text",
+    ...inputProps
+  } = props;
   return (
-    <S.InputTextWrapper $width={width}>
-      {label && <S.InputTextLable>{label}</S.InputTextLable>}
+    <section css={[S.getWrapperStyle(width)]}>
+      {label && (
+        <Label font="head3" color="blue" css={S.getLabelStyle()}>
+          {label}
+        </Label>
+      )}
 
       <S.InputTextField>
-        <input type={type} placeholder={props.placeholder} {...props} />
+        <input
+          type={type}
+          placeholder={props.placeholder}
+          css={S.getInputStyle()}
+        />
 
         {rightIcon && (
-          <CommonButton onClick={rightIconClick}>
+          // TODO:- button component화 필요
+          <button onClick={rightIconClick}>
             <Icon {...rightIcon} />
-          </CommonButton>
+          </button>
         )}
       </S.InputTextField>
       {errorMessage && (
-        <S.InputTextErrorLable>{errorMessage}</S.InputTextErrorLable>
+        <Label font="caption" css={S.getErrorLabelStyle()}>
+          {label}
+        </Label>
       )}
-    </S.InputTextWrapper>
+    </section>
   );
 };
 

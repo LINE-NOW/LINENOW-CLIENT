@@ -3,12 +3,12 @@ import InputText from "./InputText";
 import InputPassword from "./InputPassword";
 
 const meta = {
-  title: "Components/InputText", // 같은 섹션에 보여줄 타이틀
+  title: "Components/InputText",
   component: InputText,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"], // 자동 문서 생성
+  tags: ["autodocs"],
 } satisfies Meta<typeof InputText>;
 
 export default meta;

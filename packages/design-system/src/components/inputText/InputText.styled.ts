@@ -1,28 +1,25 @@
-import styled, { css } from "styled-components";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
+import { fonts } from "../../styles/fonts";
 
-interface InputTextWrapperProps {
-  $width: string;
-}
-
-export const InputTextWrapper = styled.section<InputTextWrapperProps>`
+export const getWrapperStyle = (width: string) => css`
   display: flex;
   flex-direction: column;
-
-  ${({ $width }) => {
-    return css`
-      width: ${$width};
-    `;
-  }}
+  width: ${width};
 `;
 
-export const InputTextLable = styled.label`
+export const getLabelStyle = () => css`
   padding: 0rem 0.25rem;
-  ${({ theme }) => theme.fonts.h3}
-  color: ${({ theme }) => theme.colors.font.blue};
   padding-bottom: 0.75rem;
 `;
 
-export const InputTextField = styled.div`
+export const getErrorLabelStyle = () => css`
+  padding: 0rem 0.25rem;
+  padding-top: 0.25rem;
+  color: red;
+`;
+
+export const InputTextField = styled.label`
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -31,15 +28,16 @@ export const InputTextField = styled.div`
 
   border-radius: 0.5rem;
   border: 1px solid;
-  border-color: ${({ theme }) => theme.colors.border.blue};
+  border-color: ${({ theme }) => theme.borderColors.blue};
 
   padding: 0.75rem 1rem;
 
   input {
     flex-grow: 1;
-
-    ${({ theme }) => theme.fonts.b1}
-    color: ${({ theme }) => theme.colors.font.black};
+    border: none;
+    outline: none;
+    ${fonts.body1}
+    color: ${({ theme }) => theme.fontColors.black};
   }
 
   img {
@@ -50,9 +48,11 @@ export const InputTextField = styled.div`
   }
 `;
 
-export const InputTextErrorLable = styled.label`
-  padding: 0rem 0.25rem;
-  padding-top: 0.25rem;
-  ${({ theme }) => theme.fonts.caption}
-  color: red;
-`;
+export const getInputStyle = () => {
+  return (theme: any) => css`
+    flex-grow: 1;
+
+    ${fonts.body1}
+    color: ${theme.fontColors.black};
+  `;
+};
