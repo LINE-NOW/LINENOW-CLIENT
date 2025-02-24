@@ -6,6 +6,10 @@ export const getWrapperStyle = (width: string) => css`
   display: flex;
   flex-direction: column;
   width: ${width};
+
+  & > * {
+    align-items: center;
+  }
 `;
 
 export const getLabelStyle = () => css`

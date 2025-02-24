@@ -48,7 +48,7 @@ const InputText = (props: InputTextProps) => {
       </S.InputTextField>
       {errorMessage && (
         <Label font="caption" css={S.getErrorLabelStyle()}>
-          {label}
+          {errorMessage}
         </Label>
       )}
     </section>
