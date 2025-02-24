@@ -20,7 +20,7 @@ const meta = {
       table: {
         type: {
           summary: "IconColorKey",
-          detail: "white\nblue\ngray\ngrayLight\ncss-color",
+          detail: "white\nblue\ngray\ngrayLight",
         },
       },
       control: { type: "color" },

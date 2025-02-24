@@ -2,7 +2,7 @@ import { IconAssetProps } from "../Icon";
 
 const LogoutIcon = (props: IconAssetProps) => {
   const { color = "black", size = 24 } = props;
-  const scale = size / 24;
+
   return (
     <svg
       width={size}

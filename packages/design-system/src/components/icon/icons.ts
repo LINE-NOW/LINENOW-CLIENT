@@ -10,6 +10,7 @@ import LogoutIcon from "./assets/LogoutIcon";
 import PauseIcon from "./assets/PauseIcon";
 import PhoneIcon from "./assets/PhoneIcon";
 import PlayIcon from "./assets/PlayIcon";
+import PowerIcon from "./assets/PowerIcon";
 import RefreshIcon from "./assets/RefreshIcon";
 import RightIcon from "./assets/RightIcon";
 import SettingIcon from "./assets/SettingIcon";
@@ -33,6 +34,7 @@ export const icons = {
   pasue: PauseIcon,
   phone: PhoneIcon,
   play: PlayIcon,
+  power: PowerIcon,
   refresh: RefreshIcon,
   right: RightIcon,
   setting: SettingIcon,

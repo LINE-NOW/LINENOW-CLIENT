@@ -18,7 +18,7 @@ export type BorderColorKey = keyof BorderColorType;
 export const BorderColorList = Object.keys(borderColors);
 
 export type IconColorType = typeof iconColors;
-export type IconColorKey = keyof IconColorType | string;
+export type IconColorKey = keyof IconColorType;
 export const IconsColorList = Object.keys(iconColors);
 
 export type CustomTheme = {
