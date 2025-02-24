@@ -113,7 +113,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const StopWaitingButton = () => {
     return (
       <Button variant="blueLight" onClick={handleStopWaitingButtonClick}>
-        대기 중지하기 <Icon name={"pause_blue"} size={"1.5rem"} />
+        대기 중지하기 <Icon icon="pasue" color="blue" />
       </Button>
     );
   };
@@ -121,7 +121,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const StartWaitingButton = () => {
     return (
       <Button variant="blue" onClick={handleStartWaitingButtonClick}>
-        대기 재개하기 <Icon name={"play_white"} size={"1.5rem"} />
+        대기 재개하기 <Icon icon="play" color="white" />
       </Button>
     );
   };
@@ -129,7 +129,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const StopBoothButton = () => {
     return (
       <Button variant="limeLight" onClick={handleStopBoothButtonClick}>
-        운영 종료하기 <Icon name={"open_gary"} size={"1.5rem"} />
+        운영 종료하기 <Icon icon="power" color="gray" />
       </Button>
     );
   };
@@ -137,7 +137,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const StartBoothButton = () => {
     return (
       <Button variant="lime" onClick={handleStartBoothButtonClick}>
-        운영 시작하기 <Icon name={"open_gary"} size={"1.5rem"} />
+        운영 시작하기 <Icon icon="power" color="gray" />
       </Button>
     );
   };

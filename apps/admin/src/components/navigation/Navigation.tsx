@@ -12,11 +12,11 @@ const Navigation = ({ isOpen, isMobile, setIsOpen }: SidebarProps) => {
       {isMobile ? (
         isOpen ? (
           <CommonButton onClick={() => setIsOpen(false)}>
-            <Icon name={"up_white"} size={"1.5rem"} />
+            <Icon icon="up" color="white" />
           </CommonButton>
         ) : (
           <CommonButton onClick={() => setIsOpen(true)}>
-            <Icon name={"down_white"} size={"1.5rem"} />
+            <Icon icon="down" color="white" />
           </CommonButton>
         )
       ) : null}
