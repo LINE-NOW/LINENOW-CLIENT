@@ -37,7 +37,8 @@ const BoothCardLayout = ({
 
           <IconLabel
             gap={"0.13rem"}
-            icon={{ name: "location_gray_light", size: "1rem" }}
+            icon="location_pin"
+            iconProps={{ color: "grayLight", size: 16 }}
           >
             <S.BoothCardInformationLocationLabel>
               {boothLocationInfo}

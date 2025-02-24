@@ -38,7 +38,7 @@ const Navigation = () => {
   return (
     <S.NavigationWrapper>
       <CommonButton onClick={handleBackButton}>
-        <Icon name="left_gray" size="1.5rem" />
+        <Icon icon="left" color="gray" />
       </CommonButton>
 
       {getNavigationTitle()}

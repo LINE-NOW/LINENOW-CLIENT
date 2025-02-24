@@ -15,7 +15,8 @@ const Select = ({ options, ...props }: SelectProps) => {
     <IconLabel
       iconPosition="right"
       gap={"0.25rem"}
-      icon={{ name: "down_gray_light", size: "1rem" }}
+      icon="down"
+      iconProps={{ color: "grayLight", size: 16 }}
     >
       <S.SelectWrapper {...props}>
         {options.map((option) => (
