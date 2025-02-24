@@ -18,4 +18,9 @@ export const global = css({
   a: {
     textDecoration: "none",
   },
+  button: {
+    outline: "none",
+    border: "none",
+    backgroundColor: "transparent",
+  },
 });

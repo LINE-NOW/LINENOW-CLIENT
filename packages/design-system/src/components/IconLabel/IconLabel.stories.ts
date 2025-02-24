@@ -55,7 +55,7 @@ const meta = {
       options: FontList,
     },
     color: {
-      description: `text의 색 지정`,
+      description: `text의 색을 지정합니다.`,
       table: {
         type: {
           summary: "FontColorKey",
