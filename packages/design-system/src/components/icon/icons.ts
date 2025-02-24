@@ -5,6 +5,7 @@ import EditIcon from "./assets/EditIcon";
 import EyeCloseIcon from "./assets/EyeCloseIcon";
 import EyeOpenIcon from "./assets/EyeOpenIcon";
 import KakaoIcon from "./assets/KakaoIcon";
+import LeftIcon from "./assets/LeftIcon";
 import LocationPinIcon from "./assets/LocationPinIcon";
 import LogoutIcon from "./assets/LogoutIcon";
 import PauseIcon from "./assets/PauseIcon";
@@ -29,6 +30,7 @@ export const icons = {
   eye_close: EyeCloseIcon,
   eye_open: EyeOpenIcon,
   kakao: KakaoIcon,
+  left: LeftIcon,
   location_pin: LocationPinIcon,
   logout: LogoutIcon,
   pasue: PauseIcon,
