@@ -1,41 +1,42 @@
 import { Meta, StoryObj } from "@storybook/react";
 import Label from "./Label";
+import { FontList } from "../../styles/fonts";
+import { FontColorList } from "../../styles/theme";
 
 const meta: Meta<typeof Label> = {
-  title: "Components/Label",
+  title: "Atoms/Label",
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
   component: Label,
   argTypes: {
+    children: {
+      table: {
+        type: {
+          summary: "ReactNode",
+        },
+      },
+    },
     font: {
-      control: { type: "radio" },
-      options: [
-        "head1",
-        "head1_b",
-        "head2",
-        "head2_b",
-        "head3",
-        "head3_b",
-        "body1",
-        "body1_b",
-        "body2",
-        "body2_b",
-        "body3",
-        "body3_b",
-        "button1",
-        "button2",
-        "caption",
-      ],
+      table: {
+        type: { summary: "FontKey" },
+        defaultValue: { summary: "body1" },
+      },
+      control: { type: "select" },
+      options: FontList,
     },
     color: {
-      control: { type: "radio" },
-      options: [
-        "white",
-        "blue",
-        "lime",
-        "black",
-        "blackLight",
-        "gray",
-        "grayLight",
-      ],
+      table: {
+        type: { summary: "FontColorKey" },
+      },
+      control: { type: "select" },
+      options: FontColorList,
+    },
+    as: {
+      table: {
+        disable: true,
+      },
     },
   },
 };

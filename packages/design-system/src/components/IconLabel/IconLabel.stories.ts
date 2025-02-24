@@ -5,7 +5,7 @@ import { IconList } from "../icon/icons";
 import { FontList } from "../../styles/fonts";
 
 const meta = {
-  title: "Components/IconLabel",
+  title: "Atoms/IconLabel",
   component: IconLabel,
   parameters: {
     layout: "centered",
@@ -96,7 +96,6 @@ export const KakaoLabel: Story = {
     icon: "kakao",
     iconPosition: "left",
     iconProps: {
-      color: "#000000",
       size: 24,
     },
     gap: "8px",
