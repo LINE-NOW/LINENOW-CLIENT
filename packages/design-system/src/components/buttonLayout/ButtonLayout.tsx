@@ -1,7 +1,7 @@
 import * as S from "./ButtonLayout.styled";
 
 interface ButtonLayoutProps extends React.ComponentPropsWithoutRef<"section"> {
-  colCount: number;
+  colCount?: number;
   colTemplate?: string;
   rowGap?: string;
   colGap?: string;
@@ -9,7 +9,7 @@ interface ButtonLayoutProps extends React.ComponentPropsWithoutRef<"section"> {
 
 const ButtonLayout = (props: ButtonLayoutProps) => {
   const {
-    colCount,
+    colCount = 1,
     colTemplate,
     rowGap = "0.5rem",
     colGap = "0.5rem",

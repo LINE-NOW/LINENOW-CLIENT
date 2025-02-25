@@ -41,3 +41,5 @@ export const fonts = {
   // etc
   caption: fontGenerator("0.625rem", 500, "0.875rem"),
 };
+
+export const FontList = Object.keys(fonts);

@@ -55,3 +55,12 @@ export const backgroundColors = {
   lime: colors.lime400,
   limeLight: colors.lime200,
 };
+
+export const iconColors = {
+  white: colors.white,
+
+  gray: colors.gray500,
+  grayLight: colors.gray100,
+
+  blue: colors.blue500,
+};

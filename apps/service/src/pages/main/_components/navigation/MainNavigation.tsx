@@ -62,7 +62,8 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
             <IconLabel
               iconPosition="right"
               gap="0.25rem"
-              icon={{ name: "right_white", size: "1rem" }}
+              icon="right"
+              iconProps={{ size: 16, color: "white" }}
               css={S.getNavigationTitleStyle()}
               font={isFold ? "head2" : "head3"}
               color="white"
@@ -73,7 +74,7 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
           </LinkButton>
 
           <LinkButton to="/setting">
-            <Icon name="setting_white" size="1.5rem" />
+            <Icon icon="setting" />
           </LinkButton>
         </>
       );

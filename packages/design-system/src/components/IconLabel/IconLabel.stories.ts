@@ -1,45 +1,73 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import IconLabel from "./IconLabel";
+import { IconList } from "../icon/icons";
+import { FontList } from "../../styles/fonts";
 
 const meta = {
-  title: "Components/IconLabel",
+  title: "Atoms/IconLabel",
   component: IconLabel,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
+    icon: {
+      control: { type: "select" },
+      table: {
+        type: {
+          summary: "IconKey",
+        },
+      },
+      options: IconList,
+    },
+    iconProps: {
+      description: `icon의 세부 설정을 지정합니다.`,
+      table: {
+        type: {
+          summary: "Object",
+          detail:
+            "상세 설정은 Assets/Icon참고\ncolor:아이콘 컬러\nsize:아이콘 크기",
+        },
+      },
+    },
+    iconPosition: {
+      description: `icon의 위치를 지정합니다.`,
+      table: {
+        type: {
+          summary: "left|right",
+        },
+      },
+      control: { type: "inline-radio" },
+      options: ["left", "right"],
+    },
+    gap: {
+      description: `icon과 text사이 간격을 지정합니다.`,
+    },
+
     font: {
-      control: { type: "radio" },
-      options: [
-        "head1",
-        "head1_b",
-        "head2",
-        "head2_b",
-        "head3",
-        "head3_b",
-        "body1",
-        "body1_b",
-        "body2",
-        "body2_b",
-        "body3",
-        "body3_b",
-        "button1",
-        "button2",
-        "caption",
-      ],
+      table: {
+        type: {
+          summary: "FontKey",
+        },
+      },
+      control: { type: "select" },
+      options: FontList,
     },
     color: {
-      control: { type: "radio" },
-      options: [
-        "white",
-        "blue",
-        "lime",
-        "black",
-        "blackLight",
-        "gray",
-        "grayLight",
-      ],
+      description: `text의 색을 지정합니다.`,
+      table: {
+        type: {
+          summary: "FontColorKey",
+        },
+      },
+    },
+    children: {
+      table: {
+        type: {
+          summary: "ReactNode",
+        },
+      },
     },
   },
 } satisfies Meta<typeof IconLabel>;
@@ -48,11 +76,31 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const LargeDefault: Story = {
+export const LocationLabel: Story = {
   args: {
-    font: "body1",
-    gap: "0.12rem",
-    icon: { name: "right_gray", size: "1rem" },
-    children: "hello",
+    icon: "location_pin",
+    iconPosition: "left",
+    iconProps: {
+      color: "grayLight",
+      size: 16,
+    },
+    gap: "2px",
+    font: "body3",
+    color: "gray",
+    children: "동국대학교 팔정도",
+  },
+};
+
+export const KakaoLabel: Story = {
+  args: {
+    icon: "kakao",
+    iconPosition: "left",
+    iconProps: {
+      size: 24,
+    },
+    gap: "8px",
+    font: "button1",
+    color: "black",
+    children: "카카오톡 1:1 오픈채팅",
   },
 };

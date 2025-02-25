@@ -2,22 +2,37 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Chip from "./Chip";
 
 const meta = {
-  title: "Components/Chip",
+  title: "Atoms/Chip",
   component: Chip,
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"], // 자동 문서 생성
+  tags: ["autodocs"],
+  argTypes: {
+    children: {
+      table: { type: { summary: "ReactNode" } },
+    },
+    variant: {
+      table: { type: { summary: "variant" } },
+      control: { type: "select" },
+    },
+  },
 } satisfies Meta<typeof Chip>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// 기본 버튼 스토리
-export const Blue: Story = {
+export const BlueChip: Story = {
   args: {
     children: "chip",
     variant: "blue",
+  },
+};
+
+export const OutlineChip: Story = {
+  args: {
+    children: "chip",
+    variant: "outline",
   },
 };

@@ -64,7 +64,7 @@ export const getVariantStyle = (variant: Variant) => {
 
       background-color: ${style.disabled_backgroundColor
         ? theme.backgroundColors[style.disabled_backgroundColor]
-        : theme.backgroundColors.gray};
+        : theme.backgroundColors.grayLight};
 
       ${style.disabled_borderColor &&
       css`

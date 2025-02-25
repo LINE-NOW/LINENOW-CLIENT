@@ -15,7 +15,8 @@ export const BoothDetailContent = ({ booth }: BoothDetailContentProps) => {
       </S.BoothDetailContentSummary>
       <IconLabel
         gap={"0.13rem"}
-        icon={{ name: "location_gray_light", size: "1rem" }}
+        icon="location_pin"
+        iconProps={{ color: "grayLight", size: 16 }}
       >
         <S.BoothDetailContentLocationInfo>
           {booth.location}

@@ -111,7 +111,8 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
             </S.BoothInformationNameLabel>
 
             <IconLabel
-              icon={{ name: "location_gray_light", size: "1rem" }}
+              icon="location_pin"
+              iconProps={{ color: "grayLight", size: 16 }}
               gap="0.12rem"
             >
               <S.BoothInformationPositionLabel>

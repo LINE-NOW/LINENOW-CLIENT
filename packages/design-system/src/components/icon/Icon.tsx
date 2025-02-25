@@ -1,11 +1,24 @@
-export interface IconProps {
-  name: string;
-  size: string;
+import { iconColors } from "../../styles/colors";
+import { IconColorKey } from "../../styles/theme";
+import { IconKey, icons } from "./icons";
+
+interface IconProps {
+  icon: IconKey;
+  color?: IconColorKey;
+  size?: number;
 }
 
-const Icon = ({ size, name }: IconProps) => {
-  return (
-    <img src={`/icons/${name}.svg`} style={{ width: size, height: size }} />
-  );
+export interface IconAssetProps {
+  color?: string;
+  size?: number;
+}
+
+const Icon = ({ icon, size = 24, color }: IconProps) => {
+  const IconComponent = icons[icon];
+
+  if (!IconComponent) return;
+
+  return <IconComponent size={size} color={color && iconColors[color]} />;
 };
+
 export default Icon;

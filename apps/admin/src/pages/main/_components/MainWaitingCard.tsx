@@ -84,10 +84,11 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
           <S.MainWaitingCardUserInfo>
             <span className="userName">{waiting.user.name}</span>
             <IconLabel
-              gap={"0.25rem"}
-              icon={{ name: "call_gray", size: "1rem" }}
+              icon="phone"
+              iconProps={{ size: 16, color: "gray" }}
+              gap="0.25rem"
               font="body3"
-              fontColor="gray"
+              color="gray"
             >
               <span style={{ textDecoration: "underline" }}>
                 {waiting.user.phoneNumber}

@@ -25,11 +25,16 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
 
+  gap: 1.5rem;
+  padding: 1.25rem;
+  min-width: 21rem;
+
   .mobile & {
     gap: 1.5rem;
     padding: 1.25rem;
     min-width: 21rem;
   }
+
   .tablet & {
     gap: 2.25rem;
     padding: 2rem;
@@ -39,6 +44,7 @@ export const ModalContainer = styled.div`
   border-radius: 0.75rem;
 
   background-color: ${({ theme }) => theme.backgroundColors.white};
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const ModalTextWrapper = styled.div`
@@ -66,4 +72,8 @@ export const ModalTextSub = styled.span`
 
   ${fonts.body1}
   color: ${({ theme }) => theme.fontColors.blackLight};
+
+  .tablet & {
+    text-align: center;
+  }
 `;
