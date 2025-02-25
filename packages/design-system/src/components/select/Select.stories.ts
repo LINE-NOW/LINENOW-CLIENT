@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
+
 import Select from "./Select";
-import { BackgroundColorList } from "../../styles/theme";
 
 const meta: Meta<typeof Select> = {
   title: "Atoms/Select",
