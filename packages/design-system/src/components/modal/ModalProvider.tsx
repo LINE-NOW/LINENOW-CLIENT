@@ -1,10 +1,21 @@
-// component
-import { PropsWithChildren } from "react";
+// components
 import * as S from "./Modal.styled";
+import Modal from "./Modal";
 
-interface ModalProviderProps extends PropsWithChildren {}
-const ModalProvider = ({ children }: ModalProviderProps) => {
-  return <S.ModalBackground>{children}</S.ModalBackground>;
+// hooks
+import useModal from "../../hooks/useModal";
+
+const ModalProvider = () => {
+  const { modal } = useModal();
+  const { isOpen, props } = modal;
+  if (isOpen && props != undefined) {
+    return (
+      <S.ModalBackground>
+        <Modal {...props} />
+      </S.ModalBackground>
+    );
+  }
+  return;
 };
 
 export default ModalProvider;

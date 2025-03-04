@@ -1,28 +1,26 @@
 import { useAtom } from "jotai";
+
 import { modalAtom } from "../atoms/modal";
-import Modal, { ModalProps } from "../components/modal/Modal";
-import ModalProvider from "../components/modal/ModalProvider";
+import { ModalProps } from "../components/modal/Modal";
 
 const useModal = () => {
   const [modal, setModal] = useAtom(modalAtom);
 
-  const openModal = (modalProps: Omit<ModalProps, "isOpen">) => {
-    setModal({ isOpen: true, ...modalProps });
+  const openModal = (props: ModalProps) => {
+    setModal({
+      isOpen: true,
+      props: props,
+    });
   };
 
   const closeModal = () => {
     setModal({
       isOpen: false,
+      props: undefined,
     });
   };
 
-  const ModalElement = () => (
-    <ModalProvider>
-      <Modal {...modal} />
-    </ModalProvider>
-  );
-
-  return { openModal, closeModal, modal, ModalElement };
+  return { openModal, closeModal, modal };
 };
 
 export default useModal;

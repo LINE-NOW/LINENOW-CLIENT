@@ -1,6 +1,12 @@
 import { atom } from "jotai";
 import { ModalProps } from "../components/modal/Modal";
 
-export const modalAtom = atom<ModalProps>({
+export interface ModalAtom {
+  isOpen: boolean;
+  props?: ModalProps;
+}
+
+export const modalAtom = atom<ModalAtom>({
   isOpen: false,
+  props:undefined
 });

@@ -4,7 +4,6 @@ import ButtonLayout from "../buttonLayout/ButtonLayout";
 import * as S from "./Modal.styled";
 
 export interface ModalProps {
-  isOpen: boolean;
   title?: string;
   sub?: string;
   secondButton?: Omit<React.ComponentProps<typeof Button>, "size" | "variant">;
