@@ -3,7 +3,7 @@ import * as S from "./DefaultLayout.styled";
 import Navigation from "@components/navigation/Navigation";
 import Sidebar from "@components/sidebar/Sidebar";
 import useView from "@hooks/useView";
-import { Modal } from "@linenow/design-system";
+import { ModalProvider } from "@linenow/design-system";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
@@ -18,7 +18,7 @@ const DefaultLayout = () => {
 
   return (
     <S.DefaultLayoutGrid className={isMobile ? "mobile" : "tablet"}>
-      <Modal />
+      <ModalProvider />
       <Navigation isMobile={isMobile} isOpen={isOpen} setIsOpen={setIsOpen} />
       <Sidebar isMobile={isMobile} isOpen={isOpen} setIsOpen={setIsOpen} />
       <S.DefaultLayoutOutletWrapper>

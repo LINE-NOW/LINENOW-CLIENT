@@ -62,7 +62,7 @@ const useSidebarModalConfig = () => {
     },
     primaryButton: {
       children: "운영 시작하기",
-      scheme: "lime",
+      variant: "lime",
       onClick: () => {
         postBoothStatus({
           requestBody: {
@@ -84,7 +84,7 @@ const useSidebarModalConfig = () => {
     },
     primaryButton: {
       children: "운영 종료하기",
-      scheme: "lime",
+      variant: "lime",
       onClick: () => {
         postBoothStatus({
           requestBody: {
