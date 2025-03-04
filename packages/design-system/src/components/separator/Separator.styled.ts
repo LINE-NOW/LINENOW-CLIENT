@@ -9,6 +9,6 @@ export const getSeparatorStyle = ({ width, height, color }: SeparatorProps) =>
 
     width: ${width};
     height: ${`${height}px`};
-
-    background-color: ${backgroundColors[color]};
+    
+    ${color && `background-color: ${backgroundColors[color]};`}    
   `;

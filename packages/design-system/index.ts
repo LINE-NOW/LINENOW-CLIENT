@@ -30,3 +30,4 @@ export { default as InputPassword } from "./src/components/inputText/InputPasswo
 
 // organism
 export { default as Modal } from "./src/components/modal/Modal";
+export { default as ModalProvider } from "./src/components/modal/ModalProvider";
