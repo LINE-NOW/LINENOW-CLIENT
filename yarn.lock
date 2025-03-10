@@ -1027,6 +1027,7 @@ __metadata:
   dependencies:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
+    react-router-dom: "npm:^7.2.0"
   languageName: node
   linkType: soft
 
@@ -1036,6 +1037,7 @@ __metadata:
   dependencies:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
+    react-router-dom: "npm:^7.2.0"
   languageName: node
   linkType: soft
 

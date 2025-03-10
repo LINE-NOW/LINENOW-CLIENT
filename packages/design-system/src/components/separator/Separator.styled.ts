@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { backgroundColors } from "@linenow/design-system/src/styles/colors";
+import { backgroundColors } from "../../styles/colors";
 
 import { SeparatorProps } from "./Separator";
 
@@ -9,6 +9,6 @@ export const getSeparatorStyle = ({ width, height, color }: SeparatorProps) =>
 
     width: ${width};
     height: ${`${height}px`};
-    
-    ${color && `background-color: ${backgroundColors[color]};`}    
+
+    ${color && `background-color: ${backgroundColors[color]};`}
   `;
