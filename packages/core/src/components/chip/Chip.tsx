@@ -17,7 +17,7 @@ const Chip = (props: ChipProps) => {
   return (
     <Label
       as="div"
-      font="button2"
+      font="chip"
       css={[S.getWrapperStyle(), getVariantStyle(variant)]}
     >
       {children}
