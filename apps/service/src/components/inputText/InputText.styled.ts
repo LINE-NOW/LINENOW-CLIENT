@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/design-system";
+import { fonts } from "@linenow/core/src/styles";
 
 interface InputTextWrapperProps {
   $width: string;

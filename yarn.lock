@@ -1021,9 +1021,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@linenow/design-system@portal:../../packages/design-system::locator=admin%40workspace%3Aapps%2Fadmin":
+"@linenow/core@portal:../../packages/core::locator=admin%40workspace%3Aapps%2Fadmin":
   version: 0.0.0-use.local
-  resolution: "@linenow/design-system@portal:../../packages/design-system::locator=admin%40workspace%3Aapps%2Fadmin"
+  resolution: "@linenow/core@portal:../../packages/core::locator=admin%40workspace%3Aapps%2Fadmin"
   dependencies:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
@@ -1031,9 +1031,9 @@ __metadata:
   languageName: node
   linkType: soft
 
-"@linenow/design-system@portal:../../packages/design-system::locator=service%40workspace%3Aapps%2Fservice":
+"@linenow/core@portal:../../packages/core::locator=service%40workspace%3Aapps%2Fservice":
   version: 0.0.0-use.local
-  resolution: "@linenow/design-system@portal:../../packages/design-system::locator=service%40workspace%3Aapps%2Fservice"
+  resolution: "@linenow/core@portal:../../packages/core::locator=service%40workspace%3Aapps%2Fservice"
   dependencies:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
@@ -1041,9 +1041,9 @@ __metadata:
   languageName: node
   linkType: soft
 
-"@linenow/design-system@workspace:packages/design-system":
+"@linenow/core@workspace:packages/core":
   version: 0.0.0-use.local
-  resolution: "@linenow/design-system@workspace:packages/design-system"
+  resolution: "@linenow/core@workspace:packages/core"
   dependencies:
     "@chromatic-com/storybook": "npm:^3.2.4"
     "@emotion/react": "npm:^11.14.0"
@@ -2141,7 +2141,7 @@ __metadata:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^9.19.0"
-    "@linenow/design-system": "portal:../../packages/design-system"
+    "@linenow/core": "portal:../../packages/core"
     "@types/react": "npm:^19.0.8"
     "@types/react-dom": "npm:^19.0.3"
     "@vitejs/plugin-react": "npm:^4.3.4"
@@ -4909,7 +4909,7 @@ __metadata:
     "@emotion/react": "npm:^11.14.0"
     "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^9.19.0"
-    "@linenow/design-system": "portal:../../packages/design-system"
+    "@linenow/core": "portal:../../packages/core"
     "@marsidev/react-turnstile": "npm:^1.1.0"
     "@tanstack/react-query": "npm:^5.66.9"
     "@types/react": "npm:^19.0.8"

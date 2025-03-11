@@ -1,4 +1,4 @@
-import { IconLabel } from "@linenow/design-system";
+import { IconLabel } from "@linenow/core/src/components";
 import * as S from "./Select.styled";
 
 export interface OptionProps

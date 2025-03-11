@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./Navigation.styled";
-import { CommonButton, Icon } from "@linenow/design-system";
+import { CommonButton, Icon } from "@linenow/core/src/components";
 
 const Navigation = () => {
   const location = useLocation();

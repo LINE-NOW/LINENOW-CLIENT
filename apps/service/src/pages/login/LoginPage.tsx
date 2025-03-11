@@ -9,7 +9,7 @@ import {
 } from "./LoginValidateConfig";
 import validateConfigs from "@utils/validateConfig";
 import { usePostLogin } from "@hooks/apis/auth";
-import { Button } from "@linenow/design-system";
+import { Button } from "@linenow/core/src/components";
 
 const LoginPage = () => {
   const getErrors = (values: LoginFormValues) => {

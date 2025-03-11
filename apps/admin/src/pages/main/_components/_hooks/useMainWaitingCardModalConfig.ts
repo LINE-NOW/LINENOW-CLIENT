@@ -1,4 +1,5 @@
-import { Modal, useModal } from "@linenow/design-system";
+import { Modal } from "@linenow/core/src/components";
+import { useModal } from "@linenow/core/src/hooks";
 
 import { usePostWaitingAction } from "@hooks/apis/boothManaging";
 

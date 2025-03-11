@@ -3,7 +3,8 @@ import {
   usePostBoothStatus,
 } from "@hooks/apis/boothManaging";
 
-import { Modal, useModal } from "@linenow/design-system";
+import { Modal } from "@linenow/core/src/components";
+import { useModal } from "@linenow/core/src/hooks";
 
 interface ModalExtensionProps
   extends Omit<React.ComponentProps<typeof Modal>, "isOpen"> {}

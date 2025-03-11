@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import useAuth from "@hooks/useAuth";
-import { useModal } from "@linenow/design-system";
+import { useModal } from "@linenow/core/src/hooks";
 
 const TestTool = () => {
   const { openModal } = useModal();

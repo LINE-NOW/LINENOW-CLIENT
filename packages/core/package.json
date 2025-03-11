@@ -1,5 +1,5 @@
 {
-  "name": "@linenow/design-system",
+  "name": "@linenow/core",
   "packageManager": "yarn@4.6.0",
   "dependencies": {
     "@emotion/react": "^11.14.0",

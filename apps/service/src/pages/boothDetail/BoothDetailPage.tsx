@@ -18,7 +18,8 @@ import LoginBottomsheetContent from "@components/login/LoginBottomsheetContent";
 
 import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
-import { Button, useModal } from "@linenow/design-system";
+import { Button } from "@linenow/core/src/components";
+import { useModal } from "@linenow/core/src/hooks";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();

@@ -5,7 +5,7 @@ import SettingDeleteID from "./_components/deleteID/SettingDeleteID";
 // import { useAtom } from 'jotai';
 // import { languageAtom } from '@atoms/language';
 import { usePostLogout } from "@hooks/apis/auth";
-import { useModal } from "@linenow/design-system";
+import { useModal } from "@linenow/core/src/hooks";
 
 const SettingPage = () => {
   const { openModal } = useModal();

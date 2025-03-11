@@ -1,6 +1,6 @@
 import { SidebarProps } from "@components/sidebar/Sidebar";
 import * as S from "./Navigation.styled";
-import { CommonButton, Icon } from "@linenow/design-system";
+import { CommonButton, Icon } from "@linenow/core/src/components";
 import { Link } from "react-router-dom";
 
 const Navigation = ({ isOpen, isMobile, setIsOpen }: SidebarProps) => {

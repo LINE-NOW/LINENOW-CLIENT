@@ -1,6 +1,6 @@
 import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/design-system";
+import { fonts } from "@linenow/core/src/styles";
 
 // 상단 타이틀
 export const MainBoothListHeaderWrapper = styled.div`

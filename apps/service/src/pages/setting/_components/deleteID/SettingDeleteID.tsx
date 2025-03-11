@@ -1,4 +1,4 @@
-import { useModal } from "@linenow/design-system";
+import { useModal } from "@linenow/core/src/hooks";
 import * as S from "./SettingDeleteID.styled";
 
 import { usePostDeleteID } from "@hooks/apis/auth";

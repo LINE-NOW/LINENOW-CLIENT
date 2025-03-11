@@ -5,7 +5,7 @@ import * as S from "./WaitingCheckPeople.styled";
 import iconBefore from "/icons/icon_checkBox_before.svg";
 import iconAfter from "/icons/icon_checkBox_after.svg";
 import { usePostWaitingRegister } from "@hooks/apis/waiting";
-import { Button, ButtonLayout } from "@linenow/design-system";
+import { Button, ButtonLayout } from "@linenow/core/src/components";
 
 interface WaitingCheckModalProps {
   onClose: () => void;

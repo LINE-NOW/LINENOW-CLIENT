@@ -12,9 +12,8 @@ import {
   Chip,
   CommonButton,
   IconLabel,
-  useModal,
-} from "@linenow/design-system";
-
+} from "@linenow/core/src/components";
+import { useModal } from "@linenow/core/src/hooks";
 interface WaitingCardProps {
   waiting: Pick<
     Waiting,

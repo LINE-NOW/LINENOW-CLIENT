@@ -7,7 +7,7 @@ import Separator from "@components/separator/Separator";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 import WaitingDetailCaution from "@pages/waitingDetail/_components/WaitingDetailCaution";
 import WaitingCheckCautionModal from "./_components/WaitingCheckCautionModal";
-import { Button } from "@linenow/design-system";
+import { Button } from "@linenow/core/src/components";
 
 const WaitingCheckPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);

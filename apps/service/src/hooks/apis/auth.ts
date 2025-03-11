@@ -6,7 +6,7 @@ import { SignupResponse } from "@apis/domains/auth/signup/_interfaces";
 import { postSignup } from "@apis/domains/auth/signup/apis";
 import useAuth from "@hooks/useAuth";
 import useIsLoading from "@hooks/useIsLoading";
-import { useModal } from "@linenow/design-system";
+import { useModal } from "@linenow/core/src/hooks";
 
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";

@@ -1,7 +1,7 @@
 import Bottomsheet from "@components/bottomsheet/Bottomsheet";
 
 import useCheckWaitingStatus from "@hooks/useCheckWaitingStatus";
-import { ModalProvider } from "@linenow/design-system";
+import { ModalProvider } from "@linenow/core/src/components";
 
 import { Outlet } from "react-router-dom";
 

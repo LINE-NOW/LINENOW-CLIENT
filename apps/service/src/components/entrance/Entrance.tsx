@@ -10,7 +10,8 @@ import { usePostConfirm } from "@hooks/apis/entry";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
 import { Waiting } from "@interfaces/waiting";
 import { getWaiting } from "@apis/domains/waiting/apis";
-import { Button, ButtonLayout, useModal } from "@linenow/design-system";
+import { Button, ButtonLayout } from "@linenow/core/src/components";
+import { useModal } from "@linenow/core/src/hooks";
 
 export interface EntranceProps {
   targetTime: string;

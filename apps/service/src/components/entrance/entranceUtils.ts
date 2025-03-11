@@ -1,4 +1,4 @@
-import { Modal } from "@linenow/design-system";
+import { Modal } from "@linenow/core/src/components";
 
 export const handleConfirmEntry = (
   openModal: (

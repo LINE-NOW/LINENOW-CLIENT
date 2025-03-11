@@ -1,4 +1,5 @@
-import { Button, useModal } from "@linenow/design-system";
+import { Button } from "@linenow/core/src/components";
+import { useModal } from "@linenow/core/src/hooks";
 
 import { WaitingStatus } from "@linenow-types/status";
 import useMainWaitingCardModalConfig from "./useMainWaitingCardModalConfig";
