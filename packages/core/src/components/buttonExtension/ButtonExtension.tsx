@@ -28,3 +28,12 @@ export const CommonButton = (props: CommonButtonProps) => {
     </button>
   );
 };
+
+export const TextButton = (props: CommonButtonProps) => {
+  const { onClick, children, disabled, ...buttonProps } = props;
+  return (
+    <button css={[S.getTextButtonStyle()]} onClick={onClick} {...buttonProps}>
+      {children}
+    </button>
+  );
+};
