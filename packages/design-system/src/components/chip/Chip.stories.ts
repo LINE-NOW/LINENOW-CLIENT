@@ -30,6 +30,12 @@ export const BlueChip: Story = {
   },
 };
 
+export const GrayLightChip: Story = {
+  args: {
+    children: "chip",
+    variant: "grayLight",
+  },
+};
 export const OutlineChip: Story = {
   args: {
     children: "chip",

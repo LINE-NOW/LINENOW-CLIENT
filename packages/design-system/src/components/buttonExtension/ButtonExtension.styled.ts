@@ -1,3 +1,3 @@
-import { onClickButtonAnimation } from "../../styles/animation";
+import { getHoverAnimation } from "../../styles/animation";
 
-export const getAnimation = () => onClickButtonAnimation;
+export const getAnimation = () => getHoverAnimation;

@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 
 import { ButtonSize } from "./Button";
 import { fonts } from "../../styles/fonts";
+import { getHoverAnimation } from "../../styles/animation";
 
 export const getSizeStyle = (size: ButtonSize, width: string) => {
   switch (size) {
@@ -36,8 +37,6 @@ export const ButtonWrapper = styled.button`
   border-radius: 0.5rem;
 
   &:not(:disabled):hover {
-    cursor: pointer;
-    transition: transform 0.3s;
-    transform: scale(1.05);
+    ${getHoverAnimation}
   }
 `;

@@ -1,6 +1,8 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { fonts } from "../../styles/fonts";
+import { getBorder } from "../../styles/border";
+import { theme } from "../../styles/theme";
 
 export const getWrapperStyle = (width: string) => css`
   display: flex;
@@ -31,8 +33,7 @@ export const InputTextField = styled.label`
   width: 100%;
 
   border-radius: 0.5rem;
-  border: 1px solid;
-  border-color: ${({ theme }) => theme.borderColors.blue};
+  box-shadow: ${getBorder("blue")(theme)};
 
   padding: 0.75rem 1rem;
 
@@ -40,6 +41,7 @@ export const InputTextField = styled.label`
     flex-grow: 1;
     border: none;
     outline: none;
+
     ${fonts.body1}
     color: ${({ theme }) => theme.fontColors.black};
   }

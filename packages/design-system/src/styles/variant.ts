@@ -1,8 +1,15 @@
 import { css } from "@emotion/react";
 
 import { BackgroundColorKey, BorderColorKey, FontColorKey } from "./theme";
+import { getBorder } from "./border";
 
-export type Variant = "blue" | "lime" | "blueLight" | "limeLight" | "outline";
+export type Variant =
+  | "blue"
+  | "lime"
+  | "blueLight"
+  | "limeLight"
+  | "grayLight"
+  | "outline";
 
 interface VariantStyle {
   fontColor: FontColorKey;
@@ -38,6 +45,10 @@ const variantStyles: VariantStyles = {
   },
   limeLight: {
     backgroundColor: "limeLight",
+    fontColor: "gray",
+  },
+  grayLight: {
+    backgroundColor: "grayLight",
     fontColor: "blackLight",
   },
 };
@@ -50,12 +61,7 @@ export const getVariantStyle = (variant: Variant) => {
     background-color: ${style.backgroundColor
       ? theme.backgroundColors[style.backgroundColor]
       : "none"};
-
-    ${style.borderColor &&
-    css`
-      border-color: ${theme.borderColors[style.borderColor]};
-      border: 1px solid;
-    `};
+    box-shadow: ${getBorder(style.borderColor)(theme)};
 
     :disabled {
       color: ${style.disabled_fontColor
@@ -66,11 +72,7 @@ export const getVariantStyle = (variant: Variant) => {
         ? theme.backgroundColors[style.disabled_backgroundColor]
         : theme.backgroundColors.grayLight};
 
-      ${style.disabled_borderColor &&
-      css`
-        border-color: ${theme.borderColors[style.disabled_borderColor]};
-        border: 1px solid;
-      `};
+      box-shadow: ${getBorder(style.disabled_borderColor)(theme)};
     }
   `;
 };
