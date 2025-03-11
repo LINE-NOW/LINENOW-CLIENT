@@ -1,13 +1,19 @@
 import CheckIcon from "./assets/CheckIcon";
+import ClockIcon from "./assets/ClockIcon";
+import CopyIcon from "./assets/CopyIcon";
 import DownIcon from "./assets/DownIcon";
 import DropDownIcon from "./assets/DropDownIcon";
 import EditIcon from "./assets/EditIcon";
 import EyeCloseIcon from "./assets/EyeCloseIcon";
 import EyeOpenIcon from "./assets/EyeOpenIcon";
+import FestivalLocationIcon from "./assets/FestivalLocation";
 import KakaoIcon from "./assets/KakaoIcon";
 import LeftIcon from "./assets/LeftIcon";
+import ListIcon from "./assets/ListIcon";
 import LocationPinIcon from "./assets/LocationPinIcon";
 import LogoutIcon from "./assets/LogoutIcon";
+import MapIcon from "./assets/MapIcon";
+import MyLocationIcon from "./assets/MyLocationIcon";
 import PauseIcon from "./assets/PauseIcon";
 import PhoneIcon from "./assets/PhoneIcon";
 import PlayIcon from "./assets/PlayIcon";
@@ -43,6 +49,12 @@ export const icons = {
   sort: SortIcon,
   up: UpIcon,
   x: XIcon,
+  clock: ClockIcon,
+  copy: CopyIcon,
+  fetival_location: FestivalLocationIcon,
+  list: ListIcon,
+  map: MapIcon,
+  my_location: MyLocationIcon,
 };
 
 export const IconList = Object.keys(icons);
