@@ -1,4 +1,4 @@
-import { IconLabel } from "@linenow/core/src/components";
+import { IconLabel } from "@linenow/core/components";
 import * as S from "./BoothCard.styled";
 
 interface BoothCardProps {

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 // style
 import { changeFoldStateAnimation } from "@styles/animation";
-import { IconLabel } from "@linenow/core/src/components";
+import { IconLabel } from "@linenow/core/components";
 import { css } from "@emotion/react";
 
 export const MainNavigationWrapper = styled.section`

@@ -13,7 +13,7 @@ import {
 import validateConfigs from "@utils/validateConfig";
 import { usePostSignup } from "@hooks/apis/auth";
 import { useState } from "react";
-import { Button } from "@linenow/core/src/components";
+import { Button } from "@linenow/core/components";
 
 const SignupPage = () => {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null); // Turnstile 토큰 상태

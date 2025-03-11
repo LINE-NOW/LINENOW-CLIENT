@@ -1,7 +1,7 @@
 // components
 import * as S from "./LoginBottomsheetContent.styled";
 
-import { Button, ButtonLayout } from "@linenow/core/src/components";
+import { Button, ButtonLayout } from "@linenow/core/components";
 
 // hooks
 import { useNavigate } from "react-router-dom";

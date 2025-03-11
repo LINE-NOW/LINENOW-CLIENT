@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/core/src/styles";
+import { fonts } from "@linenow/core/styles";
 
 export const Title = styled.h3`
   ${fonts.head3}

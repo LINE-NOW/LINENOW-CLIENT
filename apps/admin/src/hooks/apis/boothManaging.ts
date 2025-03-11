@@ -11,7 +11,7 @@ import {
 } from "@apis/domains/boothManaging/apis";
 import { BOOTH_MANAGING_QUERY_KEY } from "@apis/domains/boothManaging/queries";
 import useBoothInfo from "@hooks/useBoothInfo";
-import { useModal } from "@linenow/core/src/hooks";
+import { useModal } from "@linenow/core/hooks";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 interface PostWaitingActionProps {

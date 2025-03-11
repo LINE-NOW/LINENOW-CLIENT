@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/core/src/styles";
+import { fonts } from "@linenow/core/styles";
 
 export const SidebarBackground = styled.div`
   display: flex;

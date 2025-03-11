@@ -24,7 +24,7 @@ import {
   IconLabel,
   Label,
   LinkButton,
-} from "@linenow/core/src/components";
+} from "@linenow/core/components";
 
 interface MainNavigationProps {
   isFold: boolean;

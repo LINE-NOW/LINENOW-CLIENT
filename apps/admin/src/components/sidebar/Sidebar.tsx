@@ -5,8 +5,8 @@ import {
   ButtonLayout,
   CommonButton,
   Icon,
-} from "@linenow/core/src/components";
-import { useModal } from "@linenow/core/src/hooks";
+} from "@linenow/core/components";
+import { useModal } from "@linenow/core/hooks";
 import { useLocation } from "react-router-dom";
 import SidebarButton, { SidebarButtonProps } from "./SidebarButton";
 

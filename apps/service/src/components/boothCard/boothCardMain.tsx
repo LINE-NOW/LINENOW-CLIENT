@@ -1,4 +1,4 @@
-import { Chip } from "@linenow/core/src/components";
+import { Chip } from "@linenow/core/components";
 import * as S from "./BoothCard.styled";
 
 import BoothCardLayout from "./boothCardLayout";

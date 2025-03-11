@@ -10,8 +10,8 @@ import WaitingDetailCaution from "./_components/WaitingDetailCaution";
 import Spinner from "@components/spinner/Spinner";
 import { useGetWaiting, usePostWaitingCancel } from "@hooks/apis/waiting";
 
-import { Button } from "@linenow/core/src/components";
-import { useModal } from "@linenow/core/src/hooks";
+import { Button } from "@linenow/core/components";
+import { useModal } from "@linenow/core/hooks";
 
 const WaitingDetailPage = () => {
   const navigate = useNavigate();

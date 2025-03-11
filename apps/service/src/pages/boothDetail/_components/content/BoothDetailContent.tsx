@@ -1,6 +1,6 @@
 import { Booth } from "@interfaces/booth";
 import * as S from "./BoothDetailContent.styled";
-import { IconLabel } from "@linenow/core/src/components";
+import { IconLabel } from "@linenow/core/components";
 
 interface BoothDetailContentProps {
   booth: Booth;

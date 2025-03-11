@@ -5,7 +5,7 @@ import router from "./routes/router";
 // react-query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import FullSpinner from "@components/spinner/FullSpinner";
-import { LinenowProvider } from "@linenow/core/src/components";
+import { LinenowProvider } from "@linenow/core/components";
 
 function App() {
   const queryClient = new QueryClient();

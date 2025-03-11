@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/core/src/styles";
+import { fonts } from "@linenow/core/styles";
 
 export const WaitingCheckContainer = styled.div`
   display: flex;

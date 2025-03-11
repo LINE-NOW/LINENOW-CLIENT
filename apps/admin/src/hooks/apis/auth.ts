@@ -3,7 +3,7 @@ import { postLogin } from "@apis/domains/login/apis";
 import { postLogout } from "@apis/domains/logout/apis";
 import useAuth from "@hooks/useAuth";
 import useIsLoading from "@hooks/useIsLoading";
-import { useModal } from "@linenow/core/src/hooks";
+import { useModal } from "@linenow/core/hooks";
 import { useMutation } from "@tanstack/react-query";
 
 export const usePostLogout = () => {

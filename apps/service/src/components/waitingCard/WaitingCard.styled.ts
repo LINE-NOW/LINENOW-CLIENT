@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/core/src/styles";
+import { fonts } from "@linenow/core/styles";
 import * as A from "@styles/animation";
 
 export const WaitingCardWrapper = styled.div`
