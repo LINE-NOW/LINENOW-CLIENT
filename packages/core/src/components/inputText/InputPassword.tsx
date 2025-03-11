@@ -1,4 +1,3 @@
-// InputPassword.tsx
 import { useState } from "react";
 
 import InputText, { InputTextProps } from "./InputText";
