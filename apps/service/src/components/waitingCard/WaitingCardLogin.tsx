@@ -1,17 +1,18 @@
+import { useBottomSheet } from "@linenow/core/hooks";
 import * as S from "./WaitingCard.styled";
 
 // hooks
 
 import WaitingCardMypage from "./WaitingCardLayout";
-import useBottomsheet from "@hooks/useBottomsheet";
-import LoginBottomsheetContent from "@components/login/LoginBottomsheetContent";
+
 import { Button } from "@linenow/core/components";
+import LoginBottomSheetContent from "@components/login/LoginBottomSheetContent";
 
 const WaitingCardLogin = () => {
-  const { openBottomsheet } = useBottomsheet();
+  const { openBottomSheet } = useBottomSheet();
 
   const handleOpenBottomSheetButton = () => {
-    openBottomsheet({ children: <LoginBottomsheetContent /> });
+    openBottomSheet({ children: <LoginBottomSheetContent /> });
   };
 
   return (

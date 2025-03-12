@@ -1,26 +1,46 @@
 import { css } from "@emotion/react";
 
-export const global = css({
-  "*": {
-    padding: 0,
-    margin: 0,
-    boxSizing: "border-box",
-  },
+export const global = (maxWidth: string) => css`
+  ${resetCSS}
 
-  "ul, ol, li": {
-    listStyle: "none",
-  },
+  body {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
 
-  "html, body": {
-    fontFamily: `system-ui, -apple-system, BlinkMacSystemFont, 'Open Sans', 'Helvetica Neue'`,
-  },
+  #root {
+    max-width: ${maxWidth};
+    width: 100%;
+  }
+`;
 
-  a: {
-    textDecoration: "none",
-  },
-  button: {
-    outline: "none",
-    border: "none",
-    backgroundColor: "transparent",
-  },
-});
+const resetCSS = css`
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  ul,
+  ol,
+  li {
+    list-style: none;
+  }
+
+  html,
+  body {
+    font-family: "system-ui", "-apple-system", "BlinkMacSystemFont", "Open Sans",
+      "Helvetica Neue";
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+`;

@@ -1,6 +1,6 @@
 // components
-import * as S from "./Modal.styled";
 import Modal from "./Modal";
+import FixedContainer from "../fixedContainer/FixedContainer";
 
 // hooks
 import useModal from "../../hooks/useModal";
@@ -8,11 +8,12 @@ import useModal from "../../hooks/useModal";
 const ModalProvider = () => {
   const { modal } = useModal();
   const { isOpen, props } = modal;
+
   if (isOpen && props != undefined) {
     return (
-      <S.ModalBackground>
+      <FixedContainer justifyContent="center">
         <Modal {...props} />
-      </S.ModalBackground>
+      </FixedContainer>
     );
   }
   return;

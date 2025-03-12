@@ -22,13 +22,17 @@ export type IconColorKey = keyof IconColorType;
 export const IconsColorList = Object.keys(iconColors);
 
 export type CustomTheme = {
+  maxWidth: string;
   fontColors: FontColorType;
   borderColors: BorderColorType;
   backgroundColors: BackgroundColorType;
 };
 
-export const theme: CustomTheme = {
-  fontColors: fontColors,
-  borderColors: borderColors,
-  backgroundColors: backgroundColors,
+export const theme = (maxWidth: string): CustomTheme => {
+  return {
+    maxWidth: maxWidth,
+    fontColors: fontColors,
+    borderColors: borderColors,
+    backgroundColors: backgroundColors,
+  };
 };

@@ -9,7 +9,6 @@ const meta: Meta<typeof Modal> = {
   tags: ["autodocs"],
   component: Modal,
   argTypes: {
-    isOpen: { table: { disable: true } },
     title: { control: "text" },
     sub: { control: "text" },
     primaryButton: {
@@ -35,7 +34,6 @@ export const EnterModal: Story = {
     </div>
   ),
   args: {
-    isOpen: true,
     title: "다른 대기가 취소돼요",
     sub: "입장을 확정하면 다른 대기는 취소돼요.\n입장을 확정하시겠어요?",
     primaryButton: {
@@ -61,7 +59,6 @@ export const TabletModal: Story = {
     </div>
   ),
   args: {
-    isOpen: true,
     title: "부스 대기 운영을 시작하시겠습니까?",
     sub: "운영을 시작하면 손님들의 라인나우 온라인 대기가 활성화됩니다.\n부스 대기 운영을 시작하시겠습니까?",
     primaryButton: {

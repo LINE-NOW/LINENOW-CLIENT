@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 import { changeFoldStateAnimation } from "@styles/animation";
 
-export const MainFixedComponentsWrapper = styled.section`
+export const MainFixedComponentsWrapper = styled.header`
   position: fixed;
-  z-index: 10;
+  /* z-index: 0; */
 
   display: flex;
   flex-direction: column;

@@ -10,7 +10,7 @@ const fontGenerator = (
   letterSpacing?: string,
   fontFamily?: string
 ) => css`
-  font-family: ${fontFamily ? `${fontFamily};` : "Apple SD Gothic Neo"};
+  font-family: ${fontFamily ? `${fontFamily};` : ""};
   font-size: ${size};
   font-weight: ${weight};
   line-height: ${lineHeight};
@@ -36,7 +36,9 @@ export const fonts = {
 
   // button
   button1: fontGenerator("1rem", 700, "1.5rem", "-0.2px"),
-  button2: fontGenerator("0.75rem", 700, "1rem", "-0.05px"),
+  button2: fontGenerator("0.875rem", 700, "1.25rem", "-0.2px"),
+
+  chip: fontGenerator("0.75rem", 700, "1rem", "-0.05px"),
 
   // etc
   caption: fontGenerator("0.625rem", 500, "0.875rem"),

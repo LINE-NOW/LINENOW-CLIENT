@@ -1,4 +1,3 @@
-import { Global, ThemeProvider } from "@emotion/react";
 import type { Preview } from "@storybook/react";
 import React from "react";
 

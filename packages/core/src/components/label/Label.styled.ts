@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css, Theme } from "@emotion/react";
 import { fonts, FontStyleKey } from "../../styles/fonts";
 import { FontColorKey } from "../../styles/theme";
 
@@ -9,7 +9,7 @@ export const getLabelStyle = (font: FontStyleKey) => {
 export const getColorStyle = (color?: FontColorKey) => {
   if (!color) return;
 
-  return (theme: any) => css`
+  return (theme: Theme) => css`
     color: ${theme.fontColors[color]};
   `;
 };

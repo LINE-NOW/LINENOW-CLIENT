@@ -1,12 +1,12 @@
 // components
-import * as S from "./LoginBottomsheetContent.styled";
+import * as S from "./LoginBottomSheetContent.styled";
 
 import { Button, ButtonLayout } from "@linenow/core/components";
 
 // hooks
 import { useNavigate } from "react-router-dom";
 
-const LoginBottomsheetContent = () => {
+const LoginBottomSheetContent = () => {
   const navigate = useNavigate();
 
   const handleLoginButton = () => {
@@ -18,16 +18,16 @@ const LoginBottomsheetContent = () => {
   };
 
   return (
-    <S.LoginBottomsheetContentWrapper>
-      <S.LoginBottomsheetContentTopWrapper>
-        <S.LoginBottomsheetContentTopTitle>
+    <S.LoginBottomSheetContentWrapper>
+      <S.LoginBottomSheetContentTopWrapper>
+        <S.LoginBottomSheetContentTopTitle>
           로그인이 필요해요
-        </S.LoginBottomsheetContentTopTitle>
-        <S.LoginBottomsheetContentTopSubTitle>
+        </S.LoginBottomSheetContentTopTitle>
+        <S.LoginBottomSheetContentTopSubTitle>
           라인나우에 바로 가입하여 대기 줄 서기를 이용하세요 <br />
           전화번호로 간편하게 가입할 수 있어요
-        </S.LoginBottomsheetContentTopSubTitle>
-      </S.LoginBottomsheetContentTopWrapper>
+        </S.LoginBottomSheetContentTopSubTitle>
+      </S.LoginBottomSheetContentTopWrapper>
 
       <ButtonLayout colCount={1}>
         <Button
@@ -40,8 +40,8 @@ const LoginBottomsheetContent = () => {
           라인나우 회원가입하기
         </Button>
       </ButtonLayout>
-    </S.LoginBottomsheetContentWrapper>
+    </S.LoginBottomSheetContentWrapper>
   );
 };
 
-export default LoginBottomsheetContent;
+export default LoginBottomSheetContent;

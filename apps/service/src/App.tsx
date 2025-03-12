@@ -6,10 +6,7 @@ import router from "@routes/router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 //components
-import FullSpinner from "@components/spinner/FullSpinner";
 import { LinenowProvider } from "@linenow/core/components";
-
-// Test
 
 function App() {
   const queryClient = new QueryClient();
@@ -17,8 +14,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* <TestTool /> */}
-      <LinenowProvider>
-        <FullSpinner />
+      <LinenowProvider maxWidth="540px">
         <RouterProvider router={router} />
       </LinenowProvider>
     </QueryClientProvider>
