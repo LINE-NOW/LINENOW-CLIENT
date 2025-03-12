@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css, Theme } from "@emotion/react";
 
 import { BackgroundColorKey, BorderColorKey, FontColorKey } from "./theme";
 import { getBorder } from "./border";
@@ -56,7 +56,7 @@ const variantStyles: VariantStyles = {
 export const getVariantStyle = (variant: Variant) => {
   const style = variantStyles[variant];
 
-  return (theme: any) => css`
+  return (theme: Theme) => css`
     color: ${theme.fontColors[style.fontColor]};
     background-color: ${style.backgroundColor
       ? theme.backgroundColors[style.backgroundColor]

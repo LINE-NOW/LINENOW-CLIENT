@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css, Theme } from "@emotion/react";
 import styled from "@emotion/styled";
 import { fonts } from "../../styles/fonts";
 import { getBorder } from "../../styles/border";
@@ -54,7 +54,7 @@ export const InputTextField = styled.label`
 `;
 
 export const getInputStyle = () => {
-  return (theme: any) => css`
+  return (theme: Theme) => css`
     flex-grow: 1;
 
     ${fonts.body1}
