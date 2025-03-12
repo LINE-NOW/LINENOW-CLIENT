@@ -1,7 +1,6 @@
 import { css, Theme } from "@emotion/react";
 import { getHoverAnimation } from "../../styles/animation";
 import { fonts } from "../../styles";
-import { getBottomBorder } from "../../styles/border";
 
 export const getAnimation = () => getHoverAnimation;
 

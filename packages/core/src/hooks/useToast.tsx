@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 
-import { ToastPosition, ToastProps } from "../components/toast/Toast";
+import { ToastPosition } from "../components/toast/Toast";
 import { toastsAtom } from "../atoms/toast";
 
 const useToast = () => {

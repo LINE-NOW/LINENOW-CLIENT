@@ -8,5 +8,5 @@ export interface ModalAtom {
 
 export const modalAtom = atom<ModalAtom>({
   isOpen: false,
-  props:undefined
+  props: undefined,
 });

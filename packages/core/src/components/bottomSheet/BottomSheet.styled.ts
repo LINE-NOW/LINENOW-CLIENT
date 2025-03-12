@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const BottomsheetBackground = styled.div`
+export const BottomSheetBackground = styled.div`
   display: flex;
   align-items: end;
   justify-content: center;
@@ -18,7 +18,12 @@ export const BottomsheetBackground = styled.div`
   background-color: rgb(15 15 15 / 70%);
 `;
 
-export const BottomsheetContainer = styled.section`
+export const BottonSheetWrapper = styled.section`
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 0;
+
   width: 100%;
 
   padding: 2rem 1rem 0.5rem 1rem;

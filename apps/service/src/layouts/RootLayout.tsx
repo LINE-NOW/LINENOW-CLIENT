@@ -1,9 +1,14 @@
-import Bottomsheet from "@components/bottomsheet/Bottomsheet";
-
-import useCheckWaitingStatus from "@hooks/useCheckWaitingStatus";
-import { ModalProvider, ToastProvider } from "@linenow/core/components";
-
 import { Outlet } from "react-router-dom";
+
+// components
+import {
+  BottomSheetProvider,
+  ModalProvider,
+  ToastProvider,
+} from "@linenow/core/components";
+
+// hooks
+import useCheckWaitingStatus from "@hooks/useCheckWaitingStatus";
 
 const RootLayout = () => {
   useCheckWaitingStatus();
@@ -11,7 +16,7 @@ const RootLayout = () => {
     <>
       <ToastProvider />
       <ModalProvider />
-      <Bottomsheet />
+      <BottomSheetProvider />
       <Outlet />
     </>
   );

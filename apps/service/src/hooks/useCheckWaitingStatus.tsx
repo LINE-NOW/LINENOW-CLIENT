@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useGetNowWaitings } from "./apis/waiting";
-import useEntranceBottomsheet from "./useEntrance";
+import useEntranceBottomSheet from "./useEntrance";
 import { Entrance } from "@components/entrance/Entrance";
 import { Waiting } from "@interfaces/waiting"; // Waiting 타입을 가져와 사용
 import useAuth from "./useAuth";
@@ -14,7 +14,7 @@ const useCheckWaitingStatus = () => {
     "check_waiting_status"
   );
 
-  const { openEntrance } = useEntranceBottomsheet();
+  const { openEntrance } = useEntranceBottomSheet();
 
   useEffect(() => {
     if (nowWaitings && nowWaitings.length > 0) {

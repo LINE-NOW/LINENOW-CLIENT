@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import useEntranceBottomsheet from "./useEntrance";
+import useEntranceBottomSheet from "./useEntrance";
 
 const useTimer = (initialMinutes: number, initialSeconds: number) => {
-  const { closeEntrace } = useEntranceBottomsheet(); // useEntranceBottomsheet 사용
+  const { closeEntrace } = useEntranceBottomSheet(); // useEntranceBottomSheet 사용
   const [minutes, setMinutes] = useState(initialMinutes);
   const [seconds, setSeconds] = useState(initialSeconds);
 

@@ -13,19 +13,19 @@ import {
 } from "./_components";
 import WaitingCheckModal from "@pages/waitingCheck/_components/WaitingCheckModal";
 import useAuth from "@hooks/useAuth";
-import useBottomsheet from "@hooks/useBottomsheet";
-import LoginBottomsheetContent from "@components/login/LoginBottomsheetContent";
+
+import LoginBottomSheetContent from "@components/login/LoginBottomSheetContent";
 
 import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
 import { Button } from "@linenow/core/components";
-import { useModal } from "@linenow/core/hooks";
+import { useBottomSheet, useModal } from "@linenow/core/hooks";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
-  const { openBottomsheet } = useBottomsheet();
+  const { openBottomSheet } = useBottomSheet();
   const handleLoginButtonClick = () => {
-    openBottomsheet({ children: <LoginBottomsheetContent /> });
+    openBottomSheet({ children: <LoginBottomSheetContent /> });
   };
   const { boothId } = useParams<{ boothId: string }>();
 
