@@ -9,8 +9,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import FullSpinner from "@components/spinner/FullSpinner";
 import { LinenowProvider } from "@linenow/core/components";
 
-// Test
-
 function App() {
   const queryClient = new QueryClient();
 

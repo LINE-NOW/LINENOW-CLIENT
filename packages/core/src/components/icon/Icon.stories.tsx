@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import Icon from "./Icon";
-import { IconList } from "./icons";
+import { IconKey, IconList } from "./icons";
 import { IconsColorList } from "../../styles/theme";
 
 const meta = {
@@ -35,6 +35,19 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // InputText의 기본 스토리
-export const Default: Story = {
+export const DefaultIcon: Story = {
   args: { icon: "check", color: "blue", size: 24 },
+};
+
+export const Icons: Story = {
+  render: (args) => {
+    return (
+      <div>
+        {IconList.map((icon, index) => (
+          <Icon key={index} icon={icon as IconKey} color="gray" size={24} />
+        ))}
+      </div>
+    );
+  },
+  args: { icon: "check", color: "gray", size: 24 },
 };

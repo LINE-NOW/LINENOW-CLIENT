@@ -19,3 +19,5 @@ export { default as Modal } from "./modal/Modal";
 export { default as ModalProvider } from "./modal/ModalProvider";
 export { default as Icon } from "./icon/Icon";
 export { default as Switch } from "./switch/Switch";
+export { default as Toast } from "./toast/Toast";
+export { default as ToastProvider } from "./toast/ToastProvider";
