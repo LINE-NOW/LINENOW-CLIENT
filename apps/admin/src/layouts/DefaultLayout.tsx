@@ -3,7 +3,7 @@ import * as S from "./DefaultLayout.styled";
 import Navigation from "@components/navigation/Navigation";
 import Sidebar from "@components/sidebar/Sidebar";
 import useView from "@hooks/useView";
-import { ModalProvider } from "@linenow/design-system";
+import { ModalProvider } from "@linenow/core/components";
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 

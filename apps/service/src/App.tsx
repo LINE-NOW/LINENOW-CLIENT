@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 //components
 import FullSpinner from "@components/spinner/FullSpinner";
-import { LinenowProvider } from "@linenow/design-system";
+import { LinenowProvider } from "@linenow/core/components";
 
 // Test
 

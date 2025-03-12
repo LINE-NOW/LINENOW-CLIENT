@@ -4,8 +4,8 @@ import {
   Chip,
   CommonButton,
   IconLabel,
-  useModal,
-} from "@linenow/design-system";
+} from "@linenow/core/components";
+import { useModal } from "@linenow/core/hooks";
 
 // interfaces
 import { Waiting } from "@interfaces/waiting";

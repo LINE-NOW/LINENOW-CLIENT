@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as S from "./BottomButton.styled";
-import { ButtonLayout } from "@linenow/design-system";
+import { ButtonLayout } from "@linenow/core/components";
 
 interface BottomButtonProps {
   children?: React.ReactNode;

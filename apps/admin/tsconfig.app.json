@@ -41,6 +41,6 @@
   },
   "include": ["src"],
   "paths": {
-    "@linenow/design-system/*": ["packages/design-system/*"]
+    "@linenow/core/*": ["packages/core/*"]
   }
 }

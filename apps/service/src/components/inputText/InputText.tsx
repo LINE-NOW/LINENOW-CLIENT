@@ -1,4 +1,4 @@
-import { Button } from "@linenow/design-system";
+import { Button } from "@linenow/core/components";
 import * as S from "./InputText.styled";
 
 type InputTextButtonProps = Omit<

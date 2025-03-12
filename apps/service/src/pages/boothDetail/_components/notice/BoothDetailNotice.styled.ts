@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/design-system";
+import { fonts } from "@linenow/core/styles";
 
 export const BoothDetailNoticeWrapper = styled.section`
   display: flex;

@@ -1,7 +1,7 @@
+import IconLabel from "../IconLabel/IconLabel";
 import * as S from "./Select.styled";
 
 // components
-import { IconLabel } from "@linenow/design-system";
 
 export interface OptionProps
   extends React.OptionHTMLAttributes<HTMLOptionElement> {

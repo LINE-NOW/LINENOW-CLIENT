@@ -1,4 +1,4 @@
-import { Button, InputPassword } from "@linenow/design-system";
+import { Button, InputPassword } from "@linenow/core/components";
 import * as S from "./LoginPage.styled";
 import LogoImg from "../../../public/icons/logo.svg";
 import { useState } from "react";

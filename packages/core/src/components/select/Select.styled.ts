@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/design-system";
+import { fonts } from "../../styles";
 
 export const SelectWrapper = styled.select`
   -webkit-appearance: none; /* 크롬 화살표 없애기 */

@@ -9,7 +9,8 @@ import { WaitingStatus } from "@linenow-types/status";
 import useCountdown from "@hooks/useCountdown";
 
 import { usePostConfirm } from "@hooks/apis/entry";
-import { Button, Modal, useModal } from "@linenow/design-system";
+import { Button, Modal } from "@linenow/core/components";
+import { useModal } from "@linenow/core/hooks";
 
 interface WaitingCardProps {
   waitingID: number;

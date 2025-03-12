@@ -19,7 +19,12 @@ import WaitingCardLogin from "@components/waitingCard/WaitingCardLogin";
 // types
 import { Waiting } from "@interfaces/waiting";
 import WaitingCardNoCard from "@components/waitingCard/WaitingCardNoCard";
-import { Icon, IconLabel, Label, LinkButton } from "@linenow/design-system";
+import {
+  Icon,
+  IconLabel,
+  Label,
+  LinkButton,
+} from "@linenow/core/components";
 
 interface MainNavigationProps {
   isFold: boolean;
