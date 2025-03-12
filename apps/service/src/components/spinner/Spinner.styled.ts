@@ -9,7 +9,7 @@ export const SpinnerBackground = styled.div`
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  z-index: 40;
+  /* z-index: 0; */
 
   width: 100%;
   height: 100%;

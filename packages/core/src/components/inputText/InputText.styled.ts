@@ -33,7 +33,7 @@ export const InputTextField = styled.label`
   width: 100%;
 
   border-radius: 0.5rem;
-  box-shadow: ${getBorder("blue")(theme)};
+  box-shadow: ${getBorder("blue")};
 
   padding: 0.75rem 1rem;
 

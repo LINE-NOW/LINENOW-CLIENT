@@ -1,16 +1,19 @@
-import { PropsWithChildren } from "react";
 import { Global, ThemeProvider } from "@emotion/react";
 
 // styles
 import { global } from "../../styles/global";
 import { theme } from "../../styles/theme";
 
-interface LinenowProviderProps extends PropsWithChildren {}
+interface LinenowProviderProps extends React.PropsWithChildren {
+  maxWidth: string;
+}
 
-const LinenowProvider = ({ children }: LinenowProviderProps) => {
+const LinenowProvider = (props: LinenowProviderProps) => {
+  const { maxWidth = "none", children } = props;
+
   return (
-    <ThemeProvider theme={theme}>
-      <Global styles={global} />
+    <ThemeProvider theme={theme(maxWidth)}>
+      <Global styles={global(maxWidth)} />
       {children}
     </ThemeProvider>
   );

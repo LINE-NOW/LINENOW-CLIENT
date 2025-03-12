@@ -1,26 +1,6 @@
 import styled from "@emotion/styled";
 import { fonts } from "../../styles/fonts";
 
-export const ModalBackground = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  position: fixed;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  z-index: 30;
-
-  width: 100%;
-  .mobile & {
-    max-width: 540px;
-  }
-  height: 100%;
-
-  background-color: rgb(15 15 15 / 70%);
-`;
-
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;

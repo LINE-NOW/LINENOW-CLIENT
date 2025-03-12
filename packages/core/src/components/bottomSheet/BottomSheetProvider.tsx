@@ -1,5 +1,7 @@
-import * as S from "./BottomSheet.styled";
 import BottomSheet from "./BottomSheet";
+import FixedContainer from "../fixedContainer/FixedContainer";
+
+// hooks
 import useBottomSheet from "../../hooks/useBottomSheet";
 
 const BottomSheetProvider = () => {
@@ -8,9 +10,9 @@ const BottomSheetProvider = () => {
 
   if (!isOpen) return;
   return (
-    <S.BottomSheetBackground>
+    <FixedContainer justifyContent="end">
       <BottomSheet {...content} />
-    </S.BottomSheetBackground>
+    </FixedContainer>
   );
 };
 export default BottomSheetProvider;
