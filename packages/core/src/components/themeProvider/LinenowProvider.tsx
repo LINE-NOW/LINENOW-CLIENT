@@ -5,7 +5,7 @@ import { global } from "../../styles/global";
 import { theme } from "../../styles/theme";
 
 interface LinenowProviderProps extends React.PropsWithChildren {
-  maxWidth: string;
+  maxWidth?: string;
 }
 
 const LinenowProvider = (props: LinenowProviderProps) => {

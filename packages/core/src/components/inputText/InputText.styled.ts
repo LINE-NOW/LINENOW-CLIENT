@@ -2,7 +2,6 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { fonts } from "../../styles/fonts";
 import { getBorder } from "../../styles/border";
-import { theme } from "../../styles/theme";
 
 export const getWrapperStyle = (width: string) => css`
   display: flex;
