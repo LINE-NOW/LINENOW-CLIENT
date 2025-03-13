@@ -14,13 +14,12 @@ import {
 import WaitingCheckModal from "@pages/waitingCheck/_components/WaitingCheckModal";
 import useAuth from "@hooks/useAuth";
 
-import LoginBottomSheetContent from "@components/login/LoginBottomSheetContent";
-
 import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
 import { Button } from "@linenow/core/components";
 import { useBottomSheet, useModal } from "@linenow/core/hooks";
 import { modalCancelWaiting } from "@components/modal/waiting";
+import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
