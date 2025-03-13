@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useGetNowWaitings } from "./apis/waiting";
 import useEntranceBottomSheet from "./useEntrance";
-import { Entrance } from "@components/entrance/Entrance";
+
 import { Waiting } from "@interfaces/waiting"; // Waiting 타입을 가져와 사용
 import useAuth from "./useAuth";
 import { useLocation } from "react-router-dom";
+import { Entrance } from "@components/entrance/Entrance";
 
 const useCheckWaitingStatus = () => {
   const location = useLocation();

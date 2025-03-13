@@ -11,7 +11,7 @@ import {
 import useCheckWaitingStatus from "@hooks/useCheckWaitingStatus";
 
 const RootLayout = () => {
-  useCheckWaitingStatus();
+  // useCheckWaitingStatus();
   return (
     <>
       <ToastProvider />

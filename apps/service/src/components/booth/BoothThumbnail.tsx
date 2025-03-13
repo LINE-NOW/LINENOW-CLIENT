@@ -5,17 +5,16 @@ import { Flex, IconLabel, Label } from "@linenow/core/components";
 
 export interface BoothThumbnailProps
   extends Pick<
-    Booth,
-    "boothID" | "name" | "description" | "location" | "thumbnail"
-  > {
-  children?: React.ReactNode;
-}
+      Booth,
+      "boothID" | "name" | "description" | "location" | "thumbnail"
+    >,
+    React.ComponentPropsWithoutRef<"section"> {}
 
 const BoothThumbnail = (props: BoothThumbnailProps) => {
   const { children, ...booth } = props;
 
   return (
-    <Flex as="section" gap="0.5rem" alignItem="center" width="100%">
+    <Flex as="section" gap="0.5rem" alignItem="center" width="100%" {...props}>
       {/* 이미지 */}
       <img
         src={booth.thumbnail}

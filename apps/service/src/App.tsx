@@ -7,13 +7,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 //components
 import { LinenowProvider } from "@linenow/core/components";
+import TestTool from "./mocks/_components/TestTool";
 
 function App() {
   const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <TestTool /> */}
+      <TestTool />
       <LinenowProvider maxWidth="540px">
         <RouterProvider router={router} />
       </LinenowProvider>

@@ -1,120 +1,76 @@
 import * as S from "./WaitingCard.styled";
-// interfaces
+
 import { Waiting } from "@interfaces/waiting";
+import { Link } from "react-router-dom";
 
-// hooks
-import { useWaitingCard } from "./_hooks/useWaitingCard";
-import { useNavigate } from "react-router-dom";
+import BoothThumbnailCompact from "@components/booth/BoothThumbnailCompact";
+import { Button, Flex } from "@linenow/core/components";
 
-import { usePostWaitingCancel } from "@hooks/apis/waiting";
-import {
-  Button,
-  Chip,
-  CommonButton,
-  IconLabel,
-} from "@linenow/core/components";
-import { useModal } from "@linenow/core/hooks";
-import { modalCancelWaiting } from "@components/modal/waiting";
-interface WaitingCardProps {
-  waiting: Pick<
+export interface WaitingCardProps
+  extends Pick<
     Waiting,
-    | "waitingID"
-    | "waitingTeamsAhead"
-    | "booth"
-    | "partySize"
-    | "waitingStatus"
-    | "confirmDueTime"
-    | "arrivalarrivalDueTime"
-  >;
-  isButton?: boolean;
-  disableClick?: boolean;
+    "waitingID" | "waitingStatus" | "waitingTeamsAhead" | "booth"
+  > {}
+
+interface Config {
+  type?: "black" | "white";
+  disabled?: boolean;
+  button: React.ComponentProps<typeof Button>;
 }
 
-const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
-  const navigate = useNavigate();
-  const { openModal } = useModal();
-  const { mutate: postWaitingCancel } = usePostWaitingCancel();
+const WaitingCard = (props: WaitingCardProps) => {
+  const { waitingID, waitingStatus, booth } = props;
 
-  const cancelWaiting = () => {
-    postWaitingCancel(waiting.waitingID || 0);
-  };
-
-  const targetTime = () => {
-    switch (waiting.waitingStatus) {
+  const getConfig = (): Config => {
+    switch (waitingStatus) {
       case "ready_to_confirm":
-        return waiting.confirmDueTime;
-      case "confirmed":
-        return waiting.arrivalarrivalDueTime;
+        return {
+          button: { variant: "lime", children: "시간 내 입장해주세요" },
+        };
+      case "waiting":
+        return {
+          button: { variant: "blueLight", children: "내 앞으로 지금" },
+        };
+      case "canceled":
+        return {
+          button: {
+            variant: "grayLight",
+            children: "대기가 취소 되었어요",
+          },
+        };
+      case "time_over_canceled":
+        return {
+          button: {
+            variant: "grayLight",
+            children: "대기 시간이 초과 되었어요",
+          },
+        };
       default:
-        return null;
+        return {
+          button: {
+            children: "이런건 없음...",
+          },
+        };
     }
   };
 
-  const handleCancelButton = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    openModal(modalCancelWaiting(cancelWaiting));
-  };
-
-  const handleWaitingCard = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (!disableClick) {
-      navigate(`/waiting/${waiting.waitingID}`, {
-        state: waiting.waitingID,
-      });
-    } else {
-      event.stopPropagation();
-    }
-  };
-
-  const config = useWaitingCard({
-    waitingID: waiting.waitingID || 0,
-    status: waiting.waitingStatus ? waiting.waitingStatus : "check",
-    waitingTeamsAhead: waiting.waitingTeamsAhead,
-    targetTime: targetTime(),
-  });
+  const { disabled = false, type = "white", button: buttonProps } = getConfig();
 
   return (
-    <S.WaitingCardWrapper
-      {...(config.isValidate && { onClick: handleWaitingCard })}
-    >
-      <S.WaitingCardTitleWrapper>
-        <S.WaitingCardTitleLabel>{config.titleContent}</S.WaitingCardTitleLabel>
-        {config.isValidate ? (
-          <CommonButton onClick={handleCancelButton}>
-            <Chip variant="outline">취소하기</Chip>
-          </CommonButton>
-        ) : null}
-      </S.WaitingCardTitleWrapper>
-
-      <S.WaitingCardContentWrapper
-        style={{ opacity: `${config.boothInfoOpacity}` }}
+    <Link to={`/waiting/${waitingID}`}>
+      <Flex
+        as="section"
+        direction="column"
+        gap="0.75rem"
+        css={[S.getWaitingCardStyle(type)]}
       >
-        <S.BoothInformationWrapper>
-          <S.BoothInformationImage
-            src={waiting.booth?.thumbnail || "/images/image_waitingNoCard.png"}
-          />
-          <S.BoothInformaitonLabelWrapper>
-            <S.BoothInformationNameLabel>
-              <span>{waiting.partySize || 0}명</span>
-              <span>·</span>
-              <span>{waiting.booth?.name || "부스명 없음"}</span>
-            </S.BoothInformationNameLabel>
-
-            <IconLabel
-              icon="location_pin"
-              iconProps={{ color: "grayLight", size: 16 }}
-              gap="0.12rem"
-            >
-              <S.BoothInformationPositionLabel>
-                {waiting.booth?.location || "위치 없음"}
-              </S.BoothInformationPositionLabel>
-            </IconLabel>
-          </S.BoothInformaitonLabelWrapper>
-        </S.BoothInformationWrapper>
-
-        {config.button && <Button size={"large"} {...config.button} />}
-      </S.WaitingCardContentWrapper>
-    </S.WaitingCardWrapper>
+        <BoothThumbnailCompact
+          css={[S.getBoothThumbnailStyle(disabled)]}
+          {...booth}
+        />
+        <Button {...buttonProps} />
+      </Flex>
+    </Link>
   );
 };
-
 export default WaitingCard;

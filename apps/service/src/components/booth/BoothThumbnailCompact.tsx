@@ -4,14 +4,16 @@ import { Flex, Icon, IconLabel, Label } from "@linenow/core/components";
 import { Booth } from "@interfaces/booth";
 
 export interface BoothThumbnailCompactProps
-  extends Pick<Booth, "boothID" | "thumbnail" | "name" | "location"> {
+  extends Pick<Booth, "boothID" | "thumbnail" | "name" | "location">,
+    React.ComponentPropsWithoutRef<"section"> {
   isRightIconVisible?: boolean;
 }
 
 const BoothThumbnailCompact = (props: BoothThumbnailCompactProps) => {
   const { isRightIconVisible = true, ...booth } = props;
+
   return (
-    <Flex as="section" gap="0.5rem" width="100%" alignItem="center">
+    <Flex as="section" gap="0.5rem" width="100%" alignItem="center" {...props}>
       <Flex
         as="img"
         src={booth.thumbnail}

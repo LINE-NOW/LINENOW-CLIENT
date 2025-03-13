@@ -39,6 +39,15 @@ export interface BoothSummary
   thumbnail: string;
 }
 
+export interface BoothsElement
+  extends BoothSummary,
+    Pick<
+      Booth,
+      "isOperated" | "waitingCount" | "totalWaitingTeams" | "isWaiting"
+    > {
+  waitingStatus: WaitingStatus | null;
+}
+
 export interface Menu {
   name: string;
   price: string;
