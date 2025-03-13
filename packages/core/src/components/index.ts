@@ -1,5 +1,6 @@
 export { default as LinenowProvider } from "./themeProvider/LinenowProvider";
 
+export { default as Flex } from "./flex/Flex";
 export { default as Label } from "./label/Label";
 export { default as IconLabel } from "./IconLabel/IconLabel";
 export { default as Button } from "./button/Button";

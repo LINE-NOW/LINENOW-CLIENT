@@ -4,7 +4,6 @@ import * as S from "./WaitingCheckPage.styled";
 import BottomButton from "@components/bottomButton/BottomButton";
 
 import Separator from "@components/separator/Separator";
-import WaitingCard from "@components/waitingCard/WaitingCard";
 import WaitingDetailCaution from "@pages/waitingDetail/_components/WaitingDetailCaution";
 import WaitingCheckCautionModal from "./_components/WaitingCheckCautionModal";
 import { Button } from "@linenow/core/components";
@@ -29,25 +28,6 @@ const WaitingCheckPage = () => {
         <S.WaitingCheckPageTitle>
           줄서기를 진행하시겠어요?
         </S.WaitingCheckPageTitle>
-        <WaitingCard
-          waiting={{
-            waitingStatus: "check",
-            waitingTeamsAhead: booth.total_waiting_teams,
-            booth: {
-              name: booth.name,
-              boothID: booth.id,
-              location: booth.location,
-              thumbnail:
-                typeof booth.images[0] === "string"
-                  ? booth.images[0]
-                  : "/images/image_waitingNoCard.png",
-            },
-
-            partySize: checkedPeople,
-          }}
-          isButton={false}
-          disableClick={true}
-        />
       </S.WaitingDetailPageBoothCardWrapper>
 
       <Separator />

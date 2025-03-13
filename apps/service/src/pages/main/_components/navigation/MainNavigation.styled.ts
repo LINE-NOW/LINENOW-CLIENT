@@ -16,7 +16,7 @@ export const MainNavigationWrapper = styled.section`
   width: 100%;
 
   box-sizing: border-box;
-  padding: 1rem 1.25rem 0 1.25rem;
+  padding: 0.75rem 1.25rem 1.25rem 1.25rem;
 
   ${changeFoldStateAnimation};
 `;
@@ -26,6 +26,7 @@ export const MainNavigationTitleWrapper = styled.div`
   justify-content: space-between;
 
   padding: 0rem 0.25rem;
+  height: 1.5rem;
 `;
 
 export const MainNavigationTitleLabelButton = styled(IconLabel)``;

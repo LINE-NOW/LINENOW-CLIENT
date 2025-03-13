@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 //components
 import * as S from "./MyWaitingListPage.styled";
-import WaitingCard from "@components/waitingCard/WaitingCard";
+import WaitingCard from "@components/_refact/waitingCard/WaitingCard";
 
 // types
 import { Waiting } from "@interfaces/waiting";

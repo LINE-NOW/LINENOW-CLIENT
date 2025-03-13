@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import * as S from "./MainNavigation.styled";
 import Spinner from "@components/spinner/Spinner";
 
-import WaitingCard from "@components/waitingCard/WaitingCard";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Updated CSS import
 
@@ -14,17 +12,13 @@ import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
 
 // hooks
 import { useGetNowWaitings } from "@hooks/apis/waiting";
-import WaitingCardLogin from "@components/waitingCard/WaitingCardLogin";
+import WaitingCardLogin from "@components/_refact/waitingCard/WaitingCardLogin";
 
 // types
 import { Waiting } from "@interfaces/waiting";
-import WaitingCardNoCard from "@components/waitingCard/WaitingCardNoCard";
-import {
-  Icon,
-  IconLabel,
-  Label,
-  LinkButton,
-} from "@linenow/core/components";
+import WaitingCardNoCard from "@components/_refact/waitingCard/WaitingCardNoCard";
+import { Icon, IconLabel, Label, LinkButton } from "@linenow/core/components";
+import WaitingCard from "@components/waitingCard/WaitingCard";
 
 interface MainNavigationProps {
   isFold: boolean;
@@ -49,9 +43,10 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
           slidesPerView={1}
           style={{ width: "100%", overflow: "visible" }}
         >
-          {waitings?.map((item, index) => (
+          {waitings?.map((waiting, index) => (
             <SwiperSlide key={index}>
-              <WaitingCard waiting={item} />
+              <WaitingCard {...waiting} />
+              {/* <WaitingCard waiting={item} /> */}
             </SwiperSlide>
           ))}
         </Swiper>
@@ -79,7 +74,7 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
           </LinkButton>
 
           <LinkButton to="/setting">
-            <Icon icon="setting" />
+            <Icon icon="setting" color="white" />
           </LinkButton>
         </>
       );
@@ -100,7 +95,6 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
           height: `${
             isFold ? MAIN_NAVIGATION_HEIGHT.fold : MAIN_NAVIGATION_HEIGHT.unfold
           }`,
-          paddingBottom: `${isFold ? "1rem" : "1.5rem"}`,
         }}
       >
         <Spinner />
@@ -114,7 +108,6 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
         height: `${
           isFold ? MAIN_NAVIGATION_HEIGHT.fold : MAIN_NAVIGATION_HEIGHT.unfold
         }`,
-        paddingBottom: `${isFold ? "1rem" : "1.5rem"}`,
       }}
     >
       <S.MainNavigationTitleWrapper>

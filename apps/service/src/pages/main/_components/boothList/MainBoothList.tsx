@@ -2,24 +2,27 @@ import { forwardRef } from "react";
 import * as S from "./MainBoothList.styled";
 
 import Spinner from "@components/spinner/Spinner";
-import { BoothsElement } from "@interfaces/booth";
-import BoothCardMain from "@components/boothCard/boothCardMain";
+import MainBoothListItem, { MainBoothListItemProps } from "./MainBoothListItem";
 
 interface MainBoothListProps {
-  boothList?: BoothsElement[];
+  booths?: MainBoothListItemProps[];
   isLoading: boolean;
 }
 
 const MainBoothList = forwardRef<HTMLDivElement, MainBoothListProps>(
-  ({ boothList = [], isLoading }: MainBoothListProps, ref) => {
+  ({ booths = [], isLoading }: MainBoothListProps, ref) => {
     if (isLoading) {
       return <Spinner />;
     }
 
     return (
       <S.MainBoothListScrollContainer ref={ref}>
-        {boothList?.map((booth: BoothsElement) => (
-          <BoothCardMain key={booth.boothID} booth={booth} />
+        {booths.map((booth, index) => (
+          <MainBoothListItem
+            key={index}
+            isLast={index === booths.length - 1}
+            {...booth}
+          />
         ))}
       </S.MainBoothListScrollContainer>
     );

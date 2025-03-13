@@ -13,6 +13,7 @@ export interface Booth {
   boothID: number;
   name: string;
   description?: string;
+  thumbnail?: string;
   location: string;
   caution: string;
 

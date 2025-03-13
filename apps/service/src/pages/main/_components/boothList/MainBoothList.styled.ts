@@ -1,6 +1,11 @@
 import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
+import { css, Theme } from "@emotion/react";
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/core/styles";
+import {
+  fonts,
+  getBottomBorder,
+  getHoverAnimation,
+} from "@linenow/core/styles";
 
 // 상단 타이틀
 export const MainBoothListHeaderWrapper = styled.div`
@@ -39,3 +44,15 @@ export const MainBoothListScrollContainer = styled.section`
   padding: 0 1rem;
   background-color: ${({ theme }) => theme.backgroundColors.white};
 `;
+
+// 부스리스트 아이템
+export const getBoothListItemStyle = (isLast: boolean) => (theme: Theme) =>
+  css`
+    ${getHoverAnimation}
+    padding: 0.75rem 0.25rem 1rem 0.25rem;
+
+    ${isLast ||
+    css`
+      box-shadow: ${getBottomBorder("gray")(theme)};
+    `}
+  `;
