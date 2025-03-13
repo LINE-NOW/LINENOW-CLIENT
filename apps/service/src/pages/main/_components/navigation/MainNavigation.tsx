@@ -74,7 +74,7 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
           </LinkButton>
 
           <LinkButton to="/setting">
-            <Icon icon="setting" />
+            <Icon icon="setting" color="white" />
           </LinkButton>
         </>
       );
@@ -95,7 +95,6 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
           height: `${
             isFold ? MAIN_NAVIGATION_HEIGHT.fold : MAIN_NAVIGATION_HEIGHT.unfold
           }`,
-          paddingBottom: `${isFold ? "1rem" : "1.5rem"}`,
         }}
       >
         <Spinner />
@@ -109,7 +108,6 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
         height: `${
           isFold ? MAIN_NAVIGATION_HEIGHT.fold : MAIN_NAVIGATION_HEIGHT.unfold
         }`,
-        paddingBottom: `${isFold ? "1rem" : "1.5rem"}`,
       }}
     >
       <S.MainNavigationTitleWrapper>

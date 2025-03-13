@@ -22,7 +22,7 @@ export const getWaitingCardStyle =
     `;
 
 export const getBoothThumbnailStyle = (isDisabled: boolean) => css`
-  padding: 0.75rem;
+  padding: 0rem 0.25rem;
   ${isDisabled &&
   css`
     opacity: 0.3;
