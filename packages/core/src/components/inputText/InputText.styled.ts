@@ -1,5 +1,5 @@
 import { css, Theme } from "@emotion/react";
-import styled from "@emotion/styled";
+
 import { fonts } from "../../styles/fonts";
 import { getBorder } from "../../styles/border";
 
@@ -24,34 +24,36 @@ export const getErrorLabelStyle = () => css`
   color: red;
 `;
 
-export const InputTextField = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+export const getInputTextFieldStyle = () => {
+  return (theme: Theme) => css`
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 
-  width: 100%;
+    width: 100%;
 
-  border-radius: 0.5rem;
-  box-shadow: ${getBorder("blue")};
+    border-radius: 0.5rem;
+    box-shadow: ${getBorder("blue")(theme)};
 
-  padding: 0.75rem 1rem;
+    padding: 0.75rem 1rem;
 
-  input {
-    flex-grow: 1;
-    border: none;
-    outline: none;
+    input {
+      flex-grow: 1;
+      border: none;
+      outline: none;
 
-    ${fonts.body1}
-    color: ${({ theme }) => theme.fontColors.black};
-  }
+      ${fonts.body1}
+      color: ${theme.fontColors.black}
+    }
 
-  img {
-    flex-shrink: 0;
+    img {
+      flex-shrink: 0;
 
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-`;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  `;
+};
 
 export const getInputStyle = () => {
   return (theme: Theme) => css`
