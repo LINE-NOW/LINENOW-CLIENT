@@ -1,6 +1,7 @@
-import * as S from "./Booth.styled";
 import { Booth } from "@interfaces/booth";
-import { IconLabel, Label } from "@linenow/core/components";
+
+import * as S from "./Booth.styled";
+import { Flex, IconLabel, Label } from "@linenow/core/components";
 
 export interface BoothThumbnailProps
   extends Pick<
@@ -12,14 +13,9 @@ export interface BoothThumbnailProps
 
 const BoothThumbnail = (props: BoothThumbnailProps) => {
   const { children, ...booth } = props;
+
   return (
-    <section
-      css={S.getFlexStyle({
-        gap: "0.5rem",
-        alignItem: "center",
-        width: "100%",
-      })}
-    >
+    <Flex as="section" gap="0.5rem" alignItem="center" width="100%">
       {/* 이미지 */}
       <img
         src={booth.thumbnail}
@@ -28,21 +24,15 @@ const BoothThumbnail = (props: BoothThumbnailProps) => {
       />
 
       {/* 부스정보 */}
-      <div
-        css={S.getFlexStyle({
-          gap: "0.5rem",
-          direction: "column",
-          flexGrow: 1,
-        })}
-      >
-        <div css={S.getFlexStyle({ direction: "column", width: "100%" })}>
+      <Flex gap="0.5rem" direction="column" flexGrow={1}>
+        <Flex direction="column" width="100%">
           <Label font="head3" color="black" ellipsis={true}>
             {booth.name}
           </Label>
           <Label font="body2" color="blackLight" ellipsis={true}>
             {booth.description}
           </Label>
-        </div>
+        </Flex>
 
         <IconLabel
           icon="location_pin"
@@ -54,8 +44,8 @@ const BoothThumbnail = (props: BoothThumbnailProps) => {
         >
           {booth.location}
         </IconLabel>
-      </div>
-    </section>
+      </Flex>
+    </Flex>
   );
 };
 
