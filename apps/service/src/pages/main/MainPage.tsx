@@ -28,8 +28,8 @@ const MainPage = () => {
   } = useSortBooths();
 
   const {
-    data: boothList,
-    isLoading: getBoothListIsLoading,
+    data: booths,
+    isLoading: boothsIsLoading,
     refetch: getBoothListRefetch,
   } = useGetBoothList({ ordering: currentSortBoothOption });
 
@@ -42,7 +42,7 @@ const MainPage = () => {
       <S.MainFixedComponentsWrapper>
         <MainNavigation isFold={isFold} isLogin={isLogin} />
         <MainBoothListHeader
-          boothCount={boothList?.length || 0}
+          boothCount={booths?.length || 0}
           sortBoothOptions={sortBoothOptions}
           currentSortBoothOption={currentSortBoothOption}
           handleSortBoothOptionChange={handleSortBoothOptionChange}
@@ -61,8 +61,8 @@ const MainPage = () => {
 
       <MainBoothList
         ref={mainBoothListRef}
-        boothList={boothList}
-        isLoading={getBoothListIsLoading}
+        booths={booths}
+        isLoading={boothsIsLoading}
       />
     </>
   );
