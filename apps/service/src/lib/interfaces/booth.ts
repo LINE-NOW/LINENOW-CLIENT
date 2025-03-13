@@ -13,6 +13,7 @@ export interface Booth {
   boothID: number;
   name: string;
   description?: string;
+  thumbnail?: string;
   location: string;
   caution: string;
 
@@ -36,15 +37,6 @@ export interface Booth {
 export interface BoothSummary
   extends Pick<Booth, "boothID" | "name" | "description" | "location"> {
   thumbnail: string;
-}
-
-export interface BoothsElement
-  extends BoothSummary,
-    Pick<
-      Booth,
-      "isOperated" | "waitingCount" | "totalWaitingTeams" | "isWaiting"
-    > {
-  waitingStatus: WaitingStatus | null;
 }
 
 export interface Menu {
