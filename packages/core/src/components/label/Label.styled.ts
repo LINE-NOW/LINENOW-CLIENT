@@ -13,3 +13,13 @@ export const getColorStyle = (color?: FontColorKey) => {
     color: ${theme.fontColors[color]};
   `;
 };
+
+export const getEllipsisStyle = (width: string = "100%") => {
+  return css`
+    width: ${width};
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  `;
+};
