@@ -12,8 +12,11 @@ import { Waiting } from "@interfaces/waiting";
 
 // components
 import * as S from "./MainWaitingCard.styled";
+import { modalCancelWaiting } from "@components/modal/waiting";
+
+// hooks
+import { usePostWaitingAction } from "@hooks/apis/boothManaging";
 import { useMainWaitingCard } from "./_hooks/useMainWaitingCard";
-import useMainWaitingCardModalConfig from "./_hooks/useMainWaitingCardModalConfig";
 
 interface MainWaitingCardProps {
   waiting: Waiting;
@@ -21,12 +24,17 @@ interface MainWaitingCardProps {
 
 const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
   const { openModal } = useModal();
-  const { cancelWaitingModal } = useMainWaitingCardModalConfig(
-    waiting.waitingID
-  );
+
+  const { mutate: postWaitingAction } = usePostWaitingAction();
 
   const handleCancelWaitingButton = () => {
-    openModal(cancelWaitingModal(waiting.user.name));
+    const modal = modalCancelWaiting(waiting.user.name, () => {
+      postWaitingAction({
+        waitingID: waiting.waitingID,
+        requestBody: { action: "cancel" },
+      });
+    });
+    openModal(modal);
   };
 
   const config = useMainWaitingCard({
