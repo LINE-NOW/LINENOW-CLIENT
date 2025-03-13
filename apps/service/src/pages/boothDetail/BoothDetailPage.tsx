@@ -20,6 +20,7 @@ import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
 import { Button } from "@linenow/core/components";
 import { useBottomSheet, useModal } from "@linenow/core/hooks";
+import { modalCancelWaiting } from "@components/modal/waiting";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -33,8 +34,6 @@ const BoothDetailPage = () => {
 
   const { data: booth, isLoading } = useGetBooth({ boothID: boothNumber || 0 });
 
-  // TODO:- 이거 누군가는 고쳐주세요... atom쓰는걸로...
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { openModal } = useModal();
 
   const openCheckModal = () => {
@@ -45,20 +44,15 @@ const BoothDetailPage = () => {
     setIsModalOpen(false);
   };
 
-  const onWaitingCancelClick = () => {
-    openModal(waitingCancelModal);
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { mutate: postWaitingCancel } = usePostWaitingCancel();
-  const waitingCancelModal = {
-    title: "정말 대기를 취소하시겠어요?",
-    sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
-    primaryButton: {
-      onClick: () => postWaitingCancel(booth?.waitingID || 0),
-    },
-    secondButton: {
-      children: "이전으로",
-    },
+  const cancelWaiting = () => {
+    postWaitingCancel(booth?.waitingID || 0);
+  };
+
+  const onWaitingCancelClick = () => {
+    openModal(modalCancelWaiting(cancelWaiting));
   };
 
   const getInformationTitle = () => {
