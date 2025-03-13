@@ -10,13 +10,22 @@ import { useModal } from "@linenow/core/hooks";
 import { useLocation } from "react-router-dom";
 import SidebarButton, { SidebarButtonProps } from "./SidebarButton";
 
-import useSidebarModalConfig from "./useSidebarModalConfig";
 import useBoothInfo from "@hooks/useBoothInfo";
-import { useGetBoothStatus } from "@hooks/apis/boothManaging";
+import {
+  useGetBoothStatus,
+  usePostBoothOperation,
+  usePostBoothStatus,
+} from "@hooks/apis/boothManaging";
 import { useEffect } from "react";
 import useIsLoading from "@hooks/useIsLoading";
 import { usePostLogout } from "@hooks/apis/auth";
 import Spinner from "@components/spinner/Spinner";
+import {
+  modalStartOperation,
+  modalStartWaiting,
+  modalStopOperation,
+  modalStopWaiting,
+} from "@components/modal/boothStatus";
 
 export interface SidebarProps {
   isMobile: boolean;
@@ -24,28 +33,23 @@ export interface SidebarProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
+  const { mutate: postBoothOperation } = usePostBoothOperation();
+  const { mutate: postBoothStatus } = usePostBoothStatus();
   const { setLoadings } = useIsLoading();
   const { data: boothData, isLoading } = useGetBoothStatus();
-  const { mutate: postLogout, isPending } = usePostLogout();
+  const { mutate: postLogout, isPending: isLoadingLogout } = usePostLogout();
 
   useEffect(() => {
     setBoothInfo(boothData || { boothID: 0, name: "", status: "not_started" });
   }, [boothData]);
 
   useEffect(() => {
-    setLoadings({ isFullLoading: isPending });
-  }, [isPending]);
+    setLoadings({ isFullLoading: isLoadingLogout });
+  }, [isLoadingLogout]);
 
   const { boothInfo, setBoothInfo } = useBoothInfo();
 
   const { openModal, closeModal } = useModal();
-
-  const {
-    startBoothModal,
-    stopBoothModal,
-    startWaitingModal,
-    stopWaitingModal,
-  } = useSidebarModalConfig();
 
   const handleLogout = async () => {
     postLogout();
@@ -96,19 +100,47 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   };
 
   const handleStopWaitingButtonClick = () => {
-    openModal(stopWaitingModal());
+    openModal(
+      modalStopWaiting(() => {
+        postBoothOperation({
+          status: "pause",
+        });
+      })
+    );
   };
 
   const handleStartWaitingButtonClick = () => {
-    openModal(startWaitingModal());
+    openModal(
+      modalStartWaiting(() => {
+        postBoothOperation({
+          status: "resume",
+        });
+      })
+    );
   };
 
   const handleStopBoothButtonClick = () => {
-    openModal(stopBoothModal());
+    openModal(
+      modalStopOperation(() => {
+        postBoothStatus({
+          requestBody: {
+            status: "finished",
+          },
+        });
+      })
+    );
   };
 
   const handleStartBoothButtonClick = () => {
-    openModal(startBoothModal());
+    openModal(
+      modalStartOperation(() => {
+        postBoothStatus({
+          requestBody: {
+            status: "operating",
+          },
+        });
+      })
+    );
   };
   const StopWaitingButton = () => {
     return (

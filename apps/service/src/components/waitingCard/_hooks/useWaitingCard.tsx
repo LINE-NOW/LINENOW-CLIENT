@@ -1,16 +1,16 @@
 import { ReactNode } from "react";
 
 // components
+import { Button } from "@linenow/core/components";
+import { modalConfirmEntrance } from "@components/modal/waiting";
 
 // types
 import { WaitingStatus } from "@linenow-types/status";
 
 // hooks
-import useCountdown from "@hooks/useCountdown";
-
-import { usePostConfirm } from "@hooks/apis/entry";
-import { Button, Modal } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
+import { usePostConfirm } from "@hooks/apis/entry";
+import useCountdown from "@hooks/useCountdown";
 
 interface WaitingCardProps {
   waitingID: number;
@@ -47,24 +47,13 @@ export const useWaitingCard = ({
     waitingID: waitingID,
   });
 
-  const confirmModal: Omit<React.ComponentProps<typeof Modal>, "isOpen"> = {
-    title: "다른 대기가 취소돼요",
-    sub: "입장을 확정하면 다른 대기는 취소돼요.\n 입장을 확정하시겠어요?",
-    primaryButton: {
-      variant: "lime",
-      children: "입장 확정하기",
-      onClick: () => {
-        postConfirm();
-      },
-    },
-    secondButton: {
-      children: "이전으로",
-    },
+  const confirmEntrance = () => {
+    postConfirm();
   };
 
   const handleConfirmButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    openModal(confirmModal);
+    openModal(modalConfirmEntrance(confirmEntrance));
   };
 
   const waitingCardConfig: Record<WaitingStatus, WaitingCardConfig> = {

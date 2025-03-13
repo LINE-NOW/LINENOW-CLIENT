@@ -32,7 +32,7 @@ const InputText = (props: InputTextProps) => {
         </Label>
       )}
 
-      <S.InputTextField>
+      <label css={[S.getInputTextFieldStyle()]}>
         <input
           type={type}
           placeholder={props.placeholder}
@@ -45,7 +45,8 @@ const InputText = (props: InputTextProps) => {
             <Icon {...rightIconButton} />
           </CommonButton>
         )}
-      </S.InputTextField>
+      </label>
+
       {errorMessage && (
         <Label font="caption" css={S.getErrorLabelStyle()}>
           {errorMessage}

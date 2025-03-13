@@ -14,6 +14,7 @@ import {
   IconLabel,
 } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
+import { modalCancelWaiting } from "@components/modal/waiting";
 interface WaitingCardProps {
   waiting: Pick<
     Waiting,
@@ -34,6 +35,10 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
   const { openModal } = useModal();
   const { mutate: postWaitingCancel } = usePostWaitingCancel();
 
+  const cancelWaiting = () => {
+    postWaitingCancel(waiting.waitingID || 0);
+  };
+
   const targetTime = () => {
     switch (waiting.waitingStatus) {
       case "ready_to_confirm":
@@ -45,24 +50,9 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
     }
   };
 
-  const cancelModal = {
-    title: "정말 대기를 취소하시겠어요?",
-    sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
-    primaryButton: {
-      children: "줄 서기 취소하기",
-      onClick: () => {
-        postWaitingCancel(waiting.waitingID || 0);
-      },
-    },
-
-    secondButton: {
-      children: "이전으로",
-    },
-  };
-
   const handleCancelButton = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    openModal(cancelModal);
+    openModal(modalCancelWaiting(cancelWaiting));
   };
 
   const handleWaitingCard = (event: React.MouseEvent<HTMLDivElement>) => {

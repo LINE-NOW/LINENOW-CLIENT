@@ -5,7 +5,7 @@ import * as S from "./Modal.styled";
 
 export interface ModalProps {
   title?: string;
-  sub?: string;
+  sub?: React.ReactNode;
   secondButton?: Omit<React.ComponentProps<typeof Button>, "size" | "variant">;
   primaryButton?: Omit<React.ComponentProps<typeof Button>, "size">;
 }

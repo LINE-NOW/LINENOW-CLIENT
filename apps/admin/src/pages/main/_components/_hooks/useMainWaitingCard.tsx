@@ -1,9 +1,14 @@
-import { Button } from "@linenow/core/components";
-import { useModal } from "@linenow/core/hooks";
-
 import { WaitingStatus } from "@linenow-types/status";
-import useMainWaitingCardModalConfig from "./useMainWaitingCardModalConfig";
+
+import { Button } from "@linenow/core/components";
+
+import { useModal } from "@linenow/core/hooks";
 import useCountdown from "@hooks/useCountdown";
+import {
+  modalApproveWaiting,
+  modalCallWaiting,
+} from "@components/modal/waiting";
+import { usePostWaitingAction } from "@hooks/apis/boothManaging";
 
 interface MainWaitingCardProps {
   waitingID: number;
@@ -36,15 +41,28 @@ export const useMainWaitingCard = ({
   });
 
   const { openModal } = useModal();
-  const { approveWaitingModal, callWaitingModal } =
-    useMainWaitingCardModalConfig(waitingID);
+
+  const { mutate: postWaitingAction } = usePostWaitingAction();
 
   const handleApproveWaitingButton = () => {
-    openModal(approveWaitingModal(userName));
+    const modal = modalApproveWaiting(userName, () => {
+      postWaitingAction({
+        waitingID: waitingID,
+        requestBody: { action: "cancel" },
+      });
+    });
+    openModal(modal);
   };
 
   const handleCallWaitingButton = () => {
-    openModal(callWaitingModal(userName));
+    const modal = modalCallWaiting(userName, () => {
+      postWaitingAction({
+        waitingID: waitingID,
+        requestBody: { action: "call" },
+      });
+    });
+
+    openModal(modal);
   };
 
   const callWaitingButton: MainWaitingCardButtonProps = {

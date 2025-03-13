@@ -6,7 +6,8 @@ import * as S from "./WaitingCard.styled";
 import WaitingCardMypage from "./WaitingCardLayout";
 
 import { Button } from "@linenow/core/components";
-import LoginBottomSheetContent from "@components/login/LoginBottomSheetContent";
+
+import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 
 const WaitingCardLogin = () => {
   const { openBottomSheet } = useBottomSheet();
