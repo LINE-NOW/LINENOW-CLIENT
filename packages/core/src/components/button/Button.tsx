@@ -10,25 +10,30 @@ interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   width?: string;
 }
 
-const Button = ({
-  variant = "blue",
-  size = "large",
-  width = "100%",
-  children,
-  ...buttonProps
-}: ButtonProps) => {
+const Button = (props: ButtonProps) => {
+  const {
+    variant = "blue",
+    size = "large",
+    width = "100%",
+    children,
+    onClick,
+    ...buttonProps
+  } = props;
+
   const childCount = Children.count(children);
+
   return (
-    <S.ButtonWrapper
+    <button
       css={[
         getVariantStyle(variant),
         S.getSizeStyle(size, width),
         S.getAlignStyle(childCount),
+        onClick && S.getAnimation(),
       ]}
       {...buttonProps}
     >
       {children}
-    </S.ButtonWrapper>
+    </button>
   );
 };
 

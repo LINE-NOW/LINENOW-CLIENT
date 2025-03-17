@@ -3,6 +3,7 @@ import { FlexStyle } from "./Flex";
 
 export const getFlexStyle = (style: FlexStyle) => css`
   width: ${style.width};
+  height: ${style.height};
   flex-grow: ${style.flexGrow};
 
   display: flex;

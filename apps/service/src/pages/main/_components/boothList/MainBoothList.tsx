@@ -19,7 +19,7 @@ const MainBoothList = (props: MainBoothListProps) => {
     <div css={S.getBoothListWrapperStyle()}>
       {booths.map((booth, index) => {
         const isLast = index === booths.length - 1;
-        return <MainBoothListItem isLast={isLast} {...booth} />;
+        return <MainBoothListItem key={index} isLast={isLast} {...booth} />;
       })}
     </div>
   );
