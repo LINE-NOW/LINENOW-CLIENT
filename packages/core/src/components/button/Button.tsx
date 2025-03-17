@@ -30,6 +30,7 @@ const Button = (props: ButtonProps) => {
         S.getAlignStyle(childCount),
         onClick && S.getAnimation(),
       ]}
+      onClick={onClick}
       {...buttonProps}
     >
       {children}

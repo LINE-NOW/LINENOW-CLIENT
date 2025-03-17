@@ -20,7 +20,8 @@ const useMainBoothList = () => {
     ordering: currentSortBoothOption,
   });
 
-  const BoothListSelect = () => (
+  // 부스 목록 정렬 옵션 선택
+  const BoothOptionSelect = () => (
     <Select
       options={sortBoothOptions}
       value={currentSortBoothOption}
@@ -36,7 +37,7 @@ const useMainBoothList = () => {
             {booths.length}개의 부스
           </Label>
 
-          <BoothListSelect />
+          <BoothOptionSelect />
         </Flex>
       )}
     </MainBoothListHeader>
@@ -49,7 +50,7 @@ const useMainBoothList = () => {
       <MainMap />
     );
 
-  return { BoothListHeader, BoothList };
+  return { BoothListHeader, BoothList, currentSortBoothOption };
 };
 
 export default useMainBoothList;
