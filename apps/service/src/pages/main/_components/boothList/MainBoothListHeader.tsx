@@ -1,40 +1,20 @@
-import Select, { OptionProps } from "@components/select/Select";
+import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import * as S from "./MainBoothList.styled";
-import React from "react";
+import { Label } from "@linenow/core/components";
 
-interface MainBoothListHeaderProps {
-  sortBoothOptions: OptionProps[];
-  boothCount: number;
-  currentSortBoothOption: string;
-  handleSortBoothOptionChange: (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => void;
-}
+const MainBoothListHeader = (props: React.PropsWithChildren) => {
+  const { children } = props;
+  const { viewType } = useMainViewType();
 
-const MainBoothListHeader = React.memo(
-  ({
-    boothCount,
-    sortBoothOptions,
-    currentSortBoothOption,
-    handleSortBoothOptionChange,
-  }: MainBoothListHeaderProps) => {
-    return (
-      <S.MainBoothListHeaderWrapper>
-        <S.MainBoothListHeaderTitleLabel>
-          2024년 동국대학교 가을 축제
-        </S.MainBoothListHeaderTitleLabel>
+  return (
+    <section css={S.getHeaderWrapperStyle(viewType)}>
+      <Label font={viewType === "list" ? "head2" : "head3"} color="black">
+        2024년 동국대학교 가을 축제
+      </Label>
 
-        <S.MainBoothListHeaderOptionWrapper>
-          <p>{boothCount}개의 부스</p>
-          <Select
-            options={sortBoothOptions}
-            onChange={handleSortBoothOptionChange}
-            value={currentSortBoothOption}
-          />
-        </S.MainBoothListHeaderOptionWrapper>
-      </S.MainBoothListHeaderWrapper>
-    );
-  }
-);
+      {children}
+    </section>
+  );
+};
 
 export default MainBoothListHeader;

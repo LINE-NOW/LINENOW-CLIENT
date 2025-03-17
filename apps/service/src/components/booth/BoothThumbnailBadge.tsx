@@ -1,8 +1,10 @@
-import BoothThumbnail, { BoothThumbnailProps } from "./BoothThumbnail";
+import BoothThumbnail from "./BoothThumbnail";
 import { Chip, Flex } from "@linenow/core/components";
 
 import { Booth } from "@interfaces/booth";
 import { SerializedStyles } from "@emotion/react";
+
+type BoothThumbnailProps = React.ComponentProps<typeof BoothThumbnail>;
 
 export interface BoothThumbnailBadgeProps
   extends BoothThumbnailProps,
