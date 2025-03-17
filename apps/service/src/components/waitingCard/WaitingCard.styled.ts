@@ -8,6 +8,7 @@ export const getWaitingCardStyle =
       ${isDisabled || getHoverAnimation}
       border-radius: 0.75rem;
       padding: 0.75rem;
+      flex-shrink: 0;
 
       ${type === "white" &&
       css`

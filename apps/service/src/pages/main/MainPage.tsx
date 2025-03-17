@@ -1,5 +1,4 @@
 import MainNavigation from "./_components/mainNavigation/MainNavigation";
-import MainMap from "./_components/map/MainMap";
 
 // hook
 import useMainViewType from "@pages/main/_hooks/useMainViewType";

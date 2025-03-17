@@ -1,17 +1,19 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Updated CSS import
 
-import { dummyWaitings } from "./dummy";
 import WaitingCard from "@components/waitingCard/WaitingCard";
+import WaitingCardLogin from "@components/waitingCard/WaitingCardLogin";
+import WaitingCardEmpty from "@components/waitingCard/WaitingCardEmpty";
+
 import useAuth from "@hooks/useAuth";
-import WaitingCardNotice from "@components/waitingCard/WaitingCardNotice";
+import { dummyWaitings } from "./dummy";
 
 const MainNavigationWaitingList = () => {
   const { isLogin } = useAuth();
 
   const waitings = dummyWaitings;
-  if (!isLogin) return <WaitingCardNotice type="login" />;
-  if (waitings.length === 0) return <WaitingCardNotice type="empty" />;
+  if (!isLogin) return <WaitingCardLogin />;
+  if (waitings.length === 0) return <WaitingCardEmpty />;
 
   return (
     <Swiper

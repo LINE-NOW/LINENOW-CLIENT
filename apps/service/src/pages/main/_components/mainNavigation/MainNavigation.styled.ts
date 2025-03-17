@@ -17,7 +17,6 @@ export const getWrapper = (type: MainViewType, isFold: boolean) => {
       type === "list" &&
       css`
         position: fixed;
-        z-index: 90;
         overflow-y: hidden;
         max-width: 540px;
         height: ${getHeight};

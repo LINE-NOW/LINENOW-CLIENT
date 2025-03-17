@@ -43,6 +43,7 @@ const useMainViewType = () => {
 
   return {
     viewType: mainViewType,
+    setViewType: setMainViewType,
     MainViewTypeSwitch,
   };
 };
