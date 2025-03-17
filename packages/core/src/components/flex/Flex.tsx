@@ -6,7 +6,7 @@ export type FlexStyle = {
   gap?: string;
   direction?: "column" | "row";
   alignItem?: "center" | "start" | "end";
-  justifyContent?: "center" | "start" | "end";
+  justifyContent?: "center" | "start" | "end" | "space-between";
   overflow?: "visible" | "hidden" | "scroll";
 };
 
