@@ -50,6 +50,9 @@ const positionStyles: Record<Position, ReturnType<typeof css>> = {
   center: css`
     left: 50%;
     transform: translateX(-50%);
+    &:hover {
+      transform: translateX(-50%) scale(0.95);
+    }
   `,
   right: css`
     right: 1rem;
