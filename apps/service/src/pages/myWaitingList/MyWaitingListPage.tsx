@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 //components
 import * as S from "./MyWaitingListPage.styled";
-import WaitingCard from "@components/_refact/waitingCard/WaitingCard";
 
 // types
 import { Waiting } from "@interfaces/waiting";
@@ -26,7 +25,7 @@ const MyWaitingListPage = () => {
   return (
     <S.MyWaitingListPageWrapper>
       {waitings.map((item, index) => (
-        <WaitingCard key={index} waiting={item} />
+        <div></div>
       ))}
     </S.MyWaitingListPageWrapper>
   );

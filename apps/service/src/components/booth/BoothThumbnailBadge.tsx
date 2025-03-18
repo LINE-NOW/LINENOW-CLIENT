@@ -13,11 +13,17 @@ export interface BoothThumbnailBadgeProps
 }
 
 const BoothThumbnailBadge = (props: BoothThumbnailBadgeProps) => {
-  const { isOperated, isWaiting, totalWaitingTeams, css, ...booth } = props;
+  const {
+    isOperated,
+    isWaiting,
+    totalWaitingTeams,
+    css,
+    ...boothThumbnailProps
+  } = props;
 
   return (
     <Flex as="section" gap="0.5rem" direction="column" width="100%" css={css}>
-      <BoothThumbnail {...booth} />
+      <BoothThumbnail {...boothThumbnailProps} />
 
       {/* 배지 리스트 */}
       <Flex gap="0.5rem" justifyContent="end" width="100%">
