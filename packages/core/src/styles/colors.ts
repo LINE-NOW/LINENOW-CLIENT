@@ -38,7 +38,7 @@ export const fontColors = {
 
 export const borderColors = {
   gray: colors.gray100,
-  grayLight: colors.gray075,
+  grayLight: colors.gray050,
 
   blue: colors.blue500,
 };

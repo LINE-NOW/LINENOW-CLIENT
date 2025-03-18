@@ -15,7 +15,8 @@ export { default as Separator } from "./separator/Separator";
 export { default as Select } from "./select/Select";
 export { default as ButtonLayout } from "./buttonLayout/ButtonLayout";
 export { default as InputText } from "./inputText/InputText";
-export { default as InputPassword } from "./inputText/InputPassword";
+export { default as InputTextButton } from "./inputText/InputTextButton";
+export { default as InputTextContainer } from "./inputText/InputTextContainer";
 export { default as Icon } from "./icon/Icon";
 export { default as Switch } from "./switch/Switch";
 

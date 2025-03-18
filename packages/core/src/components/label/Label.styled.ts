@@ -3,7 +3,10 @@ import { fonts, FontStyleKey } from "../../styles/fonts";
 import { FontColorKey } from "../../styles/theme";
 
 export const getLabelStyle = (font: FontStyleKey) => {
-  return fonts[font];
+  return css`
+    white-space: pre-line;
+    ${fonts[font]}
+  `;
 };
 
 export const getColorStyle = (color?: FontColorKey) => {
