@@ -33,17 +33,20 @@ const MainPage = () => {
 
       <BoothList />
 
-      {/* 새로고침 버튼 */}
-      <RefetchButton
-        css={S.getFloatingButtonStyle("refetch", viewType)}
-        queries={queries}
-      />
+      {/* floating button */}
+      <div css={S.getFloatingButtonWrapperStyle(viewType)}>
+        {/* 새로고침 버튼 */}
+        <RefetchButton
+          css={S.getFloatingButtonStyle("refetch")}
+          queries={queries}
+        />
 
-      {/* list, map 토글 버튼 */}
-      <Switch
-        css={S.getFloatingButtonStyle("switch", viewType)}
-        {...mainViewTypeSwitchProps}
-      />
+        {/* list, map 토글 버튼 */}
+        <Switch
+          css={S.getFloatingButtonStyle("switch")}
+          {...mainViewTypeSwitchProps}
+        />
+      </div>
     </>
   );
 };

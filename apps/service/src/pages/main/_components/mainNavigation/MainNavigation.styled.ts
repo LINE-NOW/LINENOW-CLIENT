@@ -28,6 +28,7 @@ export const getWrapper = (type: MainViewType, isFold: boolean) => {
       `;
 
     return css`
+      z-index: 1;
       position: fixed;
       overflow-y: hidden;
       max-width: ${theme.maxWidth};
@@ -45,26 +46,29 @@ export const getWrapper = (type: MainViewType, isFold: boolean) => {
   };
 };
 
-export const getSpace = (type: MainViewType, isFold: boolean) => {
-  const getMapStyle =
-    type === "map" &&
-    css`
-      position: fixed;
-    `;
-  const getHeight =
-    type === "map"
-      ? "100vh"
-      : isFold
-      ? MAIN_FIXED_COMPONENTS_HEIGHT.fold
-      : MAIN_FIXED_COMPONENTS_HEIGHT.unfold;
+export const getSpace =
+  (type: MainViewType, isFold: boolean) => (theme: Theme) => {
+    const getMapStyle =
+      type === "map" &&
+      css`
+        position: fixed;
+        background-color: transparent;
+      `;
+    const getHeight =
+      type === "map"
+        ? "100vh"
+        : isFold
+        ? MAIN_FIXED_COMPONENTS_HEIGHT.fold
+        : MAIN_FIXED_COMPONENTS_HEIGHT.unfold;
 
-  return css`
-    ${getMapStyle}
-    width: 100%;
-    height: ${getHeight};
-    ${changeFoldStateAnimation};
-  `;
-};
+    return css`
+      ${getMapStyle}
+      width: 1px;
+      max-width: ${theme.maxWidth};
+      height: ${getHeight};
+      ${changeFoldStateAnimation};
+    `;
+  };
 
 export const getNavigationWrapper = (type: MainViewType, isFold: boolean) => {
   return (theme: Theme) => {

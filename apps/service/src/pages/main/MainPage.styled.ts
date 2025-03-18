@@ -1,6 +1,24 @@
-import { css } from "@emotion/react";
+import { css, Theme } from "@emotion/react";
 import { MainViewType } from "./types";
 import { changeFoldStateAnimation } from "@styles/animation";
+
+export const getFloatingButtonWrapperStyle =
+  (viewType: MainViewType) => (theme: Theme) => {
+    const getBottom = viewType === "list" ? "1rem" : "4rem";
+    return css`
+      /* main page의 header 보다 위에 */
+      z-index: 2;
+      position: fixed;
+      bottom: ${getBottom};
+      transform: translateX(-50%);
+      left: 50%;
+
+      width: 100%;
+      max-width: ${theme.maxWidth};
+
+      ${changeFoldStateAnimation};
+    `;
+  };
 
 type Position = "left" | "center" | "right";
 
@@ -38,18 +56,14 @@ const positionStyles: Record<Position, ReturnType<typeof css>> = {
   `,
 };
 
-export const getFloatingButtonStyle = (
-  buttonType: FloatingButtonType,
-  viewType: MainViewType
-) => {
+export const getFloatingButtonStyle = (buttonType: FloatingButtonType) => {
   const config = floatingButtonStyleConfigs[buttonType];
-  const getBottom = viewType === "list" ? "1rem" : "4rem";
 
   return css`
-    position: fixed;
+    position: absolute;
     ${positionStyles[config.position]}
-    bottom: calc(${getBottom} + ${config.bottom});
+    bottom: ${config.bottom};
+
     box-shadow: 0px 1px 5px 2px rgba(26, 30, 39, 0.1);
-    ${changeFoldStateAnimation};
   `;
 };
