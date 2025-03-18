@@ -1,58 +1,79 @@
-import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
 import { css, Theme } from "@emotion/react";
-import styled from "@emotion/styled";
-import {
-  fonts,
-  getBottomBorder,
-  getHoverAnimation,
-} from "@linenow/core/styles";
+import { MainViewType } from "@pages/main/types";
+
+import { getBottomBorder, getHoverAnimation } from "@linenow/core/styles";
+import { changeFoldStateAnimation } from "@styles/animation";
 
 // 상단 타이틀
-export const MainBoothListHeaderWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+export const getHeaderWrapperStyle = (type: MainViewType) => {
+  return (theme: Theme) => {
+    const getListStyle =
+      type === "list" &&
+      css`
+        padding: 1.5rem 1rem 0.75rem 1rem;
+        box-shadow: ${getBottomBorder("grayLight")(theme)};
+      `;
 
-  padding: 2.5rem 1rem 1rem 1rem;
+    const getMapStyle =
+      type === "map" &&
+      css`
+        padding: 1rem 1rem 0.75rem 1rem;
+        box-shadow: 0px -2px 5px 2px rgba(26, 30, 39, 0.1);
+      `;
 
-  border-radius: 0.625rem 0.625rem 0rem 0rem;
-  border-bottom: 1px solid;
-  border-color: ${({ theme }) => theme.borderColors.grayLight};
+    return css`
+      display: flex;
+      flex-direction: column;
 
-  background-color: ${({ theme }) => theme.backgroundColors.white};
+      gap: 1rem;
+
+      border-radius: 0.625rem 0.625rem 0rem 0rem;
+
+      background-color: ${theme.backgroundColors.white};
+      ${getListStyle}
+      ${getMapStyle}
+
+      ${changeFoldStateAnimation}
+    `;
+  };
+};
+
+export const getBttohListEmptyView = () => css`
+  background-color: red;
+  width: 100%;
+  height: 500px;
 `;
-
-export const MainBoothListHeaderTitleLabel = styled.h2`
-  ${fonts.head2}
-  color: ${({ theme }) => theme.fontColors.black};
-`;
-
-export const MainBoothListHeaderOptionWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  ${fonts.body3}
-  color: ${({ theme }) => theme.fontColors.gray};
-`;
-
 // 부스 리스트
-export const MainBoothListScrollContainer = styled.section`
-  display: flex;
-  flex-direction: column;
+export const getBoothListWrapperStyle = () => (theme: Theme) =>
+  css`
+    display: flex;
+    flex-direction: column;
 
-  min-height: calc(100vh - ${MAIN_NAVIGATION_HEIGHT.fold} + 2px);
+    min-height: calc(100vh + 2px);
 
-  padding: 0 1rem;
-  background-color: ${({ theme }) => theme.backgroundColors.white};
-`;
+    padding: 0 1rem;
+    padding-top: 0.5rem;
+    background-color: ${theme.backgroundColors.white};
+  `;
 
 // 부스리스트 아이템
-export const getBoothListItemStyle = (isLast: boolean) => (theme: Theme) =>
-  css`
+export const getBoothListItemStyle = (isLast: boolean) => (theme: Theme) => {
+  const getBoxShadow =
+    isLast ||
+    css`
+      box-shadow: ${getBottomBorder("gray")(theme)};
+    `;
+
+  return css`
     ${getHoverAnimation}
     padding: 0.75rem 0.25rem 1rem 0.25rem;
 
-    ${isLast ||
-    css`
-      box-shadow: ${getBottomBorder("gray")(theme)};
-    `}
+    ${getBoxShadow}
+    background-color: ${theme.backgroundColors.white};
+
+    &:hover {
+      box-shadow: none;
+      border-radius: 0.5rem;
+    }
   `;
+};

@@ -2,9 +2,11 @@ import { css } from "@emotion/react";
 
 export const getHoverAnimation = css`
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease, filter 0.3s ease;
+
   &:hover {
     transform: scale(0.95);
-    opacity: 0.9;
+
+    filter: brightness(0.97) blur(0.3px);
   }
 `;

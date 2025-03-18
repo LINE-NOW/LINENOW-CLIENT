@@ -1,4 +1,13 @@
+import * as S from "./MainMap.styled";
+
 const MainMap = () => {
-  return <div>메인 지도 세호 오빠가 알아서 만들거임 그는 천재니까</div>;
+  return (
+    <div css={S.getWrapper}>
+      <img
+        style={{ width: "100%" }}
+        src="https://apis.map.kakao.com/ios_v2/dimScreen_off.jpeg"
+      />
+    </div>
+  );
 };
 export default MainMap;

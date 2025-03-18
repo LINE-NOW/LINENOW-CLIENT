@@ -1,34 +1,72 @@
 import { css, Theme } from "@emotion/react";
-import styled from "@emotion/styled";
+import { MainViewType } from "./types";
 import { changeFoldStateAnimation } from "@styles/animation";
 
-export const getMainHeaderStyle = (mode: "list" | "map") => {
-  return (theme: Theme) => css`
-    ${mode === "list" &&
-    css`
+export const getFloatingButtonWrapperStyle =
+  (viewType: MainViewType) => (theme: Theme) => {
+    const getBottom = viewType === "list" ? "1rem" : "4rem";
+    return css`
+      /* main page의 header 보다 위에 */
+      z-index: 2;
       position: fixed;
-      overflow-y: hidden;
-      max-width: 540px;
-    `}
+      bottom: ${getBottom};
+      transform: translateX(-50%);
+      left: 50%;
 
-    display: flex;
-    flex-direction: column;
+      width: 100%;
+      max-width: ${theme.maxWidth};
 
-    width: 100%;
-    background-color: ${theme.backgroundColors.black};
-  `;
+      ${changeFoldStateAnimation};
+    `;
+  };
+
+type Position = "left" | "center" | "right";
+
+type FloatingButtonType =
+  | "refetch"
+  | "switch"
+  | "my_location"
+  | "festival_location";
+
+interface FloatingButtonStyleConfig {
+  position: Position;
+  bottom: string;
+}
+
+const floatingButtonStyleConfigs: Record<
+  FloatingButtonType,
+  FloatingButtonStyleConfig
+> = {
+  refetch: { position: "left", bottom: "0px" },
+  switch: { position: "center", bottom: "0px" },
+  my_location: { position: "right", bottom: "0px" },
+  festival_location: { position: "right", bottom: "0.5rem" },
 };
 
-export const MainFixedComponentBackgorund = styled.div`
-  width: 100%;
+const positionStyles: Record<Position, ReturnType<typeof css>> = {
+  left: css`
+    left: 1rem;
+  `,
+  center: css`
+    left: 50%;
+    transform: translateX(-50%);
+    &:hover {
+      transform: translateX(-50%) scale(0.95);
+    }
+  `,
+  right: css`
+    right: 1rem;
+  `,
+};
 
-  ${changeFoldStateAnimation};
-`;
+export const getFloatingButtonStyle = (buttonType: FloatingButtonType) => {
+  const config = floatingButtonStyleConfigs[buttonType];
 
-export const getSwitchStyle = () => css`
-  position: fixed;
-  transform: translateX(-50%);
-  left: 50%;
-  bottom: 1rem;
-  box-shadow: 0px 1px 5px 2px rgba(26, 30, 39, 0.1);
-`;
+  return css`
+    position: absolute;
+    ${positionStyles[config.position]}
+    bottom: ${config.bottom};
+
+    box-shadow: 0px 1px 5px 2px rgba(26, 30, 39, 0.1);
+  `;
+};

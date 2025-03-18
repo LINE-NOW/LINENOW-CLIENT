@@ -1,88 +1,52 @@
-import { useEffect, useRef, useState } from "react";
-
 import * as S from "./MainPage.styled";
-import MainNavigation from "./_components/navigation/MainNavigation";
-import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
-import MainBoothList from "./_components/boothList/MainBoothList";
-
-// hook
-import useAuth from "@hooks/useAuth";
-import useMainNavigation from "@pages/main/_hooks/useMainNavigation";
-import { useGetBoothList } from "@hooks/apis/boothList";
-import useSortBooths from "./_hooks/useSortBooths";
-
-// constant
-import { MAIN_FIXED_COMPONENTS_HEIGHT } from "@constants/style";
+import MainNavigation from "./_components/mainNavigation/MainNavigation";
 import { Switch } from "@linenow/core/components";
-import MainMap from "./_components/map/MainMap";
+
+// hooks
+import useMainViewType from "@pages/main/_hooks/useMainViewType";
+import useMainBoothList from "@pages/main/_hooks/useBoothList";
+import RefetchButton from "@components/refetchButton/RefetchButton";
+
+// apis
+import { BOOTH_QUERY_KEY } from "@apis/domains/booth/queries";
+import { WAITING_QUERY_KEY } from "@apis/domains/waiting/queries";
+import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
 
 const MainPage = () => {
-  const { isLogin } = useAuth();
+  const { viewType, mainViewTypeSwitchProps } = useMainViewType();
+  const { getBoothListHeaderChildren, BoothList, currentSortBoothOption } =
+    useMainBoothList();
 
-  const mainBoothListRef = useRef<HTMLDivElement>(null);
-  const isFold = useMainNavigation();
-
-  const [mode, setMode] = useState<"list" | "map">("list");
-  const oppositeMode = mode === "list" ? "map" : "list";
-  const toggleMode = () => {
-    setMode(oppositeMode);
-  };
-
-  // booth list api
-  const {
-    sortBoothOptions,
-    currentSortBoothOption,
-    handleSortBoothOptionChange,
-  } = useSortBooths();
-
-  const {
-    data: booths,
-    isLoading: boothsIsLoading,
-    refetch: getBoothListRefetch,
-  } = useGetBoothList({ ordering: currentSortBoothOption });
-
-  useEffect(() => {
-    getBoothListRefetch();
-  }, [isLogin]);
+  // refetch queries
+  const queries = [
+    [BOOTH_QUERY_KEY.BOOTHS, currentSortBoothOption],
+    [WAITING_QUERY_KEY.NOW_WAITINGS],
+  ];
 
   return (
     <>
-      <header css={S.getMainHeaderStyle(mode)}>
-        <MainNavigation isFold={isFold} isLogin={isLogin} />
-        {mode === "list" && (
-          <MainBoothListHeader
-            boothCount={booths?.length || 0}
-            sortBoothOptions={sortBoothOptions}
-            currentSortBoothOption={currentSortBoothOption}
-            handleSortBoothOptionChange={handleSortBoothOptionChange}
-          />
-        )}
-      </header>
+      <MainNavigation>
+        <MainBoothListHeader>
+          {getBoothListHeaderChildren()}
+        </MainBoothListHeader>
+      </MainNavigation>
 
-      {mode === "list" && (
-        <>
-          <S.MainFixedComponentBackgorund
-            style={{
-              height: `${
-                isFold
-                  ? MAIN_FIXED_COMPONENTS_HEIGHT.fold
-                  : MAIN_FIXED_COMPONENTS_HEIGHT.unfold
-              }`,
-            }}
-          />
-          <MainBoothList
-            ref={mainBoothListRef}
-            booths={booths}
-            isLoading={boothsIsLoading}
-          />
-        </>
-      )}
+      <BoothList />
 
-      {mode === "map" && <MainMap />}
+      {/* floating button */}
+      <div css={S.getFloatingButtonWrapperStyle(viewType)}>
+        {/* 새로고침 버튼 */}
+        <RefetchButton
+          css={S.getFloatingButtonStyle("refetch")}
+          queries={queries}
+        />
 
-      <Switch icon={oppositeMode} css={S.getSwitchStyle()} onClick={toggleMode}>
-        {oppositeMode === "list" ? "목록 보기" : "지도 보기"}
-      </Switch>
+        {/* list, map 토글 버튼 */}
+        <Switch
+          css={S.getFloatingButtonStyle("switch")}
+          {...mainViewTypeSwitchProps}
+        />
+      </div>
     </>
   );
 };

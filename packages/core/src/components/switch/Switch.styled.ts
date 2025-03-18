@@ -1,5 +1,5 @@
 import { css, Theme } from "@emotion/react";
-import { fonts } from "../../styles";
+import { fonts, getHoverAnimation } from "../../styles";
 
 export const getWrapperstyle = () => {
   return (theme: Theme) => css`
@@ -16,3 +16,7 @@ export const getWrapperstyle = () => {
     ${fonts.button2}
   `;
 };
+
+export const getAnimation = () => css`
+  ${getHoverAnimation}
+`;

@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import * as S from "./MainBoothList.styled";
 
 import Spinner from "@components/spinner/Spinner";
@@ -9,24 +8,21 @@ interface MainBoothListProps {
   isLoading: boolean;
 }
 
-const MainBoothList = forwardRef<HTMLDivElement, MainBoothListProps>(
-  ({ booths = [], isLoading }: MainBoothListProps, ref) => {
-    if (isLoading) {
-      return <Spinner />;
-    }
+const MainBoothList = (props: MainBoothListProps) => {
+  const { booths = [], isLoading } = props;
 
-    return (
-      <S.MainBoothListScrollContainer ref={ref}>
-        {booths.map((booth, index) => (
-          <MainBoothListItem
-            key={index}
-            isLast={index === booths.length - 1}
-            {...booth}
-          />
-        ))}
-      </S.MainBoothListScrollContainer>
-    );
+  if (isLoading) {
+    return <Spinner />;
   }
-);
+
+  return (
+    <div css={S.getBoothListWrapperStyle()}>
+      {booths.map((booth, index) => {
+        const isLast = index === booths.length - 1;
+        return <MainBoothListItem key={index} isLast={isLast} {...booth} />;
+      })}
+    </div>
+  );
+};
 
 export default MainBoothList;

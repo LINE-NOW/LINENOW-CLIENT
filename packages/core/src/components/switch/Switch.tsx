@@ -7,9 +7,13 @@ interface SwitchProps extends React.ComponentPropsWithoutRef<"button"> {
 }
 
 const Switch = (props: SwitchProps) => {
-  const { icon, children, ...buttonProps } = props;
+  const { icon, children, onClick, ...buttonProps } = props;
   return (
-    <button css={[S.getWrapperstyle()]} {...buttonProps}>
+    <button
+      css={[S.getWrapperstyle(), onClick && S.getAnimation()]}
+      onClick={onClick}
+      {...buttonProps}
+    >
       <Icon icon={icon} size={16} color={"gray"} />
       {children}
     </button>

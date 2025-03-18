@@ -2,11 +2,12 @@ import * as S from "./Flex.styled";
 
 export type FlexStyle = {
   width?: string;
+  height?: string;
   flexGrow?: 0 | 1;
   gap?: string;
   direction?: "column" | "row";
   alignItem?: "center" | "start" | "end";
-  justifyContent?: "center" | "start" | "end";
+  justifyContent?: "center" | "start" | "end" | "space-between";
   overflow?: "visible" | "hidden" | "scroll";
 };
 
@@ -19,6 +20,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
   const {
     as = "div",
     width = "auto",
+    height = "auto",
     flexGrow = 0,
     gap = "0rem",
     direction = "row",
@@ -35,6 +37,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
       css={[
         S.getFlexStyle({
           width,
+          height,
           flexGrow,
           gap,
           direction,
