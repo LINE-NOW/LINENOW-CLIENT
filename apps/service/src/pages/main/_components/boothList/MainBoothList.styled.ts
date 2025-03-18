@@ -69,5 +69,11 @@ export const getBoothListItemStyle = (isLast: boolean) => (theme: Theme) => {
     padding: 0.75rem 0.25rem 1rem 0.25rem;
 
     ${getBoxShadow}
+    background-color: ${theme.backgroundColors.white};
+
+    &:hover {
+      box-shadow: none;
+      border-radius: 0.5rem;
+    }
   `;
 };
