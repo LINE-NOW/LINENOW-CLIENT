@@ -28,7 +28,7 @@ const MainNavigation = (props: MainNavigationProps) => {
       </header>
 
       {/* 부스 리스트 용 공백 */}
-      {viewType === "list" && <div css={S.getSpace(isFold)} />}
+      {<div css={S.getSpace(viewType, isFold)} />}
     </>
   );
 };

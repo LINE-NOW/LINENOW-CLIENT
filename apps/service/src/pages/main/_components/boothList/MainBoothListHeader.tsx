@@ -1,6 +1,7 @@
-import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import * as S from "./MainBoothList.styled";
 import { Label } from "@linenow/core/components";
+
+import useMainViewType from "@pages/main/_hooks/useMainViewType";
 
 const MainBoothListHeader = (props: React.PropsWithChildren) => {
   const { children } = props;

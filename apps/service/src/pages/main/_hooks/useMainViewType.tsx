@@ -31,32 +31,17 @@ const useMainViewType = () => {
   const config = mainViewTypeConfigs[mainViewType];
 
   // view type을 전환하는 버튼
-  const MainViewTypeSwitch = () => (
-    <Switch
-      icon={config.switchIcon}
-      onClick={() => setMainViewType(config.toggleType)}
-      css={getSwitchStyle(mainViewType)}
-    >
-      {config.switchLabel}
-    </Switch>
-  );
+  const mainViewTypeSwitchProps: React.ComponentProps<typeof Switch> = {
+    icon: config.switchIcon,
+    onClick: () => setMainViewType(config.toggleType),
+    children: config.switchLabel,
+  };
 
   return {
     viewType: mainViewType,
     setViewType: setMainViewType,
-    MainViewTypeSwitch,
+    mainViewTypeSwitchProps,
   };
 };
 
 export default useMainViewType;
-
-const getSwitchStyle = (type: MainViewType) => {
-  const getBottom = type === "list" ? "1rem" : "4rem";
-  return css`
-    position: fixed;
-    transform: translateX(-50%);
-    left: 50%;
-    bottom: ${getBottom};
-    box-shadow: 0px 1px 5px 2px rgba(26, 30, 39, 0.1);
-  `;
-};

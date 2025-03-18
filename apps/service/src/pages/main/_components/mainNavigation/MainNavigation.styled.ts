@@ -16,18 +16,27 @@ export const getWrapper = (type: MainViewType, isFold: boolean) => {
     const getListStyle =
       type === "list" &&
       css`
-        position: fixed;
-        overflow-y: hidden;
-        max-width: 540px;
         height: ${getHeight};
-
         background-color: ${theme.backgroundColors.black};
       `;
 
+    const getMapStyle =
+      type === "map" &&
+      css`
+        height: 100vh;
+        background-color: transparent;
+      `;
+
     return css`
+      position: fixed;
+      overflow-y: hidden;
+      max-width: ${theme.maxWidth};
+
       ${getListStyle}
+      ${getMapStyle}
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
 
       width: 100%;
 
@@ -36,12 +45,21 @@ export const getWrapper = (type: MainViewType, isFold: boolean) => {
   };
 };
 
-export const getSpace = (isFold: boolean) => {
-  const getHeight = isFold
-    ? MAIN_FIXED_COMPONENTS_HEIGHT.fold
-    : MAIN_FIXED_COMPONENTS_HEIGHT.unfold;
+export const getSpace = (type: MainViewType, isFold: boolean) => {
+  const getMapStyle =
+    type === "map" &&
+    css`
+      position: fixed;
+    `;
+  const getHeight =
+    type === "map"
+      ? "100vh"
+      : isFold
+      ? MAIN_FIXED_COMPONENTS_HEIGHT.fold
+      : MAIN_FIXED_COMPONENTS_HEIGHT.unfold;
 
   return css`
+    ${getMapStyle}
     width: 100%;
     height: ${getHeight};
     ${changeFoldStateAnimation};
@@ -58,8 +76,8 @@ export const getNavigationWrapper = (type: MainViewType, isFold: boolean) => {
     const getMapStyle =
       type === "map" &&
       css`
-        background-color: ${theme.backgroundColors.black};
         border-radius: 0rem 0rem 0.625rem 0.625rem;
+        box-shadow: 0px -2px 5px 2px rgba(26, 30, 39, 0.1);
       `;
 
     return css`
@@ -68,11 +86,15 @@ export const getNavigationWrapper = (type: MainViewType, isFold: boolean) => {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      flex-grow: 1;
+
       padding: 0.75rem 1.25rem 0rem 1.25rem;
+
+      background-color: ${theme.backgroundColors.black};
 
       ${getMapStyle}
       ${getListStyle}
+
+      ${changeFoldStateAnimation};
     `;
   };
 };

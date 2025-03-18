@@ -29,19 +29,16 @@ const useMainBoothList = () => {
     />
   );
 
-  const BoothListHeader = () => (
-    <MainBoothListHeader>
-      {viewType === "list" && (
-        <Flex justifyContent="space-between">
-          <Label font="body3" color="gray">
-            {booths.length}개의 부스
-          </Label>
+  const getBoothListHeaderChildren = () =>
+    viewType === "list" && (
+      <Flex justifyContent="space-between">
+        <Label font="body3" color="gray">
+          {booths.length}개의 부스
+        </Label>
 
-          <BoothOptionSelect />
-        </Flex>
-      )}
-    </MainBoothListHeader>
-  );
+        <BoothOptionSelect />
+      </Flex>
+    );
 
   const BoothList = () =>
     viewType === "list" ? (
@@ -50,7 +47,7 @@ const useMainBoothList = () => {
       <MainMap />
     );
 
-  return { BoothListHeader, BoothList, currentSortBoothOption };
+  return { getBoothListHeaderChildren, BoothList, currentSortBoothOption };
 };
 
 export default useMainBoothList;
