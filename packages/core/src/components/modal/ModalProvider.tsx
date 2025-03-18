@@ -14,7 +14,6 @@ const ModalProvider = () => {
 
   const location = useLocation();
   useEffect(() => {
-    console.log(location.pathname);
     closeModal();
   }, [location.pathname]);
 

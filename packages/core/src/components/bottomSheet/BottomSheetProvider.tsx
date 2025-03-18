@@ -13,7 +13,6 @@ const BottomSheetProvider = () => {
 
   const location = useLocation();
   useEffect(() => {
-    console.log(location.pathname);
     closeBottomSheet();
   }, [location.pathname]);
 
