@@ -1,20 +1,19 @@
-import { SerializedStyles } from "@emotion/react";
-import * as S from "./RefetchButton.styled";
-import { Button, Icon } from "@linenow/core/components";
 import { QueryKey, useQueryClient } from "@tanstack/react-query";
 
-interface RefetchButtonProps {
+// components
+import * as S from "./RefetchButton.styled";
+import { Button, Icon } from "@linenow/core/components";
+
+interface RefetchButtonProps extends React.ComponentProps<typeof Button> {
   queries: string[][];
 }
 
-// 부스 목록 + 대기 정보 새로 고침
 const RefetchButton = (props: RefetchButtonProps) => {
-  const { queries = [] } = props;
+  const { queries, ...buttonProps } = props;
 
   const queryClient = useQueryClient();
   const handleRefetch = () => {
     queries.forEach((query) => {
-      console.log(query);
       queryClient.invalidateQueries({ queryKey: query as QueryKey });
     });
   };
@@ -23,8 +22,9 @@ const RefetchButton = (props: RefetchButtonProps) => {
     <Button
       width="auto"
       variant={"outline"}
-      css={[S.getStyle(), S.getBottomButtonStyle()]}
+      css={[S.getStyle()]}
       onClick={handleRefetch}
+      {...buttonProps}
     >
       <Icon icon="refresh" color="gray" />
     </Button>
