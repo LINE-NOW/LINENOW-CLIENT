@@ -34,6 +34,8 @@ export const fontColors = {
 
   gray: colors.gray300,
   grayLight: colors.gray075,
+
+  red: "red",
 };
 
 export const borderColors = {
@@ -41,6 +43,8 @@ export const borderColors = {
   grayLight: colors.gray050,
 
   blue: colors.blue500,
+
+  red: "red",
 };
 
 export const backgroundColors = {

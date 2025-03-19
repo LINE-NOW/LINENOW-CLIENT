@@ -2,10 +2,11 @@ import { css, Theme } from "@emotion/react";
 import { fonts, FontStyleKey } from "../../styles/fonts";
 import { FontColorKey } from "../../styles/theme";
 
-export const getLabelStyle = (font: FontStyleKey) => {
+export const getLabelStyle = (font: FontStyleKey, padding: string) => {
   return css`
     white-space: pre-line;
     ${fonts[font]}
+    padding: ${padding};
   `;
 };
 

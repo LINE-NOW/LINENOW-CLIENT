@@ -8,12 +8,13 @@ interface InputTextButtonProps extends React.ComponentProps<typeof InputText> {
 
 const InputTextButton = (props: InputTextButtonProps) => {
   const { button = {}, ...inputProps } = props;
-  const { onClick, disabled = false, ...buttonProps } = button;
+  const { onClick, disabled = false, type = "button", ...buttonProps } = button;
 
   return (
     <Flex direction="row" gap="0.5rem" width="100%">
       <InputText {...inputProps} />
       <Button
+        type={type}
         size="medium"
         variant="blueLight"
         width="6.25rem"

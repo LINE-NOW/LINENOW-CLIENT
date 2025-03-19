@@ -38,6 +38,15 @@ export const getInputTextFieldStyle = () => {
   `;
 };
 
+export const getInpuTextFieldErrorStyle = () => (theme: Theme) =>
+  css`
+    box-shadow: ${getBorder("red", 2)(theme)};
+
+    &:focus-within {
+      box-shadow: ${getBorder("red", 2)(theme)};
+    }
+  `;
+
 export const getInputStyle = () => (theme: Theme) =>
   css`
     flex-grow: 1;

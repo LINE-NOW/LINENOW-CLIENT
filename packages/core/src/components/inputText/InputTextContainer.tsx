@@ -6,11 +6,10 @@ import Label from "../label/Label";
 interface InputTextContainerProps extends React.PropsWithChildren {
   label?: string;
   description?: string;
-  errorMessage?: string;
 }
 
 const InputTextContainer = (props: InputTextContainerProps) => {
-  const { label, description, errorMessage, children } = props;
+  const { label, description, children } = props;
   return (
     <section css={[S.getWrapperStyle()]}>
       {/* text field 정보 */}
@@ -28,13 +27,6 @@ const InputTextContainer = (props: InputTextContainerProps) => {
       <Flex direction="column" gap="0.5rem">
         {children}
       </Flex>
-
-      {/* error messages 정보 */}
-      {errorMessage && (
-        <Label font="caption" css={S.getErrorLabelStyle()}>
-          {errorMessage}
-        </Label>
-      )}
     </section>
   );
 };
