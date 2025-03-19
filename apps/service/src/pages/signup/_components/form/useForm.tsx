@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 
-type TFromDataField = { [key: string]: any };
+export type TFromDataField = { [key: string]: any };
 
 // 폼의 상태
 type TFieldStates = {
@@ -28,7 +28,7 @@ type TFormFieldRef<TFormData extends TFromDataField> = {
   [Key in keyof TFormData]?: HTMLInputElement | null;
 };
 
-const useForm = <TFormData extends TFromDataField>(
+const useFormReturn = <TFormData extends TFromDataField>(
   props: UseFormProps<TFormData>
 ) => {
   const { initialValues } = props;
@@ -101,10 +101,12 @@ const useForm = <TFormData extends TFromDataField>(
     const { handleBlur, rules } = props;
     formValidation.current[name] = rules;
 
+    console.log(`${name.toString()} 렌더링`);
     return {
       ref: (el: HTMLInputElement | null) => {
         refs.current[name] = el;
       },
+      vlaue: values.current[name] === undefined ? "" : values.current[name],
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
         handleChange(name, e.target.value);
         validateField(name, e.target.value, e.target.required);
@@ -120,7 +122,6 @@ const useForm = <TFormData extends TFromDataField>(
 
   useEffect(() => {
     console.log(formState);
-    console.log("ref", refs.current);
   }, [formState]);
 
   const isFormValidate = Object.keys(formState).every((state) => {
@@ -143,4 +144,38 @@ const useForm = <TFormData extends TFromDataField>(
   };
 };
 
+interface FormProviderProps<TFormData extends TFromDataField> {
+  children: React.ReactNode;
+  useFormProps: UseFormProps<TFormData>;
+}
+
+type TFormContext<TFormData extends TFromDataField> = ReturnType<
+  typeof useFormReturn<TFormData>
+>;
+
+const FormContext = createContext<TFormContext<TFromDataField> | undefined>(
+  undefined
+);
+
+export const FormProvider = <TFormData extends TFromDataField>(
+  props: FormProviderProps<TFormData>
+) => {
+  const { children, useFormProps } = props;
+  const formMethods = useFormReturn({ ...useFormProps });
+
+  return (
+    <FormContext.Provider value={formMethods as TFormContext<TFormData>}>
+      {children}
+    </FormContext.Provider>
+  );
+};
+
+export const useForm = <TFormData extends TFromDataField>() => {
+  const context = useContext(FormContext);
+
+  if (!context) {
+    throw new Error("useForm must be used within a FormProvider");
+  }
+  return context as TFormContext<TFormData>;
+};
 export default useForm;
