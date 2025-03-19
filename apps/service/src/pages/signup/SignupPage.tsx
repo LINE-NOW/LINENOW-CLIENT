@@ -1,29 +1,12 @@
-import { Flex } from "@linenow/core/components";
-
-import { FormProvider } from "./_components/form/useForm";
-
+// components
 import SingupForm from "./_components/form/SignupForm";
-import { SignupFormData } from "./_components/form";
-import SignupFormButton from "./_components/form/SignupFormButton";
+import { SignupFormProvider } from "./_hooks/useSignupForm";
 
 const SignupPage = () => {
   return (
-    <FormProvider<SignupFormData>
-      useFormProps={{
-        initialValues: {
-          name: "",
-          phonenumber: "",
-          authentication: "",
-          password: "",
-          passwordConfirm: "",
-        },
-      }}
-    >
-      <Flex as="form" direction="column" gap="2rem" padding="1.25rem">
-        <SingupForm />
-        <SignupFormButton />
-      </Flex>
-    </FormProvider>
+    <SignupFormProvider>
+      <SingupForm />
+    </SignupFormProvider>
   );
 };
 

@@ -1,6 +1,4 @@
-import { SignupFormData } from "..";
-
-import useForm from "../useForm";
+import useSingupForm from "@pages/signup/_hooks/useSignupForm";
 import useSendAuth from "@pages/signup/_hooks/useSendAuth";
 
 // components
@@ -16,7 +14,7 @@ import { formatPhonenumber } from "@utils/format";
 import { css } from "@emotion/react";
 
 const SignupFormStepPhone = () => {
-  const { register, fieldRefs, getFieldIsError } = useForm<SignupFormData>();
+  const { register, fieldRefs, getFieldIsError } = useSingupForm();
   const handlePhonenumberOnInput = (e: React.FormEvent<HTMLInputElement>) => {
     const inputElement = e.currentTarget;
     inputElement.value = formatPhonenumber(inputElement.value);

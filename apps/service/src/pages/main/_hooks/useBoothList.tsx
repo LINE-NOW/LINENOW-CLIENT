@@ -1,5 +1,4 @@
 import MainBoothList from "../_components/boothList/MainBoothList";
-import MainBoothListHeader from "../_components/boothList/MainBoothListHeader";
 import { Flex, Label, Select } from "@linenow/core/components";
 
 import { useGetBoothList } from "@hooks/apis/boothList";

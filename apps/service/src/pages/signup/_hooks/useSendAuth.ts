@@ -1,5 +1,5 @@
-import { useToast } from "@linenow/core/hooks";
 import { useEffect, useState } from "react";
+import { useToast } from "@linenow/core/hooks";
 
 const useSendAuth = () => {
   const [value, setValue] = useState<string>("");

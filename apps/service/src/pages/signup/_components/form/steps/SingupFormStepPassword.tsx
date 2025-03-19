@@ -1,10 +1,9 @@
-import useForm from "../useForm";
-import { SignupFormData } from "..";
+import useSingupForm from "@pages/signup/_hooks/useSignupForm";
 
 import { InputText, InputTextContainer } from "@linenow/core/components";
 
 const SignupFormStepPassword = () => {
-  const { register, fieldRefs } = useForm<SignupFormData>();
+  const { register, fieldRefs } = useSingupForm();
 
   const passwordInputProps: React.ComponentProps<"input"> = {
     required: true,

@@ -1,15 +1,14 @@
-import useForm from "./useForm";
+import useSingupForm from "@pages/signup/_hooks/useSignupForm";
 
 //components
+import { Button, Flex } from "@linenow/core/components";
+import BottomButton from "@components/bottomButton/BottomButton";
 import SignupFormStepName from "./steps/SinupFormStepName";
 import SignupFormStepPhone from "./steps/SignupFormStepPhone";
 import SignupFormStepPassword from "./steps/SingupFormStepPassword";
 
-import BottomButton from "@components/bottomButton/BottomButton";
-import { Button } from "@linenow/core/components";
-
 const SingupForm = () => {
-  const { isFormValidate, submitFrom } = useForm();
+  const { isFormValidate, submitFrom } = useSingupForm();
 
   const SubmitButton = () => {
     return (
@@ -21,7 +20,7 @@ const SingupForm = () => {
     );
   };
   return (
-    <>
+    <Flex as="form" direction="column" gap="2rem" padding="1.25rem">
       {/* form */}
       <SignupFormStepName />
       <SignupFormStepPhone />
@@ -29,7 +28,7 @@ const SingupForm = () => {
 
       {/* submit */}
       <SubmitButton />
-    </>
+    </Flex>
   );
 };
 export default SingupForm;
