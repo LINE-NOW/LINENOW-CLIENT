@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import { css, Theme } from "@emotion/react";
 
 import { ButtonSize } from "./Button";
