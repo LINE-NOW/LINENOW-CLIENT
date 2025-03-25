@@ -24,7 +24,8 @@ const WaitingCheckModal = ({ onClose, booth }: WaitingCheckModalProps) => {
   return (
     <InfoBottomButton
       informationTitle="입장 인원을 선택해주세요"
-      informationSub="다인원의 경우 부스 내부 사정에 따라 대기 순번이 뒤로 밀릴 수 있습니다."
+      informationSub="다인원의 경우 부스 내부 사정에 따라
+      대기 순번이 뒤로 밀릴 수 있습니다."
     >
       <WaitingCheckPeople onCheck={setCheckedPeople} />
       <ButtonLayout colCount={2}>

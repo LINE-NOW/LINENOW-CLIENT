@@ -24,7 +24,7 @@ interface VariantStyles extends Record<Variant, VariantStyle> {}
 
 const variantStyles: VariantStyles = {
   outline: {
-    fontColor: "gray",
+    fontColor: "blackLight",
     borderColor: "gray",
     backgroundColor: "white",
     disabled_fontColor: "grayLight",

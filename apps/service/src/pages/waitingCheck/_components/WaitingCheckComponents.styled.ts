@@ -7,6 +7,13 @@ export const WaitingCheckContainer = styled.div`
   overflow-x: auto;
 
   margin-bottom: 1.75rem;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const WaitingCheckPeopleCircle = styled.div<{ $isChecked: boolean }>`

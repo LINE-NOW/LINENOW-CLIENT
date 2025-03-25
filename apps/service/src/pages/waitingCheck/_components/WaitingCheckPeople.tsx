@@ -18,7 +18,7 @@ const WaitingCheckPeople = ({ onCheck }: WaitingCheckPeopleProps) => {
 
   return (
     <S.WaitingCheckContainer>
-      {Array.from({ length: 8 }, (_, index) => {
+      {Array.from({ length: 10 }, (_, index) => {
         const num = index + 1;
         const isChecked = checkedPeople === num;
 
