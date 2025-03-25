@@ -10,10 +10,10 @@ import { Button } from "@linenow/core/components";
 
 const WaitingCheckPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  // const waitingID = useWaitingId();
   const location = useLocation();
   const { checkedPeople, booth } = location.state || {};
 
+  //modal 관리 필요
   const handleOpenModal = () => {
     setModalOpen(true);
   };

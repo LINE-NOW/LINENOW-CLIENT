@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import InfoBottomButton from "@components/infobottomButton/InfoBottomButton";
 import WaitingCheckPeople from "./WaitingCheckPeople";
 
@@ -8,20 +8,18 @@ import { Button, ButtonLayout } from "@linenow/core/components";
 
 interface WaitingCheckModalProps {
   onClose: () => void;
-  booth: Booth; // 부스 타입을 지정
+  booth: Booth;
 }
 
 const WaitingCheckModal = ({ onClose, booth }: WaitingCheckModalProps) => {
   const navigate = useNavigate();
   const [checkedPeople, setCheckedPeople] = useState<number | null>(1);
 
-  const handleCancel = () => {
-    onClose();
-  };
-
-  const handleConfirm = () => {
-    navigate("/check", { state: { checkedPeople, booth } });
-  };
+  const handleConfirm = useCallback(() => {
+    if (checkedPeople) {
+      navigate("/check"), { state: { checkedPeople, booth } };
+    }
+  }, [checkedPeople, booth, navigate]);
 
   return (
     <InfoBottomButton
@@ -30,7 +28,7 @@ const WaitingCheckModal = ({ onClose, booth }: WaitingCheckModalProps) => {
     >
       <WaitingCheckPeople onCheck={setCheckedPeople} />
       <ButtonLayout colCount={2}>
-        <Button variant="outline" onClick={handleCancel}>
+        <Button variant="outline" onClick={onClose}>
           <span>취소하기</span>
         </Button>
         <Button variant="blue" onClick={handleConfirm}>
