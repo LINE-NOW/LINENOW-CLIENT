@@ -7,8 +7,8 @@ const handlePhonenumberOnInput = (e: React.FormEvent<HTMLInputElement>) => {
 };
 
 const phoneInputProps: React.ComponentProps<"input"> = {
-  type: "mobile tel",
-  autoComplete: "tel",
+  type: "tel",
+  autoComplete: "mobile tel",
   placeholder: "010-1234-5678",
   onInput: handlePhonenumberOnInput,
   required: true,
