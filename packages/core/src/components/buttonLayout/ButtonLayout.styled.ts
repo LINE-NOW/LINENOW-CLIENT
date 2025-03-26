@@ -14,5 +14,7 @@ export const getLayout = (
 
     row-gap: ${rowGap};
     column-gap: ${colGap};
+
+    width: 100%;
   `;
 };

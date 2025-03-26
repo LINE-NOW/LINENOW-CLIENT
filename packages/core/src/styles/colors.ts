@@ -33,8 +33,8 @@ export const fontColors = {
   black: colors.gray800,
   blackLight: colors.gray600,
 
-  gray: colors.gray300,
-  grayLight: colors.gray075,
+  gray: colors.gray400,
+  grayLight: colors.gray200,
 
   red: "red",
 };

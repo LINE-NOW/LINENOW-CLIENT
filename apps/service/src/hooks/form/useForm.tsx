@@ -20,6 +20,11 @@ interface UseFormProps<TFormData extends TFromDataField> {
 type Rule = (value: string) => string | true;
 type Rules = Rule[];
 
+interface TextFieldRules {
+  required?: boolean;
+  minLength?: number;
+}
+
 type TFormValidation<TFormData extends TFromDataField> = {
   [Key in keyof TFormData]?: Rules;
 };
@@ -78,15 +83,25 @@ const useFormReturn = <TFormData extends TFromDataField>(
 
   const validateField = (
     name: keyof TFormData,
-    value: any,
-    isRequired: boolean = false
+    value: string,
+    textfieldRules: TextFieldRules = {}
   ) => {
     const error = formValidation.current[name]
       ?.map((rule) => rule(value))
       .find((result) => result !== true);
 
+    const isTextfieldError = () => {
+      if (textfieldRules.minLength) {
+        if (value.length < textfieldRules.minLength) return true;
+      }
+      if (textfieldRules.required) {
+        if (textfieldRules.required === true && value == "") return true;
+      }
+      return error !== undefined;
+    };
+
     setFieldStates(name, {
-      isError: (isRequired && value === "") || error !== undefined,
+      isError: isTextfieldError(),
       error: error,
     });
   };
@@ -109,11 +124,17 @@ const useFormReturn = <TFormData extends TFromDataField>(
       vlaue: values.current[name] === undefined ? "" : values.current[name],
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
         handleChange(name, e.target.value);
-        validateField(name, e.target.value, e.target.required);
+        validateField(name, e.target.value, {
+          required: e.target.required,
+          minLength: e.target.minLength,
+        });
       },
       onBlur: (e: React.ChangeEvent<HTMLInputElement>) => {
         setFieldStates(name, { isTouched: true });
-        validateField(name, e.target.value, e.target.required);
+        validateField(name, e.target.value, {
+          required: e.target.required,
+          minLength: e.target.minLength,
+        });
         handleBlur && handleBlur();
       },
       error: getError(name),

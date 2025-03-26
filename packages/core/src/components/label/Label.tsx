@@ -13,7 +13,7 @@ export type LabelProps<T extends React.ElementType> = {
 
 const Label = <T extends React.ElementType>(props: LabelProps<T>) => {
   const {
-    as = "span",
+    as = "div",
     font = "body1",
     color,
     ellipsis = false,

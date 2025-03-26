@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import * as S from "./ButtonExtension.styled";
+import Label from "../label/Label";
 
 interface CommonButtonProps extends React.ComponentProps<"button"> {}
 
@@ -30,10 +31,23 @@ export const CommonButton = (props: CommonButtonProps) => {
 };
 
 export const TextButton = (props: CommonButtonProps) => {
-  const { onClick, children, disabled, ...buttonProps } = props;
+  const {
+    onClick,
+    children,
+    disabled,
+    type = "button",
+    ...buttonProps
+  } = props;
   return (
-    <button css={[S.getTextButtonStyle()]} onClick={onClick} {...buttonProps}>
-      {children}
+    <button
+      type={type}
+      onClick={onClick}
+      css={[S.getButtonStyle(), onClick && S.getAnimation()]}
+      {...buttonProps}
+    >
+      <Label font="button2" color="gray" css={[S.getTextButtonStyle()]}>
+        {children}
+      </Label>
     </button>
   );
 };
