@@ -18,7 +18,7 @@ const InputTextContainer = (props: InputTextContainerProps) => {
         gap="0.25rem"
         padding="0rem 0.25rem 0.5rem 0.25rem"
       >
-        {label && <Label font="head3" color="black" children={label} />}
+        {label && <Label font="head3" color="blackLight" children={label} />}
         {description && (
           <Label font="caption" color="gray" children={description} />
         )}
