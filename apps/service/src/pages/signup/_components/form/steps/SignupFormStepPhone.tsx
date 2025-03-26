@@ -8,17 +8,13 @@ import {
   InputTextButton,
   InputTextContainer,
 } from "@linenow/core/components";
+import phoneInputProps from "@components/inputText/phone";
 
 // utils
-import { formatPhonenumber } from "@utils/format";
 import { css } from "@emotion/react";
 
 const SignupFormStepPhone = () => {
   const { register, fieldRefs, getFieldIsError } = useSingupForm();
-  const handlePhonenumberOnInput = (e: React.FormEvent<HTMLInputElement>) => {
-    const inputElement = e.currentTarget;
-    inputElement.value = formatPhonenumber(inputElement.value);
-  };
 
   // 인증번호 발급
   const {
@@ -50,7 +46,14 @@ const SignupFormStepPhone = () => {
     value === authcode || "올바른 인증번호를 입력해주세요";
 
   // props
-  const authInputProps: React.ComponentProps<"input"> = {
+  const phoneInput = {
+    ...phoneInputProps,
+    ...register("phonenumber", {
+      rules: [phonenumberValidation],
+    }),
+  };
+
+  const authInput: React.ComponentProps<"input"> = {
     placeholder: "인증번호를 입력해주세요",
     required: true,
     pattern: "[0-9]*",
@@ -62,18 +65,6 @@ const SignupFormStepPhone = () => {
     }),
   };
 
-  const phonenumberInputProps: React.ComponentProps<"input"> = {
-    placeholder: "010-1234-5678",
-    onInput: handlePhonenumberOnInput,
-    required: true,
-    pattern: "[0-9-]*",
-    maxLength: 13,
-    inputMode: "numeric",
-    ...register("phonenumber", {
-      rules: [phonenumberValidation],
-    }),
-  };
-
   return (
     <>
       <InputTextContainer
@@ -82,11 +73,11 @@ const SignupFormStepPhone = () => {
                           신중하게 입력해주세요.`}
       >
         {/* 전화번호 */}
-        <InputTextButton button={authButtonProps} {...phonenumberInputProps} />
+        <InputTextButton button={authButtonProps} {...phoneInput} />
 
         {/* 인증번호 */}
         {authIsLoading && <LoadingView />}
-        {authcode !== "" && <InputText {...authInputProps} />}
+        {authcode !== "" && <InputText {...authInput} />}
       </InputTextContainer>
     </>
   );
