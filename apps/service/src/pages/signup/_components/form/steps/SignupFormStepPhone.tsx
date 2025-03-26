@@ -41,7 +41,7 @@ const SignupFormStepPhone = () => {
   };
 
   // 검증
-  const phonenumberValidattion = (value: string) => {
+  const phonenumberValidation = (value: string) => {
     const phonePattern = /^010-\d{4}-\d{4}$/;
     return phonePattern.test(value) || "전화번호를 올바르게 작성해주세요";
   };
@@ -70,7 +70,7 @@ const SignupFormStepPhone = () => {
     maxLength: 13,
     inputMode: "numeric",
     ...register("phonenumber", {
-      rules: [phonenumberValidattion],
+      rules: [phonenumberValidation],
     }),
   };
 

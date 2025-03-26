@@ -48,27 +48,20 @@ export const getBoothListWrapperStyle = () => (theme: Theme) =>
   css`
     display: flex;
     flex-direction: column;
+    gap: 0.25rem;
 
     min-height: calc(100vh + 2px);
 
-    padding: 0 1rem;
     padding-top: 0.5rem;
     background-color: ${theme.backgroundColors.white};
   `;
 
 // 부스리스트 아이템
-export const getBoothListItemStyle = (isLast: boolean) => (theme: Theme) => {
-  const getBoxShadow =
-    isLast ||
-    css`
-      box-shadow: ${getBottomBorder("gray")(theme)};
-    `;
-
+export const getBoothListItemStyle = () => (theme: Theme) => {
   return css`
     ${getHoverAnimation}
-    padding: 0.75rem 0.25rem 1rem 0.25rem;
+    padding: 0.75rem 1.25rem 1rem 1.25rem;
 
-    ${getBoxShadow}
     background-color: ${theme.backgroundColors.white};
 
     &:hover {

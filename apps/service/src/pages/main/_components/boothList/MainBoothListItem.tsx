@@ -12,7 +12,7 @@ export interface MainBoothListItemProps extends BoothThumbnailBadgeProps {
 const MainBoothListItem = (props: MainBoothListItemProps) => {
   const { isLast = false, ...booth } = props;
   return (
-    <Link to={`/booth/${booth.boothID}`} css={S.getBoothListItemStyle(isLast)}>
+    <Link to={`/booth/${booth.boothID}`} css={S.getBoothListItemStyle()}>
       <BoothThumbnailBadge {...booth} />
     </Link>
   );

@@ -129,14 +129,14 @@ const useFormReturn = <TFormData extends TFromDataField>(
     return !formState[key].isError;
   });
 
-  const submitFrom = () => {
+  const submitForm = () => {
     console.log(values.current);
     console.log("폼 제출에 성공했어요!");
   };
 
   return {
     register,
-    submitFrom,
+    submitForm,
     isFormValidate,
     getFieldIsError,
     values: values.current,

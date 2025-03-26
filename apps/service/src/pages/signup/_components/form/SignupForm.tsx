@@ -8,12 +8,12 @@ import SignupFormStepPhone from "./steps/SignupFormStepPhone";
 import SignupFormStepPassword from "./steps/SingupFormStepPassword";
 
 const SingupForm = () => {
-  const { isFormValidate, submitFrom } = useSingupForm();
+  const { isFormValidate, submitForm } = useSingupForm();
 
   const SubmitButton = () => {
     return (
       <BottomButton>
-        <Button type="submit" disabled={!isFormValidate} onClick={submitFrom}>
+        <Button type="submit" disabled={!isFormValidate} onClick={submitForm}>
           회원가입하기
         </Button>
       </BottomButton>
