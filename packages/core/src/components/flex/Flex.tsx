@@ -6,7 +6,7 @@ export type FlexStyle = {
   flexGrow?: 0 | 1;
   gap?: string;
   direction?: "column" | "row";
-  alignItem?: "center" | "start" | "end";
+  alignItem?: "center" | "start" | "end" | "stretch";
   justifyContent?: "center" | "start" | "end" | "space-between";
   overflow?: "visible" | "hidden" | "scroll";
   padding?: string;
@@ -25,7 +25,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
     flexGrow = 0,
     gap = "0rem",
     direction = "row",
-    alignItem = "start",
+    alignItem = "stretch",
     justifyContent = "start",
     overflow = "hidden",
     padding = "0rem",
