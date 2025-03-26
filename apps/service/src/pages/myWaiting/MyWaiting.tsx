@@ -20,14 +20,14 @@ const MyWaitingPage = () => {
           desciption={`최대 3개 부스까지 동시에 대기 가능해요.\n새 부스를 예약하실 경우 기존 대기 중 하나를 취소해주세요.`}
         />
 
-        <MyWaitingList />
+        <MyWaitingList type="waiting" />
       </Flex>
 
       <Separator height={8} />
 
       {/* 대기취소, 입장완료 목록 */}
       <Flex {...sectionStyle}>
-        <MyWaitingList />
+        <MyWaitingList type="finished" />
       </Flex>
     </>
   );
