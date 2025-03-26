@@ -8,6 +8,7 @@ export type LabelProps<T extends React.ElementType> = {
   font?: FontStyleKey;
   color?: FontColorKey;
   ellipsis?: boolean;
+  padding?: string;
 } & React.ComponentPropsWithoutRef<T>;
 
 const Label = <T extends React.ElementType>(props: LabelProps<T>) => {
@@ -17,6 +18,7 @@ const Label = <T extends React.ElementType>(props: LabelProps<T>) => {
     color,
     ellipsis = false,
     children,
+    padding = "0rem",
     ...attributes
   } = props;
 
@@ -25,7 +27,7 @@ const Label = <T extends React.ElementType>(props: LabelProps<T>) => {
   return (
     <Component
       css={[
-        S.getLabelStyle(font),
+        S.getLabelStyle(font, padding),
         S.getColorStyle(color),
         ellipsis && S.getEllipsisStyle(),
       ]}

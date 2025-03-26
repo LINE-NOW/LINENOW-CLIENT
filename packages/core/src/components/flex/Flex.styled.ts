@@ -13,4 +13,6 @@ export const getFlexStyle = (style: FlexStyle) => css`
   justify-content: ${style.justifyContent};
 
   overflow: ${style.overflow};
+
+  padding: ${style.padding};
 `;

@@ -3,19 +3,14 @@ import { css, Theme } from "@emotion/react";
 import { fonts } from "../../styles/fonts";
 import { getBorder } from "../../styles/border";
 
-export const getWrapperStyle = (width: string) => css`
+export const getWrapperStyle = () => css`
   display: flex;
   flex-direction: column;
-  width: ${width};
+  width: 100%;
 
   & > * {
     align-items: center;
   }
-`;
-
-export const getLabelStyle = () => css`
-  padding: 0rem 0.25rem;
-  padding-bottom: 0.75rem;
 `;
 
 export const getErrorLabelStyle = () => css`
@@ -33,33 +28,36 @@ export const getInputTextFieldStyle = () => {
     width: 100%;
 
     border-radius: 0.5rem;
-    box-shadow: ${getBorder("blue")(theme)};
+    box-shadow: ${getBorder("gray")(theme)};
 
-    padding: 0.75rem 1rem;
+    padding: 0.625rem 1rem;
 
-    input {
-      flex-grow: 1;
-      border: none;
-      outline: none;
-
-      ${fonts.body1}
-      color: ${theme.fontColors.black}
-    }
-
-    img {
-      flex-shrink: 0;
-
-      width: 1.5rem;
-      height: 1.5rem;
+    &:focus-within {
+      box-shadow: ${getBorder("blue", 2)(theme)};
     }
   `;
 };
 
-export const getInputStyle = () => {
-  return (theme: Theme) => css`
+export const getInpuTextFieldErrorStyle = () => (theme: Theme) =>
+  css`
+    box-shadow: ${getBorder("red", 2)(theme)};
+
+    &:focus-within {
+      box-shadow: ${getBorder("red", 2)(theme)};
+    }
+  `;
+
+export const getInputStyle = () => (theme: Theme) =>
+  css`
     flex-grow: 1;
+
+    border: none;
+    outline: none;
 
     ${fonts.body1}
     color: ${theme.fontColors.black};
+
+    &::placeholder {
+      color: ${theme.fontColors.gray};
+    }
   `;
-};

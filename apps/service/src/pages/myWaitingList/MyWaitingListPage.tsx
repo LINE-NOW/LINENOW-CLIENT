@@ -24,7 +24,7 @@ const MyWaitingListPage = () => {
 
   return (
     <S.MyWaitingListPageWrapper>
-      {waitings.map((item, index) => (
+      {waitings.map(() => (
         <div></div>
       ))}
     </S.MyWaitingListPageWrapper>

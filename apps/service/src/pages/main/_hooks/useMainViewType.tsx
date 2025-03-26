@@ -3,7 +3,6 @@ import { mainViewTypeAtom } from "../_atom/mainViewType";
 import { MainViewType } from "../types";
 import { IconKey } from "@linenow/core/types";
 import { Switch } from "@linenow/core/components";
-import { css } from "@emotion/react";
 
 interface MainViewTypeConfig {
   toggleType: MainViewType;

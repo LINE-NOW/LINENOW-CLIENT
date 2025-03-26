@@ -11,6 +11,7 @@ export const colors = {
   white: "#FFFFFF",
 
   // gray
+  gray025: "#FBFCFD",
   gray050: "#F0F2F8",
   gray075: "#ECF0F9",
   gray100: "#E2E6EF",
@@ -34,13 +35,17 @@ export const fontColors = {
 
   gray: colors.gray300,
   grayLight: colors.gray075,
+
+  red: "red",
 };
 
 export const borderColors = {
   gray: colors.gray100,
-  grayLight: colors.gray075,
+  grayLight: colors.gray050,
 
   blue: colors.blue500,
+
+  red: "red",
 };
 
 export const backgroundColors = {
@@ -48,7 +53,10 @@ export const backgroundColors = {
 
   black: colors.gray900,
   blackLight: colors.gray800,
+
+  gray: colors.gray300,
   grayLight: colors.gray050,
+  grayGhost: colors.gray025,
 
   blue: colors.blue500,
   blueLight: colors.blue050,

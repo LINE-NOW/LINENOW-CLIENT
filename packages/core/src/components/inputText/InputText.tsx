@@ -1,58 +1,51 @@
+import Flex from "../flex/Flex";
+import Label from "../label/Label";
 import * as S from "./InputText.styled";
 
-import Label from "../label/Label";
-import Icon from "../icon/Icon";
-import { CommonButton } from "../buttonExtension/ButtonExtension";
-
-type IconButtonProps = React.ComponentProps<typeof Icon> &
-  React.ComponentProps<typeof CommonButton>;
-
-export interface InputTextProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  width?: string;
-  label?: string;
-  rightIconButton?: IconButtonProps;
-  errorMessage?: string;
+interface InputTextProps extends React.ComponentProps<"input"> {
+  error?: string;
 }
 
 const InputText = (props: InputTextProps) => {
-  const {
-    width = "100%",
-    label,
-    rightIconButton,
-    errorMessage,
-    type = "text",
-    ...inputProps
-  } = props;
-  return (
-    <section css={[S.getWrapperStyle(width)]}>
-      {label && (
-        <Label font="head3" color="blue" css={S.getLabelStyle()}>
-          {label}
-        </Label>
-      )}
+  const { type = "text", pattern, onInput, error, ...inputProps } = props;
 
-      <label css={[S.getInputTextFieldStyle()]}>
+  // 정규식에 맞게 입력을 받음
+  const checkPattern = (e: React.FormEvent<HTMLInputElement>) => {
+    const inputElement = e.currentTarget;
+    const regex = new RegExp(`^${pattern}$`);
+
+    if (!regex.test(inputElement.value)) {
+      inputElement.value = inputElement.value.slice(0, -1);
+      return;
+    }
+  };
+
+  const handleOnInput = (e: React.FormEvent<HTMLInputElement>) => {
+    pattern && checkPattern(e);
+    onInput && onInput(e);
+  };
+
+  return (
+    <Flex direction="column" gap="0.125rem" width="100%">
+      <label
+        css={[
+          S.getInputTextFieldStyle(),
+          error && S.getInpuTextFieldErrorStyle(),
+        ]}
+      >
         <input
           type={type}
-          placeholder={props.placeholder}
           css={S.getInputStyle()}
+          onInput={handleOnInput}
           {...inputProps}
         />
-
-        {rightIconButton && (
-          <CommonButton onClick={rightIconButton.onClick}>
-            <Icon {...rightIconButton} />
-          </CommonButton>
-        )}
       </label>
-
-      {errorMessage && (
-        <Label font="caption" css={S.getErrorLabelStyle()}>
-          {errorMessage}
+      {error && (
+        <Label font="caption" color="red" padding="0rem 0.25rem">
+          {error}
         </Label>
       )}
-    </section>
+    </Flex>
   );
 };
 

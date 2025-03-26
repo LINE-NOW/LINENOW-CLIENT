@@ -8,7 +8,6 @@ import {
 } from "@linenow/core/components";
 
 // hooks
-import useCheckWaitingStatus from "@hooks/useCheckWaitingStatus";
 
 const RootLayout = () => {
   // useCheckWaitingStatus();

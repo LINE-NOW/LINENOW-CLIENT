@@ -1,7 +1,7 @@
 import * as S from "./Flex.styled";
 
 export type FlexStyle = {
-  width?: string;
+  width?: "100%" | "auto" | string;
   height?: string;
   flexGrow?: 0 | 1;
   gap?: string;
@@ -9,6 +9,7 @@ export type FlexStyle = {
   alignItem?: "center" | "start" | "end";
   justifyContent?: "center" | "start" | "end" | "space-between";
   overflow?: "visible" | "hidden" | "scroll";
+  padding?: string;
 };
 
 export type FlexProps<T extends React.ElementType> = {
@@ -27,6 +28,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
     alignItem = "start",
     justifyContent = "start",
     overflow = "hidden",
+    padding = "0rem",
     ...attributes
   } = props;
 
@@ -44,6 +46,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
           alignItem,
           justifyContent,
           overflow,
+          padding,
         }),
       ]}
       {...attributes}

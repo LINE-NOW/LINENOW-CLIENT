@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { css, Theme } from "@emotion/react";
 
 import { ButtonSize } from "./Button";
 import { fonts } from "../../styles/fonts";
 import { getHoverAnimation } from "../../styles/animation";
+import { getBorder } from "../../styles";
 
 export const getSizeStyle = (size: ButtonSize, width: string) => {
   const getStyle = () => {
@@ -27,6 +27,7 @@ export const getSizeStyle = (size: ButtonSize, width: string) => {
 
   return css`
     ${getStyle()}
+    flex-shrink: 0;
     border: none;
     border-radius: 0.5rem;
   `;
@@ -40,8 +41,12 @@ export const getAlignStyle = (childCount: number) => {
   `;
 };
 
-export const getAnimation = () => css`
-  &:not(:disabled):hover {
-    ${getHoverAnimation}
-  }
-`;
+export const getAnimation = () => (theme: Theme) =>
+  css`
+    &:not(:disabled):hover {
+      ${getHoverAnimation}
+    }
+    &:not(:disabled):focus {
+      box-shadow: ${getBorder("blue", 2)(theme)};
+    }
+  `;
