@@ -4,6 +4,7 @@ import useLoginForm from "@pages/login/_hooks/useLoginForm";
 // components
 import { InputText, InputTextContainer } from "@linenow/core/components";
 import phoneInputProps from "@components/inputText/phone";
+import passwordInputProps from "@components/inputText/password";
 
 const LoginForm = () => {
   const { register } = useLoginForm();
@@ -13,7 +14,11 @@ const LoginForm = () => {
     ...register("phone"),
   };
 
-  const passwordInput = { ...register("password") };
+  const passwordInput = {
+    placeholder: "비밀번호를 입력해주세요.",
+    ...passwordInputProps,
+    ...register("password"),
+  };
 
   return (
     <>
