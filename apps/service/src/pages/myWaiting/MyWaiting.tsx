@@ -23,7 +23,7 @@ const MyWaitingPage = () => {
       <Flex {...sectionStyle}>
         <SectionTitle
           title={`대기 중인 부스`}
-          desciption={`최대 3개 부스까지 동시에 대기 가능해요.\n새 부스를 예약하실 경우 기존 대기 중 하나를 취소해주세요.`}
+          description={`최대 3개 부스까지 동시에 대기 가능해요.\n새 부스를 예약하실 경우 기존 대기 중 하나를 취소해주세요.`}
         />
 
         <MyWaitingList type="waiting" />
