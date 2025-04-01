@@ -56,23 +56,19 @@ const BoothDetailPage = () => {
 
   const getInformationTitle = () => {
     switch (booth?.isOperated) {
-      case "not_started":
-        return "부스 운영 예상 시간";
       case "finished":
         return "부스가 종료되었어요";
+      case "not_started":
+        return "";
       default:
-        return "전체 대기";
+        return "현재 대기";
     }
   };
 
   const getInformationSub = () => {
     switch (booth?.isOperated) {
       case "not_started":
-        return new Date(booth.openTime).toLocaleTimeString("ko-KR", {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-
+        return "";
       case "finished":
         return undefined;
       default:
@@ -104,17 +100,21 @@ const BoothDetailPage = () => {
       case "operating":
         return (
           <Button onClick={openCheckModal}>
-            <span>대기 줄 서기</span>
+            <span>대기하기</span>
           </Button>
         );
       case "paused":
         return (
           <Button disabled>
-            <span>대기 줄 서기가 중지 되었어요</span>
+            <span>대기가 중지 됐어요</span>
           </Button>
         );
       case "finished":
-        return undefined;
+        return (
+          <Button disabled>
+            <span>종료</span>
+          </Button>
+        );
     }
   };
 
