@@ -21,20 +21,27 @@ const BoothThumbnailBadge = (props: BoothThumbnailBadgeProps) => {
     ...boothThumbnailProps
   } = props;
 
+  const getBadgeList = () => {
+    if (isOperated === "not_started") {
+      return <Chip variant="grayLight">운영 전</Chip>;
+    }
+
+    return (
+      <>
+        {isOperated === "paused" && <Chip variant="grayLight">대기 중지</Chip>}
+        {isWaiting && <Chip variant="lime">대기 중</Chip>}
+        <Chip variant="blueLight">대기 {totalWaitingTeams}팀</Chip>
+      </>
+    );
+  };
+
   return (
     <Flex as="section" gap="0.5rem" direction="column" width="100%" css={css}>
       <BoothThumbnail {...boothThumbnailProps} />
 
       {/* 배지 리스트 */}
       <Flex gap="0.5rem" justifyContent="end" width="100%">
-        {isOperated === "not_started" ? (
-          <Chip variant="grayLight">운영 전</Chip>
-        ) : (
-          <>
-            {isWaiting && <Chip variant="lime">대기 중</Chip>}
-            <Chip variant="blueLight">대기 {totalWaitingTeams}팀</Chip>
-          </>
-        )}
+        {getBadgeList()}
       </Flex>
     </Flex>
   );

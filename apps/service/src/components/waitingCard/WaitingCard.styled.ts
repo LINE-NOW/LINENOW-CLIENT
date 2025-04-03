@@ -20,13 +20,12 @@ export const getWaitingCardStyle =
       css`
         background-color: ${theme.backgroundColors.blackLight};
       `}
+      ${isDisabled &&
+      css`
+        opacity: 0.3;
+      `}
     `;
 
-export const getBoothThumbnailStyle = (isDisabled: boolean) => css`
+export const getBoothThumbnailStyle = () => css`
   padding: 0rem 0.25rem;
-
-  ${isDisabled &&
-  css`
-    opacity: 0.3;
-  `}
 `;

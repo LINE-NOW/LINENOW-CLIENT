@@ -11,7 +11,7 @@ import BoothDetailPage from "@pages/boothDetail/BoothDetailPage";
 import SettingPage from "@pages/setting/SettingPage";
 import WaitingCheckPage from "@pages/waitingCheck/WaitingCheckPage";
 import WaitingDetailPage from "@pages/waitingDetail/WaitingDetailPage";
-import MyWaitingListPage from "@pages/myWaitingList/MyWaitingListPage";
+import MyWaitingPage from "@pages/myWaiting/MyWaiting";
 import SignupPage from "@pages/signup/SignupPage";
 import GuestRoute from "./GuestRoute";
 import LoginPage from "@pages/login/LoginPage";
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
             children: [
               { path: "check", element: <WaitingCheckPage /> },
               { path: "waiting/:waitingID", element: <WaitingDetailPage /> },
-              { path: "my-waiting", element: <MyWaitingListPage /> },
+              { path: "my-waiting", element: <MyWaitingPage /> },
               { path: "setting", element: <SettingPage /> },
             ],
           },
