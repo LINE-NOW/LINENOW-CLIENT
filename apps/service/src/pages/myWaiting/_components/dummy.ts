@@ -12,6 +12,7 @@ export const dummyWaitingsResponse: WaitingCardProps[] = [
       name: "가나다라",
       location: "가나다라마바사",
     },
+    arrivalarrivalDueTime: "",
   },
 ];
 
@@ -27,6 +28,7 @@ export const dummyFinishedWaitingsResponse: WaitingCardProps[] = [
       name: "가나다라",
       location: "가나다라마바사",
     },
+    arrivalarrivalDueTime: "",
   },
   {
     waitingID: 1,
@@ -39,5 +41,6 @@ export const dummyFinishedWaitingsResponse: WaitingCardProps[] = [
       name: "가나다라",
       location: "가나다라마바사",
     },
+    arrivalarrivalDueTime: "",
   },
 ];
