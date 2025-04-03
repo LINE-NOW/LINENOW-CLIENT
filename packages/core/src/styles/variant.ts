@@ -27,7 +27,7 @@ const variantStyles: VariantStyles = {
     fontColor: "gray",
     borderColor: "gray",
     backgroundColor: "white",
-    disabled_fontColor: "grayLight",
+    disabled_fontColor: "blackLight",
     disabled_borderColor: "grayLight",
     disabled_backgroundColor: "white",
   },
@@ -49,7 +49,7 @@ const variantStyles: VariantStyles = {
   },
   grayLight: {
     backgroundColor: "grayLight",
-    fontColor: "blackLight",
+    fontColor: "black",
   },
 };
 
@@ -66,7 +66,7 @@ export const getVariantStyle = (variant: Variant) => {
     :disabled {
       color: ${style.disabled_fontColor
         ? theme.fontColors[style.disabled_fontColor]
-        : theme.fontColors.gray};
+        : theme.fontColors.grayLight};
 
       background-color: ${style.disabled_backgroundColor
         ? theme.backgroundColors[style.disabled_backgroundColor]

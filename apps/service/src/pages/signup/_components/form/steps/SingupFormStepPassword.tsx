@@ -1,18 +1,11 @@
 import useSingupForm from "@pages/signup/_hooks/useSignupForm";
 
+// components
 import { InputText, InputTextContainer } from "@linenow/core/components";
+import passwordInputProps from "@components/inputText/password";
 
 const SignupFormStepPassword = () => {
   const { register, fieldRefs } = useSingupForm();
-
-  const passwordInputProps: React.ComponentProps<"input"> = {
-    required: true,
-    type: "password",
-    pattern: "[0-9]*",
-    maxLength: 6,
-    inputMode: "numeric",
-    autoComplete: "new-password",
-  };
 
   // 검증
   const passwordValidation = (value: string) =>
@@ -26,6 +19,23 @@ const SignupFormStepPassword = () => {
     return password === value || "비밀번호가 일치하지 않아요!";
   };
 
+  // props
+  const passwordInput = {
+    placeholder: "비밀번호를 입력해주세요",
+    ...passwordInputProps,
+    ...register("password", {
+      rules: [passwordValidation],
+    }),
+  };
+
+  const passwordConfirm = {
+    placeholder: "비밀번호를 다시 입력해주세요",
+    ...passwordInputProps,
+    ...register("passwordConfirm", {
+      rules: [passwordConfirmValidation],
+    }),
+  };
+
   return (
     <>
       {/* 비밀번호 */}
@@ -33,20 +43,8 @@ const SignupFormStepPassword = () => {
         label="비밀번호"
         description={`6자 숫자를 입력해주세요.`}
       >
-        <InputText
-          placeholder="비밀번호를 입력해주세요"
-          {...passwordInputProps}
-          {...register("password", {
-            rules: [passwordValidation],
-          })}
-        />
-        <InputText
-          placeholder="비밀번호를 다시 입력해주세요"
-          {...passwordInputProps}
-          {...register("passwordConfirm", {
-            rules: [passwordConfirmValidation],
-          })}
-        />
+        <InputText {...passwordInput} />
+        <InputText {...passwordConfirm} />
       </InputTextContainer>
     </>
   );
