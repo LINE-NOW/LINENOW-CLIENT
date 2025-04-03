@@ -27,5 +27,6 @@ export const dummyBoothResponse = {
   close_time: "2024-09-26T10:27:59",
   waiting_count: 2,
   is_waiting: false,
+  total_waiting_teams: 23,
   waiting_status: "waiting",
 };

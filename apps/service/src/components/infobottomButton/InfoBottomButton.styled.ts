@@ -55,6 +55,7 @@ export const InfoBottomButtonInformationWrapper = styled.div`
   }
 
   .subtitle {
+    display: block;
     ${fonts.body1}
     color: ${({ theme }) => theme.fontColors.blackLight};
     white-space: pre-line;
