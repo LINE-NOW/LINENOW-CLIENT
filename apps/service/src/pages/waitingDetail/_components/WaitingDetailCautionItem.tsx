@@ -1,4 +1,4 @@
-import * as S from "./WaitingDetailCaution.styled";
+import * as S from "./WaitingDetailComponents.styled";
 
 interface WaitingDetailCautionItemProps {
   content: React.ReactNode;

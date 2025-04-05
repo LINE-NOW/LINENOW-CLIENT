@@ -3,6 +3,7 @@ import { fonts } from "@linenow/core/styles";
 
 export const WaitingDetailCautionWrapper = styled.div`
   padding: 16px;
+  /* border: 1px solid red; */
 `;
 
 export const WaitingDetailCautionTitle = styled.h3`
@@ -65,4 +66,31 @@ export const WaitingDetailCautionItemContent = styled.div`
 
   ${fonts.body2}
   color: ${({ theme }) => theme.fontColors.blackLight};
+`;
+
+//WaitingDetailHead
+export const WaitignDetailHeadTitle = styled.h1`
+  ${fonts.head1}
+`;
+
+export const WaitignDetailHeadInfoGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 0rem 0.25rem;
+`;
+
+export const WaitignDetailHeadContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  .title {
+    ${fonts.body2}
+    color: ${({ theme }) => theme.fontColors.blackLight};
+  }
+
+  .content {
+    ${fonts.body2_b}
+    color: ${({ theme }) => theme.fontColors.black};
+  }
 `;

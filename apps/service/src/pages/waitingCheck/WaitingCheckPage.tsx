@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import * as S from "./WaitingCheckPage.styled";
 import BottomButton from "@components/bottomButton/BottomButton";
 
-import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "@pages/waitingDetail/_components/WaitingDetailCaution";
 import WaitingCheckCautionModal from "./_components/WaitingCheckCautionModal";
-import { Button } from "@linenow/core/components";
+import { Button, Separator } from "@linenow/core/components";
+import WaitingCheckHead from "../waitingDetail/_components/WaitingDetailHead";
 
 const WaitingCheckPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const location = useLocation();
   const { checkedPeople, booth } = location.state || {};
 
-  //modal 관리 필요
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -24,11 +22,9 @@ const WaitingCheckPage = () => {
 
   return (
     <>
-      <S.WaitingDetailPageBoothCardWrapper>
-        <S.WaitingCheckPageTitle>이렇게 대기할까요?</S.WaitingCheckPageTitle>
-      </S.WaitingDetailPageBoothCardWrapper>
+      <WaitingCheckHead />
 
-      <Separator />
+      <Separator height={8} />
 
       <WaitingDetailCaution />
 
