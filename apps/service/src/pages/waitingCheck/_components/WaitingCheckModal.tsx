@@ -17,7 +17,7 @@ const WaitingCheckModal = ({ onClose, booth }: WaitingCheckModalProps) => {
 
   const handleConfirm = useCallback(() => {
     if (checkedPeople) {
-      navigate("/check"), { state: { checkedPeople, booth } };
+      navigate("/check", { state: { checkedPeople, booth } });
     }
   }, [checkedPeople, booth, navigate]);
 

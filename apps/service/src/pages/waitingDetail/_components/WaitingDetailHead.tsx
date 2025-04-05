@@ -1,7 +1,15 @@
 import { Flex } from "@linenow/core/components";
 import * as S from "./WaitingDetailComponents.styled";
 
-const WaitingDetailHead = () => {
+interface WaitingCheckModalProps {
+  checkedPeople: number;
+  boothName: string;
+}
+
+const WaitingDetailHead = ({
+  checkedPeople,
+  boothName,
+}: WaitingCheckModalProps) => {
   const sectionStyle: React.ComponentProps<typeof Flex> = {
     as: "section",
     direction: "column",
@@ -14,7 +22,7 @@ const WaitingDetailHead = () => {
     content,
   }: {
     title: string;
-    content: string;
+    content: string | number;
   }) => (
     <S.WaitignDetailHeadContent>
       <span className="title">{title}</span>
@@ -28,11 +36,11 @@ const WaitingDetailHead = () => {
         대기 정보를 확인해주세요.
       </S.WaitignDetailHeadTitle>
       <S.WaitignDetailHeadInfoGroup>
+        <WaitingDetailkHeadInfo title="부스 이름" content={boothName} />
         <WaitingDetailkHeadInfo
-          title="부스 이름"
-          content="라인나우와 함께하는 축제"
+          title="이용인원"
+          content={`${checkedPeople}명`}
         />
-        <WaitingDetailkHeadInfo title="이용인원" content="4명" />
       </S.WaitignDetailHeadInfoGroup>
     </Flex>
   );

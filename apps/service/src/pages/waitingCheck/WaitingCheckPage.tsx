@@ -22,7 +22,7 @@ const WaitingCheckPage = () => {
 
   return (
     <>
-      <WaitingCheckHead />
+      <WaitingCheckHead checkedPeople={checkedPeople} boothName={booth.name} />
 
       <Separator height={8} />
 
