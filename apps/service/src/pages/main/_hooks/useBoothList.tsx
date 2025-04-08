@@ -1,10 +1,10 @@
 import MainBoothList from "../_components/boothList/MainBoothList";
 import { Flex, Label, Select } from "@linenow/core/components";
 
-import { useGetBoothList } from "@hooks/apis/boothList";
 import useSortBooths from "./useSortBooths";
 import useMainViewType from "./useMainViewType";
 import MainMap from "../_components/map/MainMap";
+import { useGetBooths } from "@hooks/apis/booths";
 
 const useMainBoothList = () => {
   const { viewType } = useMainViewType();
@@ -15,9 +15,7 @@ const useMainBoothList = () => {
     handleSortBoothOptionChange,
   } = useSortBooths();
 
-  const { data: booths = [], isLoading: boothsIsLoading } = useGetBoothList({
-    ordering: currentSortBoothOption,
-  });
+  const { data: booths = [], isLoading: boothsIsLoading } = useGetBooths();
 
   // 부스 목록 정렬 옵션 선택
   const BoothOptionSelect = () => (

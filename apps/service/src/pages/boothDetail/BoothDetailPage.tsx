@@ -77,7 +77,7 @@ const BoothDetailPage = () => {
   };
 
   const getInformationButton = () => {
-    if (booth?.isWaiting) {
+    if (booth?.waitingStatus === "waiting") {
       return (
         <>
           <Button variant="blueLight">
@@ -90,7 +90,7 @@ const BoothDetailPage = () => {
         </>
       );
     }
-    switch (booth?.isOperated) {
+    switch (booth?.operatingStatus) {
       case "not_started":
         return (
           <Button disabled>

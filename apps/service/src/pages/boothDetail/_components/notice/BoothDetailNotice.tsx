@@ -10,7 +10,7 @@ export const BoothDetailNotice = ({ booth }: BoothDetailContentProps) => {
   return (
     <S.BoothDetailNoticeWrapper>
       <Title>부스 유의사항</Title>
-      <S.BoothDetailNoticeArticle>{booth.caution}</S.BoothDetailNoticeArticle>
+      <S.BoothDetailNoticeArticle>{booth.notice}</S.BoothDetailNoticeArticle>
     </S.BoothDetailNoticeWrapper>
   );
 };
