@@ -18,6 +18,7 @@ import {
 } from "@apis/domains/waiting/_interfaces";
 
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSplash } from "@pages/waitingCheck/_components/splash/SplashContext";
 
 export const useGetWaiting = ({ ...props }: GetWaitingRequest) => {
   return useQuery({
@@ -72,9 +73,11 @@ export const usePostWaitingCancel = () => {
 };
 
 export const usePostWaitingRegister = () => {
+  const { showSplash } = useSplash();
   const { closeModal } = useModal();
   const { setLoadings } = useIsLoading();
   const navigate = useNavigate();
+
   return useMutation({
     mutationKey: ["waiting_register"],
     mutationFn: async ({
@@ -89,11 +92,14 @@ export const usePostWaitingRegister = () => {
       }
     },
     onSuccess: (response) => {
-      alert("대기 걸기에 성공했어요!");
-      navigate(`/waiting/${response?.id}`, {
-        state: response,
-        replace: true,
-      });
+      showSplash();
+
+      setTimeout(() => {
+        navigate(`/waiting/${response?.id}`, {
+          state: response,
+          replace: true,
+        });
+      }, 600);
       setLoadings({ isFullLoading: false });
       closeModal();
     },

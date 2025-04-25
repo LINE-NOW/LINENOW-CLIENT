@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 //components
 import { LinenowProvider } from "@linenow/core/components";
 import TestTool from "./mocks/_components/TestTool";
+import { SplashProvider } from "@pages/waitingCheck/_components/splash/SplashContext";
 
 function App() {
   const queryClient = new QueryClient();
@@ -16,7 +17,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       {/* <TestTool /> */}
       <LinenowProvider maxWidth="540px">
-        <RouterProvider router={router} />
+        <SplashProvider>
+          <RouterProvider router={router} />
+        </SplashProvider>
       </LinenowProvider>
     </QueryClientProvider>
   );
