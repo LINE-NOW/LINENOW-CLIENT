@@ -7,6 +7,8 @@ const SplashContext = createContext({
 
 export const useSplash = () => useContext(SplashContext);
 
+export const SPLASH_DURATION = 600;
+
 export const SplashProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
@@ -17,7 +19,7 @@ export const SplashProvider: React.FC<{ children: React.ReactNode }> = ({
 
     setTimeout(() => {
       setIsSplashVisible(false);
-    }, 600);
+    }, SPLASH_DURATION);
   };
 
   return (

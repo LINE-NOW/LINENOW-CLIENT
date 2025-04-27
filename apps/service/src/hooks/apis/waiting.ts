@@ -18,7 +18,10 @@ import {
 } from "@apis/domains/waiting/_interfaces";
 
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSplash } from "@pages/waitingCheck/_components/splash/SplashContext";
+import {
+  SPLASH_DURATION,
+  useSplash,
+} from "@pages/waitingCheck/_components/splash/SplashContext";
 
 export const useGetWaiting = ({ ...props }: GetWaitingRequest) => {
   return useQuery({
@@ -99,7 +102,7 @@ export const usePostWaitingRegister = () => {
           state: response,
           replace: true,
         });
-      }, 600);
+      }, SPLASH_DURATION);
       setLoadings({ isFullLoading: false });
       closeModal();
     },
