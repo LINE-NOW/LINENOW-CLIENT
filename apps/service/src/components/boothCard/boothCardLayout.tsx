@@ -1,5 +1,6 @@
 import { IconLabel } from "@linenow/core/components";
 import * as S from "./BoothCard.styled";
+import { Link } from "react-router-dom";
 
 interface BoothCardProps {
   type: "main" | "waiting";
@@ -12,6 +13,7 @@ interface BoothCardProps {
   to?: string;
   header?: React.ReactNode;
   bottom?: React.ReactNode;
+  navigateTo?: string;
 }
 
 const BoothCardLayout = ({
@@ -25,6 +27,7 @@ const BoothCardLayout = ({
   to,
   header,
   bottom,
+  navigateTo,
 }: BoothCardProps) => {
   return (
     <S.BoothCardWrapper to={to || ""} $type={type}>
@@ -55,6 +58,9 @@ const BoothCardLayout = ({
             </S.BoothCardInformationLocationLabel>
           </IconLabel>
         </S.BoothCardInformationLabelWrapper>
+        <Link to={navigateTo || "#"} style={{ cursor: "pointer" }}>
+          <img src="/icons/right_arrow.svg" alt="Go to details" />
+        </Link>
       </S.BoothCardInformationWrapper>
 
       {/* 하단 */}

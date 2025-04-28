@@ -6,7 +6,8 @@ interface BoothCardDetailProps {
 }
 
 const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
-  console.log("웨이팅디테일", waitingDetail);
+  const navigateTo = `/booth/${waitingDetail.booth?.boothID}`;
+
   return (
     <>
       {waitingDetail ? (
@@ -17,6 +18,7 @@ const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
           boothLocationInfo={waitingDetail.booth?.location}
           header={waitingDetail.waitingTeamsAhead}
           bottom={waitingDetail.partySize}
+          navigateTo={navigateTo}
         />
       ) : (
         //TODO:- 엠티뷰 만들기
