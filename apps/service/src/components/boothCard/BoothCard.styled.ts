@@ -39,15 +39,50 @@ export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
   }}
 `;
 
+export const BoothCardWaitingNum = styled.section`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem 0rem 0.75rem 0rem;
+  gap: 0.25rem;
+  border-bottom: 1px solid ${({ theme }) => theme.borderColors.gray};
+  ${fonts.body2}
+
+  .waitingNum {
+    ${fonts.head1_b}
+    color: ${({ theme }) => theme.fontColors.blue};
+  }
+`;
+
+export const BoothCardPersonNumWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid ${({ theme }) => theme.borderColors.gray};
+  ${fonts.caption}
+  color: ${({ theme }) => theme.fontColors.gray};
+`;
+
+export const BoothCardPersonNum = styled.div`
+  display: flex;
+  justify-content: space-between;
+  ${fonts.body2_b}
+  color: ${({ theme }) => theme.fontColors.blackLight};
+`;
+
 export const BoothCardInformationWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 0.5rem;
+  padding: 0rem 0.25rem;
+  height: 4.5rem;
 `;
 export const BoothCardInformationImage = styled.img`
   flex-shrink: 0;
 
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 3rem;
+  height: 3rem;
 
   border-radius: 0.25rem;
 
@@ -68,7 +103,7 @@ export const BoothCardInformationNameLabel = styled.div`
 
   padding-bottom: 0.125rem;
 
-  ${fonts.head3}
+  ${fonts.body2_b}
   color:${({ theme }) => theme.fontColors.black};
 
   :nth-of-type(2) {

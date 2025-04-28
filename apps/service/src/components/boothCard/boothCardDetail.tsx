@@ -6,21 +6,19 @@ interface BoothCardDetailProps {
 }
 
 const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
+  const navigateTo = `/booth/${waitingDetail.booth?.boothID}`;
+
   return (
     <>
       {waitingDetail ? (
         <BoothCardLayout
           type="waiting"
           boothImage={waitingDetail.booth?.thumbnail}
-          boothTitle={
-            <>
-              <span>{waitingDetail.partySize}명</span>
-              <span> · </span>
-              <span>{waitingDetail.booth?.name}</span>
-            </>
-          }
-          boothSummary={waitingDetail.booth?.description}
+          boothTitle={waitingDetail.booth?.name}
           boothLocationInfo={waitingDetail.booth?.location}
+          header={waitingDetail.waitingTeamsAhead}
+          bottom={waitingDetail.partySize}
+          navigateTo={navigateTo}
         />
       ) : (
         //TODO:- 엠티뷰 만들기

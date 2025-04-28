@@ -2,7 +2,7 @@ import { Flex, Label } from "@linenow/core/components";
 
 interface SectionTitleProps {
   title: React.ReactNode;
-  description: React.ReactNode;
+  description?: React.ReactNode;
 }
 
 const SectionTitle = (props: SectionTitleProps) => {

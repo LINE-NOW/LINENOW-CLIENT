@@ -7,7 +7,7 @@ export interface Waiting {
   waitingID: number;
   waitingStatus: WaitingStatus;
 
-  waitingCount: number;
+  waitingCount?: number;
   totalWaitingTeams: number;
   waitingTeamsAhead: number;
 

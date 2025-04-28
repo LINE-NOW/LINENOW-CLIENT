@@ -2,8 +2,6 @@ import InfoBottomButton from "@components/infobottomButton/InfoBottomButton";
 
 import { useState } from "react";
 import * as S from "./WaitingCheckComponents.styled";
-import iconBefore from "/icons/icon_checkBox_before.svg";
-import iconAfter from "/icons/icon_checkBox_after.svg";
 import { usePostWaitingRegister } from "@hooks/apis/waiting";
 import { Button, ButtonLayout } from "@linenow/core/components";
 
@@ -32,16 +30,20 @@ const WaitingCheckCautionModal = ({
   return (
     <InfoBottomButton
       informationTitle="유의사항을 꼭 숙지해주세요"
-      informationSub="입장 순서가 되면 입장 확정 알림이 가요.
-      3분 내로 미확정 시 줄 서기가 자동 취소돼요."
+      informationSub="입장 순서가 되면 10분의 시간이 주어지며,
+      제한 시간 내에 도착하지 않으면 대기가 자동 취소됩니다.
+      입장하지 않으실 경우에는 반드시 입장 취소 버튼을 눌러 의사를 전달해 주세요.
+      "
     >
-      <S.WaitingCheckBoxWrapper>
-        <S.WaitingCheckBoxImage
-          onClick={() => setChecked(!checked)}
-          src={checked ? iconAfter : iconBefore}
-          alt="체크 박스"
+      <S.WaitingCheckBoxWrapper $checked={checked}>
+        <S.WaitingCheckBox
+          type="checkbox"
+          checked={checked}
+          onChange={() => setChecked(!checked)}
         />
-        <span>숙지했어요</span>
+        <S.WaitingCheckBoxLabel $checked={checked}>
+          숙지했어요
+        </S.WaitingCheckBoxLabel>
       </S.WaitingCheckBoxWrapper>
       <ButtonLayout colCount={2}>
         <Button variant="outline" onClick={handleCancel}>
