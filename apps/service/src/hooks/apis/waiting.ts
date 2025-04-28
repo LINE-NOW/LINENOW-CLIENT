@@ -23,10 +23,10 @@ import {
   useSplash,
 } from "@pages/waitingCheck/_components/splash/SplashContext";
 
-export const useGetWaiting = ({ ...props }: GetWaitingRequest) => {
+export const useGetWaiting = ({ waitingID }: GetWaitingRequest) => {
   return useQuery({
-    queryKey: [WAITING_QUERY_KEY.WAITING],
-    queryFn: () => getWaiting(props),
+    queryKey: [WAITING_QUERY_KEY.WAITING, waitingID],
+    queryFn: () => getWaiting({ waitingID }),
   });
 };
 

@@ -19,24 +19,33 @@ export interface GetWaitingRequest {
 export const getWaiting = async ({
   ...props
 }: GetWaitingRequest): Promise<Waiting | null> => {
+  console.log("웨이팅아이디", props.waitingID);
   const response = await getResponse<GetWaitingResponse>(
-    `api/v1/waitings/${props.waitingID}`
+    `/api/v1/waitings/${props.waitingID}`
   );
-  return response ? transformGetWaitingResponse(response) : null; // 변환 후 반환
+  console.log("대기 상세 API 응답:", response);
+
+  if (!response) {
+    console.log("응답이 없어요");
+    return null;
+  }
+
+  const transformedResponse = transformGetWaitingResponse(response);
+  return transformedResponse;
 };
 
 // get waitings : - 나의 대기 리스트
 
 export const getWaitings = async (): Promise<Waiting[]> => {
   const response = await getResponse<GetWaitingsResponse>(`api/v1/waitings`);
-  return response ? transformGetWaitingsResponse(response) : []; // 변환 후 반환
+  return response ? transformGetWaitingsResponse(response) : [];
 };
 
 export const getNowWaitings = async (): Promise<Waiting[]> => {
   const response = await getResponse<GetWaitingsResponse>(
-    `api/v1/waitings/now-waitings`
+    `/api/v1/waitings/now-waitings`
   );
-  return response ? transformGetWaitingsResponse(response) : []; // 변환 후 반환
+  return response ? transformGetWaitingsResponse(response) : [];
 };
 
 //post waitings - 대기 줄서기 등록
