@@ -36,6 +36,7 @@ const resetCSS = css`
 
   a {
     text-decoration: none;
+    color: inherit;
   }
 
   button {
