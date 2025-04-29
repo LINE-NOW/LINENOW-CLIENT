@@ -13,6 +13,7 @@ import { useGetWaiting, useGetWaitingBooth } from "@hooks/apis/waiting";
 import { Button } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
 import { Waiting } from "@interfaces/waiting";
+import WaitingDetailMap from "./_components/WaitingDetailMap";
 
 const WaitingDetailPage = () => {
   const navigate = useNavigate();
@@ -89,6 +90,9 @@ const WaitingDetailPage = () => {
           <BoothCardDetail waitingDetail={waiting} />
         </S.WaitingDetailPageBoothCard>
       </S.WaitingDetailPageBoothCardWrapper>
+
+      {/* Todo: 세호오빠 여기 지도 컴포넌트 가서 수정해주면 됩니당 */}
+      <WaitingDetailMap />
 
       <Separator />
 

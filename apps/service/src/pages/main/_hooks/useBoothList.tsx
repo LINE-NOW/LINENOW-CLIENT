@@ -36,7 +36,11 @@ const useMainBoothList = () => {
     );
 
   const BoothList = () =>
-    viewType === "list" ? <MainBoothList /> : <MainMap />;
+    viewType === "list" ? (
+      <MainBoothList />
+    ) : (
+      <MainMap latitude={37.5584809} longitude={127.0004067} />
+    );
 
   return { getBoothListHeaderChildren, BoothList, currentSortBoothOption };
 };

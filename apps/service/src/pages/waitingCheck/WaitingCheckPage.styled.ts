@@ -1,20 +1,4 @@
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/core/styles";
-
-export const WaitingCheckPageTitle = styled.h1`
-  ${fonts.head1}
-`;
-
-export const WaitingDetailPageBoothCardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-
-  padding: 1rem 1.25rem 1.25rem 1.25rem;
-
-  gap: 1.5rem;
-`;
 
 export const WaitingDetailPageBoothCard = styled.div`
   border: 1px solid;

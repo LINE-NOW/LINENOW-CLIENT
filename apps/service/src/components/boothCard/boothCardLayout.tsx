@@ -1,27 +1,44 @@
 import { IconLabel } from "@linenow/core/components";
 import * as S from "./BoothCard.styled";
+import { Link } from "react-router-dom";
 
 interface BoothCardProps {
   type: "main" | "waiting";
+  waitingNum?: string;
   boothTitle: React.ReactNode;
   boothSummary?: string;
   boothLocationInfo?: string;
   boothImage?: string;
   children?: React.ReactNode;
   to?: string;
+  header?: React.ReactNode;
+  bottom?: React.ReactNode;
+  navigateTo?: string;
 }
 
 const BoothCardLayout = ({
   type,
+  // waitingNum,
   boothTitle,
-  boothSummary,
+  // boothSummary,
   boothLocationInfo,
   boothImage,
   children,
   to,
+  header,
+  bottom,
+  navigateTo,
 }: BoothCardProps) => {
   return (
     <S.BoothCardWrapper to={to || ""} $type={type}>
+      {/* 상단 */}
+      {header && (
+        <S.BoothCardWaitingNum>
+          <p>나의 대기 번호</p>
+          <p className="waitingNum">{header}</p>
+        </S.BoothCardWaitingNum>
+      )}
+      {/* 중간 */}
       <S.BoothCardInformationWrapper>
         <S.BoothCardInformationImage
           src={boothImage || "/images/image_waitingNoCard.png"}
@@ -30,10 +47,6 @@ const BoothCardLayout = ({
           <S.BoothCardInformationNameLabel>
             {boothTitle}
           </S.BoothCardInformationNameLabel>
-
-          <S.BoothCardInformationDescriptionLabel>
-            {boothSummary}
-          </S.BoothCardInformationDescriptionLabel>
 
           <IconLabel
             gap={"0.13rem"}
@@ -45,7 +58,21 @@ const BoothCardLayout = ({
             </S.BoothCardInformationLocationLabel>
           </IconLabel>
         </S.BoothCardInformationLabelWrapper>
+        <Link to={navigateTo || "#"} style={{ cursor: "pointer" }}>
+          <img src="/icons/right_arrow.svg" alt="Go to details" />
+        </Link>
       </S.BoothCardInformationWrapper>
+
+      {/* 하단 */}
+      {bottom && (
+        <S.BoothCardPersonNumWrapper>
+          <S.BoothCardPersonNum>
+            <p>이용 인원</p>
+            <p>{bottom} 명</p>
+          </S.BoothCardPersonNum>
+          <p>* 다인원의 경우 대기 순서가 뒤로 밀릴 수 있습니다.</p>
+        </S.BoothCardPersonNumWrapper>
+      )}
       {children}
     </S.BoothCardWrapper>
   );

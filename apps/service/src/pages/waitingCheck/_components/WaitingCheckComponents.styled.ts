@@ -43,20 +43,33 @@ export const WaitingCheckPeopleCircle = styled.div<{ $isChecked: boolean }>`
   }
 `;
 
-export const WaitingCheckBoxWrapper = styled.div`
+export const WaitingCheckBoxWrapper = styled.div<{ $checked: boolean }>`
   display: flex;
   align-items: center;
   margin-bottom: 1.75rem;
+  gap: 0.5rem;
+`;
+
+export const WaitingCheckBox = styled.input`
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid ${({ theme }) => theme.borderColors.gray};
   cursor: pointer;
 
-  span {
-    ${fonts.head3}
-    color: ${({ theme }) => theme.fontColors.black};
+  &:checked {
+    background-image: url("/icons/icon_checkBox_after.svg");
+    background-size: cover;
+    background-position: center;
+    border: none;
   }
 `;
 
-export const WaitingCheckBoxImage = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
+export const WaitingCheckBoxLabel = styled.span<{ $checked: boolean }>`
+  ${fonts.head3}
+  color: ${({ $checked, theme }) =>
+    $checked ? theme.fontColors.black : theme.fontColors.gray};
+  user-select: none;
+  pointer-events: none;
 `;
