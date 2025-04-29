@@ -3,12 +3,14 @@ import { Chip, Flex } from "@linenow/core/components";
 
 import { Booth } from "@interfaces/booth";
 import { SerializedStyles } from "@emotion/react";
+import { BoothWaiting } from "@interfaces/waiting";
 
 type BoothThumbnailProps = React.ComponentProps<typeof BoothThumbnail>;
 
 export interface BoothThumbnailBadgeProps
   extends BoothThumbnailProps,
-    Pick<Booth, "operatingStatus" | "waitingStatus" | "totalWaitingTeams"> {
+    Pick<Booth, "operatingStatus">,
+    Pick<BoothWaiting, "waitingStatus" | "totalWaitingTeams"> {
   css?: SerializedStyles;
 }
 

@@ -15,7 +15,7 @@ export interface WaitingCardProps
     | "waitingStatus"
     | "waitingTeamsAhead"
     | "booth"
-    | "arrivalarrivalDueTime"
+    | "confirmedAt"
   > {}
 
 interface Config {
@@ -25,19 +25,16 @@ interface Config {
 }
 
 const WaitingCard = (props: WaitingCardProps) => {
-  const {
-    waitingID,
-    waitingStatus,
-    waitingTeamsAhead,
-    booth,
-    arrivalarrivalDueTime,
-  } = props;
+  const { waitingID, waitingStatus, waitingTeamsAhead, booth, confirmedAt } =
+    props;
 
+  // TODO: -로직 작성 필요
+  const arrivalDueTiem = confirmedAt + "10분";
   const getConfig = (): Config => {
     switch (waitingStatus) {
       case "entering":
         return {
-          button: <EnteranceButton targetTime={arrivalarrivalDueTime} />,
+          button: <EnteranceButton targetTime={arrivalDueTiem} />,
         };
       case "waiting":
         return {

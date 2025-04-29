@@ -5,7 +5,6 @@ import MyWaitingList from "./_components/MyWaitingList";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 
 // api
-import { WAITING_QUERY_KEY } from "@apis/domains/waiting/queries";
 
 const MyWaitingPage = () => {
   const sectionStyle: React.ComponentProps<typeof Flex> = {
@@ -15,7 +14,7 @@ const MyWaitingPage = () => {
     padding: "1.25rem 1rem 1.75rem 1rem",
   };
 
-  const queries = [[WAITING_QUERY_KEY.NOW_WAITINGS]];
+  const queries = [["need_values"]];
 
   return (
     <>

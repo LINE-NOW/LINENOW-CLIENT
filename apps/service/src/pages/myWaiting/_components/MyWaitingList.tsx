@@ -2,9 +2,7 @@
 import { Flex } from "@linenow/core/components";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 import Notice from "@components/notice/Notice";
-
-// dummy
-import { dummyFinishedWaitingsResponse, dummyWaitingsResponse } from "./dummy";
+import { useGetWaitings } from "@hooks/apis/waiting";
 
 interface MyWaitingListProps {
   type: "waiting" | "finished";
@@ -12,10 +10,7 @@ interface MyWaitingListProps {
 
 const MyWaitingList = (props: MyWaitingListProps) => {
   const { type } = props;
-  // const { data: waitings = [], isLoading, isError } = useGetWaitings(type);
-
-  const waitings =
-    type === "waiting" ? dummyWaitingsResponse : dummyFinishedWaitingsResponse;
+  const { data: waitings = [] } = useGetWaitings(type);
 
   return (
     <Flex direction="column" gap="1.5rem">

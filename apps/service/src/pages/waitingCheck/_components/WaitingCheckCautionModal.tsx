@@ -4,7 +4,6 @@ import { useState } from "react";
 import * as S from "./WaitingCheckComponents.styled";
 import iconBefore from "/icons/icon_checkBox_before.svg";
 import iconAfter from "/icons/icon_checkBox_after.svg";
-import { usePostWaitingRegister } from "@hooks/apis/waiting";
 import { Button, ButtonLayout } from "@linenow/core/components";
 
 interface WaitingCheckModalProps {
@@ -13,20 +12,16 @@ interface WaitingCheckModalProps {
   boothId: number;
 }
 
-const WaitingCheckCautionModal = ({
-  onClose,
-  checkedPeople,
-  boothId,
-}: WaitingCheckModalProps) => {
+const WaitingCheckCautionModal = ({ onClose }: WaitingCheckModalProps) => {
   const [checked, setChecked] = useState(false);
 
   const handleCancel = () => {
     onClose();
   };
 
-  const { mutate: postWaitingRegister } = usePostWaitingRegister();
   const handleConfirm = () => {
-    postWaitingRegister({ boothID: boothId, partySize: checkedPeople });
+    console.log("post");
+    // postWaitingRegister({ boothID: boothId, partySize: checkedPeople });
   };
 
   return (

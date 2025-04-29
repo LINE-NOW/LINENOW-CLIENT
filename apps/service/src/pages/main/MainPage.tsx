@@ -8,20 +8,15 @@ import useMainBoothList from "@pages/main/_hooks/useBoothList";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 
 // apis
-import { BOOTH_QUERY_KEY } from "@apis/domains/booth/queries";
-import { WAITING_QUERY_KEY } from "@apis/domains/waiting/queries";
+
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
 
 const MainPage = () => {
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
-  const { getBoothListHeaderChildren, BoothList, currentSortBoothOption } =
-    useMainBoothList();
+  const { getBoothListHeaderChildren, BoothList } = useMainBoothList();
 
   // refetch queries
-  const queries = [
-    [BOOTH_QUERY_KEY.BOOTHS, currentSortBoothOption],
-    [WAITING_QUERY_KEY.NOW_WAITINGS],
-  ];
+  const queries = [["need value"]];
 
   return (
     <>

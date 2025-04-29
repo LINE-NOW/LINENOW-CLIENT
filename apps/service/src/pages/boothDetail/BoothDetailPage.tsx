@@ -3,7 +3,7 @@ import { useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
 import Separator from "@components/separator/Separator";
-import { useGetBooth } from "@hooks/apis/booth";
+
 import Spinner from "@components/spinner/Spinner";
 import {
   BoothDetailCard,
@@ -15,11 +15,12 @@ import WaitingCheckModal from "@pages/waitingCheck/_components/WaitingCheckModal
 import useAuth from "@hooks/useAuth";
 
 import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
-import { usePostWaitingCancel } from "@hooks/apis/waiting";
+
 import { Button } from "@linenow/core/components";
 import { useBottomSheet, useModal } from "@linenow/core/hooks";
 import { modalCancelWaiting } from "@components/modal/waiting";
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
+import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -31,7 +32,8 @@ const BoothDetailPage = () => {
 
   const boothNumber = boothId ? parseInt(boothId, 10) : null;
 
-  const { data: booth, isLoading } = useGetBooth({ boothID: boothNumber || 0 });
+  const { data: booth, isLoading } = useGetBooth(boothNumber || 0);
+  const { data: waiting } = useGetBoothWaiting(boothNumber || 0);
 
   const { openModal } = useModal();
 
@@ -45,9 +47,8 @@ const BoothDetailPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { mutate: postWaitingCancel } = usePostWaitingCancel();
   const cancelWaiting = () => {
-    postWaitingCancel(booth?.waitingID || 0);
+    console.log(waiting?.waitingID + "취소");
   };
 
   const onWaitingCancelClick = () => {
@@ -55,7 +56,7 @@ const BoothDetailPage = () => {
   };
 
   const getInformationTitle = () => {
-    switch (booth?.isOperated) {
+    switch (booth?.operatingStatus) {
       case "finished":
         return "부스가 종료되었어요";
       case "not_started":
@@ -66,23 +67,23 @@ const BoothDetailPage = () => {
   };
 
   const getInformationSub = () => {
-    switch (booth?.isOperated) {
+    switch (booth?.operatingStatus) {
       case "not_started":
         return "";
       case "finished":
         return undefined;
       default:
-        return `${booth?.totalWaitingTeams || 0}팀`;
+        return `${waiting?.totalWaitingTeams || 0}팀`;
     }
   };
 
   const getInformationButton = () => {
-    if (booth?.waitingStatus === "waiting") {
+    if (waiting?.waitingStatus === "waiting") {
       return (
         <>
           <Button variant="blueLight">
             <span>내 앞으로 지금</span>
-            <span className="blue">{booth.waitingTeamsAhead}팀</span>
+            <span className="blue">{waiting.waitingTeamsAhead}팀</span>
           </Button>
           <WaitingDetailCancel>
             <span onClick={onWaitingCancelClick}> 대기 취소하기</span>

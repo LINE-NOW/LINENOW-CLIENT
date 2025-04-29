@@ -4,7 +4,6 @@ import { Flex, Label, Select } from "@linenow/core/components";
 import useSortBooths from "./useSortBooths";
 import useMainViewType from "./useMainViewType";
 import MainMap from "../_components/map/MainMap";
-import { useGetBooths } from "@hooks/apis/booths";
 
 const useMainBoothList = () => {
   const { viewType } = useMainViewType();
@@ -15,8 +14,6 @@ const useMainBoothList = () => {
     handleSortBoothOptionChange,
   } = useSortBooths();
 
-  const { data: booths = [], isLoading: boothsIsLoading } = useGetBooths();
-
   // 부스 목록 정렬 옵션 선택
   const BoothOptionSelect = () => (
     <Select
@@ -26,11 +23,12 @@ const useMainBoothList = () => {
     />
   );
 
+  // 고민 좀 해보기...
   const getBoothListHeaderChildren = () =>
     viewType === "list" && (
       <Flex justifyContent="space-between">
         <Label font="body3" color="gray">
-          {booths.length}개의 부스
+          N개의 부스
         </Label>
 
         <BoothOptionSelect />
@@ -38,11 +36,7 @@ const useMainBoothList = () => {
     );
 
   const BoothList = () =>
-    viewType === "list" ? (
-      <MainBoothList booths={booths} isLoading={boothsIsLoading} />
-    ) : (
-      <MainMap />
-    );
+    viewType === "list" ? <MainBoothList /> : <MainMap />;
 
   return { getBoothListHeaderChildren, BoothList, currentSortBoothOption };
 };

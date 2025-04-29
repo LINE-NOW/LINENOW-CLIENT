@@ -14,7 +14,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <TestTool /> */}
+      <TestTool />
       <LinenowProvider maxWidth="540px">
         <RouterProvider router={router} />
       </LinenowProvider>

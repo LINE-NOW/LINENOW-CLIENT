@@ -12,7 +12,6 @@ export const dummyWaitings: React.ComponentProps<typeof WaitingCard>[] = [
       location: "더미 위치",
       description: "난 읽기 쉬운 맘이얌..",
     },
-    arrivalarrivalDueTime: "",
   },
   {
     waitingID: 2,
@@ -25,6 +24,5 @@ export const dummyWaitings: React.ComponentProps<typeof WaitingCard>[] = [
       location: "더미 위치",
       description: "난 읽기 쉬운 맘이얌..",
     },
-    arrivalarrivalDueTime: "",
   },
 ];

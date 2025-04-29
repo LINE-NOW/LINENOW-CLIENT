@@ -27,7 +27,7 @@ export const BoothDetailCard = ({ booth }: BoothDetailContentProps) => {
         {booth.images?.map((image, index) => (
           <SwiperSlide key={index}>
             <S.BoothDetailCardThumbnail
-              src={image.image}
+              src={image.imageURL}
               alt={`Booth image ${index + 1}`}
             />
           </SwiperSlide>

@@ -1,25 +1,32 @@
+import { useGetBooths, useGetBoothsWaiting } from "@hooks/apis/booth";
 import * as S from "./MainBoothList.styled";
 
-import Spinner from "@components/spinner/Spinner";
-import MainBoothListItem, { MainBoothListItemProps } from "./MainBoothListItem";
+import MainBoothListItem from "./MainBoothListItem";
 
-interface MainBoothListProps {
-  booths?: MainBoothListItemProps[];
-  isLoading: boolean;
-}
-
-const MainBoothList = (props: MainBoothListProps) => {
-  const { booths = [], isLoading } = props;
-
-  if (isLoading) {
-    return <Spinner />;
-  }
+const MainBoothList = () => {
+  const { data: booths = [] } = useGetBooths();
+  const { data: boothsWaiting = [] } = useGetBoothsWaiting();
 
   return (
     <div css={S.getBoothListWrapperStyle()}>
-      {booths.map((booth, index) => {
+      {booths.map((item, index) => {
         const isLast = index === booths.length - 1;
-        return <MainBoothListItem key={index} isLast={isLast} {...booth} />;
+        const booth = {
+          ...item,
+        };
+        const waiting = boothsWaiting[index];
+        if (booth.boothID !== waiting.boothID || waiting === undefined) {
+          return;
+        }
+        return (
+          <MainBoothListItem
+            key={index}
+            isLast={isLast}
+            waitingStatus={waiting.waitingStatus}
+            totalWaitingTeams={waiting.totalWaitingTeams}
+            {...booth}
+          />
+        );
       })}
     </div>
   );

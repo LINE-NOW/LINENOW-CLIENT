@@ -8,10 +8,11 @@ import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
 
 import Spinner from "@components/spinner/Spinner";
-import { useGetWaiting, usePostWaitingCancel } from "@hooks/apis/waiting";
+import { useGetWaiting, useGetWaitingBooth } from "@hooks/apis/waiting";
 
 import { Button } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
+import { Waiting } from "@interfaces/waiting";
 
 const WaitingDetailPage = () => {
   const navigate = useNavigate();
@@ -19,20 +20,22 @@ const WaitingDetailPage = () => {
   const waitingID = parseInt(params.waitingID || "0", 10);
 
   // 대기 상세 정보 가져오기
-  const { data: waitingDetail, isLoading } = useGetWaiting({
-    waitingID: waitingID,
-  });
+  const { data: waitingDetail, isLoading } = useGetWaiting(waitingID);
+  const { data: waitingBooth } = useGetWaitingBooth(waitingID);
 
   const { openModal } = useModal();
 
-  const { mutate: postWaitingCancel } = usePostWaitingCancel();
+  // const { mutate: postWaitingCancel } = usePostWaitingCancel();
 
   const waitingCancelModal = {
     title: "정말 대기를 취소하시겠어요?",
     sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
     primaryButton: {
       children: "줄 서기 취소하기",
-      onClick: () => postWaitingCancel(waitingID),
+      onClick: () => {
+        // postWaitingCancel(waitingID);
+        console.log("취소");
+      },
     },
     secondButton: {
       children: "이전으로",
@@ -69,11 +72,21 @@ const WaitingDetailPage = () => {
     );
   }
 
+  if (!waitingBooth) return;
+  const waiting: Waiting = {
+    wiaitngNum: waitingBooth.wiaitngNum,
+    personCount: waitingBooth.personCount,
+    createdAt: waitingBooth.createdAt,
+    booth: waitingBooth.booth,
+    waitingID: waitingID,
+    waitingStatus: waitingDetail.waitingStatus,
+    waitingTeamsAhead: waitingDetail.waitingTeamsAhead,
+  };
   return (
     <>
       <S.WaitingDetailPageBoothCardWrapper>
         <S.WaitingDetailPageBoothCard>
-          <BoothCardDetail waitingDetail={waitingDetail} />
+          <BoothCardDetail waitingDetail={waiting} />
         </S.WaitingDetailPageBoothCard>
       </S.WaitingDetailPageBoothCardWrapper>
 
