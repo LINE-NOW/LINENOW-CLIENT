@@ -116,7 +116,6 @@ const useFormReturn = <TFormData extends TFromDataField>(
     const { handleBlur, rules } = props;
     formValidation.current[name] = rules;
 
-    console.log(`${name.toString()} 렌더링`);
     return {
       ref: (el: HTMLInputElement | null) => {
         refs.current[name] = el;
@@ -141,9 +140,9 @@ const useFormReturn = <TFormData extends TFromDataField>(
     };
   };
 
-  useEffect(() => {
-    console.log(formState);
-  }, [formState]);
+  // useEffect(() => {
+  //   console.log(formState);
+  // }, [formState]);
 
   const isFormValidate = Object.keys(formState).every((state) => {
     const key = state as keyof TFieldStates;

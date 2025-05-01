@@ -4,6 +4,7 @@ import { postLogout } from "@apis/domains/user/postLogout";
 import { postRegistration } from "@apis/domains/user/postRegistration";
 import { postRegistrationMessage } from "@apis/domains/user/postRegistrationMessage";
 import { postWithdraw } from "@apis/domains/user/postWithdraw";
+import useAuth from "@hooks/useAuth";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetBlackuser = () => {
@@ -19,6 +20,8 @@ export const usePostLogin = () => {
     password: string;
   };
 
+  const { login } = useAuth();
+
   return useMutation({
     mutationKey: ["login"],
     mutationFn: (params: Parameter) =>
@@ -26,6 +29,9 @@ export const usePostLogin = () => {
         user_phone: params.phonenumber,
         user_password: params.password,
       }),
+    onSuccess: (data) => {
+      if (data != null) login({ accessToken: data.accessToken });
+    },
   });
 };
 

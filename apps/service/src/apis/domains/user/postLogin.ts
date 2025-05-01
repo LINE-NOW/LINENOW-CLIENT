@@ -34,11 +34,12 @@ const transformPostLoginResponse = (
 export const postLogin = async (
   body: PostLoginRequestBody
 ): Promise<PostLoginResponseReturn | null> => {
-  const response = await postResponse<PostLoginRequestBody, PostLoginResponse>(
-    `/api/v1/accounts/login`,
-    body
-  );
+  console.log("로그인");
+  const response = await postResponse<
+    PostLoginRequestBody,
+    Array<PostLoginResponse>
+  >(`/api/v1/accounts/login`, body);
 
   if (response === null) return null;
-  return transformPostLoginResponse(response);
+  return transformPostLoginResponse(response[0]);
 };
