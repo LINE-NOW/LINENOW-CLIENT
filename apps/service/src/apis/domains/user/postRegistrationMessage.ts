@@ -1,5 +1,4 @@
 import { postResponse } from "@apis/instance";
-import { getResponse } from "msw";
 
 type PostRegistrationRequestBody = {
   user_phone: string;

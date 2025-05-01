@@ -7,8 +7,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 //components
 import { LinenowProvider } from "@linenow/core/components";
-import TestTool from "./mocks/_components/TestTool";
 import { SplashProvider } from "@pages/waitingCheck/_components/splash/SplashContext";
+
+// import TestTool from "./mocks/_components/TestTool";
 
 function App() {
   const queryClient = new QueryClient();

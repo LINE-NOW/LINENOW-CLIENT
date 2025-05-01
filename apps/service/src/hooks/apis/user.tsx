@@ -1,4 +1,4 @@
-import { getBlackUser } from "@apis/domains/user/getBlackuser";
+import { getBlackUser } from "@apis/domains/user/getBlackUser";
 import { postLogin } from "@apis/domains/user/postLogin";
 import { postLogout } from "@apis/domains/user/postLogout";
 import { postRegistration } from "@apis/domains/user/postRegistration";

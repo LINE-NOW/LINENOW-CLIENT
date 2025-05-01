@@ -1,12 +1,6 @@
 import { delay, http, HttpResponse } from "msw";
 
 // dummy 데이터 import
-import {
-  dummyNowWaitingsResponse,
-  dummyWaitingsResponse,
-} from "./dummy/waitings";
-
-import { dummyBoothResponse } from "./dummy/booth";
 import { dummyWaitingDetailResponse } from "./dummy/waitingDetail";
 import { booth, waiting } from "./handlersV2";
 
