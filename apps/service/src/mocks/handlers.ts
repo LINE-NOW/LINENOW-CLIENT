@@ -5,9 +5,10 @@ import {
   dummyNowWaitingsResponse,
   dummyWaitingsResponse,
 } from "./dummy/waitings";
-import { dummyBoothListResponse } from "./dummy/boothList";
+
 import { dummyBoothResponse } from "./dummy/booth";
 import { dummyWaitingDetailResponse } from "./dummy/waitingDetail";
+import { booth, waiting } from "./handlersV2";
 
 const COMMON_DELAY = 0;
 
@@ -56,11 +57,8 @@ interface RegisterWaitingRequest {
 }
 
 export const handlers = [
-  http.get("/api/v1/waitings", getDelayedResponse(dummyWaitingsResponse)),
-  http.get(
-    "/api/v1/waitings/now-waitings",
-    getDelayedResponse(dummyNowWaitingsResponse)
-  ),
+  ...booth,
+  ...waiting,
 
   http.delete("/api/v1/deleteID", deleteDelayedResponse()),
   http.post("/api/v1/logout", async () => {
@@ -84,8 +82,6 @@ export const handlers = [
     }
   }),
 
-  http.get("/api/v1/booths", getDelayedResponse(dummyBoothListResponse)),
-  http.get(`/api/v1/booths/:boothId`, getDelayedResponse(dummyBoothResponse)),
   http.get(
     `/api/v1/waitings/:waitingID`,
     getDelayedResponse(dummyWaitingDetailResponse)

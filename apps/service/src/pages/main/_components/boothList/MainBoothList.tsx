@@ -15,9 +15,11 @@ const MainBoothList = () => {
           ...item,
         };
         const waiting = boothsWaiting[index];
+
         if (booth.boothID !== waiting.boothID || waiting === undefined) {
           return;
         }
+
         return (
           <MainBoothListItem
             key={index}

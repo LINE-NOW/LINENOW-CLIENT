@@ -3,7 +3,7 @@ import { Flex, Label, Select } from "@linenow/core/components";
 
 import useSortBooths from "./useSortBooths";
 import useMainViewType from "./useMainViewType";
-import MainMap from "../_components/map/MainMap";
+// import MainMap from "../_components/map/MainMap";
 
 const useMainBoothList = () => {
   const { viewType } = useMainViewType();
@@ -39,7 +39,8 @@ const useMainBoothList = () => {
     viewType === "list" ? (
       <MainBoothList />
     ) : (
-      <MainMap latitude={37.5584809} longitude={127.0004067} />
+      <div>dd</div>
+      // <MainMap latitude={37.5584809} longitude={127.0004067} />
     );
 
   return { getBoothListHeaderChildren, BoothList, currentSortBoothOption };

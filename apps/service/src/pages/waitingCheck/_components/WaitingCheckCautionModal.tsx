@@ -2,9 +2,7 @@ import InfoBottomButton from "@components/infobottomButton/InfoBottomButton";
 
 import { useState } from "react";
 import * as S from "./WaitingCheckComponents.styled";
-import { usePostWaitingRegister } from "@hooks/apis/waiting";
-import iconBefore from "/icons/icon_checkBox_before.svg";
-import iconAfter from "/icons/icon_checkBox_after.svg";
+
 import { Button, ButtonLayout } from "@linenow/core/components";
 
 interface WaitingCheckModalProps {
