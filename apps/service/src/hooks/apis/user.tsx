@@ -9,7 +9,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetBlackuser = () => {
   return useQuery({
-    queryKey: [],
+    queryKey: ["black_user"],
     queryFn: () => getBlackUser(),
   });
 };
