@@ -15,7 +15,7 @@ type GetWaitingsResponseItem = Pick<
 > & {
   booth_info: Pick<
     _Booth,
-    "booth_id" | "booth_name" | "booth_location" | "booth_thumbnail"
+    "booth_id" | "booth_name" | "booth_location" | "thumbnail"
   >;
 };
 
@@ -42,7 +42,7 @@ const transformWaitingsResponse = (
       booth: {
         boothID: item.booth_info.booth_id,
         name: item.booth_info.booth_location,
-        thumbnail: item.booth_info.booth_thumbnail,
+        thumbnail: item.booth_info.thumbnail,
         location: item.booth_info.booth_location,
       },
       waitingTeamsAhead: item.waiting_teams_ahead,

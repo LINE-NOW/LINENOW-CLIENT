@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
 import Separator from "@components/separator/Separator";

@@ -34,7 +34,6 @@ const transformPostLoginResponse = (
 export const postLogin = async (
   body: PostLoginRequestBody
 ): Promise<PostLoginResponseReturn | null> => {
-  console.log("로그인");
   const response = await postResponse<
     PostLoginRequestBody,
     Array<PostLoginResponse>

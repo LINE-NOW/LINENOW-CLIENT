@@ -8,19 +8,20 @@ const useAuth = () => {
 
   const login = ({ accessToken }: UserToken) => {
     if (auth) return;
-    console.log("로그인을 진행합니다.", accessToken);
-    localStorage.setItem("accessToken", accessToken);
 
+    localStorage.setItem("accessToken", accessToken);
     setAuth({ accessToken });
+
+    console.log("로그인 성공!");
   };
 
   const logout = () => {
     if (!auth) return; // 이미 로그아웃된 상태
 
-    // localStorage에서 토큰 삭제
     localStorage.removeItem("accessToken");
-
     setAuth(null);
+
+    console.log("로그아웃 성공!");
   };
 
   const isLogin = useMemo(() => auth != null, [auth]);

@@ -31,7 +31,7 @@ const useMainBoothList = () => {
           N개의 부스
         </Label>
 
-        <BoothOptionSelect />
+        {/* <BoothOptionSelect /> */}
       </Flex>
     );
 

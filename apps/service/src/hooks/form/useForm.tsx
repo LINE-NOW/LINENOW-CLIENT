@@ -140,23 +140,14 @@ const useFormReturn = <TFormData extends TFromDataField>(
     };
   };
 
-  // useEffect(() => {
-  //   console.log(formState);
-  // }, [formState]);
-
   const isFormValidate = Object.keys(formState).every((state) => {
     const key = state as keyof TFieldStates;
     return !formState[key].isError;
   });
 
-  const submitForm = () => {
-    console.log(values.current);
-    console.log("폼 제출에 성공했어요!");
-  };
-
   return {
     register,
-    submitForm,
+
     isFormValidate,
     getFieldIsError,
     values: values.current,

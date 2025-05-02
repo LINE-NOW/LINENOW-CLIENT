@@ -1,31 +1,25 @@
-import { useGetBooths, useGetBoothsWaiting } from "@hooks/apis/booth";
 import * as S from "./MainBoothList.styled";
 
 import MainBoothListItem from "./MainBoothListItem";
+import { useBoothList } from "./useBoothList";
 
 const MainBoothList = () => {
-  const { data: booths = [] } = useGetBooths();
-  const { data: boothsWaiting = [] } = useGetBoothsWaiting();
+  const { booths, currentWaitings } = useBoothList();
+
+  // 리스트가 비어있을 경우
+  if (booths.length === 0) return;
 
   return (
     <div css={S.getBoothListWrapperStyle()}>
-      {booths.map((item, index) => {
+      {booths.map((booth, index) => {
         const isLast = index === booths.length - 1;
-        const booth = {
-          ...item,
-        };
-        const waiting = boothsWaiting[index];
-
-        if (booth.boothID !== waiting.boothID || waiting === undefined) {
-          return;
-        }
+        const waiting = currentWaitings[booth.boothID];
 
         return (
           <MainBoothListItem
             key={index}
             isLast={isLast}
-            waitingStatus={waiting.waitingStatus}
-            totalWaitingTeams={waiting.totalWaitingTeams}
+            {...waiting}
             {...booth}
           />
         );

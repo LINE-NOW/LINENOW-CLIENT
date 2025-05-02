@@ -36,6 +36,7 @@ export const getResponse = async <TResponse>(
 ): Promise<TResponse | null> => {
   try {
     const response = await instance.get<BaseDTO<TResponse>>(url);
+    console.log(response);
     return response.data.data;
   } catch (error) {
     return null;
