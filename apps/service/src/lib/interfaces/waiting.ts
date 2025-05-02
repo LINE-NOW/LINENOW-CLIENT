@@ -1,25 +1,31 @@
 import { WaitingStatus } from "@linenow-types/status";
-import { BoothSummary } from "@interfaces/booth";
+import { Booth } from "./booth";
 
-export interface WaitingSummary {}
+type BoothInfo = Pick<Booth, "boothID" | "name" | "location" | "thumbnail"> &
+  Partial<Pick<Booth, "latitude" | "logitude" | "description">>;
 
-export interface Waiting {
+export interface Waiting
+  extends Pick<
+    BoothWaiting,
+    "waitingID" | "confirmedAt" | "waitingStatus" | "waitingTeamsAhead"
+  > {
+  wiaitngNum: number;
+  personCount: number; // person_num
+
+  createdAt: string;
+  confirmedAt?: string;
+  enteredAt?: string; // 입장 시간
+  canceledAt?: string; // 취소시간
+
+  booth: BoothInfo;
+}
+
+export interface BoothWaiting {
+  boothID: number;
   waitingID: number;
-  waitingStatus: WaitingStatus;
-
-  waitingCount?: number;
   totalWaitingTeams: number;
   waitingTeamsAhead: number;
+  waitingStatus: WaitingStatus;
 
-  partySize: number;
-
-  confirmDueTime: string;
-  arrivalarrivalDueTime: string;
-
-  booth: BoothSummary;
-
-  // registeredAt: string;
-  readyToConfirmAt?: string;
-  // confirmedAt?: string;
-  // canceledAt?: string;
+  confirmedAt?: string;
 }

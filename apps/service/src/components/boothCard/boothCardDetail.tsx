@@ -14,10 +14,17 @@ const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
         <BoothCardLayout
           type="waiting"
           boothImage={waitingDetail.booth?.thumbnail}
-          boothTitle={waitingDetail.booth?.name}
+          boothTitle={
+            <>
+              <span>{waitingDetail.personCount}명</span>
+              <span> · </span>
+              <span>{waitingDetail.booth?.name}</span>
+            </>
+          }
+          boothSummary={waitingDetail.booth?.description}
           boothLocationInfo={waitingDetail.booth?.location}
           header={waitingDetail.waitingTeamsAhead}
-          bottom={waitingDetail.partySize}
+          bottom={waitingDetail.personCount}
           navigateTo={navigateTo}
         />
       ) : (

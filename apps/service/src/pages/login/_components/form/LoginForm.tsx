@@ -16,14 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { register, isFormValidate } = useLoginForm();
-
-  // submit button
-  const SubmitButton = () => (
-    <Button type="submit" disabled={!isFormValidate}>
-      로그인하기
-    </Button>
-  );
+  const { register, SubmitButton } = useLoginForm();
 
   // signupButton
   const onClickSignupButton = () => {
@@ -33,7 +26,7 @@ const LoginForm = () => {
   // input props
   const phoneInput = {
     ...phoneInputProps,
-    ...register("phone"),
+    ...register("phonenumber"),
   };
 
   const passwordInput = {

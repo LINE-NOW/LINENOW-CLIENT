@@ -11,7 +11,7 @@ export const BoothDetailMenu = ({ booth }: BoothDetailContentProps) => {
     <S.BoothDetailMenuLayout>
       <Title>메뉴</Title>
       <S.BoothDetailMenuWrapper>
-        {booth.menu?.map((menu, index) => (
+        {booth.menus?.map((menu, index) => (
           <S.BoothDetailMenuArticleWrapper key={index}>
             <S.BoothDetailMenuArticle>{menu.name}</S.BoothDetailMenuArticle>
             <S.BoothDetailMenuArticle>

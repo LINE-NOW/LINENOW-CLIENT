@@ -2,19 +2,17 @@ import * as S from "./SettingPage.styled";
 import SettingItem from "./_components/settingItem/SettingItem";
 import SettingDeleteID from "./_components/deleteID/SettingDeleteID";
 
-// import { useAtom } from 'jotai';
-// import { languageAtom } from '@atoms/language';
-import { usePostLogout } from "@hooks/apis/auth";
 import { useModal } from "@linenow/core/hooks";
 
 const SettingPage = () => {
   const { openModal } = useModal();
-  const { mutate: postLogout } = usePostLogout();
+  // const { mutate: postLogout } = usePostLogout();
 
   // const [language, setLanguage] = useAtom(languageAtom);
 
   const handleLogout = async () => {
-    postLogout();
+    // postLogout();
+    console.log("로그아웃되었습니다.");
   };
 
   const logoutModalProps = {

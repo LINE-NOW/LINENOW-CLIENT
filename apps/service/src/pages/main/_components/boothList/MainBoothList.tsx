@@ -1,25 +1,28 @@
 import * as S from "./MainBoothList.styled";
 
-import Spinner from "@components/spinner/Spinner";
-import MainBoothListItem, { MainBoothListItemProps } from "./MainBoothListItem";
+import MainBoothListItem from "./MainBoothListItem";
+import { useBoothList } from "./useBoothList";
 
-interface MainBoothListProps {
-  booths?: MainBoothListItemProps[];
-  isLoading: boolean;
-}
+const MainBoothList = () => {
+  const { booths, currentWaitings } = useBoothList();
 
-const MainBoothList = (props: MainBoothListProps) => {
-  const { booths = [], isLoading } = props;
-
-  if (isLoading) {
-    return <Spinner />;
-  }
+  // 리스트가 비어있을 경우
+  if (booths.length === 0) return;
 
   return (
     <div css={S.getBoothListWrapperStyle()}>
       {booths.map((booth, index) => {
         const isLast = index === booths.length - 1;
-        return <MainBoothListItem key={index} isLast={isLast} {...booth} />;
+        const waiting = currentWaitings[booth.boothID];
+
+        return (
+          <MainBoothListItem
+            key={index}
+            isLast={isLast}
+            {...waiting}
+            {...booth}
+          />
+        );
       })}
     </div>
   );

@@ -1,7 +1,7 @@
 import * as S from "./WaitingCard.styled";
 
 import { Waiting } from "@interfaces/waiting";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Button, Flex } from "@linenow/core/components";
 import BoothThumbnailCompact from "@components/booth/BoothThumbnailCompact";
@@ -15,7 +15,7 @@ export interface WaitingCardProps
     | "waitingStatus"
     | "waitingTeamsAhead"
     | "booth"
-    | "arrivalarrivalDueTime"
+    | "confirmedAt"
   > {}
 
 interface Config {
@@ -25,19 +25,16 @@ interface Config {
 }
 
 const WaitingCard = (props: WaitingCardProps) => {
-  const {
-    waitingID,
-    waitingStatus,
-    waitingTeamsAhead,
-    booth,
-    arrivalarrivalDueTime,
-  } = props;
+  const { waitingID, waitingStatus, waitingTeamsAhead, booth, confirmedAt } =
+    props;
 
+  // TODO: -로직 작성 필요
+  const arrivalDueTiem = confirmedAt + "10분";
   const getConfig = (): Config => {
     switch (waitingStatus) {
-      case "ready_to_confirm":
+      case "entering":
         return {
-          button: <EnteranceButton targetTime={arrivalarrivalDueTime} />,
+          button: <EnteranceButton targetTime={arrivalDueTiem} />,
         };
       case "waiting":
         return {
@@ -56,13 +53,24 @@ const WaitingCard = (props: WaitingCardProps) => {
             />
           ),
         };
-      case "time_over_canceled":
+      case "time_over":
         return {
           disabled: true,
           button: (
             <Button
               variant="grayLight"
               children="대기가 시간이 초과 되었어요"
+              disabled={true}
+            />
+          ),
+        };
+      case "entered":
+        return {
+          disabled: true,
+          button: (
+            <Button
+              variant="lime"
+              children="입장을 완료했어요"
               disabled={true}
             />
           ),

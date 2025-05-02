@@ -4,6 +4,8 @@ import { Label } from "@linenow/core/components";
 
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import useMainScroll from "@pages/main/_hooks/useMainScroll";
+import useAuth from "@hooks/useAuth";
+import WaitingCardLogin from "@components/waitingCard/WaitingCardLogin";
 
 interface MainNavigationProps extends React.PropsWithChildren {}
 
@@ -11,6 +13,8 @@ const MainNavigation = (props: MainNavigationProps) => {
   const { children } = props;
   const { isFold } = useMainScroll();
   const { viewType } = useMainViewType();
+
+  const { isLogin } = useAuth();
 
   return (
     <>
@@ -20,7 +24,8 @@ const MainNavigation = (props: MainNavigationProps) => {
           <Label font="head2" color="white">
             라인나우
           </Label>
-          <MainNavigationWaitingList />
+
+          {isLogin ? <MainNavigationWaitingList /> : <WaitingCardLogin />}
         </div>
 
         {/* 부스 리스트 헤더 */}

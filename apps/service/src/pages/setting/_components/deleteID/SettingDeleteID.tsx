@@ -1,11 +1,9 @@
 import { useModal } from "@linenow/core/hooks";
 import * as S from "./SettingDeleteID.styled";
 
-import { usePostDeleteID } from "@hooks/apis/auth";
-
 const SettingDeleteID = () => {
   const { openModal } = useModal();
-  const { mutate: postDeleteID } = usePostDeleteID();
+  // const { mutate: postDeleteID } = usePostDeleteID();
 
   const handleDeleteIDClick = () => {
     openModal({
@@ -22,7 +20,8 @@ const SettingDeleteID = () => {
   };
 
   const handleDeleteID = async () => {
-    postDeleteID();
+    // postDeleteID();
+    console.log("탈퇴되었습니다.");
   };
 
   return (

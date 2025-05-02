@@ -1,54 +1,43 @@
-import { BoothStatus, WaitingStatus } from "@linenow-types/status";
+import { BoothStatus } from "@linenow-types/status";
 
 export interface BoothImage {
-  image: string;
+  imageID: number;
+  imageURL: string;
 }
 
 export interface Menu {
+  menuID: number;
   name: string;
-  price: string;
+  price: number;
 }
 
 export interface Booth {
   boothID: number;
   name: string;
-  description?: string;
+  description: string;
   thumbnail?: string;
+  notice: string;
+
   location: string;
-  caution: string;
+  latitude: string;
+  logitude: string;
 
   images: BoothImage[];
-  menu: Menu[];
+  menus: Menu[];
 
   openTime: string;
-  closeTime: string;
-
-  isOperated: BoothStatus;
-
-  waitingCount: number;
-  totalWaitingTeams: number;
-  waitingTeamsAhead: number;
-
-  isWaiting: boolean;
-  waitingID?: number;
-  waitingStatus: WaitingStatus;
+  operatingStatus: BoothStatus; // 부스의 운영 상태
 }
 
-export interface BoothSummary
-  extends Pick<Booth, "boothID" | "name" | "description" | "location"> {
-  thumbnail: string;
-}
-
-export interface BoothsElement
-  extends BoothSummary,
-    Pick<
-      Booth,
-      "isOperated" | "waitingCount" | "totalWaitingTeams" | "isWaiting"
-    > {
-  waitingStatus: WaitingStatus | null;
-}
-
-export interface Menu {
-  name: string;
-  price: string;
-}
+export interface BoothThumbnail
+  extends Pick<
+    Booth,
+    | "boothID"
+    | "name"
+    | "description"
+    | "location"
+    | "latitude"
+    | "logitude"
+    | "thumbnail"
+    | "operatingStatus"
+  > {}
