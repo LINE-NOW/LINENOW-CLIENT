@@ -3,6 +3,7 @@ import { RouterProvider } from "react-router-dom";
 import router from "@routes/router";
 
 // react-query
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 //components
@@ -17,6 +18,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* <TestTool /> */}
+      <ReactQueryDevtools initialIsOpen={true} />
       <LinenowProvider maxWidth="540px">
         <SplashProvider>
           <RouterProvider router={router} />

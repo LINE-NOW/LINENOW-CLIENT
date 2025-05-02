@@ -21,7 +21,6 @@ const BoothThumbnail = (props: BoothThumbnailProps) => {
     ...attributes
   } = props;
 
-  console.log(thumbnail);
   return (
     <Flex
       as="section"
