@@ -14,6 +14,7 @@ import { Button } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
 import { Waiting } from "@interfaces/waiting";
 import WaitingDetailMap from "./_components/WaitingDetailMap";
+import { postWaitingCancel } from "@apis/domains/waiting/postWaitingCancel";
 
 const WaitingDetailPage = () => {
   const navigate = useNavigate();
@@ -34,8 +35,7 @@ const WaitingDetailPage = () => {
     primaryButton: {
       children: "줄 서기 취소하기",
       onClick: () => {
-        // postWaitingCancel(waitingID);
-        console.log("취소");
+        postWaitingCancel({ waiting_id: waitingID });
       },
     },
     secondButton: {

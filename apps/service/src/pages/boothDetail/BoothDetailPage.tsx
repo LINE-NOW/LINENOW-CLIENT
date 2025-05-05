@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
 import Separator from "@components/separator/Separator";
@@ -21,9 +21,11 @@ import { useBottomSheet, useModal } from "@linenow/core/hooks";
 import { modalCancelWaiting } from "@components/modal/waiting";
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
+import { postWaitingCancel } from "@apis/domains/waiting/postWaitingCancel";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
+  const navigate = useNavigate();
   const { openBottomSheet } = useBottomSheet();
   const handleLoginButtonClick = () => {
     openBottomSheet({ children: <LoginBottomSheetContent /> });
@@ -48,9 +50,14 @@ const BoothDetailPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const cancelWaiting = () => {
-    console.log(waiting?.waitingID + "취소");
+    if (waiting?.waitingID !== undefined) {
+      console.log(waiting.waitingID + " 취소");
+      postWaitingCancel({ waiting_id: waiting.waitingID });
+      navigate("/", { replace: true });
+    } else {
+      console.warn("대기 취소 요청이 불가능합니다");
+    }
   };
-
   const onWaitingCancelClick = () => {
     openModal(modalCancelWaiting(cancelWaiting));
   };
@@ -150,9 +157,6 @@ const BoothDetailPage = () => {
               <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
             )}
           </BottomButton>
-          {isModalOpen && (
-            <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
-          )}
         </>
       )}
     </>
