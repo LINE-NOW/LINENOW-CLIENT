@@ -7,7 +7,7 @@ const TestTool = () => {
   const { auth, isLogin, login, logout } = useAuth();
 
   const handleLoginButton = () => {
-    login({ accessToken: "1234", refreshToken: "1234" });
+    login({ accessToken: "1234" });
   };
 
   return (

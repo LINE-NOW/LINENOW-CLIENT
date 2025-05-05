@@ -6,7 +6,7 @@ import { BoothWaiting } from "@interfaces/waiting";
 // 부스 상세-대기 정보
 type GetWaitingResponse = Pick<
   _Waiting,
-  "waiting_id" | "waiting_status" | "waiting_teams_ahead"
+  "waiting_id" | "waiting_status" | "waiting_team_ahead"
 > & {
   booth_info: Pick<_Booth, "booth_id"> & Pick<_Waiting, "total_waiting_teams">;
 };
@@ -26,7 +26,7 @@ const transformWaitingResponse = (
   return {
     waitingID: _response.waiting_id,
     waitingStatus: _response.waiting_status,
-    waitingTeamsAhead: _response.waiting_teams_ahead,
+    waitingTeamsAhead: _response.waiting_team_ahead,
     totalWaitingTeams: _response.booth_info.total_waiting_teams,
     boothID: _response.booth_info.booth_id,
   };

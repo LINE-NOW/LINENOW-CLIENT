@@ -16,7 +16,7 @@ export const dummyWaitingDetailResponse = {
   ready_to_confirm_at: null,
   confirmed_at: null,
   canceled_at: "2024-10-01T23:32:10.843250",
-  waiting_teams_ahead: 2,
+  waiting_team_ahead: 2,
   total_waiting_teams: 3,
   //TODO : - 세호님 변경사항 반영해주세요
   confirm_due_time: "00:00",

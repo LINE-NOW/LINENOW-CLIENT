@@ -16,7 +16,7 @@ export interface _Waiting {
 
   waiting_status: WaitingStatus;
   total_waiting_teams: number;
-  waiting_teams_ahead: number;
+  waiting_team_ahead: number;
 
   waiting_num: number;
   created_at: string;

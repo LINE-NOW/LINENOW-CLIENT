@@ -9,7 +9,7 @@ const Navigation = () => {
 
   const getNavigationTitle = () => {
     if (location.pathname.startsWith("/waiting/")) {
-      return <S.NavigationLabel>나의 줄서기 정보</S.NavigationLabel>;
+      return <S.NavigationLabel>나의 대기</S.NavigationLabel>;
     }
 
     switch (location.pathname) {
