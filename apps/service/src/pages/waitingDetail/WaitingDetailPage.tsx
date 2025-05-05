@@ -11,6 +11,7 @@ import { Button, Toast } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
 import WaitingDetailMap from "./_components/WaitingDetailMap";
 import { postWaitingCancel } from "@apis/domains/waiting/postWaitingCancel";
+import { modalCancelWaiting } from "@components/modal/waiting";
 // import useAnimation from "./hooks/useAnimation";  // 주석 처리
 
 const WaitingDetailPage = () => {
@@ -40,28 +41,20 @@ const WaitingDetailPage = () => {
     }
   }, [location.state]);
 
+  const cancelWaiting = () => {
+    if (waiting?.waitingID !== undefined) {
+      console.log(waiting.waitingID + " 취소");
+      postWaitingCancel({ waiting_id: waiting.waitingID });
+      navigate("/", {
+        replace: true,
+        state: { showToast: true, toastMessage: "대기가 취소되었습니다." },
+      });
+    } else {
+      console.warn("대기 취소 요청이 불가능합니다");
+    }
+  };
   const onWaitingCancelClick = () => {
-    openModal({
-      title: "정말 대기를 취소하시겠어요?",
-      sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
-      primaryButton: {
-        children: "줄 서기 취소하기",
-        onClick: async () => {
-          try {
-            await postWaitingCancel({ waiting_id: waitingID });
-            navigate("/", {
-              replace: true,
-              state: { toast: "대기가 취소되었습니다." },
-            });
-          } catch (e) {
-            console.error("대기 취소 실패", e);
-          }
-        },
-      },
-      secondButton: {
-        children: "이전으로",
-      },
-    });
+    openModal(modalCancelWaiting(cancelWaiting));
   };
 
   // 뒤로가기 방지
