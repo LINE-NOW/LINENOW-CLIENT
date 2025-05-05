@@ -7,7 +7,7 @@ import { Waiting } from "@interfaces/waiting";
 type GetWaitingsResponseItem = Pick<
   _Waiting,
   | "waiting_id"
-  | "waiting_teams_ahead"
+  | "waiting_team_ahead"
   | "waiting_status"
   | "created_at"
   | "confirmed_at"
@@ -45,7 +45,7 @@ const transformWaitingsResponse = (
         thumbnail: item.booth_info.thumbnail,
         location: item.booth_info.booth_location,
       },
-      waitingTeamsAhead: item.waiting_teams_ahead,
+      waitingTeamsAhead: item.waiting_team_ahead,
       waitingStatus: item.waiting_status,
       createdAt: item.created_at,
       confirmedAt: item.confirmed_at,

@@ -87,7 +87,7 @@ const WaitingDetailPage = () => {
   }
 
   const waiting = {
-    wiaitngNum: waitingBooth.wiaitngNum,
+    waitngNum: waitingBooth.waitngNum,
     personCount: waitingBooth.personCount,
     createdAt: waitingBooth.createdAt,
     booth: waitingBooth.booth,

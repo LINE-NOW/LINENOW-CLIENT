@@ -32,7 +32,7 @@ BoothCardProps) => {
   return (
     <S.BoothCardWrapper to={to || ""} $type={type}>
       {/* 상단 */}
-      {header && (
+      {header !== undefined && header !== null && (
         <S.BoothCardWaitingNum>
           <p>나의 대기 번호</p>
           <p className="waitingNum">{header}</p>
