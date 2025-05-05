@@ -4,7 +4,7 @@ import { getResponse } from "@apis/instance";
 import { Waiting } from "@interfaces/waiting";
 
 // 대기 상세 페이지-부스정보
-type GetWaitingBoothResponse = Pick<
+export type GetWaitingBoothResponse = Pick<
   _Waiting,
   | "waiting_id"
   | "waiting_num"

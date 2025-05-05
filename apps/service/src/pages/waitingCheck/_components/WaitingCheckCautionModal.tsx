@@ -4,23 +4,24 @@ import { useState } from "react";
 import * as S from "./WaitingCheckComponents.styled";
 
 import { Button, ButtonLayout } from "@linenow/core/components";
+import { useLocation } from "react-router-dom";
+import { postWaitingRegister } from "@apis/domains/waiting/postWaiting";
 
-interface WaitingCheckModalProps {
-  onClose: () => void;
-  checkedPeople: number;
-  boothId: number;
-}
-
-const WaitingCheckCautionModal = ({ onClose }: WaitingCheckModalProps) => {
+const WaitingCheckCautionModal = ({ onClose }: { onClose: () => void }) => {
   const [checked, setChecked] = useState(false);
+  const { state } = useLocation();
+  const { booth, checkedPeople } = state;
 
+  console.log("정보:", booth, checkedPeople);
   const handleCancel = () => {
     onClose();
   };
 
   const handleConfirm = () => {
-    console.log("post");
-    // postWaitingRegister({ boothID: boothId, partySize: checkedPeople });
+    postWaitingRegister({
+      booth_id: booth.boothID,
+      person_num: checkedPeople,
+    });
   };
 
   return (
@@ -46,7 +47,7 @@ const WaitingCheckCautionModal = ({ onClose }: WaitingCheckModalProps) => {
           <span>취소하기</span>
         </Button>
         <Button variant="blue" onClick={handleConfirm} disabled={!checked}>
-          <span>대기 줄 서기</span>
+          <span>대기하기</span>
         </Button>
       </ButtonLayout>
     </InfoBottomButton>
