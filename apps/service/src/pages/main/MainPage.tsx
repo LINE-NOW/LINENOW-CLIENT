@@ -60,6 +60,8 @@ const MainPage = () => {
           {...mainViewTypeSwitchProps}
         />
       </div>
+
+      {/* toast */}
       {showToast && (
         <Toast position="bottom" duration={1}>
           {toastMessage}
