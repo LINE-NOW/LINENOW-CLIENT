@@ -53,7 +53,10 @@ const BoothDetailPage = () => {
     if (waiting?.waitingID !== undefined) {
       console.log(waiting.waitingID + " 취소");
       postWaitingCancel({ waiting_id: waiting.waitingID });
-      navigate("/", { replace: true });
+      navigate("/", {
+        replace: true,
+        state: { showToast: true, toastMessage: "대기가 취소되었습니다." },
+      });
     } else {
       console.warn("대기 취소 요청이 불가능합니다");
     }

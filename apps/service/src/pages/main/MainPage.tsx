@@ -1,6 +1,6 @@
 import * as S from "./MainPage.styled";
 import MainNavigation from "./_components/mainNavigation/MainNavigation";
-import { Switch } from "@linenow/core/components";
+import { Switch, Toast } from "@linenow/core/components";
 
 // hooks
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
@@ -10,10 +10,28 @@ import RefetchButton from "@components/refetchButton/RefetchButton";
 // apis
 
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MainPage = () => {
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
   const { getBoothListHeaderChildren, BoothList } = useMainBoothList();
+  const location = useLocation();
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.showToast) {
+      setShowToast(true);
+      setToastMessage(location.state.toastMessage);
+
+      navigate(location.pathname, {
+        replace: true,
+        state: {},
+      });
+    }
+  }, [location.state]);
 
   // refetch queries
   const queries = [["need value"]];
@@ -42,6 +60,11 @@ const MainPage = () => {
           {...mainViewTypeSwitchProps}
         />
       </div>
+      {showToast && (
+        <Toast position="bottom" duration={1}>
+          {toastMessage}
+        </Toast>
+      )}
     </>
   );
 };

@@ -26,6 +26,7 @@ const WaitingDetailPage = () => {
   const { data: waitingBooth } = useGetWaitingBooth(waitingID);
 
   const { openModal } = useModal();
+  // const [showToast, setShowToast] = useState(false);
 
   // const { mutate: postWaitingCancel } = usePostWaitingCancel();
 
@@ -34,8 +35,16 @@ const WaitingDetailPage = () => {
     sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
     primaryButton: {
       children: "줄 서기 취소하기",
-      onClick: () => {
-        postWaitingCancel({ waiting_id: waitingID });
+      onClick: async () => {
+        try {
+          await postWaitingCancel({ waiting_id: waitingID });
+          navigate("/", {
+            replace: true,
+            state: { toast: "대기가 취소되었습니다." },
+          });
+        } catch (e) {
+          console.error("대기 취소 실패", e);
+        }
       },
     },
     secondButton: {
