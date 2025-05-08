@@ -15,8 +15,8 @@ const EnteranceButton = (props: EnteranceButtonProps) => {
   };
 
   return (
-    <Button variant="blueLight">
-      <span>내 앞으로 지금</span>
+    <Button variant="lime">
+      <span>시간 내에 입장해주세요</span>
       <span>{formatDateToMMSS()}</span>
     </Button>
   );
