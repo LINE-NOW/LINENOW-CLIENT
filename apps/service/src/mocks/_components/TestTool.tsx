@@ -1,25 +1,22 @@
 import styled from "@emotion/styled";
-import useAuth from "@hooks/useAuth";
+
+import useEntranceBottomSheet from "@hooks/useEntrance";
 import { useModal } from "@linenow/core/hooks";
 
 const TestTool = () => {
   const { openModal } = useModal();
-  const { auth, isLogin, login, logout } = useAuth();
-
-  const handleLoginButton = () => {
-    login({ accessToken: "1234", refreshToken: "1234" });
-  };
+  const { openEntrance } = useEntranceBottomSheet();
 
   return (
     <TestToolWrapper>
       <div>프론트의 테스트 툴입니다</div>
-      <button onClick={() => openModal({ title: "hello" })}>모달 열기</button>
-      <div>유저 정보 : {auth?.accessToken}</div>
-      {isLogin ? (
-        <button onClick={logout}>로그아웃</button>
-      ) : (
-        <button onClick={handleLoginButton}>로그인</button>
-      )}
+      <button
+        onClick={() => {
+          openEntrance();
+        }}
+      >
+        입장 바텀시트 열기
+      </button>
     </TestToolWrapper>
   );
 };
