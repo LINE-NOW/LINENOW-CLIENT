@@ -36,11 +36,12 @@ export const usePostLogin = () => {
   return useMutation({
     mutationKey: ["auth_login"],
     mutationFn: (requestBody: UsePostLoginProps) =>
-      postLogin({ admin_code: requestBody.adminCode }),
+      postLogin({ manager_code: requestBody.adminCode }),
     onSuccess: async (response: LoginResponse) => {
       login({
-        accessToken: response.access_token,
-        refreshToken: response.refresh_token,
+        accessToken: response.access,
+        refreshToken: response.refresh,
+        adminUser: response.user,
       });
       setLoadings({ isFullLoading: false });
     },

@@ -5,7 +5,7 @@ import {
   PostWaitingsActionRequest,
   transtromGetBoothStatus,
 } from "@apis/domains/boothManaging/_interfaces";
-import { getResponse, postNoResponse } from "@apis/instance";
+import { getResponse, postResponse } from "@apis/instance";
 
 import { Booth } from "@interfaces/booth";
 
@@ -25,7 +25,7 @@ export const postWaitingsAction = async (
   requestBody: PostWaitingsActionRequest
 ) => {
   try {
-    await postNoResponse<PostWaitingsActionRequest>(
+    await postResponse<PostWaitingsActionRequest, null>(
       `/api/v1/manager/waitings/${waitingID}/action`,
       requestBody
     );
@@ -47,7 +47,7 @@ export const getBoothStatus = async (): Promise<Booth> => {
 
 export const postBoothStatus = async (requestBody: PostBoothStatusRequest) => {
   try {
-    await postNoResponse<PostBoothStatusRequest>(
+    await postResponse<PostBoothStatusRequest, null>(
       `/api/v1/manager/booth/status`,
       requestBody
     );
@@ -59,7 +59,7 @@ export const postBoothStatus = async (requestBody: PostBoothStatusRequest) => {
 
 export const postBoothOperation = async (status: "pause" | "resume") => {
   try {
-    await postNoResponse<null>(`/api/v1/manager/booth/${status}`, null);
+    await postResponse<null, null>(`/api/v1/manager/booth/${status}`, null);
   } catch (error) {
     // TODO: -분기처리 세세하게
     throw error;
