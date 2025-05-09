@@ -26,6 +26,8 @@ import {
   modalStopOperation,
   modalStopWaiting,
 } from "@components/modal/boothStatus";
+import { authAtom } from "@atoms/auth";
+import { useAtom } from "jotai";
 
 export interface SidebarProps {
   isMobile: boolean;
@@ -38,6 +40,9 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const { setLoadings } = useIsLoading();
   const { data: boothData, isLoading } = useGetBoothStatus();
   const { mutate: postLogout, isPending: isLoadingLogout } = usePostLogout();
+  const [auth] = useAtom(authAtom);
+
+  console.log("관리자정보", auth);
 
   useEffect(() => {
     setBoothInfo(boothData || { boothID: 0, name: "", status: "not_started" });
@@ -208,7 +213,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
             <>
               <h3>안녕하세요</h3>
               <h1>
-                <span className="lime">{boothInfo?.name}</span> 님
+                <span className="lime">{auth?.adminUser.manager_name}</span> 님
               </h1>
               <CommonButton>
                 <S.SidebarLogout onClick={handleLogoutClick}>
