@@ -1,53 +1,50 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import * as S from "./WaitingDetailPage.styled";
 import BoothCardDetail from "@components/boothCard/boothCardDetail";
 import BottomButton from "@components/bottomButton/BottomButton";
 import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
-
 import Spinner from "@components/spinner/Spinner";
 import { useGetWaiting, useGetWaitingBooth } from "@hooks/apis/waiting";
-
-import { Button } from "@linenow/core/components";
+import { Button, Toast } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
-import { Waiting } from "@interfaces/waiting";
 import WaitingDetailMap from "./_components/WaitingDetailMap";
+import { postWaitingCancel } from "@apis/domains/waiting/postWaitingCancel";
+import { modalCancelWaiting } from "@components/modal/waiting";
+import useToastFromLocation from "@hooks/useToastFromLocation";
+// import useAnimation from "./hooks/useAnimation";  // 주석 처리
 
 const WaitingDetailPage = () => {
   const navigate = useNavigate();
   const params = useParams<{ waitingID: string }>();
   const waitingID = parseInt(params.waitingID || "0", 10);
+  const { showToast, toastMessage } = useToastFromLocation();
 
-  // 대기 상세 정보 가져오기
   const { data: waitingDetail, isLoading } = useGetWaiting(waitingID);
   const { data: waitingBooth } = useGetWaitingBooth(waitingID);
-
   const { openModal } = useModal();
 
-  // const { mutate: postWaitingCancel } = usePostWaitingCancel();
+  // 애니메이션 관련 코드 주석 처리
+  // const { fadeInCard, slideUpCard, showRest, showToast } = useAnimation(location.state?.withAnimation);
 
-  const waitingCancelModal = {
-    title: "정말 대기를 취소하시겠어요?",
-    sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
-    primaryButton: {
-      children: "줄 서기 취소하기",
-      onClick: () => {
-        // postWaitingCancel(waitingID);
-        console.log("취소");
-      },
-    },
-    secondButton: {
-      children: "이전으로",
-    },
+  const cancelWaiting = () => {
+    if (waiting?.waitingID !== undefined) {
+      console.log(waiting.waitingID + " 취소");
+      postWaitingCancel({ waiting_id: waiting.waitingID });
+      navigate("/", {
+        replace: true,
+        state: { showToast: true, toastMessage: "대기가 취소되었습니다." },
+      });
+    } else {
+      console.warn("대기 취소 요청이 불가능합니다");
+    }
   };
-
   const onWaitingCancelClick = () => {
-    openModal(waitingCancelModal);
+    openModal(modalCancelWaiting(cancelWaiting));
   };
 
-  //main으로 이동한 후 뒤로가기 막기
+  // 뒤로가기 방지
   useEffect(() => {
     const handlePopState = (event: PopStateEvent) => {
       event.preventDefault();
@@ -55,17 +52,13 @@ const WaitingDetailPage = () => {
     };
 
     window.addEventListener("popstate", handlePopState);
-
     return () => {
       window.removeEventListener("popstate", handlePopState);
     };
   }, [navigate]);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (!waitingDetail) {
+  if (isLoading) return <Spinner />;
+  if (!waitingDetail || !waitingBooth) {
     return (
       <S.WaitingDetailNoInfo>
         대기 상세 정보를 찾을 수 없습니다.
@@ -73,9 +66,8 @@ const WaitingDetailPage = () => {
     );
   }
 
-  if (!waitingBooth) return;
-  const waiting: Waiting = {
-    wiaitngNum: waitingBooth.wiaitngNum,
+  const waiting = {
+    waitngNum: waitingBooth.waitngNum,
     personCount: waitingBooth.personCount,
     createdAt: waitingBooth.createdAt,
     booth: waitingBooth.booth,
@@ -83,20 +75,37 @@ const WaitingDetailPage = () => {
     waitingStatus: waitingDetail.waitingStatus,
     waitingTeamsAhead: waitingDetail.waitingTeamsAhead,
   };
+
   return (
     <>
+      {showToast && (
+        <Toast position="top" duration={1}>
+          {toastMessage}
+        </Toast>
+      )}
+
+      {/* <S.WaitingDetailPageBoothCardWrapper isCentered={!slideUpCard}> */}
+      {/*   <S.WaitingDetailPageBoothCard */}
+      {/*     isCentered={!slideUpCard} */}
+      {/*     fadeIn={fadeInCard} */}
+      {/*     slideUp={slideUpCard} */}
+      {/*   > */}
+      {/*     <BoothCardDetail waitingDetail={waiting} /> */}
+      {/*   </S.WaitingDetailPageBoothCard> */}
+      {/* </S.WaitingDetailPageBoothCardWrapper> */}
+
       <S.WaitingDetailPageBoothCardWrapper>
         <S.WaitingDetailPageBoothCard>
           <BoothCardDetail waitingDetail={waiting} />
         </S.WaitingDetailPageBoothCard>
       </S.WaitingDetailPageBoothCardWrapper>
 
-      {/* Todo: 세호오빠 여기 지도 컴포넌트 가서 수정해주면 됩니당 */}
+      {/* 나머지 부분은 그대로 유지 */}
+      {/* <S.WaitingDetailRestWrapper show={true}> */}
       <WaitingDetailMap />
-
       <Separator />
-
       <WaitingDetailCaution />
+      {/* </S.WaitingDetailRestWrapper> */}
 
       <BottomButton
         informationTitle="전체 대기"

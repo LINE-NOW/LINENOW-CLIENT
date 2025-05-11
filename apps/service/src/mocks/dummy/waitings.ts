@@ -2,7 +2,7 @@ export const dummyWaitingsResponse = [
   {
     id: 1,
     waiting_status: "waiting",
-    waiting_teams_ahead: 5,
+    waiting_team_ahead: 5,
     party_size: 4,
     confirm_due_time: undefined, // Not applicable
     arrival_due_time: undefined, // Not applicable
@@ -18,7 +18,7 @@ export const dummyWaitingsResponse = [
   {
     id: 2,
     waiting_status: "ready_to_confirm",
-    waiting_teams_ahead: 0,
+    waiting_team_ahead: 0,
     party_size: 6,
     confirm_due_time: "2024-10-01T14:45:00Z", // Only applicable here
     arrival_due_time: undefined, // Not applicable
@@ -34,7 +34,7 @@ export const dummyWaitingsResponse = [
   {
     id: 3,
     waiting_status: "confirmed",
-    waiting_teams_ahead: 1,
+    waiting_team_ahead: 1,
     party_size: 2,
     confirm_due_time: "2024-10-01T15:00:00Z", // Both applicable here
     arrival_due_time: "2024-10-01T15:05:00Z", // Arrival time
@@ -50,7 +50,7 @@ export const dummyWaitingsResponse = [
   {
     id: 4,
     waiting_status: "waiting",
-    waiting_teams_ahead: 4,
+    waiting_team_ahead: 4,
     party_size: 3,
     confirm_due_time: undefined, // Not applicable
     arrival_due_time: undefined, // Not applicable
@@ -66,7 +66,7 @@ export const dummyWaitingsResponse = [
   {
     id: 5,
     waiting_status: "confirmed",
-    waiting_teams_ahead: 0,
+    waiting_team_ahead: 0,
     party_size: 2,
     confirm_due_time: "2024-10-01T15:20:00Z", // Both applicable here
     arrival_due_time: "2024-10-01T15:25:00Z", // Arrival time
@@ -82,7 +82,7 @@ export const dummyWaitingsResponse = [
   {
     id: 6,
     waiting_status: "waiting",
-    waiting_teams_ahead: 3,
+    waiting_team_ahead: 3,
     party_size: 5,
     confirm_due_time: undefined, // Not applicable
     arrival_due_time: undefined, // Not applicable
@@ -98,7 +98,7 @@ export const dummyWaitingsResponse = [
   {
     id: 7,
     waiting_status: "confirmed",
-    waiting_teams_ahead: 1,
+    waiting_team_ahead: 1,
     party_size: 4,
     confirm_due_time: "2024-10-01T15:40:00Z", // Both applicable here
     arrival_due_time: "2024-10-01T15:45:00Z", // Arrival time
@@ -114,7 +114,7 @@ export const dummyWaitingsResponse = [
   {
     id: 8,
     waiting_status: "waiting",
-    waiting_teams_ahead: 2,
+    waiting_team_ahead: 2,
     party_size: 8,
     confirm_due_time: undefined, // Not applicable
     arrival_due_time: undefined, // Not applicable
@@ -130,7 +130,7 @@ export const dummyWaitingsResponse = [
   {
     id: 9,
     waiting_status: "canceled",
-    waiting_teams_ahead: 5,
+    waiting_team_ahead: 5,
     party_size: 10,
     confirm_due_time: undefined, // Not applicable
     arrival_due_time: undefined, // Not applicable
@@ -146,7 +146,7 @@ export const dummyWaitingsResponse = [
   {
     id: 10,
     waiting_status: "waiting",
-    waiting_teams_ahead: 3,
+    waiting_team_ahead: 3,
     party_size: 2,
     confirm_due_time: undefined, // Not applicable
     arrival_due_time: undefined, // Not applicable

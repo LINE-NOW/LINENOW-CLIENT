@@ -8,7 +8,7 @@ export const modalCancelWaiting = (cancelWaiting: Action): ModalProps => {
     title: "정말 대기를 취소하시겠어요?",
     sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
     primaryButton: {
-      children: "줄 서기 취소하기",
+      children: "대기 취소하기",
       onClick: cancelWaiting,
     },
     secondButton: {

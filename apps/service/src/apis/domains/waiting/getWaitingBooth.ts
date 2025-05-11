@@ -4,7 +4,7 @@ import { getResponse } from "@apis/instance";
 import { Waiting } from "@interfaces/waiting";
 
 // 대기 상세 페이지-부스정보
-type GetWaitingBoothResponse = Pick<
+export type GetWaitingBoothResponse = Pick<
   _Waiting,
   | "waiting_id"
   | "waiting_num"
@@ -28,7 +28,7 @@ type GetWaitingBoothResponse = Pick<
 type GetWaitingBoothResponseReturn = Pick<
   Waiting,
   | "waitingID"
-  | "wiaitngNum"
+  | "waitngNum"
   | "personCount"
   | "booth"
   | "createdAt"
@@ -42,7 +42,7 @@ const transformWaitingBoothResponse = (
 ): GetWaitingBoothResponseReturn => {
   return {
     waitingID: _response.waiting_id,
-    wiaitngNum: _response.waiting_num,
+    waitngNum: _response.waiting_num,
     personCount: _response.person_num,
     booth: {
       boothID: _response.booth_info.booth_id,
@@ -63,7 +63,7 @@ export const getWaitingBooth = async (
   waitingID: number
 ): Promise<GetWaitingBoothResponseReturn | null> => {
   const response = await getResponse<GetWaitingBoothResponse>(
-    `/api/v1/waiting-booth/${waitingID}`
+    `/api/v1/waiting/${waitingID}`
   );
   if (response === null) return null;
   return transformWaitingBoothResponse(response);
