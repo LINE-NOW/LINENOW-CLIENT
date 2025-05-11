@@ -18,7 +18,5 @@ export const getWaitings = async (
       ? `/api/v1/manager/waitings?status=${status}`
       : `/api/v1/manager/booth`
   );
-
-  console.log("응답", response);
   return response ? transformGetWaitingsResponse(response) : [];
 };
