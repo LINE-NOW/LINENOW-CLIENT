@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import * as S from "./MainMap.styled";
+import { useGetBoothsLocation } from "@hooks/apis/booth";
 
 let mapInstance: naver.maps.Map | undefined;
 
@@ -25,6 +26,8 @@ const MainMap = ({
   longitude: number;
 }) => {
   const [isScriptLoaded, setScriptLoaded] = useState(false);
+  const { data: locations } = useGetBoothsLocation();
+  console.log(locations);
 
   useEffect(() => {
     if (typeof window.naver !== "undefined") {
