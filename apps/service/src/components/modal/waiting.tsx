@@ -42,7 +42,7 @@ export const modalConfirmEntrance = (
 };
 
 // 입장 전체 취소
-export const modalConfirmEntrance = (
+export const modalCancelAllEntrance = (
   waitingID: number,
   boothName: string
 ): ModalProps => {
