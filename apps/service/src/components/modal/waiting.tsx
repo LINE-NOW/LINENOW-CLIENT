@@ -18,13 +18,45 @@ export const modalCancelWaiting = (cancelWaiting: Action): ModalProps => {
 };
 
 // 입장 확정
-export const modalConfirmEntrance = (confirmEntrance: Action): ModalProps => {
+export const modalConfirmEntrance = (
+  waitingID: number,
+  boothName: string
+): ModalProps => {
+  const confirmEntrance = () => {
+    console.log(`${waitingID} 입장 확정`);
+  };
+
   return {
-    title: "다른 대기가 취소돼요",
-    sub: "입장을 확정하면 다른 대기는 취소돼요.\n 입장을 확정하시겠어요?",
+    title: "입장을 확정하시겠어요?",
+    sub: "이 부스의 입장을 확정할까요?\n다른 대기는 전부 취소돼요.",
+    content: <li>{boothName}</li>,
     primaryButton: {
       variant: "lime",
-      children: "입장 확정하기",
+      children: "확정하기",
+      onClick: confirmEntrance,
+    },
+    secondButton: {
+      children: "이전으로",
+    },
+  };
+};
+
+// 입장 전체 취소
+export const modalConfirmEntrance = (
+  waitingID: number,
+  boothName: string
+): ModalProps => {
+  const confirmEntrance = () => {
+    console.log(`${waitingID} 입장 확정`);
+  };
+
+  return {
+    title: "입장을 확정하시겠어요?",
+    sub: "이 부스의 입장을 확정할까요?\n다른 대기는 전부 취소돼요.",
+    content: <li>{boothName}</li>,
+    primaryButton: {
+      variant: "lime",
+      children: "확정하기",
       onClick: confirmEntrance,
     },
     secondButton: {

@@ -48,6 +48,7 @@ const useEntranceBottomSheet = () => {
     <BoothList>
       {enterings.map((waiting, index) => (
         <BoothCard
+          waitingID={waiting.waitingID}
           waitingStatus={"entering"}
           confirmedAt={waiting.confirmedAt}
           key={`entering-${index}`}
