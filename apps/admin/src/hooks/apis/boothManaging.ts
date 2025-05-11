@@ -1,7 +1,4 @@
-import {
-  PostBoothStatusRequest,
-  PostWaitingsActionRequest,
-} from "@apis/domains/boothManaging/_interfaces";
+import { PostBoothStatusRequest } from "@apis/domains/boothManaging/_interfaces";
 import {
   getBoothStatus,
   getWaitingsCounts,
@@ -16,15 +13,15 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 
 interface PostWaitingActionProps {
   waitingID: number;
-  requestBody: PostWaitingsActionRequest;
+  action: string;
 }
 
 export const usePostWaitingAction = () => {
   const { closeModal } = useModal();
   return useMutation<void, Error, PostWaitingActionProps>({
     mutationKey: [BOOTH_MANAGING_QUERY_KEY.ACTION],
-    mutationFn: ({ waitingID, requestBody }: PostWaitingActionProps) =>
-      postWaitingsAction(waitingID, requestBody),
+    mutationFn: ({ waitingID, action }: PostWaitingActionProps) =>
+      postWaitingsAction(waitingID, action),
     onSuccess: () => {
       closeModal();
       history.go(0); // 새로고침

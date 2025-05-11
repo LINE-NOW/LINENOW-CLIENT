@@ -57,7 +57,7 @@ export const useMainWaitingCard = ({
     const modal = modalApproveWaiting(userName, () => {
       postWaitingAction({
         waitingID,
-        requestBody: { action: "cancel" },
+        action: "confirm",
       });
     });
     openModal(modal);
@@ -67,7 +67,7 @@ export const useMainWaitingCard = ({
     const modal = modalCallWaiting(userName, () => {
       postWaitingAction({
         waitingID,
-        requestBody: { action: "call" },
+        action: "call",
       });
     });
     openModal(modal);

@@ -2,7 +2,6 @@ import {
   GetBoothStatus,
   GetWaitingCountsResponse,
   PostBoothStatusRequest,
-  PostWaitingsActionRequest,
   transtromGetBoothStatus,
 } from "@apis/domains/boothManaging/_interfaces";
 import { getResponse, postResponse } from "@apis/instance";
@@ -22,12 +21,13 @@ export const getWaitingsCounts = async () => {
 
 export const postWaitingsAction = async (
   waitingID: number,
-  requestBody: PostWaitingsActionRequest
+
+  action: string
 ) => {
   try {
-    await postResponse<PostWaitingsActionRequest, null>(
-      `/api/v1/manager/waitings/${waitingID}/action`,
-      requestBody
+    await postResponse<null, null>(
+      `/api/v1/waiting/${waitingID}/${action}`,
+      null
     );
   } catch (error) {
     // TODO: -분기처리 세세하게

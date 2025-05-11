@@ -31,7 +31,7 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
     const modal = modalCancelWaiting(waiting.user.name, () => {
       postWaitingAction({
         waitingID: waiting.waitingID,
-        requestBody: { action: "cancel" },
+        action: "manager-cancel",
       });
     });
     openModal(modal);
