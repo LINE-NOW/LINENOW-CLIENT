@@ -37,6 +37,13 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
     openModal(modal);
   };
 
+  //전화번호 복사
+  const handleCopyPhoneNumber = () => {
+    navigator.clipboard.writeText(waiting.user.phoneNumber).then(() => {
+      alert("전화번호가 복사되었습니다!");
+    });
+  };
+
   const config = useMainWaitingCard({
     waitingID: waiting.waitingID,
     userName: waiting.user.name,
@@ -82,13 +89,16 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
         </S.MainWaitingCardHeader>
 
         <S.MainWaitingCardInfoBox>
-          <S.MainWaitingCardPartySizeInfo
-            style={{
-              color: `${config.partySizeColor}`,
-            }}
-          >
+          <S.MainWaitingCardPartySizeInfo>
             <label>입장인원</label>
-            <span className="partySize">{waiting.personNum}명</span>
+            <span
+              className="partySize"
+              style={{
+                color: `${config.partySizeColor}`,
+              }}
+            >
+              {waiting.personNum}명
+            </span>
           </S.MainWaitingCardPartySizeInfo>
 
           <S.MainWaitingCardUserInfo>
@@ -100,7 +110,10 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
               font="body3"
               color="gray"
             >
-              <span style={{ textDecoration: "underline" }}>
+              <span
+                style={{ textDecoration: "underline" }}
+                onClick={handleCopyPhoneNumber}
+              >
                 {waiting.user.phoneNumber}
               </span>
             </IconLabel>
