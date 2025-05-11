@@ -15,7 +15,6 @@ import MyWaitingPage from "@pages/myWaiting/MyWaiting";
 import SignupPage from "@pages/signup/SignupPage";
 import GuestRoute from "./GuestRoute";
 import LoginPage from "@pages/login/LoginPage";
-import TestWebSocket from "@pages/TestWebsocket";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +40,6 @@ const router = createBrowserRouter([
               { path: "waiting/:waitingID", element: <WaitingDetailPage /> },
               { path: "my-waiting", element: <MyWaitingPage /> },
               { path: "setting", element: <SettingPage /> },
-              { path: "socket", element: <TestWebSocket /> },
             ],
           },
         ],
