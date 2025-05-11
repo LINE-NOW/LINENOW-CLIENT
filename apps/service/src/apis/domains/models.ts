@@ -51,3 +51,10 @@ export interface _Image {
   booth_image_id: number;
   booth_image: string;
 }
+
+export interface _Location {
+  booth_id: number;
+  booth_latitude: string;
+  booth_longitude: string;
+  operating_status: BoothStatus;
+}
