@@ -48,7 +48,7 @@ export const getBoothStatus = async (): Promise<Booth> => {
 export const postBoothStatus = async (requestBody: PostBoothStatusRequest) => {
   try {
     await postResponse<PostBoothStatusRequest, null>(
-      `/api/v1/manager/booth/status`,
+      `/api/v1/manager/booth/operating-status`,
       requestBody
     );
   } catch (error) {
