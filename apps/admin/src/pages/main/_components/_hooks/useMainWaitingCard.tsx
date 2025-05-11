@@ -1,7 +1,5 @@
 import { WaitingStatus } from "@linenow-types/status";
-
 import { Button } from "@linenow/core/components";
-
 import { useModal } from "@linenow/core/hooks";
 import useCountdown from "@hooks/useCountdown";
 import {
@@ -9,6 +7,19 @@ import {
   modalCallWaiting,
 } from "@components/modal/waiting";
 import { usePostWaitingAction } from "@hooks/apis/boothManaging";
+
+// ✅ 허용된 배경색 타입 명시
+type BackgroundColor =
+  | "white"
+  | "black"
+  | "blackLight"
+  | "gray"
+  | "grayLight"
+  | "grayGhost"
+  | "blue"
+  | "blueLight"
+  | "lime"
+  | "limeLight";
 
 interface MainWaitingCardProps {
   waitingID: number;
@@ -21,11 +32,10 @@ interface MainWaitingCardButtonProps
   extends Omit<React.ComponentProps<typeof Button>, "size"> {}
 
 interface MainWaitingCardConfig {
-  backgroundColor: string;
+  backgroundColor: BackgroundColor;
   isValidate: boolean;
   primaryButton: MainWaitingCardButtonProps;
   secondButton?: MainWaitingCardButtonProps;
-
   partySizeColor?: string;
   userInfoOpacity?: string;
 }
@@ -41,13 +51,12 @@ export const useMainWaitingCard = ({
   });
 
   const { openModal } = useModal();
-
   const { mutate: postWaitingAction } = usePostWaitingAction();
 
   const handleApproveWaitingButton = () => {
     const modal = modalApproveWaiting(userName, () => {
       postWaitingAction({
-        waitingID: waitingID,
+        waitingID,
         requestBody: { action: "cancel" },
       });
     });
@@ -57,11 +66,10 @@ export const useMainWaitingCard = ({
   const handleCallWaitingButton = () => {
     const modal = modalCallWaiting(userName, () => {
       postWaitingAction({
-        waitingID: waitingID,
+        waitingID,
         requestBody: { action: "call" },
       });
     });
-
     openModal(modal);
   };
 
@@ -87,18 +95,16 @@ export const useMainWaitingCard = ({
       primaryButton: callWaitingButton,
       secondButton: approveWaitingButton(false),
     },
-
-    ready_to_confirm: {
-      backgroundColor: "limeLight",
-      isValidate: true,
-      primaryButton: {
-        children: "손님이 입장을 확정중이에요",
-        variant: "limeLight",
-      },
-      secondButton: approveWaitingButton(false),
-    },
-
-    confirmed: {
+    // ready_to_confirm: {
+    //   backgroundColor: "limeLight",
+    //   isValidate: true,
+    //   primaryButton: {
+    //     children: "손님이 입장을 확정중이에요",
+    //     variant: "limeLight",
+    //   },
+    //   secondButton: approveWaitingButton(false),
+    // },
+    entering: {
       backgroundColor: "lime",
       isValidate: true,
       primaryButton: {
@@ -110,8 +116,7 @@ export const useMainWaitingCard = ({
       },
       secondButton: approveWaitingButton(true),
     },
-
-    arrived: {
+    entered: {
       backgroundColor: "grayLight",
       isValidate: false,
       primaryButton: {
@@ -121,7 +126,6 @@ export const useMainWaitingCard = ({
       },
       userInfoOpacity: "20%",
     },
-
     canceled: {
       backgroundColor: "grayLight",
       isValidate: false,
@@ -132,8 +136,7 @@ export const useMainWaitingCard = ({
       },
       partySizeColor: "grayLight",
     },
-
-    time_over_canceled: {
+    time_over: {
       backgroundColor: "grayLight",
       isValidate: false,
       primaryButton: {
@@ -144,5 +147,6 @@ export const useMainWaitingCard = ({
       partySizeColor: "grayLight",
     },
   };
+
   return mainWaitingCardConfig[waitingStatus];
 };

@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
-import { fonts } from "@linenow/core/styles";
+import { backgroundColors, fonts } from "@linenow/core/styles";
+
+type BackgroundColorKey = keyof typeof backgroundColors;
 
 interface MainWaitingCardWrapperProps {
-  $backgroundColor: string;
+  $backgroundColor: BackgroundColorKey;
 }
 
 export const MainWaitingCardWrapper = styled.div<MainWaitingCardWrapperProps>`
@@ -15,8 +17,8 @@ export const MainWaitingCardWrapper = styled.div<MainWaitingCardWrapperProps>`
   height: auto;
 
   border-radius: 0.75rem;
-  /* TODO:-scheme */
-  /* background-color:  */
+  background-color: ${({ $backgroundColor, theme }) =>
+    theme.backgroundColors[$backgroundColor]};
 `;
 
 export const MainWaitingCardContentWrapper = styled.section`
@@ -40,14 +42,13 @@ export const MainWaitingCardHeader = styled.div`
     flex-shrink: 0;
 
     width: 3.25rem;
-
     text-align: center;
 
     ${fonts.head1}
   }
+
   > .waitingTime {
     flex-grow: 1;
-
     overflow: hidden;
 
     ${fonts.caption}
@@ -77,7 +78,6 @@ export const MainWaitingCardPartySizeInfo = styled.div`
   gap: 0.25rem;
 
   width: 4rem;
-
   margin: 0rem 1.25rem;
 
   > label {
