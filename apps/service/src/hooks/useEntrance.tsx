@@ -1,7 +1,7 @@
 // hooks
 import { useMemo } from "react";
-import { useBottomSheet } from "@linenow/core/hooks";
-import { useGetWaitings } from "./apis/waiting";
+import { useBottomSheet, useModal } from "@linenow/core/hooks";
+import { useGetWaitings, usePostCancelWaiting } from "./apis/waiting";
 
 // components
 import { Button, Flex } from "@linenow/core/components";
@@ -11,11 +11,13 @@ import BoothList from "@components/bottomSheet/entrance/boothList/BoothList";
 import BoothCard from "@components/bottomSheet/entrance/boothList/BoothCard";
 import EnteranceButton from "@components/button/EnteranceButton";
 import EnteranceBottomSheetContent from "@components/bottomSheet/entrance/EnteraceBottomSheetContent";
+import {
+  useModalCancelAllEntrance,
+  useModalCancelEntrance,
+} from "@components/modal/waiting";
 
 const useEntranceBottomSheet = () => {
   const { data = [] } = useGetWaitings("waiting");
-  // const [waitings, setWaitings] = useState<typeof data>([]);
-  // const [enterings, setEnterings] = useState<typeof data>([]);
 
   const waitings = useMemo(
     () => data.filter((w) => w.waitingStatus === "waiting"),
@@ -66,14 +68,25 @@ const useEntranceBottomSheet = () => {
     </BoothList>
   );
 
+  const cancelEnteranceModal = useModalCancelEntrance();
+  const cancelAllEnteranceModal = useModalCancelAllEntrance();
+  const { openModal } = useModal();
+
   const buttons = isSingleEntering ? (
     <>
       <EnteranceButton confirmedAt={enterings[0].confirmedAt} />
-      <Button variant="outline">입장 취소하기</Button>
+      <Button variant="outline" onClick={() => openModal(cancelEnteranceModal)}>
+        입장 취소하기
+      </Button>
     </>
   ) : (
     <>
-      <Button variant="outline">입장 차례인 부스 모두 취소할게요.</Button>
+      <Button
+        variant="outline"
+        onClick={() => openModal(cancelAllEnteranceModal)}
+      >
+        모든 입장 가능 부스 대기 취소하기
+      </Button>
     </>
   );
 

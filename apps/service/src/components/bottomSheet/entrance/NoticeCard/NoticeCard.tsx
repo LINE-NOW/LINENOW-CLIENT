@@ -1,13 +1,19 @@
+import { useModal } from "@linenow/core/hooks";
 import * as S from "./NoticeCard.styled";
 import { Flex, IconLabel, Label } from "@linenow/core/components";
+import { useModalCancelAllWaiting } from "@components/modal/waiting";
 
 const NoticeCard = () => {
+  const modal = useModalCancelAllWaiting();
+  const { openModal } = useModal();
+
   return (
     <Flex
       direction="column"
       gap="0.5rem"
       padding="0.875rem 1.25rem"
       css={S.getContainerStyle}
+      onClick={() => openModal(modal)}
     >
       <Label font="body2" color="blackLight">
         다른 부스의 대기가 아직 진행중이에요. <br />

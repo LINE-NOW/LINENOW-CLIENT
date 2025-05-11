@@ -4,7 +4,7 @@ import { Waiting } from "@interfaces/waiting";
 import { Chip, Flex } from "@linenow/core/components";
 import EnteringChip from "./EnteringChip";
 import { useModal } from "@linenow/core/hooks";
-import { modalConfirmEntrance } from "@components/modal/waiting";
+import { useModalConfirmEntrance } from "@components/modal/waiting";
 
 interface BoothCardProps
   extends React.ComponentProps<typeof BoothThumbnailCompact>,
@@ -24,9 +24,10 @@ const BoothCard = (props: BoothCardProps) => {
     ...booth
   } = props;
   const { openModal } = useModal();
+  const confirmEnteranceModal = useModalConfirmEntrance(waitingID, booth.name);
   const onClick = () =>
-    waitingStatus === "entering" &&
-    openModal(modalConfirmEntrance(waitingID, booth.name));
+    waitingStatus === "entering" && openModal(confirmEnteranceModal);
+
   return (
     <Flex
       gap="0.75rem"

@@ -41,7 +41,7 @@ const transformWaitingsResponse = (
       waitingID: item.waiting_id,
       booth: {
         boothID: item.booth_info.booth_id,
-        name: item.booth_info.booth_location,
+        name: item.booth_info.booth_name,
         thumbnail: item.booth_info.thumbnail,
         location: item.booth_info.booth_location,
       },

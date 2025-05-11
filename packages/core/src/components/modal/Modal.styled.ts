@@ -59,7 +59,9 @@ export const ModalTextSub = styled.span`
 `;
 
 export const ModalContentContainer = styled.ul`
+  display: flex;
   flex-direction: column;
+  gap: 0.25rem;
   border-radius: 0.5rem;
   padding: 0.75rem;
   background-color: ${({ theme }) => theme.backgroundColors.grayGhost};

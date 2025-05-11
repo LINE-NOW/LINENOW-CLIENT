@@ -9,7 +9,7 @@ type GetCancelAllEnteringResponse = {
 
 export const getCancelAllEntering = async (): Promise<string[]> => {
   const response = await getResponse<GetCancelAllEnteringResponse>(
-    `/api/v1/waiting/view-waiting`
+    `/api/v1/waiting/entering-waiting`
   );
   if (response === null) return [];
   return response.booth_names;

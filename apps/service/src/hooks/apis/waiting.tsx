@@ -69,7 +69,14 @@ export const usePostCancelAllWaiting = () => {
 
 export const usePostSelectEntering = () => {
   return useMutation({
-    mutationKey: ["post_select_entering"],
+    mutationKey: ["select_entering"],
+    mutationFn: (waitingID: number) => postSelectEntering(waitingID),
+  });
+};
+
+export const usePostCancelWaiting = () => {
+  return useMutation({
+    mutationKey: ["cancel_waiting"],
     mutationFn: (waitingID: number) => postSelectEntering(waitingID),
   });
 };
