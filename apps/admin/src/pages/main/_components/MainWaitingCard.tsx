@@ -70,9 +70,7 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
           <span className="waitingID">
             {waiting.waitingID.toString().padStart(3, "0")}
           </span>
-          <span className="waitingTime">
-            {formatDate(waiting.registeredAt)}
-          </span>
+          <span className="waitingTime">{formatDate(waiting.createdAt)}</span>
 
           {config.isValidate ? (
             <CommonButton onClick={handleCancelWaitingButton}>
@@ -86,7 +84,7 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
         >
           <S.MainWaitingCardPartySizeInfo>
             <label>입장인원</label>
-            <span className="partySize">{waiting.partySize}명</span>
+            <span className="partySize">{waiting.personNum}명</span>
           </S.MainWaitingCardPartySizeInfo>
 
           <S.MainWaitingCardUserInfo>

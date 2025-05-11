@@ -16,8 +16,9 @@ export const getWaitings = async (
   const response = await getResponse<GetWaitingsResponse>(
     status != undefined
       ? `/api/v1/manager/waitings?status=${status}`
-      : `/api/v1/manager/waitings`
+      : `/api/v1/manager/booth`
   );
 
-  return response ? transformGetWaitingsResponse(response) : []; // 변환 후 반환
+  console.log("응답", response);
+  return response ? transformGetWaitingsResponse(response) : [];
 };

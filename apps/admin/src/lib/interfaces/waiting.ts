@@ -4,16 +4,15 @@ import { User } from "./user";
 export interface Waiting {
   waitingID: number;
   waitingStatus: WaitingStatus;
-
-  partySize: number;
+  waitingNum: number;
+  personNum: number;
 
   user: User;
 
   confirmDueTime?: string;
   arrivalDueTime?: string;
 
-  registeredAt: string;
-  // readyToConfirmAt?: string;
-  // confirmedAt?: string;
-  // canceledAt?: string;
+  createdAt: string;
+  confirmedAt: string | null;
+  canceledAt: string | null;
 }
