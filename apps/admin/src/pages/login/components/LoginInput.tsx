@@ -1,4 +1,4 @@
-import { InputText } from "@linenow/core/components";
+import { Icon, InputText } from "@linenow/core/components";
 import * as S from "./LoginInput_styled";
 import { useState } from "react";
 
@@ -30,10 +30,12 @@ const LoginInput = ({
         maxLength={maxLength}
         placeholder={placeholder}
       />
-      <S.LoginInputIcon
-        src={showPassword ? "/icons/eye_open.svg" : "/icons/eye_close.svg"}
-        onClick={onShowPw}
-      />
+      <S.LoginInputIcon onClick={onShowPw}>
+        <Icon
+          icon={showPassword ? "eye_open" : "eye_close"}
+          color="grayLight"
+        />
+      </S.LoginInputIcon>
     </S.LoginInputWrapper>
   );
 };

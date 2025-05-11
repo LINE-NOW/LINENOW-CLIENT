@@ -5,9 +5,7 @@ export const LoginInputWrapper = styled.div`
   position: relative;
 `;
 
-export const LoginInputIcon = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
+export const LoginInputIcon = styled.div`
   position: absolute;
   top: 0.7rem;
   right: 1rem;
