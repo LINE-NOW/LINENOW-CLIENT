@@ -38,7 +38,7 @@ const transformWaitingsResponse = (
 ): GetWaitingsResponseReturn => {
   return _response.map(
     (item): GetWaitingsResponseReturnItem => ({
-      waitingID: 0,
+      waitingID: item.waiting_id,
       booth: {
         boothID: item.booth_info.booth_id,
         name: item.booth_info.booth_location,

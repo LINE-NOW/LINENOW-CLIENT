@@ -1,8 +1,14 @@
 import * as S from "./WaitingDetailCard.styled";
 import BoothThumbnailCompact from "@components/booth/BoothThumbnailCompact";
+import { Waiting } from "@interfaces/waiting";
 import { Flex, Label } from "@linenow/core/components";
 
-const WaitingDetaiCard = () => {
+interface WaitingDetailCardProps
+  extends Pick<Waiting, "waitingID" | "wiaitngNum" | "personCount" | "booth"> {}
+
+const WaitingDetailCard = (props: WaitingDetailCardProps) => {
+  const { wiaitngNum, personCount, booth } = props;
+
   return (
     <Flex
       as="section"
@@ -19,21 +25,15 @@ const WaitingDetaiCard = () => {
         gap="0.25rem"
         padding="0.5rem 0rem 0rem 0rem"
       >
-        <Label as={"caption"} font="body2" color="blackLight">
+        <Label font="body2" color="blackLight">
           나의 대기 번호
         </Label>
         <Label font="head1_b" color="blue">
-          005
+          {wiaitngNum}
         </Label>
       </Flex>
 
-      <BoothThumbnailCompact
-        boothID={1}
-        name={"동국대학교"}
-        location={"팔정도"}
-        thumbnail="http://linenow-backend.store/media/booth_2/IMG_8242.jpeg"
-        css={S.getBoothCardStyle}
-      />
+      <BoothThumbnailCompact css={S.getBoothCardStyle} {...booth} />
 
       <Flex direction="column" gap="0.25rem" width="100%">
         <Flex direction="row" justifyContent="space-between" width="100%">
@@ -41,7 +41,7 @@ const WaitingDetaiCard = () => {
             이용인원
           </Label>
           <Label font="body2_b" color="blackLight">
-            4명
+            {personCount}명
           </Label>
         </Flex>
 
@@ -53,4 +53,4 @@ const WaitingDetaiCard = () => {
   );
 };
 
-export default WaitingDetaiCard;
+export default WaitingDetailCard;

@@ -29,7 +29,7 @@ export const useGetWaiting = (waitingID: number) => {
 
 export const useGetWaitingBooth = (waitingID: number) => {
   return useQuery({
-    queryKey: ["waiting_booth"],
+    queryKey: ["waiting_booth", waitingID],
     queryFn: () => getWaitingBooth(waitingID),
   });
 };

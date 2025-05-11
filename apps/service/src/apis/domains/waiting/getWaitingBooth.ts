@@ -63,7 +63,7 @@ export const getWaitingBooth = async (
   waitingID: number
 ): Promise<GetWaitingBoothResponseReturn | null> => {
   const response = await getResponse<GetWaitingBoothResponse>(
-    `/api/v1/waiting-booth/${waitingID}`
+    `/api/v1/waiting/${waitingID}`
   );
   if (response === null) return null;
   return transformWaitingBoothResponse(response);

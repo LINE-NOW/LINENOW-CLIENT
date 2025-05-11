@@ -4,7 +4,6 @@ import useEntranceBottomSheet from "@hooks/useEntrance";
 import { useModal } from "@linenow/core/hooks";
 
 const TestTool = () => {
-  const { openModal } = useModal();
   const { openEntrance } = useEntranceBottomSheet();
 
   return (
