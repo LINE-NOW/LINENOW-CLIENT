@@ -2,7 +2,7 @@ import { WaitingStatus } from "@linenow-types/status";
 import { Booth } from "./booth";
 
 type BoothInfo = Pick<Booth, "boothID" | "name" | "location" | "thumbnail"> &
-  Partial<Pick<Booth, "latitude" | "logitude" | "description">>;
+  Partial<Pick<Booth, "latitude" | "longitude" | "description">>;
 
 export interface Waiting
   extends Pick<

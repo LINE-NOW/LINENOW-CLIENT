@@ -6,8 +6,7 @@ type GetBoothsLocation = Array<_BoothLocation>;
 interface GetBoothsLocationReturn
   extends Pick<
     Booth,
-    "boothID" | "latitude" | "logitude" | "operatingStatus"
-    // TODO: logitude -> longitude 바꿔야 할 듯!
+    "boothID" | "latitude" | "longitude" | "operatingStatus"
   > {}
 
 const transformBoothLocation = (
@@ -16,7 +15,7 @@ const transformBoothLocation = (
   return _response.map((item) => ({
     boothID: item.booth_id,
     latitude: item.booth_latitude,
-    logitude: item.booth_longitude,
+    longitude: item.booth_longitude,
     operatingStatus: item.operating_status,
   }));
 };

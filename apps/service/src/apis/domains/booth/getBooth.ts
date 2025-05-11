@@ -28,7 +28,7 @@ type GetBoothResponseReturn = Pick<
   | "operatingStatus"
   | "openTime"
   | "latitude"
-  | "logitude"
+  | "longitude"
   | "menus"
   | "images"
 >;
@@ -58,7 +58,7 @@ const transformBoothResponse = (
     operatingStatus: _response.operating_status,
     openTime: _response.booth_start_time,
     latitude: _response.booth_latitude,
-    logitude: _response.booth_longitude,
+    longitude: _response.booth_longitude,
     menus: menus,
     images: images,
   };
