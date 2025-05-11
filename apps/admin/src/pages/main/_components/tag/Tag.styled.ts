@@ -33,9 +33,20 @@ export const TagImage = styled.img`
 export const TagListWrapper = styled.div`
   display: flex;
   flex-shrink: 0;
-
+  align-items: center;
   width: 100%;
   padding: 1rem 2rem 1.25rem 2rem;
-  gap: 0.75rem;
   overflow-x: scroll;
+  justify-content: space-between;
+`;
+
+export const TagListContainer = styled.section`
+  display: flex;
+  gap: 0.75rem;
+`;
+
+export const TagRefreshContainer = styled.section`
+  cursor: pointer;
+  display: flex;
+  justify-content: end;
 `;

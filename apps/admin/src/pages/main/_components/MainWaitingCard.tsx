@@ -111,7 +111,7 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
               color="gray"
             >
               <span
-                style={{ textDecoration: "underline" }}
+                style={{ textDecoration: "underline", cursor: "pointer" }}
                 onClick={handleCopyPhoneNumber}
               >
                 {waiting.user.phoneNumber}

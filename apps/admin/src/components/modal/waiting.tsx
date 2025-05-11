@@ -11,10 +11,10 @@ export const modalCancelWaiting = (
     title: `${userName}님의 대기를 취소하시겠습니까?`,
     sub: "대기 취소를 누르면 대기 상태가 취소됩니다.\n취소된 대기는 복구되지 않습니다.",
     secondButton: {
-      children: "이전으로",
+      children: "취소",
     },
     primaryButton: {
-      children: "대기 취소하기",
+      children: "대기취소",
       onClick: cancelWaiting,
     },
   };
@@ -24,9 +24,9 @@ export const modalCancelWaiting = (
 export const modalCallWaiting = (userName: string, callWaiting: Action) => {
   return {
     title: `${userName}님을 호출하시겠습니까?`,
-    sub: `손님에게 호출 알림톡이 전송됩니다.`,
+    sub: `손님에게 호출 알림문자가 전송됩니다.`,
     secondButton: {
-      children: "이전으로",
+      children: "취소",
     },
     primaryButton: {
       children: "호출하기",
@@ -43,7 +43,7 @@ export const modalApproveWaiting = (
     title: `${userName}의 입장을 완료하시겠습니까?`,
     sub: `입장완료를 누르면 ${userName}님의 입장이 완료됩니다.`,
     secondButton: {
-      children: "이전으로",
+      children: "취소",
     },
     primaryButton: {
       children: "입장 완료하기",
