@@ -7,7 +7,6 @@ interface BoothCardDetailProps {
 
 const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
   const navigateTo = `/booth/${waitingDetail.booth?.boothID}`;
-  console.log("웨", waitingDetail.waitingTeamsAhead);
 
   return (
     <>

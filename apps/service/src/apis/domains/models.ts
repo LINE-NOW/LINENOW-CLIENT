@@ -37,7 +37,7 @@ export interface _Booth {
   booth_latitude: string;
   booth_longitude: string;
   operating_status: BoothStatus;
-  menu_info: _Menu[];
+  booth_menu_info: _Menu[];
   booth_image_info: _Image[];
 }
 

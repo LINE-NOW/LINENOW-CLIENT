@@ -1,4 +1,4 @@
-import { IconLabel } from "@linenow/core/components";
+import { Icon, IconLabel } from "@linenow/core/components";
 import * as S from "./BoothCard.styled";
 // import { Link } from "react-router-dom";
 
@@ -59,7 +59,7 @@ BoothCardProps) => {
           </IconLabel>
         </S.BoothCardInformationLabelWrapper>
 
-        <img src="/icons/right_arrow.svg" alt="Go to details" />
+        <Icon icon="right" color="gray" />
       </S.BoothCardInformationWrapper>
 
       {/* 하단 */}
