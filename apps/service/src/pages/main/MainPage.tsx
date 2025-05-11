@@ -10,28 +10,12 @@ import RefetchButton from "@components/refetchButton/RefetchButton";
 // apis
 
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import useToastFromLocation from "@hooks/useToastFromLocation";
 
 const MainPage = () => {
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
   const { getBoothListHeaderChildren, BoothList } = useMainBoothList();
-  const location = useLocation();
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (location.state?.showToast) {
-      setShowToast(true);
-      setToastMessage(location.state.toastMessage);
-
-      navigate(location.pathname, {
-        replace: true,
-        state: {},
-      });
-    }
-  }, [location.state]);
+  const { showToast, toastMessage } = useToastFromLocation();
 
   // refetch queries
   const queries = [["need value"]];
