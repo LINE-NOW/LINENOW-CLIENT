@@ -8,18 +8,7 @@ import {
 } from "@components/modal/waiting";
 import { usePostWaitingAction } from "@hooks/apis/boothManaging";
 
-// ✅ 허용된 배경색 타입 명시
-type BackgroundColor =
-  | "white"
-  | "black"
-  | "blackLight"
-  | "gray"
-  | "grayLight"
-  | "grayGhost"
-  | "blue"
-  | "blueLight"
-  | "lime"
-  | "limeLight";
+type BackgroundColor = "grayLight" | "blueLight" | "lime" | "limeLight";
 
 interface MainWaitingCardProps {
   waitingID: number;
@@ -121,30 +110,30 @@ export const useMainWaitingCard = ({
       isValidate: false,
       primaryButton: {
         children: "입장을 완료했어요",
-        variant: "outline",
+        variant: "grayLight",
         disabled: true,
       },
-      userInfoOpacity: "20%",
+      userInfoOpacity: "0.2",
     },
     canceled: {
       backgroundColor: "grayLight",
       isValidate: false,
       primaryButton: {
         children: "대기가 취소되었어요",
-        variant: "outline",
+        variant: "grayLight",
         disabled: true,
       },
-      partySizeColor: "grayLight",
+      partySizeColor: "#979BA4",
     },
     time_over: {
       backgroundColor: "grayLight",
       isValidate: false,
       primaryButton: {
         children: "대기 시간이 초과되었어요",
-        variant: "outline",
+        variant: "grayLight",
         disabled: true,
       },
-      partySizeColor: "grayLight",
+      partySizeColor: "#979BA4",
     },
   };
 

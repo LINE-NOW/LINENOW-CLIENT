@@ -63,7 +63,9 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
   return (
     <S.MainWaitingCardWrapper
       $backgroundColor={config.backgroundColor}
-      style={{ opacity: `${config.userInfoOpacity}` }}
+      style={{
+        opacity: `${config.userInfoOpacity}`,
+      }}
     >
       <S.MainWaitingCardContentWrapper>
         <S.MainWaitingCardHeader>
@@ -79,10 +81,12 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
           ) : null}
         </S.MainWaitingCardHeader>
 
-        <S.MainWaitingCardInfoBox
-          style={{ opacity: `${config.userInfoOpacity}` }}
-        >
-          <S.MainWaitingCardPartySizeInfo>
+        <S.MainWaitingCardInfoBox>
+          <S.MainWaitingCardPartySizeInfo
+            style={{
+              color: `${config.partySizeColor}`,
+            }}
+          >
             <label>입장인원</label>
             <span className="partySize">{waiting.personNum}명</span>
           </S.MainWaitingCardPartySizeInfo>
