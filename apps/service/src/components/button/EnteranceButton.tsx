@@ -1,23 +1,21 @@
 import { Button } from "@linenow/core/components";
+import { useCountdown } from "@linenow/core/hooks";
+import { getEnteringTime } from "@utils/calculate";
 
 interface EnteranceButtonProps {
-  targetTime?: string;
+  confirmedAt?: string;
 }
 const EnteranceButton = (props: EnteranceButtonProps) => {
-  const { targetTime } = props;
+  const { confirmedAt = "" } = props;
 
-  const formatDateToMMSS = () => {
-    const date = targetTime ? new Date(targetTime) : new Date();
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
-
-    return `${minutes}:${seconds}`;
-  };
+  const { getString, isCountdownOver } = useCountdown({
+    targetDate: getEnteringTime(confirmedAt),
+  });
 
   return (
-    <Button variant="lime">
+    <Button variant="lime" disabled={isCountdownOver}>
       <span>시간 내에 입장해주세요</span>
-      <span>{formatDateToMMSS()}</span>
+      <span>{isCountdownOver ? "시간종료" : getString("MMSS")}</span>
     </Button>
   );
 };

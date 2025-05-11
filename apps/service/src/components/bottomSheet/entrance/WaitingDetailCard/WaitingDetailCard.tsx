@@ -1,14 +1,19 @@
 import * as S from "./WaitingDetailCard.styled";
 import BoothThumbnailCompact from "@components/booth/BoothThumbnailCompact";
-import { Waiting } from "@interfaces/waiting";
+import { useGetWaitingBooth } from "@hooks/apis/waiting";
+
 import { Flex, Label } from "@linenow/core/components";
 
-interface WaitingDetailCardProps
-  extends Pick<Waiting, "waitingID" | "wiaitngNum" | "personCount" | "booth"> {}
+interface WaitingDetailCardProps {
+  waitingID: number;
+}
 
 const WaitingDetailCard = (props: WaitingDetailCardProps) => {
-  const { wiaitngNum, personCount, booth } = props;
+  const { waitingID } = props;
+  const { data: waiting, isLoading } = useGetWaitingBooth(waitingID);
 
+  if (isLoading) return <div>로딩중</div>;
+  if (!waiting) return <div>없음</div>;
   return (
     <Flex
       as="section"
@@ -29,11 +34,11 @@ const WaitingDetailCard = (props: WaitingDetailCardProps) => {
           나의 대기 번호
         </Label>
         <Label font="head1_b" color="blue">
-          {wiaitngNum}
+          {waiting.wiaitngNum}
         </Label>
       </Flex>
 
-      <BoothThumbnailCompact css={S.getBoothCardStyle} {...booth} />
+      <BoothThumbnailCompact css={S.getBoothCardStyle} {...waiting.booth} />
 
       <Flex direction="column" gap="0.25rem" width="100%">
         <Flex direction="row" justifyContent="space-between" width="100%">
@@ -41,7 +46,7 @@ const WaitingDetailCard = (props: WaitingDetailCardProps) => {
             이용인원
           </Label>
           <Label font="body2_b" color="blackLight">
-            {personCount}명
+            {waiting.personCount}명
           </Label>
         </Flex>
 

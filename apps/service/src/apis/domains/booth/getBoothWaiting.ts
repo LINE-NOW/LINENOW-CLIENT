@@ -10,7 +10,7 @@ type GetBoothWaitingResponse = Pick<
   | "waiting_id"
   | "waiting_status"
   | "total_waiting_teams"
-  | "waiting_teams_ahead"
+  | "waiting_team_ahead"
   | "confirmed_at"
 >;
 
@@ -19,7 +19,7 @@ type GetBoothWaitingResponseReturn = Pick<
   | "boothID"
   | "waitingID"
   | "waitingStatus"
-  | "totalWaitingTeams"
+  | "totalwaitingTeams"
   | "waitingTeamsAhead"
   | "confirmedAt"
 >;
@@ -31,8 +31,8 @@ const transformBoothWaitingResponse = (
     boothID: _response.booth_id,
     waitingID: _response.waiting_id,
     waitingStatus: _response.waiting_status,
-    totalWaitingTeams: _response.total_waiting_teams,
-    waitingTeamsAhead: _response.waiting_teams_ahead,
+    totalwaitingTeams: _response.total_waiting_teams,
+    waitingTeamsAhead: _response.waiting_team_ahead,
   };
 };
 

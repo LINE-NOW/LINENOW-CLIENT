@@ -1,35 +1,11 @@
 import { Flex } from "@linenow/core/components";
-import BoothCard from "./BoothCard";
+import { PropsWithChildren } from "react";
 
-interface BoothListProps {
-  waitings: React.ComponentProps<typeof BoothCard>[];
-  enterings: React.ComponentProps<typeof BoothCard>[];
-}
+interface BoothListProps extends PropsWithChildren {}
 const BoothList = (props: BoothListProps) => {
-  const { waitings, enterings } = props;
+  const { children } = props;
 
-  return (
-    <Flex direction="column">
-      {enterings.map((waiting, index) => (
-        <BoothCard
-          key={index}
-          boothID={waiting.boothID}
-          thumbnail={waiting.thumbnail}
-          name={waiting.name}
-          location={waiting.location}
-        />
-      ))}
-      {waitings.map((waiting, index) => (
-        <BoothCard
-          key={index}
-          boothID={waiting.boothID}
-          thumbnail={waiting.thumbnail}
-          name={waiting.name}
-          location={waiting.location}
-        />
-      ))}
-    </Flex>
-  );
+  return <Flex direction="column">{children}</Flex>;
 };
 
 export default BoothList;

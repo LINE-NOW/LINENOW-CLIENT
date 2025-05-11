@@ -100,7 +100,7 @@ const WaitingDetailPage = () => {
 
       <BottomButton
         informationTitle="전체 대기"
-        informationSub={`${waitingDetail?.totalWaitingTeams || 0}팀`}
+        informationSub={`${waitingDetail?.totalwaitingTeams || 0}팀`}
       >
         <Button variant="blueLight">
           <span>내 앞으로 지금</span>

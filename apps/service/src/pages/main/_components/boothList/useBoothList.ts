@@ -7,13 +7,13 @@ export const useBoothList = () => {
 
   const currentWaitings: Record<
     number,
-    Pick<BoothWaiting, "waitingStatus" | "totalWaitingTeams">
+    Pick<BoothWaiting, "waitingStatus" | "totalwaitingTeams">
   > = {};
 
   for (let waiting of waitings) {
     currentWaitings[waiting.boothID] = {
       waitingStatus: waiting.waitingStatus,
-      totalWaitingTeams: waiting.totalWaitingTeams,
+      totalwaitingTeams: waiting.totalwaitingTeams,
     };
   }
 

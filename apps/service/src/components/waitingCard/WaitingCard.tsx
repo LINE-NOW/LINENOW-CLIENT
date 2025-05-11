@@ -28,13 +28,11 @@ const WaitingCard = (props: WaitingCardProps) => {
   const { waitingID, waitingStatus, waitingTeamsAhead, booth, confirmedAt } =
     props;
 
-  // TODO: -로직 작성 필요
-  const arrivalDueTiem = confirmedAt + "10분";
   const getConfig = (): Config => {
     switch (waitingStatus) {
       case "entering":
         return {
-          button: <EnteranceButton targetTime={arrivalDueTiem} />,
+          button: <EnteranceButton confirmedAt={confirmedAt} />,
         };
       case "waiting":
         return {

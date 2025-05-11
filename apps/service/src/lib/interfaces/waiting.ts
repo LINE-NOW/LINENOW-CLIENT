@@ -23,7 +23,7 @@ export interface Waiting
 export interface BoothWaiting {
   boothID: number;
   waitingID: number;
-  totalWaitingTeams: number;
+  totalwaitingTeams: number;
   waitingTeamsAhead: number;
   waitingStatus: WaitingStatus;
 
