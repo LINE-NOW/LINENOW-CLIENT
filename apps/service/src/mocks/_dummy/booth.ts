@@ -14,7 +14,7 @@ export const dummyBooths: _Booth[] = [
     booth_latitude: "37.55893664",
     booth_longitude: "126.9987376",
     operating_status: "operating",
-    menu_info: [
+    booth_menu_info: [
       {
         menu_id: 1,
         menu_name: "라인나우 튀김",
@@ -50,7 +50,7 @@ export const dummyBooths: _Booth[] = [
     booth_latitude: "37.55893664",
     booth_longitude: "126.9987376",
     operating_status: "operating",
-    menu_info: [
+    booth_menu_info: [
       {
         menu_id: 1,
         menu_name: "프론트만두",

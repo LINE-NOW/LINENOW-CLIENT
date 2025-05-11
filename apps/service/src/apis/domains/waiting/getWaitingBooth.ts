@@ -21,7 +21,7 @@ type GetWaitingBoothResponse = Pick<
     | "booth_location"
     | "booth_latitude"
     | "booth_longitude"
-    | "thumbnail"
+    | "booth_thumbnail"
   >;
 };
 
@@ -50,7 +50,7 @@ const transformWaitingBoothResponse = (
       location: _response.booth_info.booth_location,
       logitude: _response.booth_info.booth_longitude,
       latitude: _response.booth_info.booth_latitude,
-      thumbnail: _response.booth_info.thumbnail,
+      thumbnail: _response.booth_info.booth_thumbnail,
     },
     createdAt: _response.canceled_at,
     confirmedAt: _response.confirmed_at,

@@ -14,7 +14,7 @@ type GetBoothResponse = Pick<
   | "booth_start_time"
   | "booth_longitude"
   | "booth_latitude"
-  | "menu_info"
+  | "booth_menu_info"
   | "booth_image_info"
 >;
 
@@ -36,7 +36,7 @@ type GetBoothResponseReturn = Pick<
 const transformBoothResponse = (
   _response: GetBoothResponse
 ): GetBoothResponseReturn => {
-  const menus: Menu[] = _response.menu_info.map(
+  const menus: Menu[] = _response.booth_menu_info.map(
     (item): Menu => ({
       menuID: item.menu_id,
       name: item.menu_name,
