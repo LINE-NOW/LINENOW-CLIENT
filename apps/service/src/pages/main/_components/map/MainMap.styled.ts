@@ -17,3 +17,7 @@ export const getWrapper = () => css`
     }
   }
 `;
+
+export const getButtonStyle = () => css`
+  padding: 1rem;
+`;

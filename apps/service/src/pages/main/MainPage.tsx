@@ -36,6 +36,8 @@ const MainPage = () => {
           queries={queries}
         />
 
+        {/* TODO: viewType에 따라 버튼 두 개 분기 */}
+
         {/* list, map 토글 버튼 */}
         <Switch
           css={S.getFloatingButtonStyle("switch")}

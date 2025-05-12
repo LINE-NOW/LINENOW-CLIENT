@@ -1,25 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import { loadScript } from "@utils/loadScript";
 import { BoothsLocationType } from "@apis/domains/booth/getBoothsLocation";
+
 import { createRoot } from "react-dom/client";
+
 import { Icon } from "@linenow/core/components";
 
-export const useNaverMap = (locations?: BoothsLocationType) => {
+export const useNaverMap = (
+  isReady: boolean,
+  locations?: BoothsLocationType
+) => {
   const mapRef = useRef<naver.maps.Map | null>(null);
-  const [isReady, setReady] = useState(false);
-
-  useEffect(() => {
-    loadScript(
-      `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${
-        import.meta.env.VITE_NAVER_MAP_KEY
-      }`,
-      () => setReady(true)
-    );
-  }, []);
+  const [selectedBoothID, setSelectedBoothID] = useState<number | null>(null);
+  const markersRef = useRef<Record<number, naver.maps.Marker>>({});
 
   useEffect(() => {
     if (!isReady || !locations) return;
-
     const timeoutId = setTimeout(() => {
       const map = new naver.maps.Map("map", {
         center: new naver.maps.LatLng(37.5584809, 127.0004067),
@@ -30,29 +25,53 @@ export const useNaverMap = (locations?: BoothsLocationType) => {
           position: naver.maps.Position.TOP_RIGHT,
         },
       });
-      locations.forEach((booth) => {
+
+      const renderMarker = () => {
         const container = document.createElement("div");
-        createRoot(container).render(<Icon icon="pin" />);
+        createRoot(container).render(<Icon icon="waiting_pin" />);
+        return container;
+      };
+
+      const markers: Record<number, naver.maps.Marker> = {};
+      locations.forEach((booth) => {
+        const container = renderMarker();
         const marker = new naver.maps.Marker({
           position: new naver.maps.LatLng(
             Number(booth.latitude),
             Number(booth.longitude)
           ),
-          icon: {
-            content: container,
-          },
+          icon: { content: container },
           map,
         });
+
+        markers[booth.boothID] = marker;
+
         naver.maps.Event.addListener(marker, "click", () => {
-          map.setCenter(marker.getPosition());
+          setSelectedBoothID(booth.boothID);
+          map.panTo(marker.getPosition());
         });
       });
 
+      markersRef.current = markers;
       mapRef.current = map;
     }, 300);
-
     return () => clearTimeout(timeoutId);
   }, [isReady, locations]);
+
+  useEffect(() => {
+    if (!locations || !mapRef.current) return;
+
+    locations.forEach((booth) => {
+      const marker = markersRef.current[booth.boothID];
+      if (!marker) return;
+
+      const container = document.createElement("div");
+      const isSelected = booth.boothID === selectedBoothID;
+      const iconType = isSelected ? "pin" : "waiting_pin";
+      createRoot(container).render(<Icon icon={iconType} />);
+      marker.setIcon({ content: container });
+    });
+  }, [selectedBoothID]);
 
   return { mapRef };
 };

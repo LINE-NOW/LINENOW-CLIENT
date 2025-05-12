@@ -24,6 +24,7 @@ import RightIcon from "./assets/RightIcon";
 import SettingIcon from "./assets/SettingIcon";
 import SortIcon from "./assets/SortIcon";
 import UpIcon from "./assets/UpIcon";
+import WaitingPinIcon from "./assets/WaitingPinIcon";
 import XIcon from "./assets/XIocn";
 
 export type IconType = typeof icons;
@@ -57,6 +58,7 @@ export const icons = {
   list: ListIcon,
   map: MapIcon,
   my_location: MyLocationIcon,
+  waiting_pin: WaitingPinIcon,
 };
 
 export const IconList = Object.keys(icons);
