@@ -4,22 +4,23 @@ import { BoothsLocationType } from "@apis/domains/booth/getBoothsLocation";
 import { createRoot } from "react-dom/client";
 
 import { Icon } from "@linenow/core/components";
+import { useAtom } from "jotai";
+import { latLngAtom } from "@atoms/location";
 
 export const useNaverMap = (
   isReady: boolean,
-  locations?: BoothsLocationType,
-  lat: number = 37.5584809,
-  lon: number = 127.0004067
+  locations?: BoothsLocationType
 ) => {
   const mapRef = useRef<naver.maps.Map | null>(null);
   const [selectedBoothID, setSelectedBoothID] = useState<number | null>(null);
   const markersRef = useRef<Record<number, naver.maps.Marker>>({});
+  const [latLng, _] = useAtom(latLngAtom);
 
   useEffect(() => {
     if (!isReady || !locations) return;
     const timeoutId = setTimeout(() => {
       const map = new naver.maps.Map("map", {
-        center: new naver.maps.LatLng(lat, lon),
+        center: new naver.maps.LatLng(latLng.lat, latLng.lon),
         zoom: 16,
         zoomControl: true,
         zoomControlOptions: {
@@ -74,6 +75,13 @@ export const useNaverMap = (
       marker.setIcon({ content: container });
     });
   }, [selectedBoothID]);
+
+  useEffect(() => {
+    if (!mapRef.current || latLng.lat === null || latLng.lon === null) return;
+
+    const newCenter = new naver.maps.LatLng(latLng.lat, latLng.lon);
+    mapRef.current.panTo(newCenter);
+  }, [latLng.lat, latLng.lon]);
 
   return { mapRef };
 };

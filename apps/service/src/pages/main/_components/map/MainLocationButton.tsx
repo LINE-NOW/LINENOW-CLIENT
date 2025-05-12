@@ -1,18 +1,33 @@
+import { useAtom } from "jotai";
 import * as S from "./MainLocationButton.styled";
 import { Button, Icon } from "@linenow/core/components";
-
-interface LocationButtonProps extends React.ComponentProps<typeof Button> {
-  lat?: number;
-  lon?: number;
-}
+import { latLngAtom } from "@atoms/location";
 
 export const MyLocationButton = ({
-  lat = 37.5584809,
-  lon = 127.0004067,
   ...buttonProps
-}: LocationButtonProps) => {
+}: React.ComponentProps<typeof Button>) => {
+  const [_, setLatLng] = useAtom(latLngAtom);
   const handleMoveToMyLocation = () => {
-    console.log("todo 좌표 atom에 ㄱㄱ");
+    if (!navigator.geolocation) {
+      console.error("Geolocation을 지원하지 않는 브라우저입니다.");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        setLatLng({ lat, lon });
+      },
+      (error) => {
+        console.error("위치 정보를 가져오는 데 실패했습니다:", error.message);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0,
+      }
+    );
   };
 
   return (
@@ -29,12 +44,15 @@ export const MyLocationButton = ({
 };
 
 export const FestivalLocation = ({
-  lat = 37.5584809,
-  lon = 127.0004067,
   ...buttonProps
-}: LocationButtonProps) => {
-  const handleTest = () => {
-    console.log("kkkk");
+}: React.ComponentProps<typeof Button>) => {
+  const [_, setLatLng] = useAtom(latLngAtom);
+
+  const handleMoveToFestivalLocation = () => {
+    setLatLng({
+      lat: 37.55822161540249,
+      lon: 127.00019240184307,
+    });
   };
 
   return (
@@ -42,7 +60,7 @@ export const FestivalLocation = ({
       width="auto"
       variant={"outline"}
       css={[S.getStyle()]}
-      onClick={handleTest}
+      onClick={handleMoveToFestivalLocation}
       {...buttonProps}
     >
       <Icon icon="fetival_location" color="gray" />
