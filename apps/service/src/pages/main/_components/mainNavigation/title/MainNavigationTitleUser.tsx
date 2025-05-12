@@ -10,12 +10,7 @@ import {
 const MainNavigationTitleUser = () => {
   const { data: waitings = [] } = useGetWaitings("waiting");
   return (
-    <Flex
-      justifyContent="space-between"
-      alignItem="center"
-      height="1.5rem"
-      padding="0rem 0.25rem"
-    >
+    <>
       <LinkButton to={`/my-waiting`}>
         <IconLabel
           gap={"0.25rem"}
@@ -35,7 +30,7 @@ const MainNavigationTitleUser = () => {
       <LinkButton to={`/setting`}>
         <Icon icon="setting" color="white" />
       </LinkButton>
-    </Flex>
+    </>
   );
 };
 

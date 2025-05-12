@@ -37,7 +37,7 @@ const WaitingCheckPage = () => {
       {isModalOpen && (
         <WaitingCheckCautionModal
           checkedPeople={checkedPeople}
-          boothID={booth.id}
+          boothID={booth.boothID}
           onClose={handleCloseModal}
         />
       )}

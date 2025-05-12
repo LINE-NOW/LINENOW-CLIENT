@@ -29,6 +29,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
     justifyContent = "start",
     overflow = "hidden",
     padding = "0rem",
+
     ...attributes
   } = props;
 
