@@ -7,7 +7,9 @@ import { Icon } from "@linenow/core/components";
 
 export const useNaverMap = (
   isReady: boolean,
-  locations?: BoothsLocationType
+  locations?: BoothsLocationType,
+  lat: number = 37.5584809,
+  lon: number = 127.0004067
 ) => {
   const mapRef = useRef<naver.maps.Map | null>(null);
   const [selectedBoothID, setSelectedBoothID] = useState<number | null>(null);
@@ -17,7 +19,7 @@ export const useNaverMap = (
     if (!isReady || !locations) return;
     const timeoutId = setTimeout(() => {
       const map = new naver.maps.Map("map", {
-        center: new naver.maps.LatLng(37.5584809, 127.0004067),
+        center: new naver.maps.LatLng(lat, lon),
         zoom: 16,
         zoomControl: true,
         zoomControlOptions: {

@@ -7,7 +7,6 @@ const MainMap = () => {
   const { data: locations } = useGetBoothsLocation();
   const { isReady } = useMapScript();
   const { mapRef } = useNaverMap(isReady, locations);
-  console.log(mapRef.current);
 
   return <div id="map" css={S.getWrapper}></div>;
 };

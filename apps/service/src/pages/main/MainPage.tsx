@@ -13,7 +13,7 @@ import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
 import {
   MyLocationButton,
   FestivalLocation,
-} from "@components/LocationButton/LocationButton";
+} from "@pages/main/_components/map/MainLocationButton";
 
 const MainPage = () => {
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
@@ -42,14 +42,13 @@ const MainPage = () => {
 
         {viewType === "map" && (
           <>
+            {/* TODO: 걍 돌려놓고, atom으로 관리하기 */}
             <MyLocationButton css={S.getFloatingButtonStyle("my_location")} />
             <FestivalLocation
               css={S.getFloatingButtonStyle("festival_location")}
             />
           </>
         )}
-
-        {/* TODO: viewType에 따라 버튼 두 개 분기 */}
 
         {/* list, map 토글 버튼 */}
         <Switch
