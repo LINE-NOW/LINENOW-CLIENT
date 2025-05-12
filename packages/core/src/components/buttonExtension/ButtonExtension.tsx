@@ -11,7 +11,7 @@ interface LinkButtonProps extends React.ComponentProps<typeof Link> {
 export const LinkButton = (props: LinkButtonProps) => {
   const { to, children, disabled = false } = props;
   return (
-    <Link to={to} css={disabled || S.getAnimation()}>
+    <Link to={to} css={[S.getLinkButtonStyle, disabled || S.getAnimation()]}>
       {children}
     </Link>
   );

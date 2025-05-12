@@ -17,7 +17,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TestTool />
+      {/* <TestTool /> */}
       <ReactQueryDevtools initialIsOpen={true} />
       <LinenowProvider maxWidth="540px">
         <SplashProvider>
