@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { useBottomSheet } from "@linenow/core/hooks";
 import { useGetWaitings } from "./apis/waiting";
-import useEnteranceContent from "@components/bottomSheet/entrance/useEnteraceContent";
+import useEnteranceContent from "@components/bottomSheet/entering/useEnteraceContent";
 
 // components
 

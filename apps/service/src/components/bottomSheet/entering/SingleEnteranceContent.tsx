@@ -1,9 +1,9 @@
 // SingleEnteranceContent.tsx
 import { Button, Flex } from "@linenow/core/components";
-import NoticeCard from "@components/bottomSheet/entrance/NoticeCard/NoticeCard";
-import WaitingDetailCard from "@components/bottomSheet/entrance/WaitingDetailCard/WaitingDetailCard";
+import NoticeCard from "@components/bottomSheet/entering/NoticeCard/NoticeCard";
+import WaitingDetailCard from "@components/bottomSheet/entering/WaitingDetailCard/WaitingDetailCard";
 import EnteranceButton from "@components/button/EnteranceButton";
-import EnteranceBottomSheetContent from "@components/bottomSheet/entrance/EnteraceBottomSheetContent";
+import EnteranceBottomSheetContent from "@components/bottomSheet/entering/EnteraceBottomSheetContent";
 import { useModal } from "@linenow/core/hooks";
 import { useModalCancelEntering } from "@components/modal/waiting";
 import { Waiting } from "@interfaces/waiting";

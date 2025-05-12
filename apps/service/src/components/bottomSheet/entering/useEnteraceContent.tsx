@@ -1,4 +1,4 @@
-import BoothCard from "@components/bottomSheet/entrance/boothList/BoothCard";
+import BoothCard from "@components/bottomSheet/entering/boothList/BoothCard";
 import SingleEnteranceContent from "./SingleEnteranceContent";
 import MultipleEnteranceContent from "./MultipleEnteranceContent";
 

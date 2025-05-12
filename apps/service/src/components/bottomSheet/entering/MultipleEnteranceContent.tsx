@@ -1,8 +1,8 @@
 // MultipleEnteranceContent.tsx
 import { Button } from "@linenow/core/components";
-import BoothList from "@components/bottomSheet/entrance/boothList/BoothList";
-import BoothCard from "@components/bottomSheet/entrance/boothList/BoothCard";
-import EnteranceBottomSheetContent from "@components/bottomSheet/entrance/EnteraceBottomSheetContent";
+import BoothList from "@components/bottomSheet/entering/boothList/BoothList";
+import BoothCard from "@components/bottomSheet/entering/boothList/BoothCard";
+import EnteranceBottomSheetContent from "@components/bottomSheet/entering/EnteraceBottomSheetContent";
 import { useModal } from "@linenow/core/hooks";
 import { useModalCancelAllEntering } from "@components/modal/waiting";
 
