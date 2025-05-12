@@ -8,12 +8,13 @@ import useMainBoothList from "@pages/main/_hooks/useBoothList";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 
 // apis
-
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
+
 import {
   MyLocationButton,
   FestivalLocation,
 } from "@pages/main/_components/map/MainLocationButton";
+import { SelectedBoothCard } from "./_components/map/MainSelectedBoothCard";
 
 const MainPage = () => {
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
@@ -42,11 +43,11 @@ const MainPage = () => {
 
         {viewType === "map" && (
           <>
-            {/* TODO: 걍 돌려놓고, atom으로 관리하기 */}
             <MyLocationButton css={S.getFloatingButtonStyle("my_location")} />
             <FestivalLocation
               css={S.getFloatingButtonStyle("festival_location")}
             />
+            <SelectedBoothCard />
           </>
         )}
 

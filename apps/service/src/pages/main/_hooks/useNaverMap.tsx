@@ -1,20 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { BoothsLocationType } from "@apis/domains/booth/getBoothsLocation";
 
 import { createRoot } from "react-dom/client";
 
 import { Icon } from "@linenow/core/components";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { latLngAtom } from "@atoms/location";
+import { selectedBoothAtom } from "../_atom/selectedBooth";
 
 export const useNaverMap = (
   isReady: boolean,
   locations?: BoothsLocationType
 ) => {
   const mapRef = useRef<naver.maps.Map | null>(null);
-  const [selectedBoothID, setSelectedBoothID] = useState<number | null>(null);
+  const [selectedBoothID, setSelectedBoothID] = useAtom(selectedBoothAtom);
   const markersRef = useRef<Record<number, naver.maps.Marker>>({});
-  const [latLng, _] = useAtom(latLngAtom);
+  const latLng = useAtomValue(latLngAtom);
 
   useEffect(() => {
     if (!isReady || !locations) return;

@@ -13,7 +13,7 @@ export const getWrapper = () => css`
       height: 13rem;
     }
     100% {
-      height: calc(100vh - 13rem);
+      height: calc(100vh - 16rem);
     }
   }
 `;
