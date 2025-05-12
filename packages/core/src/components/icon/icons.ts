@@ -16,6 +16,7 @@ import MapIcon from "./assets/MapIcon";
 import MyLocationIcon from "./assets/MyLocationIcon";
 import PauseIcon from "./assets/PauseIcon";
 import PhoneIcon from "./assets/PhoneIcon";
+import PinIcon from "./assets/PinIcon";
 import PlayIcon from "./assets/PlayIcon";
 import PowerIcon from "./assets/PowerIcon";
 import RefreshIcon from "./assets/RefreshIcon";
@@ -41,6 +42,7 @@ export const icons = {
   logout: LogoutIcon,
   pasue: PauseIcon,
   phone: PhoneIcon,
+  pin: PinIcon,
   play: PlayIcon,
   power: PowerIcon,
   refresh: RefreshIcon,

@@ -4,7 +4,7 @@ import { BoothsLocationType } from "@apis/domains/booth/getBoothsLocation";
 import { createRoot } from "react-dom/client";
 import { Icon } from "@linenow/core/components";
 
-export const useNaverMap = (locations: BoothsLocationType | undefined) => {
+export const useNaverMap = (locations?: BoothsLocationType) => {
   const mapRef = useRef<naver.maps.Map | null>(null);
   const [isReady, setReady] = useState(false);
 
@@ -33,7 +33,7 @@ export const useNaverMap = (locations: BoothsLocationType | undefined) => {
       locations.forEach((booth) => {
         const container = document.createElement("div");
         createRoot(container).render(<Icon icon="pin" />);
-        new naver.maps.Marker({
+        const marker = new naver.maps.Marker({
           position: new naver.maps.LatLng(
             Number(booth.latitude),
             Number(booth.longitude)
@@ -42,6 +42,9 @@ export const useNaverMap = (locations: BoothsLocationType | undefined) => {
             content: container,
           },
           map,
+        });
+        naver.maps.Event.addListener(marker, "click", () => {
+          map.setCenter(marker.getPosition());
         });
       });
 
