@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
@@ -18,14 +18,14 @@ import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled
 
 import { Button } from "@linenow/core/components";
 import { useBottomSheet, useModal } from "@linenow/core/hooks";
-import { modalCancelWaiting } from "@components/modal/waiting";
+
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
-import { postWaitingCancel } from "@apis/domains/waiting/postWaitingCancel";
+import { useModalCancelWaiting } from "@components/modal/waiting";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { openBottomSheet } = useBottomSheet();
   const handleLoginButtonClick = () => {
     openBottomSheet({ children: <LoginBottomSheetContent /> });
@@ -49,21 +49,8 @@ const BoothDetailPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const cancelWaiting = () => {
-    if (waiting?.waitingID !== undefined) {
-      console.log(waiting.waitingID + " 취소");
-      postWaitingCancel({ waiting_id: waiting.waitingID });
-      navigate("/", {
-        replace: true,
-        state: { showToast: true, toastMessage: "대기가 취소되었습니다." },
-      });
-    } else {
-      console.warn("대기 취소 요청이 불가능합니다");
-    }
-  };
-  const onWaitingCancelClick = () => {
-    openModal(modalCancelWaiting(cancelWaiting));
-  };
+  const cancelModal = useModalCancelWaiting(waiting?.waitingID ?? 0);
+  const onWaitingCancelClick = () => openModal(cancelModal);
 
   const getInformationTitle = () => {
     switch (booth?.operatingStatus) {

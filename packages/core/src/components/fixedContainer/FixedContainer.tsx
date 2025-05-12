@@ -15,12 +15,12 @@ const FixedContainer = (props: FixedContainerProps) => {
   } = props;
 
   return (
-    <section
-      onClick={closeContainer}
-      css={[S.getFixedContainerStyle(zIndex, justifyContent)]}
-    >
-      {children}
-    </section>
+    <>
+      <section css={[S.getFixedContainerStyle(zIndex, justifyContent)]}>
+        <div onClick={closeContainer} css={[S.getFixedBackgroundStyle]} />
+        {children}
+      </section>
+    </>
   );
 };
 

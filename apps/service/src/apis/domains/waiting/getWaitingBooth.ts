@@ -21,14 +21,14 @@ export type GetWaitingBoothResponse = Pick<
     | "booth_location"
     | "booth_latitude"
     | "booth_longitude"
-    | "thumbnail"
+    | "booth_thumbnail"
   >;
 };
 
 type GetWaitingBoothResponseReturn = Pick<
   Waiting,
   | "waitingID"
-  | "waitngNum"
+  | "waitingNum"
   | "personCount"
   | "booth"
   | "createdAt"
@@ -42,7 +42,7 @@ const transformWaitingBoothResponse = (
 ): GetWaitingBoothResponseReturn => {
   return {
     waitingID: _response.waiting_id,
-    waitngNum: _response.waiting_num,
+    waitingNum: _response.waiting_num,
     personCount: _response.person_num,
     booth: {
       boothID: _response.booth_info.booth_id,
@@ -50,7 +50,7 @@ const transformWaitingBoothResponse = (
       location: _response.booth_info.booth_location,
       logitude: _response.booth_info.booth_longitude,
       latitude: _response.booth_info.booth_latitude,
-      thumbnail: _response.booth_info.thumbnail,
+      thumbnail: _response.booth_info.booth_thumbnail,
     },
     createdAt: _response.canceled_at,
     confirmedAt: _response.confirmed_at,

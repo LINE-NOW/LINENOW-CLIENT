@@ -19,7 +19,18 @@ export const getFixedContainerStyle = (
     max-width: ${theme.maxWidth};
     width: 100%;
     height: 100%;
-
-    background-color: rgb(15 15 15 / 70%);
   `;
 };
+
+export const getFixedBackgroundStyle = () => css`
+  position: absolute;
+
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgb(15 15 15 / 70%);
+`;

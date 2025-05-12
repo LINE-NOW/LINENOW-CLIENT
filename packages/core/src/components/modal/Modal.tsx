@@ -6,6 +6,7 @@ import * as S from "./Modal.styled";
 export interface ModalProps {
   title?: string;
   sub?: React.ReactNode;
+  content?: React.ReactNode;
   secondButton?: Omit<React.ComponentProps<typeof Button>, "size" | "variant">;
   primaryButton?: Omit<React.ComponentProps<typeof Button>, "size">;
 }
@@ -18,7 +19,9 @@ const Modal = (modal: ModalProps) => {
         <S.ModalTextTitle>{modal.title}</S.ModalTextTitle>
         <S.ModalTextSub>{modal.sub}</S.ModalTextSub>
       </S.ModalTextWrapper>
-
+      {modal.content && (
+        <S.ModalContentContainer>{modal.content}</S.ModalContentContainer>
+      )}
       {/* 버튼 부분 */}
       <ButtonLayout colCount={2}>
         <Button

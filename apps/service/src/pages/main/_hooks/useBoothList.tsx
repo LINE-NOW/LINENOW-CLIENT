@@ -1,5 +1,5 @@
 import MainBoothList from "../_components/boothList/MainBoothList";
-import { Flex, Label, Select } from "@linenow/core/components";
+import { Flex, Label } from "@linenow/core/components";
 
 import useSortBooths from "./useSortBooths";
 import useMainViewType from "./useMainViewType";
@@ -9,19 +9,19 @@ const useMainBoothList = () => {
   const { viewType } = useMainViewType();
   // booth list api
   const {
-    sortBoothOptions,
+    // sortBoothOptions,
     currentSortBoothOption,
-    handleSortBoothOptionChange,
+    // handleSortBoothOptionChange,
   } = useSortBooths();
 
   // 부스 목록 정렬 옵션 선택
-  const BoothOptionSelect = () => (
-    <Select
-      options={sortBoothOptions}
-      value={currentSortBoothOption}
-      onChange={handleSortBoothOptionChange}
-    />
-  );
+  // const BoothOptionSelect = () => (
+  //   <Select
+  //     options={sortBoothOptions}
+  //     value={currentSortBoothOption}
+  //     onChange={handleSortBoothOptionChange}
+  //   />
+  // );
 
   // 고민 좀 해보기...
   const getBoothListHeaderChildren = () =>

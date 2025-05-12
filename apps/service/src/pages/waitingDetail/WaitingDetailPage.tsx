@@ -10,9 +10,9 @@ import { useGetWaiting, useGetWaitingBooth } from "@hooks/apis/waiting";
 import { Button, Toast } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
 import WaitingDetailMap from "./_components/WaitingDetailMap";
-import { postWaitingCancel } from "@apis/domains/waiting/postWaitingCancel";
-import { modalCancelWaiting } from "@components/modal/waiting";
+
 import useToastFromLocation from "@hooks/useToastFromLocation";
+import { useModalCancelWaiting } from "@components/modal/waiting";
 // import useAnimation from "./hooks/useAnimation";  // 주석 처리
 
 const WaitingDetailPage = () => {
@@ -28,20 +28,9 @@ const WaitingDetailPage = () => {
   // 애니메이션 관련 코드 주석 처리
   // const { fadeInCard, slideUpCard, showRest, showToast } = useAnimation(location.state?.withAnimation);
 
-  const cancelWaiting = () => {
-    if (waiting?.waitingID !== undefined) {
-      console.log(waiting.waitingID + " 취소");
-      postWaitingCancel({ waiting_id: waiting.waitingID });
-      navigate("/", {
-        replace: true,
-        state: { showToast: true, toastMessage: "대기가 취소되었습니다." },
-      });
-    } else {
-      console.warn("대기 취소 요청이 불가능합니다");
-    }
-  };
+  const cancelModal = useModalCancelWaiting(waitingDetail?.waitingID ?? 0);
   const onWaitingCancelClick = () => {
-    openModal(modalCancelWaiting(cancelWaiting));
+    openModal(cancelModal);
   };
 
   // 뒤로가기 방지
@@ -67,7 +56,7 @@ const WaitingDetailPage = () => {
   }
 
   const waiting = {
-    waitngNum: waitingBooth.waitngNum,
+    waitingNum: waitingBooth.waitingNum,
     personCount: waitingBooth.personCount,
     createdAt: waitingBooth.createdAt,
     booth: waitingBooth.booth,

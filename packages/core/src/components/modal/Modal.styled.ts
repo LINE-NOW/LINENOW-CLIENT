@@ -2,10 +2,15 @@ import styled from "@emotion/styled";
 import { fonts } from "../../styles/fonts";
 
 export const ModalContainer = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+
   display: flex;
   flex-direction: column;
 
-  gap: 1.5rem;
+  gap: 1rem;
   padding: 1.25rem;
   min-width: 21rem;
 
@@ -30,10 +35,10 @@ export const ModalContainer = styled.div`
 export const ModalTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 0.25rem;
 
   .mobile & {
-    gap: 0.75rem;
-    padding: 0 0.25rem;
     align-items: start;
   }
   .tablet & {
@@ -55,5 +60,28 @@ export const ModalTextSub = styled.span`
 
   .tablet & {
     text-align: center;
+  }
+`;
+
+export const ModalContentContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  background-color: ${({ theme }) => theme.backgroundColors.grayGhost};
+  color: ${({ theme }) => theme.fontColors.blackLight};
+  list-style-type: disc;
+
+  & > li {
+    position: relative;
+    padding-left: 0.75rem;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: ${({ theme }) => theme.fontColors.blackLight};
+    }
   }
 `;

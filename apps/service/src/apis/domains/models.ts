@@ -28,7 +28,7 @@ export interface _Waiting {
 export interface _Booth {
   booth_id: number;
   booth_name: string;
-  thumbnail: string;
+  booth_thumbnail: string;
   booth_description: string;
   booth_start_time: string;
   booth_end_time: string;

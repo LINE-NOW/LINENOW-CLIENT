@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 // type
 import { getVariantStyle, Variant } from "../../styles/variant";
 
@@ -7,18 +5,18 @@ import { getVariantStyle, Variant } from "../../styles/variant";
 import * as S from "./Chip.styled";
 import Label from "../label/Label";
 
-export interface ChipProps {
+export interface ChipProps extends React.PropsWithChildren {
   variant?: Variant;
-  children?: ReactNode;
+  width?: string;
 }
 
 const Chip = (props: ChipProps) => {
-  const { variant = "blue", children } = props;
+  const { variant = "blue", width = "auto", children } = props;
   return (
     <Label
       as="div"
       font="chip"
-      css={[S.getWrapperStyle(), getVariantStyle(variant)]}
+      css={[S.getWrapperStyle(width), getVariantStyle(variant)]}
     >
       {children}
     </Label>
