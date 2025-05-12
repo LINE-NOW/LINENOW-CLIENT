@@ -12,7 +12,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LinenowProvider>
+      <LinenowProvider isAdmin={true}>
         <FullSpinner />
         <RouterProvider router={router} />
       </LinenowProvider>

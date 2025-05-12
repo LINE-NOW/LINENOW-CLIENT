@@ -6,7 +6,7 @@ export interface SidebarButtonProps {
 }
 const SidebarButton = ({ isSelected, to, label }: SidebarButtonProps) => {
   return (
-    <S.SidebarButton to={to} $isSelected={isSelected}>
+    <S.SidebarButton to={to} isSelected={isSelected}>
       {label}
     </S.SidebarButton>
   );

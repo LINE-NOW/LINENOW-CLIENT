@@ -2,27 +2,19 @@ import { Waiting } from "@interfaces/waiting";
 import { WaitingStatus } from "@linenow-types/status";
 
 export interface GetWaitingResponse {
-  id: number;
+  waiting_id: number;
+  waiting_num: number;
+  person_num: number;
   waiting_status: WaitingStatus;
-
-  party_size: number;
-
-  user: User;
-
-  confirm_due_time: string;
-  arrival_due_time: string;
-
-  registered_at: string;
-
-  // ready_to_confirm_at?: string;
-  // confirmed_at?: string;
-  // canceled_at?: string;
+  created_at: string;
+  confirmed_at: string | null;
+  canceled_at: string | null;
+  user_info: User;
 }
 
 interface User {
-  user_id: number;
-  phone_number: string;
-  name: string;
+  user_phone: string;
+  user_name: string;
 }
 
 export interface GetWaitingsResponse extends Array<GetWaitingResponse> {}
@@ -31,21 +23,18 @@ export const transformGetWaitingResponse = (
   response: GetWaitingResponse
 ): Waiting => {
   return {
-    waitingID: response.id,
+    waitingID: response.waiting_id,
+    waitingNum: response.waiting_num,
+    personNum: response.person_num,
     waitingStatus: response.waiting_status,
-
-    partySize: response.party_size,
+    createdAt: response.created_at,
+    confirmedAt: response.confirmed_at,
+    canceledAt: response.canceled_at,
 
     user: {
-      userID: response.user.user_id,
-      phoneNumber: response.user.phone_number,
-      name: response.user.name,
+      phoneNumber: response.user_info.user_phone,
+      name: response.user_info.user_name,
     },
-
-    confirmDueTime: response.confirm_due_time,
-    arrivalDueTime: response.arrival_due_time,
-
-    registeredAt: response.registered_at,
   };
 };
 

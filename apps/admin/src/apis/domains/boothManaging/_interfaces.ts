@@ -26,5 +26,5 @@ export const transtromGetBoothStatus = (response: GetBoothStatus): Booth => {
 };
 
 export interface PostBoothStatusRequest {
-  status: BoothStatus;
+  operating_status: BoothStatus;
 }

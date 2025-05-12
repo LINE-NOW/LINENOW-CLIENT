@@ -73,16 +73,18 @@ export const SidebarButtonWrapper = styled.section`
 `;
 
 interface SidebarButtonProps {
-  $isSelected: boolean;
+  isSelected: boolean;
 }
-export const SidebarButton = styled(Link)<SidebarButtonProps>`
+export const SidebarButton = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "isSelected",
+})<SidebarButtonProps>`
   padding: 1.5rem 1.25rem;
-  background-color: ${({ $isSelected, theme }) =>
-    $isSelected
+  background-color: ${({ isSelected, theme }) =>
+    isSelected
       ? theme.backgroundColors.blackLight
       : theme.backgroundColors.black};
 
   ${fonts.head2};
-  color: ${({ $isSelected, theme }) =>
-    $isSelected ? theme.fontColors.lime : theme.fontColors.white};
+  color: ${({ isSelected, theme }) =>
+    isSelected ? theme.fontColors.lime : theme.fontColors.white};
 `;

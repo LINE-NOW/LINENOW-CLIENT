@@ -40,20 +40,17 @@ export const LoginBoxInputWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  gap: 0.75rem;
+  width: 20.6875rem;
+  gap: 0.5rem;
 `;
 
 export const LoginBoxSubTitle = styled.h3`
   ${fonts.head3};
   padding: 0 0.25rem;
-  color: ${({ theme }) => theme.fontColors.blue};
+  color: ${({ theme }) => theme.fontColors.black};
 `;
 
-export const LoginBoxInputCount = styled.span`
-  ${fonts.caption};
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding: 0 0.5rem;
-  color: ${({ theme }) => theme.fontColors.blackLight};
+export const LoginIcon = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
 `;

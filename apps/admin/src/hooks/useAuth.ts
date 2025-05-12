@@ -9,11 +9,12 @@ const useAuth = () => {
   const [auth, setAuth] = useAtom(authAtom);
   const { clearBoothInfo } = useBoothInfo();
 
-  const login = ({ accessToken, refreshToken }: AuthProps) => {
+  const login = ({ accessToken, refreshToken, adminUser }: AuthProps) => {
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("refreshToken", refreshToken);
+    localStorage.setItem("user", JSON.stringify(adminUser));
 
-    setAuth({ accessToken, refreshToken });
+    setAuth({ accessToken, refreshToken, adminUser });
     navigate("/");
   };
 
@@ -21,13 +22,16 @@ const useAuth = () => {
     // localStorage에서 토큰 삭제
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("user");
     clearBoothInfo();
 
     setAuth(null);
     navigate("/login");
   };
 
-  const isLogin = useMemo(() => auth != null, [auth]);
+  const isLogin = useMemo(() => {
+    return localStorage.getItem("accessToken") !== null;
+  }, []);
 
   return {
     isLogin,

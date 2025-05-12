@@ -1,17 +1,28 @@
 import { AuthProps } from "@atoms/auth";
 
 export interface LoginRequest {
-  admin_code: string; // 고유번호
+  manager_code: string;
+}
+
+export interface User {
+  manager_id: number;
+  manager_name: string;
+  booth_id: number;
 }
 
 export interface LoginResponse {
-  access_token: string;
-  refresh_token: string;
+  access: string;
+  refresh: string;
+  user: User;
 }
 
-export const transformLoginResponse = (response: LoginResponse): AuthProps => {
+export const transformLoginResponse = (
+  response: LoginResponse[]
+): AuthProps => {
+  const { access, refresh, user } = response[0];
   return {
-    accessToken: response.access_token,
-    refreshToken: response.refresh_token,
+    accessToken: access,
+    refreshToken: refresh,
+    adminUser: user,
   };
 };
