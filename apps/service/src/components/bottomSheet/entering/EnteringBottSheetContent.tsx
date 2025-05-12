@@ -4,16 +4,14 @@ import { ButtonLayout, Label } from "@linenow/core/components";
 
 import { ReactNode } from "react";
 
-interface EnteranceBottomSheetContentProps {
+interface EnteringBottomSheetContentProps {
   title: string;
   description: string;
   content: ReactNode;
   buttons: ReactNode;
 }
 
-const EnteranceBottomSheetContent = (
-  props: EnteranceBottomSheetContentProps
-) => {
+const EnteringBottomSheetContent = (props: EnteringBottomSheetContentProps) => {
   const { title, description, content, buttons } = props;
   return (
     <S.BottomSheetContentWrapper>
@@ -31,4 +29,4 @@ const EnteranceBottomSheetContent = (
   );
 };
 
-export default EnteranceBottomSheetContent;
+export default EnteringBottomSheetContent;

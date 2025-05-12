@@ -25,9 +25,9 @@ const BoothCard = (props: BoothCardProps) => {
     booth,
   } = props;
   const { openModal } = useModal();
-  const confirmEnteranceModal = useModalConfirmEntering(waitingID, booth.name);
+  const confirmEnteringModal = useModalConfirmEntering(waitingID, booth.name);
   const onClick = () =>
-    waitingStatus === "entering" && openModal(confirmEnteranceModal);
+    waitingStatus === "entering" && openModal(confirmEnteringModal);
 
   return (
     <Flex

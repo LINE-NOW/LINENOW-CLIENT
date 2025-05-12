@@ -70,6 +70,8 @@ export const getBooth = async (
   const response = await getResponse<GetBoothResponse>(
     `/api/v1/booths/${boothID}`
   );
+
   if (response === null) return null;
+
   return transformBoothResponse(response);
 };

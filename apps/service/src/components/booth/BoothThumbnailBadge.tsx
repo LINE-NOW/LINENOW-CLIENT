@@ -10,7 +10,7 @@ type BoothThumbnailProps = React.ComponentProps<typeof BoothThumbnail>;
 export interface BoothThumbnailBadgeProps
   extends BoothThumbnailProps,
     Pick<Booth, "operatingStatus">,
-    Pick<BoothWaiting, "waitingStatus" | "totalwaitingTeams"> {
+    Pick<BoothWaiting, "waitingStatus" | "totalWaitingTeams"> {
   css?: SerializedStyles;
 }
 
@@ -18,7 +18,7 @@ const BoothThumbnailBadge = (props: BoothThumbnailBadgeProps) => {
   const {
     operatingStatus,
     waitingStatus,
-    totalwaitingTeams,
+    totalWaitingTeams,
     css,
     ...boothThumbnailProps
   } = props;
@@ -37,7 +37,7 @@ const BoothThumbnailBadge = (props: BoothThumbnailBadgeProps) => {
         {(waitingStatus === "waiting" || waitingStatus === "entered") && (
           <Chip variant="lime">대기 중</Chip>
         )}
-        <Chip variant="blueLight">대기 {totalwaitingTeams}팀</Chip>
+        <Chip variant="blueLight">대기 {totalWaitingTeams}팀</Chip>
       </>
     );
   };

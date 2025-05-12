@@ -1,18 +1,18 @@
 import BoothCard from "@components/bottomSheet/entering/boothList/BoothCard";
-import SingleEnteranceContent from "./SingleEnteranceContent";
-import MultipleEnteranceContent from "./MultipleEnteranceContent";
+import SingleEnteringContent from "./SingleEnteringContent";
+import MultipleEnteringContent from "./MultipleEnteringContent";
 
 interface Props {
   enterings: React.ComponentProps<typeof BoothCard>[];
   waitings: React.ComponentProps<typeof BoothCard>[];
 }
 
-const useEnteranceContent = ({ enterings, waitings }: Props) => {
+const useEnteringContent = ({ enterings, waitings }: Props) => {
   const isSingleEntering = enterings.length === 1;
 
   if (isSingleEntering) {
     return (
-      <SingleEnteranceContent
+      <SingleEnteringContent
         waitingID={enterings[0].waitingID ?? 0}
         confirmedAt={enterings[0].confirmedAt}
         isWaiting={waitings.length > 0}
@@ -20,7 +20,7 @@ const useEnteranceContent = ({ enterings, waitings }: Props) => {
     );
   }
 
-  return <MultipleEnteranceContent enterings={enterings} waitings={waitings} />;
+  return <MultipleEnteringContent enterings={enterings} waitings={waitings} />;
 };
 
-export default useEnteranceContent;
+export default useEnteringContent;

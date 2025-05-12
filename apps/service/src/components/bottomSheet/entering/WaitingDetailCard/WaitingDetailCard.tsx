@@ -34,7 +34,7 @@ const WaitingDetailCard = (props: WaitingDetailCardProps) => {
           나의 대기 번호
         </Label>
         <Label font="head1_b" color="blue">
-          {waiting.wiaitngNum}
+          {waiting.waitingNum}
         </Label>
       </Flex>
 

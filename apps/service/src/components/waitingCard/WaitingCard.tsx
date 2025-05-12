@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Flex } from "@linenow/core/components";
 import BoothThumbnailCompact from "@components/booth/BoothThumbnailCompact";
-import EnteranceButton from "@components/button/EnteranceButton";
+import EnteringButton from "@components/button/EnteringButton";
 import WaitingTeamsAheadButton from "@components/button/WaitingTeamsAhead";
 
 export interface WaitingCardProps
@@ -32,7 +32,7 @@ const WaitingCard = (props: WaitingCardProps) => {
     switch (waitingStatus) {
       case "entering":
         return {
-          button: <EnteranceButton confirmedAt={confirmedAt} />,
+          button: <EnteringButton confirmedAt={confirmedAt} />,
         };
       case "waiting":
         return {

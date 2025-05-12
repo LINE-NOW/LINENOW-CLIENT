@@ -25,6 +25,7 @@ import { useModalCancelWaiting } from "@components/modal/waiting";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
+  // const navigate = useNavigate();
   const { openBottomSheet } = useBottomSheet();
   const handleLoginButtonClick = () => {
     openBottomSheet({ children: <LoginBottomSheetContent /> });
@@ -69,7 +70,7 @@ const BoothDetailPage = () => {
       case "finished":
         return undefined;
       default:
-        return `${waiting?.totalwaitingTeams || 0}팀`;
+        return `${waiting?.totalWaitingTeams || 0}팀`;
     }
   };
 
@@ -146,9 +147,6 @@ const BoothDetailPage = () => {
               <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
             )}
           </BottomButton>
-          {isModalOpen && (
-            <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
-          )}
         </>
       )}
     </>

@@ -19,7 +19,7 @@ type GetBoothWaitingResponseReturn = Pick<
   | "boothID"
   | "waitingID"
   | "waitingStatus"
-  | "totalwaitingTeams"
+  | "totalWaitingTeams"
   | "waitingTeamsAhead"
   | "confirmedAt"
 >;
@@ -31,7 +31,7 @@ const transformBoothWaitingResponse = (
     boothID: _response.booth_id,
     waitingID: _response.waiting_id,
     waitingStatus: _response.waiting_status,
-    totalwaitingTeams: _response.total_waiting_teams,
+    totalWaitingTeams: _response.total_waiting_teams,
     waitingTeamsAhead: _response.waiting_team_ahead,
   };
 };

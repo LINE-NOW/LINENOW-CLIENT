@@ -17,7 +17,7 @@ type GetWaitingResponseReturn = Pick<
   | "waitingID"
   | "waitingStatus"
   | "waitingTeamsAhead"
-  | "totalwaitingTeams"
+  | "totalWaitingTeams"
 >;
 
 const transformWaitingResponse = (
@@ -27,7 +27,7 @@ const transformWaitingResponse = (
     waitingID: _response.waiting_id,
     waitingStatus: _response.waiting_status,
     waitingTeamsAhead: _response.waiting_team_ahead,
-    totalwaitingTeams: _response.booth_info.total_waiting_teams,
+    totalWaitingTeams: _response.booth_info.total_waiting_teams,
     boothID: _response.booth_info.booth_id,
   };
 };

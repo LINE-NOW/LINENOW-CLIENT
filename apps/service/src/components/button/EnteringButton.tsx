@@ -2,11 +2,11 @@ import { Button } from "@linenow/core/components";
 import { useCountdown, useToast } from "@linenow/core/hooks";
 import { getEnteringTime } from "@utils/calculate";
 
-interface EnteranceButtonProps {
+interface EnteringButtonProps {
   canClick?: boolean;
   confirmedAt?: string;
 }
-const EnteranceButton = (props: EnteranceButtonProps) => {
+const EnteringButton = (props: EnteringButtonProps) => {
   const { presentToast } = useToast();
   const { confirmedAt = "", canClick = false } = props;
 
@@ -26,4 +26,4 @@ const EnteranceButton = (props: EnteranceButtonProps) => {
   );
 };
 
-export default EnteranceButton;
+export default EnteringButton;

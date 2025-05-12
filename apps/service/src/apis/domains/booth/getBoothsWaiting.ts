@@ -11,7 +11,7 @@ type GetBoothsWaitingResponse = Array<GetBoothsWaitingResponseItem>;
 
 type GetBoothsWaitingResponseReturnItem = Pick<
   BoothWaiting,
-  "boothID" | "waitingID" | "waitingStatus" | "totalwaitingTeams"
+  "boothID" | "waitingID" | "waitingStatus" | "totalWaitingTeams"
 >;
 type GetBoothsWaitingResponseReturn = Array<GetBoothsWaitingResponseReturnItem>;
 
@@ -23,7 +23,7 @@ const transformBoothsWaitingResponse = (
       boothID: item.booth_id,
       waitingID: item.waiting_id,
       waitingStatus: item.waiting_status,
-      totalwaitingTeams: item.total_waiting_teams,
+      totalWaitingTeams: item.total_waiting_teams,
     })
   );
 };

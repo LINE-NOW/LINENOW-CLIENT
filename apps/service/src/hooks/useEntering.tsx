@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { useBottomSheet } from "@linenow/core/hooks";
 import { useGetWaitings } from "./apis/waiting";
-import useEnteranceContent from "@components/bottomSheet/entering/useEnteraceContent";
+import useEnteringContent from "@components/bottomSheet/entering/useEnteringContent";
 
 // components
 
@@ -18,7 +18,7 @@ const useEnteringBottomSheet = () => {
     [data]
   );
 
-  const sheetContent = useEnteranceContent({
+  const sheetContent = useEnteringContent({
     enterings,
     waitings,
   });
