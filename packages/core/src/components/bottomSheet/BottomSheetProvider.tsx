@@ -21,7 +21,7 @@ const BottomSheetProvider = () => {
     <FixedContainer
       justifyContent="end"
       zIndex={10}
-      // closeContainer={closeBottomSheet}
+      closeContainer={closeBottomSheet}
     >
       <BottomSheet {...content} />
     </FixedContainer>
