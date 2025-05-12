@@ -10,6 +10,10 @@ import RefetchButton from "@components/refetchButton/RefetchButton";
 // apis
 
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
+import {
+  MyLocationButton,
+  FestivalLocation,
+} from "@components/LocationButton/LocationButton";
 
 const MainPage = () => {
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
@@ -35,6 +39,15 @@ const MainPage = () => {
           css={S.getFloatingButtonStyle("refetch")}
           queries={queries}
         />
+
+        {viewType === "map" && (
+          <>
+            <MyLocationButton css={S.getFloatingButtonStyle("my_location")} />
+            <FestivalLocation
+              css={S.getFloatingButtonStyle("festival_location")}
+            />
+          </>
+        )}
 
         {/* TODO: viewType에 따라 버튼 두 개 분기 */}
 

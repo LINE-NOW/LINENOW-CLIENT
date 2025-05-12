@@ -39,8 +39,8 @@ const floatingButtonStyleConfigs: Record<
 > = {
   refetch: { position: "left", bottom: "0px" },
   switch: { position: "center", bottom: "0px" },
-  my_location: { position: "right", bottom: "0px" },
-  festival_location: { position: "right", bottom: "0.5rem" },
+  my_location: { position: "right", bottom: "4rem" },
+  festival_location: { position: "right", bottom: "0px" },
 };
 
 const positionStyles: Record<Position, ReturnType<typeof css>> = {
