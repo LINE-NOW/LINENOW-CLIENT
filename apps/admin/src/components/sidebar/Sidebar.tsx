@@ -165,7 +165,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     <>
       <S.SidebarWrapper>
         <S.SidebarUserInfoWapper>
-          {isLoading ? (
+          {auth === undefined || null ? (
             <Spinner />
           ) : (
             <>
