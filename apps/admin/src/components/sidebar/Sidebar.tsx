@@ -193,7 +193,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
         <ButtonLayout
           colCount={1}
           colGap="0.5rem"
-          style={{ padding: `1.25rem 0.75rem 2rem 0.75rem` }}
+          style={{ padding: `1.25rem 0.75rem 2rem 0.75rem`, zIndex: 999 }}
         >
           {getButton()}
         </ButtonLayout>
