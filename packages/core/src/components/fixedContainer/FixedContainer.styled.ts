@@ -23,7 +23,7 @@ export const getFixedContainerStyle = (
 };
 
 export const getFixedBackgroundStyle = () => css`
-  position: fixed;
+  position: absolute;
 
   transform: translate(-50%, -50%);
   top: 50%;
