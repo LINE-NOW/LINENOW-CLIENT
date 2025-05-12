@@ -13,7 +13,6 @@ import SidebarButton, { SidebarButtonProps } from "./SidebarButton";
 import useBoothInfo from "@hooks/useBoothInfo";
 import {
   useGetBoothStatus,
-  usePostBoothOperation,
   usePostBoothStatus,
 } from "@hooks/apis/boothManaging";
 import { useEffect } from "react";
@@ -22,10 +21,10 @@ import { usePostLogout } from "@hooks/apis/auth";
 import Spinner from "@components/spinner/Spinner";
 import {
   modalStartOperation,
-  modalStartWaiting,
   modalStopOperation,
-  modalStopWaiting,
 } from "@components/modal/boothStatus";
+import { authAtom } from "@atoms/auth";
+import { useAtom } from "jotai";
 
 export interface SidebarProps {
   isMobile: boolean;
@@ -33,14 +32,16 @@ export interface SidebarProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
-  const { mutate: postBoothOperation } = usePostBoothOperation();
   const { mutate: postBoothStatus } = usePostBoothStatus();
   const { setLoadings } = useIsLoading();
   const { data: boothData, isLoading } = useGetBoothStatus();
   const { mutate: postLogout, isPending: isLoadingLogout } = usePostLogout();
+  const [auth] = useAtom(authAtom);
+
+  console.log("관리자정보", auth);
 
   useEffect(() => {
-    setBoothInfo(boothData || { boothID: 0, name: "", status: "not_started" });
+    setBoothInfo(boothData || { boothID: 0, name: "", status: "paused" });
   }, [boothData]);
 
   useEffect(() => {
@@ -87,46 +88,21 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     },
   ];
 
-  const RequireStartingButton = () => {
-    return (
-      <Button
-        variant="blue"
-        disabled={true}
-        style={{ backgroundColor: "#333740", color: "#656972" }}
-      >
-        운영 시작을 해주세요!
-      </Button>
-    );
-  };
-
-  const handleStopWaitingButtonClick = () => {
-    openModal(
-      modalStopWaiting(() => {
-        postBoothOperation({
-          status: "pause",
-        });
-      })
-    );
-  };
-
-  const handleStartWaitingButtonClick = () => {
-    openModal(
-      modalStartWaiting(() => {
-        postBoothOperation({
-          status: "resume",
-        });
-      })
-    );
-  };
-
   const handleStopBoothButtonClick = () => {
     openModal(
       modalStopOperation(() => {
-        postBoothStatus({
-          requestBody: {
-            status: "finished",
+        postBoothStatus(
+          {
+            requestBody: {
+              operating_status: "paused",
+            },
           },
-        });
+          {
+            onSuccess: () => {
+              setBoothInfo((prev) => ({ ...prev, status: "paused" }));
+            },
+          }
+        );
       })
     );
   };
@@ -134,17 +110,24 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const handleStartBoothButtonClick = () => {
     openModal(
       modalStartOperation(() => {
-        postBoothStatus({
-          requestBody: {
-            status: "operating",
+        postBoothStatus(
+          {
+            requestBody: {
+              operating_status: "operating",
+            },
           },
-        });
+          {
+            onSuccess: () => {
+              setBoothInfo((prev) => ({ ...prev, status: "operating" }));
+            },
+          }
+        );
       })
     );
   };
   const StopWaitingButton = () => {
     return (
-      <Button variant="blueLight" onClick={handleStopWaitingButtonClick}>
+      <Button variant="blueLight" onClick={handleStopBoothButtonClick}>
         대기 중지하기 <Icon icon="pasue" color="blue" />
       </Button>
     );
@@ -152,24 +135,8 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
 
   const StartWaitingButton = () => {
     return (
-      <Button variant="blue" onClick={handleStartWaitingButtonClick}>
+      <Button variant="blue" onClick={handleStartBoothButtonClick}>
         대기 재개하기 <Icon icon="play" color="white" />
-      </Button>
-    );
-  };
-
-  const StopBoothButton = () => {
-    return (
-      <Button variant="limeLight" onClick={handleStopBoothButtonClick}>
-        운영 종료하기 <Icon icon="power" color="gray" />
-      </Button>
-    );
-  };
-
-  const StartBoothButton = () => {
-    return (
-      <Button variant="lime" onClick={handleStartBoothButtonClick}>
-        운영 시작하기 <Icon icon="power" color="gray" />
       </Button>
     );
   };
@@ -180,17 +147,13 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     }
 
     switch (boothInfo?.status) {
-      case "not_started":
-        return [
-          <RequireStartingButton key={1} />,
-          <StartBoothButton key={2} />,
-        ];
       case "operating":
-        return [<StopWaitingButton key={1} />, <StopBoothButton key={2} />];
+        return [<StopWaitingButton key={1} />];
       case "paused":
-        return [<StartWaitingButton key={1} />, <StopBoothButton key={2} />];
-      case "finished":
-        return null;
+        return [<StartWaitingButton key={1} />];
+      //TODO: 테스트용: 유저 정보에 부스 operating status 받으면 밑의 코드 삭제 필요
+      default:
+        return [<StartWaitingButton key={1} />];
     }
   };
 
@@ -208,7 +171,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
             <>
               <h3>안녕하세요</h3>
               <h1>
-                <span className="lime">{boothInfo?.name}</span> 님
+                <span className="lime">{auth?.adminUser.manager_name}</span> 님
               </h1>
               <CommonButton>
                 <S.SidebarLogout onClick={handleLogoutClick}>
@@ -219,12 +182,14 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
           )}
         </S.SidebarUserInfoWapper>
 
+        {/* 대기 팀 관리, 문의하기  */}
         <S.SidebarButtonWrapper>
           {navigateList.map((item, index) => {
             return <SidebarButton {...item} key={index} />;
           })}
         </S.SidebarButtonWrapper>
 
+        {/* 대기 재개/중지 버튼 */}
         <ButtonLayout
           colCount={1}
           colGap="0.5rem"
