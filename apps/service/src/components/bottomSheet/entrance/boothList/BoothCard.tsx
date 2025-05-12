@@ -4,16 +4,17 @@ import { Waiting } from "@interfaces/waiting";
 import { Chip, Flex } from "@linenow/core/components";
 import EnteringChip from "./EnteringChip";
 import { useModal } from "@linenow/core/hooks";
-import { useModalConfirmEntrance } from "@components/modal/waiting";
+import { useModalConfirmEntering } from "@components/modal/waiting";
 
 interface BoothCardProps
-  extends React.ComponentProps<typeof BoothThumbnailCompact>,
-    Partial<
-      Pick<
-        Waiting,
-        "waitingID" | "confirmedAt" | "waitingTeamsAhead" | "waitingStatus"
-      >
-    > {}
+  extends Partial<
+    Pick<
+      Waiting,
+      "waitingID" | "confirmedAt" | "waitingTeamsAhead" | "waitingStatus"
+    >
+  > {
+  booth: React.ComponentProps<typeof BoothThumbnailCompact>;
+}
 
 const BoothCard = (props: BoothCardProps) => {
   const {
@@ -21,10 +22,10 @@ const BoothCard = (props: BoothCardProps) => {
     confirmedAt,
     waitingTeamsAhead,
     waitingStatus,
-    ...booth
+    booth,
   } = props;
   const { openModal } = useModal();
-  const confirmEnteranceModal = useModalConfirmEntrance(waitingID, booth.name);
+  const confirmEnteranceModal = useModalConfirmEntering(waitingID, booth.name);
   const onClick = () =>
     waitingStatus === "entering" && openModal(confirmEnteranceModal);
 

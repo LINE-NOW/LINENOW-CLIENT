@@ -1,17 +1,15 @@
 import styled from "@emotion/styled";
-
-import useEntranceBottomSheet from "@hooks/useEntrance";
-import { useModal } from "@linenow/core/hooks";
+import useEnteringBottomSheet from "@hooks/useEntering";
 
 const TestTool = () => {
-  const { openEntrance } = useEntranceBottomSheet();
+  const { openEntering } = useEnteringBottomSheet();
 
   return (
     <TestToolWrapper>
       <div>프론트의 테스트 툴입니다</div>
       <button
         onClick={() => {
-          openEntrance();
+          openEntering();
         }}
       >
         입장 바텀시트 열기

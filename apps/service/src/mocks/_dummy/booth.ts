@@ -4,7 +4,7 @@ export const dummyBooths: _Booth[] = [
   {
     booth_id: 1,
     booth_name: "라인나우 테스트",
-    thumbnail:
+    booth_thumbnail:
       "https://i.namu.wiki/i/1JtZjbflwWbAwHBCu1xljdQfkvvXWD0UiLACawbjBK2972tnqsrybHFaGuq0WYKE76wSKOitmkiqvYH2Z8OYi3g_MEv2xQ1MqqA0KMXNeIpjZxOJdTBM8uomUqWXYxKbyHO8M8vCtgeRcCd2NqPoGQ.webp",
     booth_description: "라인나우 테스트 부스 입니다.",
     booth_start_time: "2025-04-22T13:54:00",
@@ -40,7 +40,7 @@ export const dummyBooths: _Booth[] = [
   {
     booth_id: 2,
     booth_name: "프론트의 더미데이터",
-    thumbnail:
+    booth_thumbnail:
       "https://i.namu.wiki/i/YUl8OYhqGEIkaSdhdBVKfG1HIc-zsq3-1-2JLHKjroWUbWEVV5NSoAUjgJHWuKvbb72P9K1VrwQcK0AN8P86ew.webp",
     booth_description: "지금은 회의중이에요",
     booth_start_time: "2025-04-22T13:54:00",

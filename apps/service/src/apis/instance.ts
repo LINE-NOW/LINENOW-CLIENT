@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -38,7 +38,7 @@ export const getResponse = async <TResponse>(
     console.log(`get : ${url}`, response);
     return response.data.data;
   } catch (error) {
-    return null;
+    throw error as AxiosError;
   }
 };
 
@@ -52,6 +52,6 @@ export const postResponse = async <TRequest, TResponse>(
     console.log(`post : ${url}`, response);
     return response.data.data;
   } catch (error) {
-    return null;
+    throw error as AxiosError;
   }
 };

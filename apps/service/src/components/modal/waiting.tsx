@@ -50,7 +50,7 @@ export const useModalCancelAllWaiting = (): ModalProps => {
 };
 
 // 입장 확정
-export const useModalConfirmEntrance = (
+export const useModalConfirmEntering = (
   waitingID: number,
   boothName: string
 ): ModalProps => {
@@ -73,7 +73,7 @@ export const useModalConfirmEntrance = (
 };
 
 // 입장 취소 1개
-export const useModalCancelEntrance = (): ModalProps => {
+export const useModalCancelEntering = (): ModalProps => {
   const { mutate } = usePostCancelAllEntering();
   const onClick = () => mutate();
 
@@ -92,7 +92,7 @@ export const useModalCancelEntrance = (): ModalProps => {
 };
 
 // 입장 전체 취소
-export const useModalCancelAllEntrance = (): ModalProps => {
+export const useModalCancelAllEntering = (): ModalProps => {
   const { mutate } = usePostCancelAllEntering();
   const onClick = () => mutate();
 
