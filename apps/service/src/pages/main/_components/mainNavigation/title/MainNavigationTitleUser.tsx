@@ -1,14 +1,14 @@
-import { useGetWaitings } from "@hooks/apis/waiting";
-import {
-  Flex,
-  Icon,
-  IconLabel,
-  Label,
-  LinkButton,
-} from "@linenow/core/components";
+// import { useGetWaitings } from "@hooks/apis/waiting";
+import { QUERY_KEY } from "@hooks/apis/query";
+import { Waiting } from "@interfaces/waiting";
+import { Icon, IconLabel, Label, LinkButton } from "@linenow/core/components";
+import { useQueryClient } from "@tanstack/react-query";
 
 const MainNavigationTitleUser = () => {
-  const { data: waitings = [] } = useGetWaitings("waiting");
+  const queryClient = useQueryClient();
+  const waitings =
+    (queryClient.getQueryData(QUERY_KEY.WAITINGS()) as Waiting[]) ?? [];
+
   return (
     <>
       <LinkButton to={`/my-waiting`}>

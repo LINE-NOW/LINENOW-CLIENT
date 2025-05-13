@@ -22,7 +22,7 @@ const MyWaitingList = (props: MyWaitingListProps) => {
       )}
 
       {/* 대기 목록 */}
-      {waitings.length === 0 && <div>이럴수가 아직 없어요!</div>}
+      {waitings.length === 0 && <div>EMPTY VIEW</div>}
       {waitings.map((waiting, index) => (
         <WaitingCard key={index} {...waiting} />
       ))}
