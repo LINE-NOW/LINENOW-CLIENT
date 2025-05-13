@@ -15,7 +15,7 @@ import {
   useGetBoothStatus,
   usePostBoothStatus,
 } from "@hooks/apis/boothManaging";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useIsLoading from "@hooks/useIsLoading";
 import { usePostLogout } from "@hooks/apis/auth";
 import Spinner from "@components/spinner/Spinner";
@@ -25,6 +25,7 @@ import {
 } from "@components/modal/boothStatus";
 import { authAtom } from "@atoms/auth";
 import { useAtom } from "jotai";
+import { getBoothRestartStatus } from "@apis/domains/boothOperating/apis";
 
 export interface SidebarProps {
   isMobile: boolean;
@@ -34,11 +35,14 @@ export interface SidebarProps {
 const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const { mutate: postBoothStatus } = usePostBoothStatus();
   const { setLoadings } = useIsLoading();
-  const { data: boothData, isLoading } = useGetBoothStatus();
+  const { data: boothData, isLoading: boothLoading } = useGetBoothStatus();
   const { mutate: postLogout, isPending: isLoadingLogout } = usePostLogout();
   const [auth] = useAtom(authAtom);
 
-  console.log("관리자정보", auth);
+  const [boothStatus, setBoothStatus] = useState<string>("paused");
+
+  const { setBoothInfo } = useBoothInfo();
+  const { openModal, closeModal } = useModal();
 
   useEffect(() => {
     setBoothInfo(boothData || { boothID: 0, name: "", status: "paused" });
@@ -48,9 +52,16 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     setLoadings({ isFullLoading: isLoadingLogout });
   }, [isLoadingLogout]);
 
-  const { boothInfo, setBoothInfo } = useBoothInfo();
+  useEffect(() => {
+    const fetchBoothStatus = async () => {
+      const statusData = await getBoothRestartStatus();
+      if (statusData) {
+        setBoothStatus(statusData.operating_status);
+      }
+    };
 
-  const { openModal, closeModal } = useModal();
+    fetchBoothStatus();
+  }, []);
 
   const handleLogout = async () => {
     postLogout();
@@ -99,6 +110,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
           },
           {
             onSuccess: () => {
+              setBoothStatus("paused");
               setBoothInfo((prev) => ({ ...prev, status: "paused" }));
             },
           }
@@ -118,6 +130,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
           },
           {
             onSuccess: () => {
+              setBoothStatus("operating");
               setBoothInfo((prev) => ({ ...prev, status: "operating" }));
             },
           }
@@ -125,6 +138,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
       })
     );
   };
+
   const StopWaitingButton = () => {
     return (
       <Button variant="blueLight" onClick={handleStopBoothButtonClick}>
@@ -142,18 +156,17 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   };
 
   const getButton = () => {
-    if (isLoading) {
-      return null;
+    if (boothLoading) {
+      return <Spinner />;
     }
 
-    switch (boothInfo?.status) {
+    switch (boothStatus) {
       case "operating":
-        return [<StopWaitingButton key={1} />];
+        return <StopWaitingButton />;
       case "paused":
-        return [<StartWaitingButton key={1} />];
-      //TODO: 테스트용: 유저 정보에 부스 operating status 받으면 밑의 코드 삭제 필요
+        return <StartWaitingButton />;
       default:
-        return [<StartWaitingButton key={1} />];
+        return <StartWaitingButton />;
     }
   };
 
@@ -165,7 +178,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     <>
       <S.SidebarWrapper>
         <S.SidebarUserInfoWapper>
-          {isLoading ? (
+          {boothLoading ? (
             <Spinner />
           ) : (
             <>
