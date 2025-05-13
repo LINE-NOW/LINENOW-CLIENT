@@ -1,9 +1,18 @@
-import { useGetBooths, useGetBoothsWaiting } from "@hooks/apis/booth";
+import BoothThumbnailBadge from "@components/booth/BoothThumbnailBadge";
+import { QUERY_KEY } from "@hooks/apis/query";
+
 import { BoothWaiting } from "@interfaces/waiting";
+import { useQueryClient } from "@tanstack/react-query";
+
+interface Booth extends React.ComponentProps<typeof BoothThumbnailBadge> {}
 
 export const useBoothList = () => {
-  const { data: booths = [] } = useGetBooths();
-  const { data: waitings = [] } = useGetBoothsWaiting();
+  const queryClient = useQueryClient();
+
+  const booths =
+    (queryClient.getQueryData(QUERY_KEY.BOOTHS()) as Booth[]) ?? [];
+  const waitings =
+    (queryClient.getQueryData(QUERY_KEY.WAITINGS()) as BoothWaiting[]) ?? [];
 
   const currentWaitings: Record<
     number,

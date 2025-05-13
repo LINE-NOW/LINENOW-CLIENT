@@ -3,6 +3,15 @@ import { getHoverAnimation } from "../../styles/animation";
 
 export const getAnimation = () => getHoverAnimation;
 
+export const getLinkButtonStyle = () => {
+  return css`
+    display: flex;
+
+    & svg {
+      flex-shrink: 0;
+    }
+  `;
+};
 export const getButtonStyle = () => {
   return css`
     cursor: pointer;

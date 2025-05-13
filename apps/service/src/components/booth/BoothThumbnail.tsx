@@ -30,11 +30,11 @@ const BoothThumbnail = (props: BoothThumbnailProps) => {
       {...attributes}
     >
       {/* 이미지 */}
-      <img
+      {/* <img
         src={thumbnail}
         alt={`${name}의 대표 이미지`}
         css={S.getImageStyle("4.5rem", "0.25rem")}
-      />
+      /> */}
 
       {/* 부스정보 */}
       <Flex gap="0.5rem" direction="column" flexGrow={1}>
