@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import * as S from "./MainLocationButton.styled";
 import { Button, Icon } from "@linenow/core/components";
 import { latLngAtom } from "@atoms/location";
@@ -6,7 +6,8 @@ import { latLngAtom } from "@atoms/location";
 export const MyLocationButton = ({
   ...buttonProps
 }: React.ComponentProps<typeof Button>) => {
-  const [_, setLatLng] = useAtom(latLngAtom);
+  const setLatLng = useSetAtom(latLngAtom);
+
   const handleMoveToMyLocation = () => {
     if (!navigator.geolocation) {
       console.error("Geolocation을 지원하지 않는 브라우저입니다.");
@@ -46,13 +47,14 @@ export const MyLocationButton = ({
 export const FestivalLocation = ({
   ...buttonProps
 }: React.ComponentProps<typeof Button>) => {
-  const [_, setLatLng] = useAtom(latLngAtom);
+  const setLatLng = useSetAtom(latLngAtom);
 
   const handleMoveToFestivalLocation = () => {
     setLatLng({
       lat: 37.55822161540249,
       lon: 127.00019240184307,
     });
+    console.log("here");
   };
 
   return (

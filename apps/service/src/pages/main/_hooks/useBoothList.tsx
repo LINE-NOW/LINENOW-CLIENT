@@ -4,6 +4,7 @@ import { Flex, Label, Select } from "@linenow/core/components";
 import useSortBooths from "./useSortBooths";
 import useMainViewType from "./useMainViewType";
 import MainMap from "../_components/map/MainMap";
+import { useAtomValue } from "jotai";
 
 const useMainBoothList = () => {
   const { viewType } = useMainViewType();

@@ -21,6 +21,20 @@ const getBoothListItemStyle = () => (theme: Theme) => {
   `;
 };
 
+const getSelectedBoothCardStyle = () => (theme: Theme) =>
+  css`
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: ${theme.maxWidth};
+    z-index: 1; /* 플로팅 버튼보다 아래 */
+    padding: 1rem;
+    background-color: ${theme.backgroundColors.white};
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.05);
+  `;
+
 export const SelectedBoothCard = () => {
   const selectedBoothID = useAtomValue(selectedBoothAtom);
   const { booths, currentWaitings } = useBoothList();
@@ -38,7 +52,13 @@ export const SelectedBoothCard = () => {
   };
 
   return (
-    <Link to={`/booth/${booth.boothID}`} css={() => getBoothListItemStyle()}>
+    <Link
+      to={`/booth/${booth.boothID}`}
+      css={(theme) => css`
+        ${getSelectedBoothCardStyle()(theme)}
+        ${getBoothListItemStyle()(theme)}
+      `}
+    >
       <BoothThumbnailBadge {...badgeProps} />
     </Link>
   );

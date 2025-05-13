@@ -1,10 +1,8 @@
 import { useEffect, useRef } from "react";
 import { BoothsLocationType } from "@apis/domains/booth/getBoothsLocation";
-
 import { createRoot } from "react-dom/client";
-
 import { Icon } from "@linenow/core/components";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { latLngAtom } from "@atoms/location";
 import { selectedBoothAtom } from "../_atom/selectedBooth";
 
@@ -13,76 +11,79 @@ export const useNaverMap = (
   locations?: BoothsLocationType
 ) => {
   const mapRef = useRef<naver.maps.Map | null>(null);
-  const [selectedBoothID, setSelectedBoothID] = useAtom(selectedBoothAtom);
   const markersRef = useRef<Record<number, naver.maps.Marker>>({});
-  const latLng = useAtomValue(latLngAtom);
+
+  const [latLng, setLatLng] = useAtom(latLngAtom);
+  const [selectedBoothId, setSelectedBoothId] = useAtom(selectedBoothAtom);
+
+  const renderMarkerIcon = (iconType: "pin" | "waiting_pin") => {
+    const container = document.createElement("div");
+    createRoot(container).render(<Icon icon={iconType} />);
+    return container;
+  };
 
   useEffect(() => {
     if (!isReady || !locations) return;
-    const timeoutId = setTimeout(() => {
-      const map = new naver.maps.Map("map", {
-        center: new naver.maps.LatLng(latLng.lat, latLng.lon),
-        zoom: 16,
-        zoomControl: true,
-        zoomControlOptions: {
-          style: naver.maps.ZoomControlStyle.SMALL,
-          position: naver.maps.Position.TOP_RIGHT,
-        },
+
+    const map = new naver.maps.Map("map", {
+      center: new naver.maps.LatLng(latLng.lat, latLng.lon),
+      zoom: 16,
+      zoomControl: true,
+      zoomControlOptions: {
+        style: naver.maps.ZoomControlStyle.SMALL,
+        position: naver.maps.Position.TOP_RIGHT,
+      },
+    });
+
+    naver.maps.Event.addListener(map, "idle", () => {
+      const center = map.getCenter();
+      setLatLng({
+        lat: center.y,
+        lon: center.x,
       });
+    });
 
-      const renderMarker = () => {
-        const container = document.createElement("div");
-        createRoot(container).render(<Icon icon="waiting_pin" />);
-        return container;
-      };
-
-      const markers: Record<number, naver.maps.Marker> = {};
-      locations.forEach((booth) => {
-        const container = renderMarker();
-        const marker = new naver.maps.Marker({
-          position: new naver.maps.LatLng(
-            Number(booth.latitude),
-            Number(booth.longitude)
-          ),
-          icon: { content: container },
-          map,
-        });
-
-        markers[booth.boothID] = marker;
-
-        naver.maps.Event.addListener(marker, "click", () => {
-          setSelectedBoothID(booth.boothID);
-          map.panTo(marker.getPosition());
-        });
-      });
-
-      markersRef.current = markers;
-      mapRef.current = map;
-    }, 300);
-    return () => clearTimeout(timeoutId);
-  }, [isReady, locations]);
-
-  useEffect(() => {
-    if (!locations || !mapRef.current) return;
+    const markers: Record<number, naver.maps.Marker> = {};
 
     locations.forEach((booth) => {
-      const marker = markersRef.current[booth.boothID];
-      if (!marker) return;
+      const marker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(
+          Number(booth.latitude),
+          Number(booth.longitude)
+        ),
+        icon: {
+          content: renderMarkerIcon(
+            booth.boothID === selectedBoothId ? "pin" : "waiting_pin"
+          ),
+        },
+        map,
+      });
 
-      const container = document.createElement("div");
-      const isSelected = booth.boothID === selectedBoothID;
-      const iconType = isSelected ? "pin" : "waiting_pin";
-      createRoot(container).render(<Icon icon={iconType} />);
-      marker.setIcon({ content: container });
+      markers[booth.boothID] = marker;
+
+      naver.maps.Event.addListener(marker, "click", () => {
+        // 마커 클릭 시 상태 업데이트 전에 아이콘 변경
+        if (selectedBoothId && markers[selectedBoothId]) {
+          markers[selectedBoothId].setIcon({
+            content: renderMarkerIcon("waiting_pin"),
+          });
+        }
+        marker.setIcon({ content: renderMarkerIcon("pin") });
+
+        setSelectedBoothId(booth.boothID);
+        map.panTo(marker.getPosition());
+      });
     });
-  }, [selectedBoothID]);
 
+    mapRef.current = map;
+    markersRef.current = markers;
+  }, [isReady, locations]);
+
+  // latLng 변경 시에만 맵 이동
   useEffect(() => {
-    if (!mapRef.current || latLng.lat === null || latLng.lon === null) return;
-
-    const newCenter = new naver.maps.LatLng(latLng.lat, latLng.lon);
-    mapRef.current.panTo(newCenter);
-  }, [latLng.lat, latLng.lon]);
+    if (!mapRef.current) return;
+    mapRef.current.panTo(new naver.maps.LatLng(latLng.lat, latLng.lon));
+  }, [latLng]);
 
   return { mapRef };
 };

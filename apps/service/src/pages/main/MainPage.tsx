@@ -15,11 +15,12 @@ import {
   FestivalLocation,
 } from "@pages/main/_components/map/MainLocationButton";
 import { SelectedBoothCard } from "./_components/map/MainSelectedBoothCard";
+import { useBoothViewState } from "./_hooks/useBoothViewState";
 
 const MainPage = () => {
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
   const { getBoothListHeaderChildren, BoothList } = useMainBoothList();
-
+  const { isBoothSelected } = useBoothViewState();
   // refetch queries
   const queries = [["need value"]];
 
@@ -32,28 +33,33 @@ const MainPage = () => {
       </MainNavigation>
 
       <BoothList />
+      <SelectedBoothCard />
 
       {/* floating button */}
       <div css={S.getFloatingButtonWrapperStyle(viewType)}>
         {/* 새로고침 버튼 */}
         <RefetchButton
-          css={S.getFloatingButtonStyle("refetch")}
+          css={S.getFloatingButtonStyle("refetch", isBoothSelected)}
           queries={queries}
         />
 
         {viewType === "map" && (
           <>
-            <MyLocationButton css={S.getFloatingButtonStyle("my_location")} />
-            <FestivalLocation
-              css={S.getFloatingButtonStyle("festival_location")}
+            <MyLocationButton
+              css={S.getFloatingButtonStyle("my_location", isBoothSelected)}
             />
-            <SelectedBoothCard />
+            <FestivalLocation
+              css={S.getFloatingButtonStyle(
+                "festival_location",
+                isBoothSelected
+              )}
+            />
           </>
         )}
 
         {/* list, map 토글 버튼 */}
         <Switch
-          css={S.getFloatingButtonStyle("switch")}
+          css={S.getFloatingButtonStyle("switch", isBoothSelected)}
           {...mainViewTypeSwitchProps}
         />
       </div>
