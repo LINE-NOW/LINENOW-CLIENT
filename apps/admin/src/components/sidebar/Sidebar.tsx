@@ -21,23 +21,27 @@ import { usePostLogout } from "@hooks/apis/auth";
 import Spinner from "@components/spinner/Spinner";
 import {
   modalStartOperation,
+  modalStartWaiting,
   modalStopOperation,
 } from "@components/modal/boothStatus";
 import { authAtom } from "@atoms/auth";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { getBoothRestartStatus } from "@apis/domains/boothOperating/apis";
+import { pausedOverlayAtom } from "@hooks/useOverlay";
 
 export interface SidebarProps {
   isMobile: boolean;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
+
 const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const { mutate: postBoothStatus } = usePostBoothStatus();
   const { setLoadings } = useIsLoading();
   const { data: boothData, isLoading: boothLoading } = useGetBoothStatus();
   const { mutate: postLogout, isPending: isLoadingLogout } = usePostLogout();
   const [auth] = useAtom(authAtom);
+  const setShowOverlay = useSetAtom(pausedOverlayAtom);
 
   const [boothStatus, setBoothStatus] = useState<string>("paused");
 
@@ -120,23 +124,46 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   };
 
   const handleStartBoothButtonClick = () => {
-    openModal(
-      modalStartOperation(() => {
-        postBoothStatus(
-          {
-            requestBody: {
-              operating_status: "operating",
+    if (auth?.adminUser?.is_restart) {
+      openModal(
+        modalStartWaiting(() => {
+          setShowOverlay(false);
+          postBoothStatus(
+            {
+              requestBody: {
+                operating_status: "operating",
+              },
             },
-          },
-          {
-            onSuccess: () => {
-              setBoothStatus("operating");
-              setBoothInfo((prev) => ({ ...prev, status: "operating" }));
+            {
+              onSuccess: () => {
+                setBoothStatus("operating");
+                setBoothInfo((prev) => ({ ...prev, status: "operating" }));
+              },
+            }
+          );
+        })
+      );
+    } else {
+      // is_restart가 false일 때는 운영 시작 모달
+      openModal(
+        modalStartOperation(() => {
+          setShowOverlay(false); // 운영 시작 시 오버레이 숨기기
+          postBoothStatus(
+            {
+              requestBody: {
+                operating_status: "operating",
+              },
             },
-          }
-        );
-      })
-    );
+            {
+              onSuccess: () => {
+                setBoothStatus("operating");
+                setBoothInfo((prev) => ({ ...prev, status: "operating" }));
+              },
+            }
+          );
+        })
+      );
+    }
   };
 
   const StopWaitingButton = () => {
@@ -150,7 +177,15 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const StartWaitingButton = () => {
     return (
       <Button variant="blue" onClick={handleStartBoothButtonClick}>
-        대기 재개하기 <Icon icon="play" color="white" />
+        {auth?.adminUser?.is_restart ? (
+          <>
+            대기 재개하기 <Icon icon="play" color="white" />
+          </>
+        ) : (
+          <>
+            운영 시작하기 <Icon icon="play" color="white" />
+          </>
+        )}
       </Button>
     );
   };

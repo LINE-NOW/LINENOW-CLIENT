@@ -17,7 +17,7 @@ const useAuth = () => {
     localStorage.setItem("user", JSON.stringify(adminUser));
 
     setAuth({ accessToken, refreshToken, adminUser });
-    if (adminUser.operating_status === "paused") {
+    if (adminUser.is_restart) {
       setShowPausedOverlay(true);
     }
     navigate("/");

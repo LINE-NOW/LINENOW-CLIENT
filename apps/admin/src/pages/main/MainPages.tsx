@@ -6,14 +6,23 @@ import TagList from "./_components/tag/TagList";
 import Spinner from "@components/spinner/Spinner";
 import { WaitingStatusParams } from "@linenow-types/status";
 import { useGetWaitingsCounts } from "@hooks/apis/boothManaging";
-import { pausedOverlayAtom } from "@hooks/useOverlay";
-import { useAtomValue } from "jotai";
+import { useAtom } from "jotai";
+import { authAtom } from "@atoms/auth";
 import PauseOverlay from "./_components/overlay/PauseOverlay";
 
 const MainPage = () => {
   const { data: waitingsCounts } = useGetWaitingsCounts();
   const [selectedTag, setSelectedTag] = useState<string>("전체보기");
-  const showOverlay = useAtomValue(pausedOverlayAtom);
+  const [auth] = useAtom(authAtom);
+  const [isRestart, setIsRestart] = useState(true);
+
+  useEffect(() => {
+    if (auth?.adminUser?.is_restart) {
+      setIsRestart(false);
+    } else {
+      setIsRestart(true);
+    }
+  }, [auth]);
 
   const getStatus = (tag: string): WaitingStatusParams => {
     switch (tag) {
@@ -48,8 +57,7 @@ const MainPage = () => {
   }
   return (
     <>
-      {showOverlay && <PauseOverlay />}
-      {/* <PauseOverlay /> */}
+      {!isRestart && <PauseOverlay />}
       <TagList
         selectedTag={selectedTag}
         onTagClick={handleTagClick}
