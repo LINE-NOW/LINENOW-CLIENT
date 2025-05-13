@@ -1,14 +1,14 @@
 import * as S from "./MainMap.styled";
 import { useGetBoothsLocation } from "@hooks/apis/booth";
-import { useMapScript } from "@pages/main/_hooks/useMapScript";
 import { useNaverMap } from "@pages/main/_hooks/useNaverMap";
+import { useRef } from "react";
 
 const MainMap = () => {
   const { data: locations } = useGetBoothsLocation();
-  const { isReady } = useMapScript();
-  const { mapRef } = useNaverMap(isReady, locations);
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
-  return <div id="map" css={S.getWrapper}></div>;
+  useNaverMap("map", locations);
+
+  return <div id="map" ref={mapContainerRef} css={S.getWrapper}></div>;
 };
-
 export default MainMap;

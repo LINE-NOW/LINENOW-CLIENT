@@ -54,7 +54,6 @@ export const FestivalLocation = ({
       lat: 37.55822161540249,
       lon: 127.00019240184307,
     });
-    console.log("here");
   };
 
   return (
