@@ -31,10 +31,17 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
     const modal = modalCancelWaiting(waiting.user.name, () => {
       postWaitingAction({
         waitingID: waiting.waitingID,
-        requestBody: { action: "cancel" },
+        action: "manager-cancel",
       });
     });
     openModal(modal);
+  };
+
+  //전화번호 복사
+  const handleCopyPhoneNumber = () => {
+    navigator.clipboard.writeText(waiting.user.phoneNumber).then(() => {
+      alert("전화번호가 복사되었습니다!");
+    });
   };
 
   const config = useMainWaitingCard({
@@ -63,16 +70,16 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
   return (
     <S.MainWaitingCardWrapper
       $backgroundColor={config.backgroundColor}
-      style={{ opacity: `${config.userInfoOpacity}` }}
+      style={{
+        opacity: `${config.userInfoOpacity}`,
+      }}
     >
       <S.MainWaitingCardContentWrapper>
         <S.MainWaitingCardHeader>
           <span className="waitingID">
             {waiting.waitingID.toString().padStart(3, "0")}
           </span>
-          <span className="waitingTime">
-            {formatDate(waiting.registeredAt)}
-          </span>
+          <span className="waitingTime">{formatDate(waiting.createdAt)}</span>
 
           {config.isValidate ? (
             <CommonButton onClick={handleCancelWaitingButton}>
@@ -81,12 +88,17 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
           ) : null}
         </S.MainWaitingCardHeader>
 
-        <S.MainWaitingCardInfoBox
-          style={{ opacity: `${config.userInfoOpacity}` }}
-        >
+        <S.MainWaitingCardInfoBox>
           <S.MainWaitingCardPartySizeInfo>
             <label>입장인원</label>
-            <span className="partySize">{waiting.partySize}명</span>
+            <span
+              className="partySize"
+              style={{
+                color: `${config.partySizeColor}`,
+              }}
+            >
+              {waiting.personNum}명
+            </span>
           </S.MainWaitingCardPartySizeInfo>
 
           <S.MainWaitingCardUserInfo>
@@ -98,7 +110,10 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
               font="body3"
               color="gray"
             >
-              <span style={{ textDecoration: "underline" }}>
+              <span
+                style={{ textDecoration: "underline", cursor: "pointer" }}
+                onClick={handleCopyPhoneNumber}
+              >
                 {waiting.user.phoneNumber}
               </span>
             </IconLabel>

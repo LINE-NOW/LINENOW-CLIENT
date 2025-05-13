@@ -17,7 +17,9 @@ const useCountdown = ({ targetDate }: useCountdownProps) => {
   const [countdown, setCountdown] = useState<Countdown>(
     calculateTime(targetDate)
   );
-  const [isCountdownOver, setIsCountDownOver] = useState<boolean>(false);
+  const [isCountdownOver, setIsCountDownOver] = useState<boolean>(
+    calculateTime(targetDate).leftTotal <= 0
+  );
 
   useEffect(() => {
     if (calculateTime(targetDate).leftTotal > 0) {
@@ -32,20 +34,23 @@ const useCountdown = ({ targetDate }: useCountdownProps) => {
           return;
         }
       }, 1000);
+
       return () => clearInterval(intervalId);
     }
   }, [targetDate]);
 
-  const getTime = (format: countdownFormat) => {
+  const getString = (format: countdownFormat) => {
     switch (format) {
       case "MMSS":
-        return `${countdown.leftMinutes}:${countdown.leftSeconds}`;
+        return `${countdown.leftMinutes}:${String(
+          countdown.leftSeconds
+        ).padStart(2, "0")}`;
       default:
         return `${countdown.leftMinutes}분 ${countdown.leftSeconds}초`;
     }
   };
 
-  return { countdown, getTime, isCountdownOver };
+  return { countdown, getString, isCountdownOver };
 };
 
 export default useCountdown;

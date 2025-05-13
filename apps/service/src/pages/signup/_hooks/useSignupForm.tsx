@@ -21,7 +21,11 @@ export const SignupFormProvider = (props: SignupFormProviderProps) => {
 };
 
 const useSingupForm = () => {
-  return useForm<SignupFormData>();
+  const form = useForm<SignupFormData>();
+  const submitForm = () => {
+    console.log("signup");
+  };
+  return { ...form, submitForm };
 };
 
 export default useSingupForm;

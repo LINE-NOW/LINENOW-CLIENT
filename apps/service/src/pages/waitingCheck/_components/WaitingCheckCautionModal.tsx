@@ -4,23 +4,55 @@ import { useState } from "react";
 import * as S from "./WaitingCheckComponents.styled";
 
 import { Button, ButtonLayout } from "@linenow/core/components";
+import { useNavigate } from "react-router-dom";
+import { postWaitingRegister } from "@apis/domains/waiting/postWaiting";
+import { SPLASH_DURATION, useSplash } from "./splash/SplashContext";
 
-interface WaitingCheckModalProps {
-  onClose: () => void;
+interface WaitingCheckCautionModalProps {
+  boothID: number;
   checkedPeople: number;
-  boothId: number;
+  onClose: () => void;
 }
 
-const WaitingCheckCautionModal = ({ onClose }: WaitingCheckModalProps) => {
+const WaitingCheckCautionModal = (props: WaitingCheckCautionModalProps) => {
+  const { boothID, checkedPeople, onClose } = props;
   const [checked, setChecked] = useState(false);
 
+  const { showSplash } = useSplash();
+  const navigate = useNavigate();
+
+  console.log("정보:", boothID, checkedPeople);
   const handleCancel = () => {
     onClose();
   };
 
-  const handleConfirm = () => {
-    console.log("post");
-    // postWaitingRegister({ boothID: boothId, partySize: checkedPeople });
+  const handleConfirm = async () => {
+    showSplash();
+    try {
+      const result = await postWaitingRegister({
+        booth_id: boothID,
+        person_num: checkedPeople,
+      });
+
+      const waitingID = result.waiting_id;
+      if (!waitingID) {
+        console.warn("응답에 waitingId없음 ㅜ");
+        return;
+      }
+
+      setTimeout(() => {
+        navigate(`/waiting/${waitingID}`, {
+          replace: true,
+          state: {
+            withAnimation: true,
+            showToast: true,
+            toastMessage: "대기를 등록했어요!",
+          },
+        });
+      }, SPLASH_DURATION);
+    } catch (error) {
+      console.error("대기 등록 실패", error);
+    }
   };
 
   return (
@@ -46,7 +78,7 @@ const WaitingCheckCautionModal = ({ onClose }: WaitingCheckModalProps) => {
           <span>취소하기</span>
         </Button>
         <Button variant="blue" onClick={handleConfirm} disabled={!checked}>
-          <span>대기 줄 서기</span>
+          <span>대기하기</span>
         </Button>
       </ButtonLayout>
     </InfoBottomButton>

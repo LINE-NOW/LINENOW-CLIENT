@@ -14,3 +14,10 @@ export const getBottomBorder = (color: BorderColorKey, size: number = 1) => {
     return `0px -${size}px 0px 0px inset ${theme.borderColors[color]}`;
   };
 };
+
+export const getTopBorder = (color: BorderColorKey, size: number = 1) => {
+  return (theme: Theme) => {
+    if (!color) return "none";
+    return `0px ${size}px 0px 0px inset ${theme.borderColors[color]}`;
+  };
+};

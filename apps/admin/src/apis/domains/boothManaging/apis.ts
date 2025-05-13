@@ -2,10 +2,9 @@ import {
   GetBoothStatus,
   GetWaitingCountsResponse,
   PostBoothStatusRequest,
-  PostWaitingsActionRequest,
   transtromGetBoothStatus,
 } from "@apis/domains/boothManaging/_interfaces";
-import { getResponse, postNoResponse } from "@apis/instance";
+import { getResponse, postResponse } from "@apis/instance";
 
 import { Booth } from "@interfaces/booth";
 
@@ -22,12 +21,13 @@ export const getWaitingsCounts = async () => {
 
 export const postWaitingsAction = async (
   waitingID: number,
-  requestBody: PostWaitingsActionRequest
+
+  action: string
 ) => {
   try {
-    await postNoResponse<PostWaitingsActionRequest>(
-      `/api/v1/manager/waitings/${waitingID}/action`,
-      requestBody
+    await postResponse<null, null>(
+      `/api/v1/waiting/${waitingID}/${action}`,
+      null
     );
   } catch (error) {
     // TODO: -분기처리 세세하게
@@ -47,8 +47,8 @@ export const getBoothStatus = async (): Promise<Booth> => {
 
 export const postBoothStatus = async (requestBody: PostBoothStatusRequest) => {
   try {
-    await postNoResponse<PostBoothStatusRequest>(
-      `/api/v1/manager/booth/status`,
+    await postResponse<PostBoothStatusRequest, null>(
+      `/api/v1/manager/booth/operating-status`,
       requestBody
     );
   } catch (error) {
@@ -59,7 +59,7 @@ export const postBoothStatus = async (requestBody: PostBoothStatusRequest) => {
 
 export const postBoothOperation = async (status: "pause" | "resume") => {
   try {
-    await postNoResponse<null>(`/api/v1/manager/booth/${status}`, null);
+    await postResponse<null, null>(`/api/v1/manager/booth/${status}`, null);
   } catch (error) {
     // TODO: -분기처리 세세하게
     throw error;

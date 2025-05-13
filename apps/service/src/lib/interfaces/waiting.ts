@@ -9,7 +9,7 @@ export interface Waiting
     BoothWaiting,
     "waitingID" | "confirmedAt" | "waitingStatus" | "waitingTeamsAhead"
   > {
-  wiaitngNum: number;
+  waitingNum: number;
   personCount: number; // person_num
 
   createdAt: string;

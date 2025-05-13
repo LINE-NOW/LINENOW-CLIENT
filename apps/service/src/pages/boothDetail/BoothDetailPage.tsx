@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
 import Separator from "@components/separator/Separator";
@@ -18,12 +18,14 @@ import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled
 
 import { Button } from "@linenow/core/components";
 import { useBottomSheet, useModal } from "@linenow/core/hooks";
-import { modalCancelWaiting } from "@components/modal/waiting";
+
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
+import { useModalCancelWaiting } from "@components/modal/waiting";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
+  // const navigate = useNavigate();
   const { openBottomSheet } = useBottomSheet();
   const handleLoginButtonClick = () => {
     openBottomSheet({ children: <LoginBottomSheetContent /> });
@@ -47,13 +49,8 @@ const BoothDetailPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const cancelWaiting = () => {
-    console.log(waiting?.waitingID + "취소");
-  };
-
-  const onWaitingCancelClick = () => {
-    openModal(modalCancelWaiting(cancelWaiting));
-  };
+  const cancelModal = useModalCancelWaiting(waiting?.waitingID ?? 0);
+  const onWaitingCancelClick = () => openModal(cancelModal);
 
   const getInformationTitle = () => {
     switch (booth?.operatingStatus) {
@@ -150,9 +147,6 @@ const BoothDetailPage = () => {
               <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
             )}
           </BottomButton>
-          {isModalOpen && (
-            <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
-          )}
         </>
       )}
     </>

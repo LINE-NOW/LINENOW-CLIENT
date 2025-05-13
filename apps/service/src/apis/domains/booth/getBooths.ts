@@ -10,7 +10,7 @@ type GetBoothsResponseItem = Pick<
   | "booth_description"
   | "booth_location"
   | "operating_status"
-  | "thumbnail"
+  | "booth_thumbnail"
   | "booth_longitude"
   | "booth_latitude"
 >;
@@ -29,7 +29,7 @@ const transformBoothsResponse = (
       location: item.booth_location,
       latitude: item.booth_latitude,
       longitude: item.booth_longitude,
-      thumbnail: item.thumbnail,
+      thumbnail: item.booth_thumbnail,
       operatingStatus: item.operating_status,
     })
   );

@@ -1,16 +1,16 @@
 // Tag.tsx
 import { TagWrapper, TagImage } from "./Tag.styled";
 
-export interface Tagprops {
+export interface TagProps {
   label: string;
   imageUrl?: string;
   onClick?: () => void;
-  $isSelected?: boolean;
+  isSelected?: boolean;
 }
 
-const Tag = ({ label, imageUrl, onClick, $isSelected }: Tagprops) => {
+const Tag = ({ label, imageUrl, onClick, isSelected }: TagProps) => {
   return (
-    <TagWrapper onClick={onClick} $isSelected={$isSelected}>
+    <TagWrapper onClick={onClick} isSelected={isSelected}>
       {imageUrl && <TagImage src={imageUrl} alt="status icon" />}
       <span>{label}</span>
     </TagWrapper>

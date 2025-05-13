@@ -16,8 +16,6 @@ const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
           boothImage={waitingDetail.booth?.thumbnail}
           boothTitle={
             <>
-              <span>{waitingDetail.personCount}명</span>
-              <span> · </span>
               <span>{waitingDetail.booth?.name}</span>
             </>
           }

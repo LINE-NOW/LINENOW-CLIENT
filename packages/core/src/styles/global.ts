@@ -1,12 +1,13 @@
 import { css } from "@emotion/react";
 
-export const global = (maxWidth: string) => css`
+export const global = (maxWidth: string, isAdmin: boolean = false) => css`
   ${resetCSS}
 
   body {
     width: 100vw;
     display: flex;
     justify-content: center;
+    background-color: ${isAdmin ? "#333740" : ""};
   }
 
   #root {

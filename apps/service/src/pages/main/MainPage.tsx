@@ -1,6 +1,6 @@
 import * as S from "./MainPage.styled";
 import MainNavigation from "./_components/mainNavigation/MainNavigation";
-import { Switch } from "@linenow/core/components";
+import { Switch, Toast } from "@linenow/core/components";
 
 // hooks
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
@@ -9,6 +9,7 @@ import RefetchButton from "@components/refetchButton/RefetchButton";
 
 // apis
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
+import useToastFromLocation from "@hooks/useToastFromLocation";
 
 import {
   MyLocationButton,
@@ -21,6 +22,8 @@ const MainPage = () => {
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
   const { getBoothListHeaderChildren, BoothList } = useMainBoothList();
   const { isBoothSelected } = useBoothViewState();
+  const { showToast, toastMessage } = useToastFromLocation();
+
   // refetch queries
   const queries = [["need value"]];
 
@@ -63,6 +66,13 @@ const MainPage = () => {
           {...mainViewTypeSwitchProps}
         />
       </div>
+
+      {/* toast */}
+      {showToast && (
+        <Toast position="bottom" duration={1}>
+          {toastMessage}
+        </Toast>
+      )}
     </>
   );
 };

@@ -6,14 +6,15 @@ import { theme } from "../../styles/theme";
 
 interface LinenowProviderProps extends React.PropsWithChildren {
   maxWidth?: string;
+  isAdmin?: boolean;
 }
 
 const LinenowProvider = (props: LinenowProviderProps) => {
-  const { maxWidth = "none", children } = props;
+  const { maxWidth = "none", isAdmin = false, children } = props;
 
   return (
     <ThemeProvider theme={theme(maxWidth)}>
-      <Global styles={global(maxWidth)} />
+      <Global styles={global(maxWidth, isAdmin)} />
       {children}
     </ThemeProvider>
   );
