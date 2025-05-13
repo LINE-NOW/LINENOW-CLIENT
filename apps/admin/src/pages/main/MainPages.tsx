@@ -33,9 +33,9 @@ const MainPage = () => {
       case "대기 중":
         return "waiting";
       case "호출 중":
-        return "calling";
+        return "entering";
       case "입장 완료":
-        return "arrived";
+        return "entered";
       case "대기 취소":
         return "canceled";
       default:
