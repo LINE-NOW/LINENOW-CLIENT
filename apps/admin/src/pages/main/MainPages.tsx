@@ -9,13 +9,7 @@ import { useGetWaitingsCounts } from "@hooks/apis/boothManaging";
 import useWebSocket from "@hooks/useSocket";
 import { Waiting } from "@interfaces/waiting";
 import { transformGetWaitingResponse } from "@apis/domains/booth/_interfaces";
-
-interface BoothInfo {
-  waiting_team_cnt: number;
-  entering_team_cnt: number;
-  entered_team_cnt: number;
-  canceled_team_cnt: number;
-}
+import { BoothInfo } from "@apis/domains/boothManaging/_interfaces";
 
 const MainPage = () => {
   const { data: waitingsCounts } = useGetWaitingsCounts();
@@ -27,6 +21,17 @@ const MainPage = () => {
     entered_team_cnt: 0,
     canceled_team_cnt: 0,
   });
+
+  useEffect(() => {
+    if (waitingsCounts) {
+      setBoothInfo({
+        waiting_team_cnt: waitingsCounts.waiting_team_cnt,
+        entering_team_cnt: waitingsCounts.entering_team_cnt,
+        entered_team_cnt: waitingsCounts.entered_team_cnt,
+        canceled_team_cnt: waitingsCounts.canceled_team_cnt,
+      });
+    }
+  }, [waitingsCounts]);
 
   const getStatus = (tag: string): WaitingStatusParams => {
     switch (tag) {
@@ -43,20 +48,16 @@ const MainPage = () => {
     }
   };
 
-  //웹소켓 연결
+  // 웹소켓 메시지 처리
   const handleWebSocketMessage = (message: any) => {
     const status = message?.data?.waiting_status;
-    console.log("status", status);
     const updatedWaiting = transformGetWaitingResponse(message?.data);
-    console.log("update", updatedWaiting);
 
-    // 사용자가 대기 건 경우
     setWaitings((prevWaitings) => {
       if (status === "waiting") {
         return [...prevWaitings, updatedWaiting];
       }
 
-      // 대기 취소된 경우
       if (status === "canceled") {
         return prevWaitings.map((waiting) =>
           waiting.waitingID === updatedWaiting.waitingID
@@ -68,21 +69,21 @@ const MainPage = () => {
       return prevWaitings;
     });
 
-    //부스 정보 소켓
+    // 부스 정보 업데이트
     const boothInfo = message?.data?.booth_info;
     if (boothInfo) {
-      setBoothInfo((_) => ({
+      setBoothInfo({
         waiting_team_cnt: boothInfo.waiting_team_cnt,
         entering_team_cnt: boothInfo.entering_team_cnt,
         entered_team_cnt: boothInfo.entered_team_cnt,
         canceled_team_cnt: boothInfo.canceled_team_cnt,
-      }));
+      });
     }
   };
 
+  // 웹소켓 연결
   useWebSocket(handleWebSocketMessage);
 
-  // API hooks
   const { data, isLoading } = useGetWaitings(getStatus(selectedTag));
 
   const handleTagClick = (tag: string) => {
@@ -102,6 +103,7 @@ const MainPage = () => {
       </div>
     );
   }
+
   return (
     <>
       <TagList

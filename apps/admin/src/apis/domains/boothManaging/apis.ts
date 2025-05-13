@@ -1,6 +1,6 @@
 import {
   GetBoothStatus,
-  GetWaitingCountsResponse,
+  BoothInfo,
   PostBoothStatusRequest,
   transtromGetBoothStatus,
 } from "@apis/domains/boothManaging/_interfaces";
@@ -10,8 +10,8 @@ import { Booth } from "@interfaces/booth";
 
 export const getWaitingsCounts = async () => {
   try {
-    const response = getResponse<GetWaitingCountsResponse>(
-      `/api/v1/manager/waiting-counts`
+    const response = getResponse<BoothInfo>(
+      `/api/v1/manager/booth/status-count`
     );
     return response;
   } catch (error) {
