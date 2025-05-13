@@ -16,15 +16,15 @@ export const useBoothList = () => {
 
   const currentWaitings: Record<
     number,
-    Pick<BoothWaiting, "waitingStatus" | "totalWaitingTeams">
+    Pick<BoothWaiting, "waitingStatus">
   > = {};
 
   for (let waiting of waitings) {
     currentWaitings[waiting.boothID] = {
       waitingStatus: waiting.waitingStatus,
-      totalWaitingTeams: waiting.totalWaitingTeams,
     };
   }
 
+  console.log(booths);
   return { booths, currentWaitings };
 };

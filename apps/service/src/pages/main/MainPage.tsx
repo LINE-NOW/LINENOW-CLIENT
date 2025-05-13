@@ -17,9 +17,11 @@ import MainNavigation from "./_components/mainNavigation/MainNavigation";
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
 import { useGetWaitings } from "@hooks/apis/waiting";
 import { QUERY_KEY } from "@hooks/apis/query";
+import useAuth from "@hooks/useAuth";
 
 const MainPage = () => {
-  useGetWaitings("waiting");
+  const { isLogin } = useAuth();
+  // useGetWaitings("waiting");
   useGetBooths();
   useGetBoothsWaiting();
 
@@ -30,7 +32,7 @@ const MainPage = () => {
   // refetch queries
   const queries: QueryKey[] = [
     QUERY_KEY.BOOTHS_WAITING(),
-    QUERY_KEY.WAITINGS(),
+    ...(isLogin ? [QUERY_KEY.WAITINGS()] : []),
   ];
 
   return (

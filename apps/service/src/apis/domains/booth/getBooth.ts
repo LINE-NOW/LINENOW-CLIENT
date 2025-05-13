@@ -16,6 +16,7 @@ type GetBoothResponse = Pick<
   | "booth_latitude"
   | "booth_menu_info"
   | "booth_image_info"
+  | "total_waiting_teams"
 >;
 
 type GetBoothResponseReturn = Pick<
@@ -26,6 +27,7 @@ type GetBoothResponseReturn = Pick<
   | "location"
   | "notice"
   | "operatingStatus"
+  | "totalWaitingTeams"
   | "openTime"
   | "latitude"
   | "logitude"
@@ -56,6 +58,7 @@ const transformBoothResponse = (
     location: _response.booth_location,
     notice: _response.booth_notice,
     operatingStatus: _response.operating_status,
+    totalWaitingTeams: _response.total_waiting_teams,
     openTime: _response.booth_start_time,
     latitude: _response.booth_latitude,
     logitude: _response.booth_longitude,
@@ -68,7 +71,8 @@ export const getBooth = async (
   boothID: number
 ): Promise<GetBoothResponseReturn | null> => {
   const response = await getResponse<GetBoothResponse>(
-    `/api/v1/booths/${boothID}`
+    `/api/v1/booths/${boothID}`,
+    { useAuth: false }
   );
 
   if (response === null) return null;

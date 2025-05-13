@@ -9,8 +9,8 @@ type BoothThumbnailProps = React.ComponentProps<typeof BoothThumbnail>;
 
 export interface BoothThumbnailBadgeProps
   extends BoothThumbnailProps,
-    Pick<Booth, "operatingStatus">,
-    Pick<BoothWaiting, "waitingStatus" | "totalWaitingTeams"> {
+    Pick<Booth, "operatingStatus" | "totalWaitingTeams">,
+    Pick<BoothWaiting, "waitingStatus"> {
   css?: SerializedStyles;
 }
 

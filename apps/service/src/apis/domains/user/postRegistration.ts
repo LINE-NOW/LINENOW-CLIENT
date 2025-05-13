@@ -39,7 +39,7 @@ export const postRegistration = async (
   const response = await postResponse<
     PostRegistrationRequestBody,
     PostRegistrationResponse
-  >(`/api/v1/accounts/registration`, body);
+  >(`/api/v1/accounts/registration`, body, { useAuth: false });
 
   if (response === null) return null;
   return transformPostRegistrationResponse(response);
