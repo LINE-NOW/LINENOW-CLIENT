@@ -1,12 +1,15 @@
 import { Booth } from "@interfaces/booth";
 import * as S from "./BoothDetailContent.styled";
 import BoothDetailInfo from "@pages/boothDetail/boothDetailInfo/BoothDetailInfo";
+import { useFormatDate } from "@pages/boothDetail/_hooks/useFormatDate";
 
 interface BoothDetailContentProps {
   booth: Booth;
 }
 
 export const BoothDetailContent = ({ booth }: BoothDetailContentProps) => {
+  const formatStartTime = useFormatDate(booth.boothStartTime);
+
   return (
     <S.BoothDetailContentWrapper>
       {/* 부스 이름, 상세설명 */}
@@ -19,7 +22,7 @@ export const BoothDetailContent = ({ booth }: BoothDetailContentProps) => {
         <BoothDetailInfo
           icon="clock"
           iconText="예상 운영 시작"
-          infoData={booth.boothStartTime}
+          infoData={formatStartTime}
         />
         <BoothDetailInfo
           icon="location_pin"
