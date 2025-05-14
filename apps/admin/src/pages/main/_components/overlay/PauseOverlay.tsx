@@ -2,14 +2,21 @@ import { useModal } from "@linenow/core/hooks";
 import * as S from "./PauseOverlay.styled";
 import { useAtom } from "jotai";
 import { pausedOverlayAtom } from "@hooks/useOverlay";
+import { useEffect } from "react";
 
 const PauseOverlay = () => {
   const { modal } = useModal();
   const [pausedOverlay, setPausedOverlay] = useAtom(pausedOverlayAtom);
 
-  if (!modal.isOpen && pausedOverlay) {
-    // 오버레이 숨기기
-    setPausedOverlay(false);
+  useEffect(() => {
+    if (!modal.isOpen && pausedOverlay) {
+      console.log("overlay 여부", pausedOverlay);
+      setPausedOverlay(true);
+    }
+  }, [modal.isOpen, pausedOverlay]);
+
+  if (!pausedOverlay) {
+    return null;
   }
 
   return (

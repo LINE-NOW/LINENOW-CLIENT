@@ -8,7 +8,6 @@ export interface AuthProps {
 }
 
 // undefined: 아직 로딩 안 됨 / null: 비로그인 / AuthProps: 로그인됨
-type AuthState = AuthProps | null | undefined;
 
 const getLocalStorageTokens = (): AuthProps | null => {
   const accessToken = localStorage.getItem("accessToken");
@@ -29,7 +28,7 @@ const getLocalStorageTokens = (): AuthProps | null => {
   return null;
 };
 
-export const authAtom = atom<AuthState>(undefined);
+export const authAtom = atom<AuthProps | null>(null);
 
 // 마운트 시 localStorage에서 user 정보 가져옴
 authAtom.onMount = (set) => {

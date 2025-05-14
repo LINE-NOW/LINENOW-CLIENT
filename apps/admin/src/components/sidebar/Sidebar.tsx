@@ -41,32 +41,49 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const { data: boothData, isLoading: boothLoading } = useGetBoothStatus();
   const { mutate: postLogout, isPending: isLoadingLogout } = usePostLogout();
   const [auth] = useAtom(authAtom);
-  const setShowOverlay = useSetAtom(pausedOverlayAtom);
+  const setShowOverlay = useSetAtom(pausedOverlayAtom); // 오버레이 상태 변경
+  const [isRestart, setIsRestart] = useState<boolean>(false);
 
   const [boothStatus, setBoothStatus] = useState<string>("paused");
 
   const { setBoothInfo } = useBoothInfo();
   const { openModal, closeModal } = useModal();
 
+  // Booth Info 업데이트
   useEffect(() => {
     setBoothInfo(boothData || { boothID: 0, name: "", status: "paused" });
   }, [boothData]);
 
+  // 로그아웃 상태 관리
   useEffect(() => {
     setLoadings({ isFullLoading: isLoadingLogout });
   }, [isLoadingLogout]);
 
+  // Booth 상태 가져오기
   useEffect(() => {
     const fetchBoothStatus = async () => {
       const statusData = await getBoothRestartStatus();
+      console.log("ㅈㅂㅈㅂ", statusData);
       if (statusData) {
         setBoothStatus(statusData.operating_status);
+        setIsRestart(statusData.is_restart);
+
+        if (statusData.operating_status === "operating") {
+          setShowOverlay(false);
+        }
       }
     };
 
     fetchBoothStatus();
-  }, []);
+  }, [setShowOverlay]);
 
+  useEffect(() => {
+    if (isRestart === false) {
+      setShowOverlay(true); // is_restart가 false일 때만 오버레이 띄움
+    }
+  }, [isRestart, setShowOverlay]);
+
+  // 로그아웃 처리
   const handleLogout = async () => {
     postLogout();
   };
@@ -88,8 +105,8 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     openModal(logoutModalProps);
   };
 
+  // 대기 팀 관리 및 문의하기
   const location = useLocation();
-
   const navigateList: SidebarButtonProps[] = [
     {
       isSelected: location.pathname == "/",
@@ -103,6 +120,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     },
   ];
 
+  // 대기 중지 버튼 클릭 시
   const handleStopBoothButtonClick = () => {
     openModal(
       modalStopOperation(() => {
@@ -123,11 +141,11 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     );
   };
 
+  // 대기 재개 버튼 클릭 시
   const handleStartBoothButtonClick = () => {
-    if (auth?.adminUser?.is_restart) {
+    if (isRestart) {
       openModal(
         modalStartWaiting(() => {
-          setShowOverlay(false);
           postBoothStatus(
             {
               requestBody: {
@@ -144,10 +162,10 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
         })
       );
     } else {
-      // is_restart가 false일 때는 운영 시작 모달
+      // is_restart가 false일 때 운영 시작 모달
       openModal(
         modalStartOperation(() => {
-          setShowOverlay(false); // 운영 시작 시 오버레이 숨기기
+          setShowOverlay(false); // 오버레이 숨기기
           postBoothStatus(
             {
               requestBody: {
@@ -177,11 +195,11 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const StartWaitingButton = () => {
     return (
       <Button
-        variant={auth?.adminUser?.is_restart ? "blue" : "lime"}
+        variant={isRestart ? "blue" : "lime"}
         onClick={handleStartBoothButtonClick}
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        {auth?.adminUser?.is_restart ? (
+        {isRestart ? (
           <>
             대기 재개하기 <Icon icon="play" color="white" />
           </>

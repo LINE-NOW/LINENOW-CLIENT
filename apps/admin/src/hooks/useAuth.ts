@@ -17,8 +17,10 @@ const useAuth = () => {
     localStorage.setItem("user", JSON.stringify(adminUser));
 
     setAuth({ accessToken, refreshToken, adminUser });
+
     if (adminUser.is_restart) {
-      setShowPausedOverlay(true);
+      console.log("Overlay should be hidden after login");
+      setShowPausedOverlay(false); // 오버레이 상태 변경
     }
     navigate("/");
   };
