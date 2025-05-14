@@ -6,6 +6,9 @@ import TagList from "./_components/tag/TagList";
 import Spinner from "@components/spinner/Spinner";
 import { WaitingStatusParams } from "@linenow-types/status";
 import { useGetWaitingsCounts } from "@hooks/apis/boothManaging";
+import { useAtom } from "jotai";
+import { authAtom } from "@atoms/auth";
+import PauseOverlay from "./_components/overlay/PauseOverlay";
 import useWebSocket from "@hooks/useSocket";
 import { Waiting } from "@interfaces/waiting";
 import { transformGetWaitingResponse } from "@apis/domains/booth/_interfaces";
@@ -14,6 +17,17 @@ import { BoothInfo } from "@apis/domains/boothManaging/_interfaces";
 const MainPage = () => {
   const { data: waitingsCounts } = useGetWaitingsCounts();
   const [selectedTag, setSelectedTag] = useState<string>("전체보기");
+  const [auth] = useAtom(authAtom);
+  const [isRestart, setIsRestart] = useState(true);
+
+  useEffect(() => {
+    if (auth?.adminUser?.is_restart) {
+      setIsRestart(true);
+    } else {
+      setIsRestart(false);
+    }
+  }, [auth]);
+    
   const [waitings, setWaitings] = useState<Waiting[]>([]);
   const [boothInfo, setBoothInfo] = useState<BoothInfo>({
     waiting_team_cnt: 0,
@@ -106,6 +120,7 @@ const MainPage = () => {
 
   return (
     <>
+      {!isRestart && <PauseOverlay />}
       <TagList
         selectedTag={selectedTag}
         onTagClick={handleTagClick}

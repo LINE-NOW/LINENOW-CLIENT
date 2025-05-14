@@ -8,6 +8,8 @@ export interface User {
   manager_id: number;
   manager_name: string;
   booth_id: number;
+  operating_status: string;
+  is_restart: boolean;
 }
 
 export interface LoginResponse {
