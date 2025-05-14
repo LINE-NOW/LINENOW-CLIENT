@@ -1,6 +1,4 @@
-import { IconAssetProps } from "../Icon";
-
-const PinIcon = (props: IconAssetProps) => {
+const FocusPin = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -20,4 +18,4 @@ const PinIcon = (props: IconAssetProps) => {
   );
 };
 
-export default PinIcon;
+export default FocusPin;

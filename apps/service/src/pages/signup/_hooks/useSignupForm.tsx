@@ -26,7 +26,9 @@ const useSingupForm = () => {
 
   const { mutate: postRegistration } = usePostRegistration();
 
-  const submitForm = () => {
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log();
     if (form.isFormValidate)
       postRegistration({
         name: form.values.name,

@@ -1,5 +1,6 @@
 import { _Booth, _Waiting } from "../models";
 import { getResponse } from "@apis/instance";
+import { Booth } from "@interfaces/booth";
 
 import { BoothWaiting } from "@interfaces/waiting";
 
@@ -13,12 +14,9 @@ type GetWaitingResponse = Pick<
 
 type GetWaitingResponseReturn = Pick<
   BoothWaiting,
-  | "boothID"
-  | "waitingID"
-  | "waitingStatus"
-  | "waitingTeamsAhead"
-  | "totalWaitingTeams"
->;
+  "boothID" | "waitingID" | "waitingStatus" | "waitingTeamsAhead"
+> &
+  Pick<Booth, "totalWaitingTeams">;
 
 const transformWaitingResponse = (
   _response: GetWaitingResponse
@@ -27,7 +25,6 @@ const transformWaitingResponse = (
     waitingID: _response.waiting_id,
     waitingStatus: _response.waiting_status,
     waitingTeamsAhead: _response.waiting_team_ahead,
-    totalWaitingTeams: _response.booth_info.total_waiting_teams,
     boothID: _response.booth_info.booth_id,
   };
 };

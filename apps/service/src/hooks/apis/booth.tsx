@@ -9,13 +9,6 @@ import { getBoothWaiting } from "@apis/domains/booth/getBoothWaiting";
 import { getBoothsLocation } from "@apis/domains/booth/getBoothsLocation";
 import { QUERY_KEY } from "./query";
 
-export const useGetBooth = (boothID: number) => {
-  return useQuery({
-    queryKey: ["booth", boothID],
-    queryFn: () => getBooth(boothID),
-  });
-};
-
 export const useGetBooths = () => {
   return useQuery({
     queryKey: QUERY_KEY.BOOTHS(),
@@ -53,7 +46,7 @@ export const useGetBoothWaiting = (boothID: number) => {
 
 export const useGetBoothsLocation = () => {
   return useQuery({
-    queryKey: ["booths_location"],
+    queryKey: QUERY_KEY.BOOTHS_LOCATION(),
     queryFn: () => getBoothsLocation(),
   });
 };

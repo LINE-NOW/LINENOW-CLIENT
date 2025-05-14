@@ -1,9 +1,10 @@
 import { css, Theme } from "@emotion/react";
 import { Link } from "react-router-dom";
-import { useBoothList } from "../boothList/useBoothList";
+
 import BoothThumbnailBadge, {
   BoothThumbnailBadgeProps,
 } from "@components/booth/BoothThumbnailBadge";
+import useBoothListData from "@pages/main/_hooks/useBoothListData";
 
 const getBoothListItemStyle = () => (theme: Theme) =>
   css`
@@ -35,18 +36,16 @@ type Props = {
 };
 
 export const SelectedBoothCard = ({ selectedBoothId }: Props) => {
-  const { booths, currentWaitings } = useBoothList();
+  const { currentBooths } = useBoothListData();
 
-  if (!selectedBoothId || booths.length === 0) return null;
+  if (!selectedBoothId || currentBooths.length === 0) return null;
 
-  const booth = booths.find((b) => b.boothID === selectedBoothId);
-  const waiting = currentWaitings[selectedBoothId];
+  const booth = currentBooths.find((b) => b.boothID === selectedBoothId);
 
-  if (!booth || !waiting) return null;
+  if (!booth) return null;
 
   const badgeProps: BoothThumbnailBadgeProps = {
     ...booth,
-    ...waiting,
   };
 
   return (

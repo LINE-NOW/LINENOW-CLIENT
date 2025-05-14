@@ -17,21 +17,10 @@ const MainBoothList = (props: MainBoothListProps) => {
     <div css={S.getBoothListWrapperStyle()}>
       {booths.map((booth, index) => {
         const isLast = index === booths.length - 1;
-        // const waiting = currentWaitings[booth.boothID];
-
-        return (
-          <MainBoothListItem
-            key={index}
-            isLast={isLast}
-            // {...waiting}
-            {...booth}
-          />
-        );
+        return <MainBoothListItem key={index} isLast={isLast} {...booth} />;
       })}
     </div>
   );
-
-  return <div></div>;
 };
 
 export default MainBoothList;

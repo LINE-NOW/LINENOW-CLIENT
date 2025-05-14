@@ -1,12 +1,14 @@
 import * as S from "./MainMap.styled";
-import { useGetBoothsLocation } from "@hooks/apis/booth";
-import { useNaverMap } from "@pages/main/_hooks/useNaverMap";
+
+import { BoothPinProps, useNaverMap } from "@pages/main/_hooks/useNaverMap";
 import { memo, useRef, useState } from "react";
 import { SelectedBoothCard } from "./MainSelectedBoothCard";
 
-const MainMap = memo(() => {
-  const { data: locations } = useGetBoothsLocation();
-
+interface MainMapProps {
+  booths: BoothPinProps[];
+}
+const MainMap = memo((props: MainMapProps) => {
+  const { booths } = props;
   const selectedBoothIdRef = useRef<number | null>(null);
   const [selectedBoothId, setSelectedBoothId] = useState<number | null>(null);
 
@@ -18,16 +20,11 @@ const MainMap = memo(() => {
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
-  useNaverMap(
-    mapContainerRef,
-    selectedBoothId,
-    safeSetSelectedBoothId,
-    locations
-  );
+  useNaverMap(mapContainerRef, selectedBoothId, safeSetSelectedBoothId, booths);
 
   return (
     <>
-      <div id="map" ref={mapContainerRef} css={S.getWrapper}></div>
+      <div id="map" ref={mapContainerRef} css={S.getWrapper} />
       <SelectedBoothCard selectedBoothId={selectedBoothId} />
     </>
   );

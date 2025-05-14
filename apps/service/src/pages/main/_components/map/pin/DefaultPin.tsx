@@ -1,12 +1,26 @@
-import { IconAssetProps } from "../Icon";
+import { Booth } from "@interfaces/booth";
 
-interface WaitingPinIconProps extends IconAssetProps {
-  label?: string;
-}
+interface DefautlPinProps
+  extends Pick<Booth, "operatingStatus" | "totalWaitingTeams"> {}
 
-const WaitingPinIcon = (props: WaitingPinIconProps) => {
-  const { color = "black", size = 24, label = "운영 전" } = props;
-  const isOperating: boolean = false;
+const DefautlPin = (props: DefautlPinProps) => {
+  const { operatingStatus, totalWaitingTeams = 0 } = props;
+
+  const isOperating: boolean = operatingStatus === "operating";
+
+  const getLabel = () => {
+    switch (operatingStatus) {
+      case "not_started":
+        return "운영 전";
+      case "finished":
+        return "운영 종료";
+      default:
+        return totalWaitingTeams === 0
+          ? `대기 없음`
+          : `대기 ${totalWaitingTeams}팀`;
+    }
+  };
+
   const fillColor = isOperating ? "#E7EDFE" : "#F0F2F8";
   const strokeColor = isOperating ? "#1851FF" : "#B0B4BD";
   return (
@@ -44,10 +58,10 @@ const WaitingPinIcon = (props: WaitingPinIconProps) => {
         fontSize="10"
         fontWeight="bold"
       >
-        {label}
+        {getLabel()}
       </text>
     </svg>
   );
 };
 
-export default WaitingPinIcon;
+export default DefautlPin;

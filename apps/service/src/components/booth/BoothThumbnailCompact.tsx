@@ -27,12 +27,12 @@ const BoothThumbnailCompact = (props: BoothThumbnailCompactProps) => {
       alignItem="center"
       {...attributes}
     >
-      {/* <Flex
+      <Flex
         as="img"
         alt={`${name} 부스의 썸네일 사진`}
         src={thumbnail}
         css={S.getImageStyle("3rem", "0.25rem")}
-      /> */}
+      />
       <Flex direction="column" flexGrow={1} gap="0.25rem">
         <Label font="body2" color="blackLight">
           {name}

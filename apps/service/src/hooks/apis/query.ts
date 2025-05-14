@@ -5,6 +5,7 @@ export const QUERY_KEY = {
   BOOTHS: (): QueryKey => ["booths"],
   BOOTHS_COUNT: (): QueryKey => ["booths-count"],
   BOOTHS_WAITING: (): QueryKey => ["booths-waiting"],
+  BOOTHS_LOCATION: (): QueryKey => ["booths-location"],
 
   BOOTH: (id: number): QueryKey => ["booth", id],
   BOOTH_WAITING: (id: number): QueryKey => ["booth-waiting", id],

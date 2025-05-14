@@ -10,24 +10,13 @@ import SignupFormStepPassword from "./steps/SingupFormStepPassword";
 const SingupForm = () => {
   const { isFormValidate, submitForm } = useSingupForm();
 
-  const SubmitButton = () => {
-    return (
-      <BottomButton>
-        <Button type="submit" disabled={!isFormValidate} onClick={submitForm}>
-          회원가입하기
-        </Button>
-      </BottomButton>
-    );
-  };
   return (
     <Flex
       as="form"
       direction="column"
       gap="2rem"
       padding="1.25rem"
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
+      onSubmit={submitForm}
     >
       {/* form */}
       <SignupFormStepName />
@@ -35,7 +24,11 @@ const SingupForm = () => {
       <SignupFormStepPassword />
 
       {/* submit */}
-      <SubmitButton />
+      <BottomButton>
+        <Button type="submit" disabled={!isFormValidate} onClick={() => {}}>
+          회원가입하기
+        </Button>
+      </BottomButton>
     </Flex>
   );
 };

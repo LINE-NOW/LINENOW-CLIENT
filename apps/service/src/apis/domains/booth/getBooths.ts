@@ -27,7 +27,7 @@ type GetBoothsResponseItemResponse = Pick<
   | "operatingStatus"
   | "totalWaitingTeams"
   | "thumbnail"
-  | "logitude"
+  | "longitude"
   | "latitude"
 >;
 

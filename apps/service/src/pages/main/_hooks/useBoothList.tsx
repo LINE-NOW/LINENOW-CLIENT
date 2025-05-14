@@ -4,11 +4,11 @@ import { Flex, Label } from "@linenow/core/components";
 
 import useMainViewType from "./useMainViewType";
 import MainMap from "../_components/map/MainMap";
-import { useBoothList } from "../_components/boothList/useBoothList";
+import useBoothListData from "./useBoothListData";
 
 const useMainBoothList = () => {
   const { viewType } = useMainViewType();
-  const { currentBooths } = useBoothList();
+  const { currentBooths } = useBoothListData();
 
   // 고민 좀 해보기...
   const getBoothListHeaderChildren = () =>
@@ -21,12 +21,15 @@ const useMainBoothList = () => {
     );
 
   const BoothList = () =>
-    viewType === "list" ? <MainBoothList /> : <MainMap />;
+    viewType === "list" ? (
+      <MainBoothList booths={currentBooths} />
+    ) : (
+      <MainMap booths={currentBooths} />
+    );
 
   return {
     getBoothListHeaderChildren,
     BoothList,
-    currentSortBoothOption,
   };
 };
 
