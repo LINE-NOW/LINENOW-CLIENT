@@ -20,7 +20,15 @@ const SingupForm = () => {
     );
   };
   return (
-    <Flex as="form" direction="column" gap="2rem" padding="1.25rem">
+    <Flex
+      as="form"
+      direction="column"
+      gap="2rem"
+      padding="1.25rem"
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
       {/* form */}
       <SignupFormStepName />
       <SignupFormStepPhone />

@@ -9,6 +9,7 @@ export const postRegistrationMessage = async (
 ) => {
   await postResponse<PostRegistrationRequestBody, null>(
     `/api/v1/accounts/registration/message`,
-    body
+    body,
+    { useAuth: false }
   );
 };
