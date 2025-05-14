@@ -1,4 +1,5 @@
 // component
+import { useModal } from "../../hooks";
 import Button from "../button/Button";
 import ButtonLayout from "../buttonLayout/ButtonLayout";
 import * as S from "./Modal.styled";
@@ -11,7 +12,14 @@ export interface ModalProps {
   primaryButton?: Omit<React.ComponentProps<typeof Button>, "size">;
 }
 
-const Modal = (modal: ModalProps) => {
+const Modal = (props: ModalProps) => {
+  const { closeModal } = useModal();
+  const {
+    secondButton = { onClick: closeModal, children: "이전으로" },
+    primaryButton = { onClick: closeModal, children: "확인" },
+    ...modal
+  } = props;
+
   return (
     <S.ModalContainer>
       {/* 텍스트 부분 */}
@@ -26,26 +34,23 @@ const Modal = (modal: ModalProps) => {
       <ButtonLayout colCount={2}>
         <Button
           onClick={() => {
-            // closeModal;
-            modal.secondButton?.onClick;
+            closeModal();
+            secondButton.onClick;
           }}
           size="large"
           variant="outline"
-          {...modal.secondButton}
+          {...secondButton}
         >
-          {modal.secondButton?.children || "이전으로"}
+          {secondButton.children}
         </Button>
 
         <Button
-          onClick={() => {
-            // closeModal;
-            modal.primaryButton?.onClick;
-          }}
+          onClick={primaryButton.onClick}
           size="large"
           variant="blue"
-          {...modal.primaryButton}
+          {...primaryButton}
         >
-          {modal.primaryButton?.children || "확인"}
+          {primaryButton.children}
         </Button>
       </ButtonLayout>
     </S.ModalContainer>
