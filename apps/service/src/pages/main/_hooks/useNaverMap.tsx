@@ -77,7 +77,7 @@ export const useNaverMap = (
     const map = mapInstanceRef.current;
 
     if (!map || !booths) return;
-    console.log(booths);
+
     // 기존 마커 제거
     Object.values(markersRef.current).forEach((marker) => marker.setMap(null));
     markersRef.current = {};

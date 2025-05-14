@@ -2,6 +2,7 @@ import { Booth } from "@interfaces/booth";
 
 import * as S from "./Booth.styled";
 import { Flex, IconLabel, Label } from "@linenow/core/components";
+import { DEFAULT_BOOTH_THUMBNAIL } from "@constants/image";
 
 export interface BoothThumbnailProps
   extends Pick<
@@ -11,15 +12,11 @@ export interface BoothThumbnailProps
     React.ComponentPropsWithRef<"section"> {}
 
 const BoothThumbnail = (props: BoothThumbnailProps) => {
-  const {
-    children,
-    boothID,
-    name,
-    description,
-    location,
-    thumbnail,
-    ...attributes
-  } = props;
+  const thumbnail =
+    props.thumbnail === "" ? DEFAULT_BOOTH_THUMBNAIL : props.thumbnail;
+
+  const { children, boothID, name, description, location, ...attributes } =
+    props;
 
   return (
     <Flex
@@ -32,8 +29,9 @@ const BoothThumbnail = (props: BoothThumbnailProps) => {
       {/* 이미지 */}
       <Flex
         as="img"
-        // src={thumbnail}
-        alt={`${name}의 대표 이미지`}
+        src={thumbnail}
+        loading={"lazy"}
+        alt={`${name} 부스의 썸네일 사진`}
         css={S.getImageStyle("4.5rem", "0.25rem")}
       />
 

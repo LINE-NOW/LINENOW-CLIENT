@@ -15,6 +15,7 @@ interface BoothItem
       | "boothID"
       | "name"
       | "description"
+      | "thumbnail"
       | "location"
       | "latitude"
       | "longitude"
@@ -51,6 +52,7 @@ const useBoothListData = () => {
       boothID: booth.boothID,
       name: booth.name,
       description: booth.description,
+      thumbnail: booth.thumbnail,
       location: booth.location,
       operatingStatus: booth.operatingStatus,
       totalWaitingTeams: booth.totalWaitingTeams,
