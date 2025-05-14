@@ -4,6 +4,7 @@ export type FlexStyle = {
   width?: "100%" | "auto" | string;
   height?: string;
   flexGrow?: 0 | 1;
+  flexShrink?: 0 | 1;
   gap?: string;
   direction?: "column" | "row";
   alignItem?: "center" | "start" | "end" | "stretch";
@@ -23,6 +24,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
     width = "auto",
     height = "auto",
     flexGrow = 0,
+    flexShrink = 0,
     gap = "0rem",
     direction = "row",
     alignItem = "stretch",
@@ -42,6 +44,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
           width,
           height,
           flexGrow,
+          flexShrink,
           gap,
           direction,
           alignItem,

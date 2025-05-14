@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import Button from "../button/Button";
 import Flex from "../flex/Flex";
 import InputText from "./InputText";
@@ -20,6 +21,11 @@ const InputTextButton = (props: InputTextButtonProps) => {
         width="6.25rem"
         disabled={disabled}
         onClick={onClick}
+        css={[
+          css`
+            flex-shrink: 0;
+          `,
+        ]}
         {...buttonProps}
       >
         인증번호받기
