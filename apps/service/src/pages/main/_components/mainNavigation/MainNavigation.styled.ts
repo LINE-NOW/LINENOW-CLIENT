@@ -86,6 +86,7 @@ export const getNavigationWrapper = (type: MainViewType, isFold: boolean) => {
 
     return css`
       overflow-x: hidden;
+      overflow-y: hidden;
 
       display: flex;
       flex-direction: column;

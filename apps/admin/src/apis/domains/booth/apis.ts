@@ -15,7 +15,7 @@ export const getWaitings = async (
 ): Promise<Waiting[]> => {
   const response = await getResponse<GetWaitingsResponse>(
     status != undefined
-      ? `/api/v1/manager/waitings?status=${status}`
+      ? `/api/v1/manager/booth/${status}`
       : `/api/v1/manager/booth`
   );
   return response ? transformGetWaitingsResponse(response) : [];

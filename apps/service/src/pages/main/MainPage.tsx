@@ -1,40 +1,37 @@
-import * as S from "./MainPage.styled";
-import MainNavigation from "./_components/mainNavigation/MainNavigation";
-import { Switch, Toast } from "@linenow/core/components";
+import { QueryKey } from "@tanstack/react-query";
+
+// apis
+import { useGetBooths, useGetBoothsWaiting } from "@hooks/apis/booth";
 
 // hooks
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import useMainBoothList from "@pages/main/_hooks/useBoothList";
 import RefetchButton from "@components/refetchButton/RefetchButton";
+import useToastFromLocation from "@hooks/useToastFromLocation";
 
-// apis
+// components
+import { Switch, Toast } from "@linenow/core/components";
 
+import * as S from "./MainPage.styled";
+import MainNavigation from "./_components/mainNavigation/MainNavigation";
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useGetWaitings } from "@hooks/apis/waiting";
+import { QUERY_KEY } from "@hooks/apis/query";
 
 const MainPage = () => {
+  useGetWaitings("waiting");
+  useGetBooths();
+  useGetBoothsWaiting();
+
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
   const { getBoothListHeaderChildren, BoothList } = useMainBoothList();
-  const location = useLocation();
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (location.state?.showToast) {
-      setShowToast(true);
-      setToastMessage(location.state.toastMessage);
-
-      navigate(location.pathname, {
-        replace: true,
-        state: {},
-      });
-    }
-  }, [location.state]);
+  const { showToast, toastMessage } = useToastFromLocation();
 
   // refetch queries
-  const queries = [["need value"]];
+  const queries: QueryKey[] = [
+    QUERY_KEY.BOOTHS_WAITING(),
+    QUERY_KEY.WAITINGS(),
+  ];
 
   return (
     <>

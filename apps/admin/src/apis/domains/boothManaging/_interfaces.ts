@@ -5,11 +5,11 @@ export interface PostWaitingsActionRequest {
   action: ManagerActionStatus;
 }
 
-export interface GetWaitingCountsResponse {
-  waiting: number;
-  calling: number;
-  arrived: number;
-  canceled: number;
+export interface BoothInfo {
+  canceled_team_cnt: number;
+  entered_team_cnt: number;
+  entering_team_cnt: number;
+  waiting_team_cnt: number;
 }
 export interface GetBoothStatus {
   id: number;

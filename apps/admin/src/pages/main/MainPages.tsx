@@ -9,6 +9,10 @@ import { useGetWaitingsCounts } from "@hooks/apis/boothManaging";
 import { useAtom } from "jotai";
 import { authAtom } from "@atoms/auth";
 import PauseOverlay from "./_components/overlay/PauseOverlay";
+import useWebSocket from "@hooks/useSocket";
+import { Waiting } from "@interfaces/waiting";
+import { transformGetWaitingResponse } from "@apis/domains/booth/_interfaces";
+import { BoothInfo } from "@apis/domains/boothManaging/_interfaces";
 
 const MainPage = () => {
   const { data: waitingsCounts } = useGetWaitingsCounts();
@@ -23,15 +27,34 @@ const MainPage = () => {
       setIsRestart(false);
     }
   }, [auth]);
+    
+  const [waitings, setWaitings] = useState<Waiting[]>([]);
+  const [boothInfo, setBoothInfo] = useState<BoothInfo>({
+    waiting_team_cnt: 0,
+    entering_team_cnt: 0,
+    entered_team_cnt: 0,
+    canceled_team_cnt: 0,
+  });
+
+  useEffect(() => {
+    if (waitingsCounts) {
+      setBoothInfo({
+        waiting_team_cnt: waitingsCounts.waiting_team_cnt,
+        entering_team_cnt: waitingsCounts.entering_team_cnt,
+        entered_team_cnt: waitingsCounts.entered_team_cnt,
+        canceled_team_cnt: waitingsCounts.canceled_team_cnt,
+      });
+    }
+  }, [waitingsCounts]);
 
   const getStatus = (tag: string): WaitingStatusParams => {
     switch (tag) {
       case "대기 중":
         return "waiting";
       case "호출 중":
-        return "calling";
+        return "entering";
       case "입장 완료":
-        return "arrived";
+        return "entered";
       case "대기 취소":
         return "canceled";
       default:
@@ -39,14 +62,53 @@ const MainPage = () => {
     }
   };
 
-  // API hooks
-  const { data: waitings, isLoading } = useGetWaitings(getStatus(selectedTag));
+  // 웹소켓 메시지 처리
+  const handleWebSocketMessage = (message: any) => {
+    const status = message?.data?.waiting_status;
+    const updatedWaiting = transformGetWaitingResponse(message?.data);
+
+    setWaitings((prevWaitings) => {
+      if (status === "waiting") {
+        return [...prevWaitings, updatedWaiting];
+      }
+
+      if (status === "canceled") {
+        return prevWaitings.map((waiting) =>
+          waiting.waitingID === updatedWaiting.waitingID
+            ? { ...waiting, waitingStatus: "canceled" }
+            : waiting
+        );
+      }
+
+      return prevWaitings;
+    });
+
+    // 부스 정보 업데이트
+    const boothInfo = message?.data?.booth_info;
+    if (boothInfo) {
+      setBoothInfo({
+        waiting_team_cnt: boothInfo.waiting_team_cnt,
+        entering_team_cnt: boothInfo.entering_team_cnt,
+        entered_team_cnt: boothInfo.entered_team_cnt,
+        canceled_team_cnt: boothInfo.canceled_team_cnt,
+      });
+    }
+  };
+
+  // 웹소켓 연결
+  useWebSocket(handleWebSocketMessage);
+
+  const { data, isLoading } = useGetWaitings(getStatus(selectedTag));
 
   const handleTagClick = (tag: string) => {
     setSelectedTag(tag);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (data) {
+      setWaitings(data);
+    }
+  }, [data]);
 
   if (isLoading) {
     return (
@@ -55,6 +117,7 @@ const MainPage = () => {
       </div>
     );
   }
+
   return (
     <>
       {!isRestart && <PauseOverlay />}
@@ -62,6 +125,10 @@ const MainPage = () => {
         selectedTag={selectedTag}
         onTagClick={handleTagClick}
         {...waitingsCounts}
+        waiting={boothInfo.waiting_team_cnt}
+        calling={boothInfo.entering_team_cnt}
+        arrived={boothInfo.entered_team_cnt}
+        canceled={boothInfo.canceled_team_cnt}
       />
 
       {waitings && waitings.length > 0 ? (

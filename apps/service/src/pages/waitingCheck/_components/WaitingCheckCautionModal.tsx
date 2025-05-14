@@ -4,18 +4,24 @@ import { useState } from "react";
 import * as S from "./WaitingCheckComponents.styled";
 
 import { Button, ButtonLayout } from "@linenow/core/components";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { postWaitingRegister } from "@apis/domains/waiting/postWaiting";
 import { SPLASH_DURATION, useSplash } from "./splash/SplashContext";
 
-const WaitingCheckCautionModal = ({ onClose }: { onClose: () => void }) => {
+interface WaitingCheckCautionModalProps {
+  boothID: number;
+  checkedPeople: number;
+  onClose: () => void;
+}
+
+const WaitingCheckCautionModal = (props: WaitingCheckCautionModalProps) => {
+  const { boothID, checkedPeople, onClose } = props;
   const [checked, setChecked] = useState(false);
-  const { state } = useLocation();
-  const { booth, checkedPeople } = state;
+
   const { showSplash } = useSplash();
   const navigate = useNavigate();
 
-  console.log("정보:", booth, checkedPeople);
+  console.log("정보:", boothID, checkedPeople);
   const handleCancel = () => {
     onClose();
   };
@@ -24,7 +30,7 @@ const WaitingCheckCautionModal = ({ onClose }: { onClose: () => void }) => {
     showSplash();
     try {
       const result = await postWaitingRegister({
-        booth_id: booth.boothID,
+        booth_id: boothID,
         person_num: checkedPeople,
       });
 

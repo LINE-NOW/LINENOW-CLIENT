@@ -11,7 +11,7 @@ const MainBoothList = () => {
 
   return (
     <div css={S.getBoothListWrapperStyle()}>
-      {booths.map((booth, index) => {
+      {booths?.map((booth, index) => {
         const isLast = index === booths.length - 1;
         const waiting = currentWaitings[booth.boothID];
 
