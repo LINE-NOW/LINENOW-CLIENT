@@ -18,9 +18,9 @@ const MainPage = () => {
 
   useEffect(() => {
     if (auth?.adminUser?.is_restart) {
-      setIsRestart(false);
-    } else {
       setIsRestart(true);
+    } else {
+      setIsRestart(false);
     }
   }, [auth]);
 

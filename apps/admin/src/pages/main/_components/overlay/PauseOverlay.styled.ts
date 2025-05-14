@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const PauseOverlayWrapper = styled.div`
   position: fixed;
-  z-index: 50;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -46,8 +46,8 @@ export const PauseOverlayTextContainer = styled.section`
     line-height: 2;
   }
 
-  .blue {
-    color: ${({ theme }) => theme.fontColors.blue};
+  .lime {
+    color: ${({ theme }) => theme.fontColors.lime};
     text-shadow: 0px 0px 50px #fff;
   }
 `;

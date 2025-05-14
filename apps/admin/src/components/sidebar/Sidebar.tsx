@@ -176,14 +176,18 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
 
   const StartWaitingButton = () => {
     return (
-      <Button variant="blue" onClick={handleStartBoothButtonClick}>
+      <Button
+        variant={auth?.adminUser?.is_restart ? "blue" : "lime"}
+        onClick={handleStartBoothButtonClick}
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
         {auth?.adminUser?.is_restart ? (
           <>
             대기 재개하기 <Icon icon="play" color="white" />
           </>
         ) : (
           <>
-            운영 시작하기 <Icon icon="play" color="white" />
+            운영 시작하기 <Icon icon="power" />
           </>
         )}
       </Button>

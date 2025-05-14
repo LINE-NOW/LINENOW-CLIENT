@@ -1,17 +1,29 @@
+import { useModal } from "@linenow/core/hooks";
 import * as S from "./PauseOverlay.styled";
+import { useAtom } from "jotai";
+import { pausedOverlayAtom } from "@hooks/useOverlay";
 
 const PauseOverlay = () => {
+  const { modal } = useModal();
+  const [pausedOverlay, setPausedOverlay] = useAtom(pausedOverlayAtom);
+
+  if (!modal.isOpen && pausedOverlay) {
+    // 오버레이 숨기기
+    setPausedOverlay(false);
+  }
+
   return (
     <S.PauseOverlayWrapper>
       <S.PauseOverlayContainer>
-        <S.PauseOverlayTextContainer>
-          <p className="q">잠깐, 오픈런 손님을 다 받으셨나요?</p>
-          <p className="click">
-            라인나우 대기를 받으시려면 <span className="blue">운영시작</span>을
-            클릭해주세요!
-          </p>
-        </S.PauseOverlayTextContainer>
-        <S.PauseOverlayFlowImg src="/images/flow.png" />
+        {!modal.isOpen && (
+          <S.PauseOverlayTextContainer>
+            <p className="q">잠깐, 오픈런 손님을 다 받으셨나요?</p>
+            <p className="click">
+              라인나우 대기를 받으시려면 <span className="lime">운영시작</span>
+              을 클릭해주세요!
+            </p>
+          </S.PauseOverlayTextContainer>
+        )}
       </S.PauseOverlayContainer>
     </S.PauseOverlayWrapper>
   );
