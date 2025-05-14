@@ -12,6 +12,7 @@ import { postCancelAllWaiting } from "@apis/domains/waiting/postCancelAllWaiting
 import { postSelectEntering } from "@apis/domains/waiting/postSelectEntering";
 import { useToast } from "@linenow/core/hooks";
 import { QUERY_KEY } from "./query";
+import { postCancelWaiting } from "@apis/domains/waiting/postCancelWaiting";
 
 export const useGetWaitings = (type: "waiting" | "finished" = "waiting") => {
   return useQuery({
@@ -98,7 +99,7 @@ export const usePostCancelWaiting = () => {
   const { presentToast } = useToast();
   return useMutation({
     mutationKey: ["cancel_waiting"],
-    mutationFn: (waitingID: number) => postSelectEntering(waitingID),
+    mutationFn: (waitingID: number) => postCancelWaiting(waitingID),
     onSuccess: () => {
       presentToast(`대기가 취소되었습니다.`);
       history.go(0);
