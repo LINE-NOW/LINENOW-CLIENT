@@ -53,3 +53,19 @@ export const postResponse = async <TRequest, TResponse>(
     throw error as AxiosError;
   }
 };
+
+// DELETE
+export const deleteResponse = async <TResponse>(
+  url: string,
+  config?: AxiosRequestConfig
+): Promise<TResponse | null> => {
+  try {
+    const response = await instance.delete<BaseDTO<TResponse>>(url, {
+      ...config,
+    });
+    console.log(`delete : ${url}`, response);
+    return response.data.data;
+  } catch (error) {
+    throw error as AxiosError;
+  }
+};

@@ -1,32 +1,18 @@
 import { useModal } from "@linenow/core/hooks";
 import * as S from "./SettingDeleteID.styled";
+import { useModalWithdraw } from "@components/modal/user";
 
 const SettingDeleteID = () => {
   const { openModal } = useModal();
-  // const { mutate: postDeleteID } = usePostDeleteID();
+  const withdrawModal = useModalWithdraw();
 
-  const handleDeleteIDClick = () => {
-    openModal({
-      title: "회원탈퇴",
-      sub: "회원 탈퇴 시, 모든 이용 내역과 개인 정보가\n삭제되며 복구할 수 없습니다.\n계속 진행하시겠습니까?",
-      primaryButton: {
-        children: "회원탈퇴하기",
-        onClick: handleDeleteID,
-      },
-      secondButton: {
-        children: "취소하기",
-      },
-    });
-  };
-
-  const handleDeleteID = async () => {
-    // postDeleteID();
-    console.log("탈퇴되었습니다.");
+  const handleWithdrawClick = () => {
+    openModal(withdrawModal);
   };
 
   return (
     <S.SettingDeleteIDComponentWrapper>
-      <S.SettingDeleteIDComponentText onClick={handleDeleteIDClick}>
+      <S.SettingDeleteIDComponentText onClick={handleWithdrawClick}>
         회원 탈퇴
       </S.SettingDeleteIDComponentText>
     </S.SettingDeleteIDComponentWrapper>

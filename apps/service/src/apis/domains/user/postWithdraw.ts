@@ -1,5 +1,5 @@
-import { postResponse } from "@apis/instance";
+import { deleteResponse } from "@apis/instance";
 
-export const postWithdraw = async () => {
-  await postResponse<null, null>(`/api/v1/accounts/withdraw`, null);
+export const deleteWithdraw = async () => {
+  await deleteResponse<null>(`/api/v1/accounts/withdraw`);
 };
