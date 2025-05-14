@@ -26,7 +26,7 @@ const InputText = (props: InputTextProps) => {
   };
 
   return (
-    <Flex direction="column" gap="0.125rem" width="100%">
+    <Flex direction="column" gap="0.125rem" width="100%" flexShrink={1}>
       <label
         css={[
           S.getInputTextFieldStyle(),

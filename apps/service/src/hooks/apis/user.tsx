@@ -3,7 +3,7 @@ import { postLogin } from "@apis/domains/user/postLogin";
 import { postLogout } from "@apis/domains/user/postLogout";
 import { postRegistration } from "@apis/domains/user/postRegistration";
 import { postRegistrationMessage } from "@apis/domains/user/postRegistrationMessage";
-import { postWithdraw } from "@apis/domains/user/postWithdraw";
+import { deleteWithdraw } from "@apis/domains/user/postWithdraw";
 import useAuth from "@hooks/useAuth";
 import { useToast } from "@linenow/core/hooks";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -33,13 +33,6 @@ export const usePostLogin = () => {
     onSuccess: (data) => {
       if (data != null) login({ accessToken: data.accessToken });
     },
-  });
-};
-
-export const usePostLogout = () => {
-  return useMutation({
-    mutationKey: ["logout"],
-    mutationFn: () => postLogout(),
   });
 };
 
@@ -86,9 +79,24 @@ export const usePostRegistrationMessage = () => {
   });
 };
 
+export const usePostLogout = () => {
+  return useMutation({
+    mutationKey: ["logout"],
+    mutationFn: () => postLogout(),
+    onSuccess: () => {
+      localStorage.removeItem("accessToken");
+      window.location.href = "/";
+    },
+  });
+};
+
 export const usePostWithdraw = () => {
   return useMutation({
     mutationKey: ["withdraw"],
-    mutationFn: () => postWithdraw(),
+    mutationFn: () => deleteWithdraw(),
+    onSuccess: () => {
+      localStorage.removeItem("accessToken");
+      window.location.href = "/";
+    },
   });
 };
