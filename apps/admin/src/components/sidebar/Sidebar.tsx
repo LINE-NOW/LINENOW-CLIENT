@@ -22,7 +22,7 @@ import Spinner from "@components/spinner/Spinner";
 import {
   modalStartOperation,
   modalStartWaiting,
-  modalStopOperation,
+  modalStopWaiting,
 } from "@components/modal/boothStatus";
 import { authAtom } from "@atoms/auth";
 import { useAtom } from "jotai";
@@ -123,7 +123,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   // 대기 중지 버튼 클릭 시
   const handleStopBoothButtonClick = () => {
     openModal(
-      modalStopOperation(() => {
+      modalStopWaiting(() => {
         postBoothStatus(
           {
             requestBody: {
@@ -134,6 +134,8 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
             onSuccess: () => {
               setBoothStatus("paused");
               setBoothInfo((prev) => ({ ...prev, status: "paused" }));
+
+              setIsRestart(true);
             },
           }
         );
