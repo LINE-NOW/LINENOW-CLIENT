@@ -11,8 +11,8 @@ export type ManagerActionStatus = "call" | "confirm" | "cancel";
 export type BoothStatus = "operating" | "paused";
 
 export type WaitingStatusParams =
-  | "calling"
+  | "entering"
   | "waiting"
-  | "arrived"
+  | "entered"
   | "canceled"
   | undefined;
