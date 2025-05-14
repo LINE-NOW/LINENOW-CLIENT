@@ -70,7 +70,7 @@ const BoothDetailPage = () => {
       case "finished":
         return undefined;
       default:
-        return `${waiting?.totalWaitingTeams || 0}팀`;
+        return `${booth?.totalWaitingTeams || 0}팀`;
     }
   };
 

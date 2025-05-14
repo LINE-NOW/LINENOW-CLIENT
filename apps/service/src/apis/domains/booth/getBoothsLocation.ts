@@ -7,6 +7,7 @@ interface GetBoothsLocationReturn
     Booth,
     "boothID" | "latitude" | "longitude" | "operatingStatus"
   > {}
+
 type GetBoothsLocation = Array<_BoothLocation>;
 export type BoothsLocationType = Array<GetBoothsLocationReturn>;
 
@@ -23,7 +24,8 @@ const transformBoothLocation = (
 
 export const getBoothsLocation = async (): Promise<BoothsLocationType> => {
   const response = await getResponse<GetBoothsLocation>(
-    `/api/v1/booths/location`
+    `/api/v1/booths/location`,
+    { useAuth: false }
   );
   if (response === null) return [];
   return transformBoothLocation(response);

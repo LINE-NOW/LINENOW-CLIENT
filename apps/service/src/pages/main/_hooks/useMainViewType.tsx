@@ -35,7 +35,7 @@ const useMainViewType = () => {
   const mainViewTypeSwitchProps: React.ComponentProps<typeof Switch> = {
     icon: config.switchIcon,
     onClick: () => {
-      setMainViewType(config.toggleType), setSelectedBooth(null);
+      setMainViewType(config.toggleType), setSelectedBooth(false);
     },
     children: config.switchLabel,
   };
