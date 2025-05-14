@@ -1,4 +1,5 @@
 import MainBoothList from "../_components/boothList/MainBoothList";
+
 import { Flex, Label } from "@linenow/core/components";
 
 import useMainViewType from "./useMainViewType";
@@ -20,13 +21,13 @@ const useMainBoothList = () => {
     );
 
   const BoothList = () =>
-    viewType === "list" ? (
-      <MainBoothList booths={currentBooths} />
-    ) : (
-      <MainMap latitude={37.5584809} longitude={127.0004067} />
-    );
+    viewType === "list" ? <MainBoothList /> : <MainMap />;
 
-  return { getBoothListHeaderChildren, BoothList };
+  return {
+    getBoothListHeaderChildren,
+    BoothList,
+    currentSortBoothOption,
+  };
 };
 
 export default useMainBoothList;

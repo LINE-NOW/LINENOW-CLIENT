@@ -15,43 +15,75 @@ import {
   useGetBoothStatus,
   usePostBoothStatus,
 } from "@hooks/apis/boothManaging";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useIsLoading from "@hooks/useIsLoading";
 import { usePostLogout } from "@hooks/apis/auth";
 import Spinner from "@components/spinner/Spinner";
 import {
   modalStartOperation,
-  modalStopOperation,
+  modalStartWaiting,
+  modalStopWaiting,
 } from "@components/modal/boothStatus";
 import { authAtom } from "@atoms/auth";
 import { useAtom } from "jotai";
+import { getBoothRestartStatus } from "@apis/domains/boothOperating/apis";
+import { pausedOverlayAtom } from "@hooks/useOverlay";
 
 export interface SidebarProps {
   isMobile: boolean;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
+
 const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const { mutate: postBoothStatus } = usePostBoothStatus();
   const { setLoadings } = useIsLoading();
-  const { data: boothData, isLoading } = useGetBoothStatus();
+  const { data: boothData, isLoading: boothLoading } = useGetBoothStatus();
   const { mutate: postLogout, isPending: isLoadingLogout } = usePostLogout();
   const [auth] = useAtom(authAtom);
+  const [, setShowOverlay] = useAtom(pausedOverlayAtom);
+  const [isRestart, setIsRestart] = useState<boolean>(false);
 
-  console.log("관리자정보", auth);
+  const [boothStatus, setBoothStatus] = useState<string>("paused");
 
+  const { setBoothInfo } = useBoothInfo();
+  const { openModal, closeModal } = useModal();
+
+  // Booth Info 업데이트
   useEffect(() => {
     setBoothInfo(boothData || { boothID: 0, name: "", status: "paused" });
   }, [boothData]);
 
+  // 로그아웃 상태 관리
   useEffect(() => {
     setLoadings({ isFullLoading: isLoadingLogout });
   }, [isLoadingLogout]);
 
-  const { boothInfo, setBoothInfo } = useBoothInfo();
+  useEffect(() => {
+    const fetchBoothStatus = async () => {
+      const statusData = await getBoothRestartStatus();
+      if (statusData) {
+        setBoothStatus(statusData.operating_status);
+        setIsRestart(statusData.is_restart);
 
-  const { openModal, closeModal } = useModal();
+        if (statusData.operating_status === "operating") {
+          setShowOverlay(false);
+        }
+      }
+    };
 
+    fetchBoothStatus();
+  }, [setShowOverlay]);
+
+  useEffect(() => {
+    if (isRestart === false) {
+      setShowOverlay(true);
+    } else {
+      setShowOverlay(false);
+    }
+  }, [isRestart]);
+
+  // 로그아웃 처리
   const handleLogout = async () => {
     postLogout();
   };
@@ -73,8 +105,8 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     openModal(logoutModalProps);
   };
 
+  // 대기 팀 관리 및 문의하기
   const location = useLocation();
-
   const navigateList: SidebarButtonProps[] = [
     {
       isSelected: location.pathname == "/",
@@ -88,9 +120,10 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     },
   ];
 
+  // 대기 중지 버튼 클릭 시
   const handleStopBoothButtonClick = () => {
     openModal(
-      modalStopOperation(() => {
+      modalStopWaiting(() => {
         postBoothStatus(
           {
             requestBody: {
@@ -99,7 +132,10 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
           },
           {
             onSuccess: () => {
+              setBoothStatus("paused");
               setBoothInfo((prev) => ({ ...prev, status: "paused" }));
+
+              setIsRestart(true);
             },
           }
         );
@@ -107,24 +143,49 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     );
   };
 
+  // 대기 재개 버튼 클릭 시
   const handleStartBoothButtonClick = () => {
-    openModal(
-      modalStartOperation(() => {
-        postBoothStatus(
-          {
-            requestBody: {
-              operating_status: "operating",
+    if (isRestart) {
+      openModal(
+        modalStartWaiting(() => {
+          postBoothStatus(
+            {
+              requestBody: {
+                operating_status: "operating",
+              },
             },
-          },
-          {
-            onSuccess: () => {
-              setBoothInfo((prev) => ({ ...prev, status: "operating" }));
+            {
+              onSuccess: () => {
+                setBoothStatus("operating");
+                setBoothInfo((prev) => ({ ...prev, status: "operating" }));
+              },
+            }
+          );
+        })
+      );
+    } else {
+      // is_restart가 false일 때 운영 시작 모달
+      openModal(
+        modalStartOperation(() => {
+          setShowOverlay(false);
+          postBoothStatus(
+            {
+              requestBody: {
+                operating_status: "operating",
+              },
             },
-          }
-        );
-      })
-    );
+            {
+              onSuccess: () => {
+                setBoothStatus("operating");
+                setBoothInfo((prev) => ({ ...prev, status: "operating" }));
+              },
+            }
+          );
+        })
+      );
+    }
   };
+
   const StopWaitingButton = () => {
     return (
       <Button variant="blueLight" onClick={handleStopBoothButtonClick}>
@@ -135,25 +196,36 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
 
   const StartWaitingButton = () => {
     return (
-      <Button variant="blue" onClick={handleStartBoothButtonClick}>
-        대기 재개하기 <Icon icon="play" color="white" />
+      <Button
+        variant={isRestart ? "blue" : "lime"}
+        onClick={handleStartBoothButtonClick}
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        {isRestart ? (
+          <>
+            대기 재개하기 <Icon icon="play" color="white" />
+          </>
+        ) : (
+          <>
+            운영 시작하기 <Icon icon="power" />
+          </>
+        )}
       </Button>
     );
   };
 
   const getButton = () => {
-    if (isLoading) {
-      return null;
+    if (boothLoading) {
+      return <Spinner />;
     }
 
-    switch (boothInfo?.status) {
+    switch (boothStatus) {
       case "operating":
-        return [<StopWaitingButton key={1} />];
+        return <StopWaitingButton />;
       case "paused":
-        return [<StartWaitingButton key={1} />];
-      //TODO: 테스트용: 유저 정보에 부스 operating status 받으면 밑의 코드 삭제 필요
+        return <StartWaitingButton />;
       default:
-        return [<StartWaitingButton key={1} />];
+        return <StartWaitingButton />;
     }
   };
 
@@ -165,7 +237,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     <>
       <S.SidebarWrapper>
         <S.SidebarUserInfoWapper>
-          {isLoading ? (
+          {boothLoading ? (
             <Spinner />
           ) : (
             <>
@@ -193,7 +265,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
         <ButtonLayout
           colCount={1}
           colGap="0.5rem"
-          style={{ padding: `1.25rem 0.75rem 2rem 0.75rem` }}
+          style={{ padding: `1.25rem 0.75rem 2rem 0.75rem`, zIndex: 999 }}
         >
           {getButton()}
         </ButtonLayout>
