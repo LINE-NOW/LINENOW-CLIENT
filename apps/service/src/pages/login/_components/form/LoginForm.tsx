@@ -3,6 +3,7 @@ import useLoginForm from "@pages/login/_hooks/useLoginForm";
 
 // components
 import {
+  Button,
   ButtonLayout,
   Flex,
   InputText,
@@ -15,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const { register, SubmitButton } = useLoginForm();
+  const { register, submitForm, isFormValidate } = useLoginForm();
 
   // signupButton
   const onClickSignupButton = () => {
@@ -41,6 +42,7 @@ const LoginForm = () => {
       direction="column"
       gap="2rem"
       padding="1.5rem 1.25rem 0rem 1.25rem"
+      onSubmit={submitForm}
     >
       <Flex direction="column" gap="1rem" width="100%">
         {/* 아이디 */}
@@ -56,7 +58,10 @@ const LoginForm = () => {
 
       {/* 제출 */}
       <ButtonLayout colGap="0.75rem">
-        <SubmitButton />
+        <Button type="submit" disabled={!isFormValidate} onClick={() => {}}>
+          로그인하기
+        </Button>
+
         <TextButton onClick={onClickSignupButton}>회원가입하기</TextButton>
       </ButtonLayout>
     </Flex>

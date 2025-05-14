@@ -1,6 +1,5 @@
 import { usePostLogin } from "@hooks/apis/user";
 import useForm, { FormProvider } from "@hooks/form/useForm";
-import { Button } from "@linenow/core/components";
 
 export interface LoginFormData {
   phonenumber: string;
@@ -27,31 +26,20 @@ const useLoginForm = () => {
   const form = useForm<LoginFormData>();
   const { mutate: postLogin } = usePostLogin();
 
-  const submitForm = () => {
+  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     if (form.isFormValidate)
       postLogin({
         phonenumber: form.values.phonenumber,
         password: form.values.password,
       });
+    else console.log("1r45 ");
   };
-
-  // submit button
-  const SubmitButton = () => (
-    <Button
-      type="button"
-      onClick={(e) => {
-        e.preventDefault();
-        submitForm();
-      }}
-      disabled={!form.isFormValidate}
-    >
-      로그인하기
-    </Button>
-  );
 
   return {
     ...form,
-    SubmitButton,
+    submitForm,
   };
 };
 
