@@ -8,7 +8,7 @@ export const getFlexStyle = (style: FlexStyle) => css`
 
   display: flex;
   flex-direction: ${style.direction};
-  flex-shrink: 0;
+  flex-shrink: ${style.flexShrink};
   gap: ${style.gap};
   align-items: ${style.alignItem};
   justify-content: ${style.justifyContent};

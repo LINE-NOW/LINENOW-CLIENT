@@ -12,6 +12,7 @@ import { Flex } from "@linenow/core/components";
 interface MainNavigationProps extends React.PropsWithChildren {}
 
 const MainNavigation = (props: MainNavigationProps) => {
+  // useGetWaitings("waiting");
   const { children } = props;
   const { isFold } = useMainScroll();
   const { viewType } = useMainViewType();

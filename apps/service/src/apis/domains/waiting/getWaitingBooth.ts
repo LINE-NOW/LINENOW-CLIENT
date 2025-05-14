@@ -48,7 +48,7 @@ const transformWaitingBoothResponse = (
       boothID: _response.booth_info.booth_id,
       name: _response.booth_info.booth_name,
       location: _response.booth_info.booth_location,
-      logitude: _response.booth_info.booth_longitude,
+      longitude: _response.booth_info.booth_longitude,
       latitude: _response.booth_info.booth_latitude,
       thumbnail: _response.booth_info.booth_thumbnail,
     },

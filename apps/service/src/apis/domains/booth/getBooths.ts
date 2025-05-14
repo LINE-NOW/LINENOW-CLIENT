@@ -1,4 +1,4 @@
-import { BoothThumbnail } from "@interfaces/booth";
+import { Booth } from "@interfaces/booth";
 import { _Booth } from "../models";
 import { getResponse } from "@apis/instance";
 
@@ -10,33 +10,51 @@ type GetBoothsResponseItem = Pick<
   | "booth_description"
   | "booth_location"
   | "operating_status"
+  | "total_waiting_teams"
   | "booth_thumbnail"
   | "booth_longitude"
   | "booth_latitude"
 >;
 
 type GetBoothsResponse = Array<GetBoothsResponseItem>;
-type GetBoothsResponseReturn = Array<BoothThumbnail>;
+
+type GetBoothsResponseItemResponse = Pick<
+  Booth,
+  | "boothID"
+  | "name"
+  | "description"
+  | "location"
+  | "operatingStatus"
+  | "totalWaitingTeams"
+  | "thumbnail"
+  | "logitude"
+  | "latitude"
+>;
+
+type GetBoothsResponseReturn = Array<GetBoothsResponseItemResponse>;
 
 const transformBoothsResponse = (
   _response: GetBoothsResponse
 ): GetBoothsResponseReturn => {
   return _response.map(
-    (item): BoothThumbnail => ({
+    (item): GetBoothsResponseItemResponse => ({
       boothID: item.booth_id,
       name: item.booth_name,
       description: item.booth_description,
       location: item.booth_location,
       latitude: item.booth_latitude,
-      logitude: item.booth_longitude,
+      longitude: item.booth_longitude,
       thumbnail: item.booth_thumbnail,
       operatingStatus: item.operating_status,
+      totalWaitingTeams: item.total_waiting_teams,
     })
   );
 };
 
 export const getBooths = async (): Promise<GetBoothsResponseReturn> => {
-  const response = await getResponse<GetBoothsResponse>(`/api/v1/booths`);
+  const response = await getResponse<GetBoothsResponse>(`/api/v1/booths`, {
+    useAuth: false,
+  });
   if (response === null) return [];
   return transformBoothsResponse(response);
 };

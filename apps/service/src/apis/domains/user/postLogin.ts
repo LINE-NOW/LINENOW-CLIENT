@@ -37,7 +37,7 @@ export const postLogin = async (
   const response = await postResponse<
     PostLoginRequestBody,
     Array<PostLoginResponse>
-  >(`/api/v1/accounts/login`, body);
+  >(`/api/v1/accounts/login`, body, { useAuth: false });
 
   if (response === null) return null;
   return transformPostLoginResponse(response[0]);

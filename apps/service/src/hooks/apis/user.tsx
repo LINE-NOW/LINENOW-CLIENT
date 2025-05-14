@@ -3,8 +3,9 @@ import { postLogin } from "@apis/domains/user/postLogin";
 import { postLogout } from "@apis/domains/user/postLogout";
 import { postRegistration } from "@apis/domains/user/postRegistration";
 import { postRegistrationMessage } from "@apis/domains/user/postRegistrationMessage";
-import { postWithdraw } from "@apis/domains/user/postWithdraw";
+import { deleteWithdraw } from "@apis/domains/user/postWithdraw";
 import useAuth from "@hooks/useAuth";
+import { useToast } from "@linenow/core/hooks";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetBlackuser = () => {
@@ -35,14 +36,9 @@ export const usePostLogin = () => {
   });
 };
 
-export const usePostLogout = () => {
-  return useMutation({
-    mutationKey: ["logout"],
-    mutationFn: () => postLogout(),
-  });
-};
-
 export const usePostRegistration = () => {
+  const { login } = useAuth();
+  const { presentToast } = useToast();
   type Prameter = {
     name: string;
     phonenumber: string;
@@ -54,28 +50,53 @@ export const usePostRegistration = () => {
     mutationKey: ["registration"],
     mutationFn: (params: Prameter) =>
       postRegistration({
-        userName: params.name,
-        userPhone: params.phonenumber,
+        user_name: params.name,
+        user_phone: params.phonenumber,
         sms_code: params.smsCode,
         user_password1: params.password,
         user_password2: params.passwordConfirm,
       }),
+    onSuccess: (response) => {
+      presentToast("회원가입을 성공했어요!");
+      if (response) login({ accessToken: response?.accessToken });
+    },
   });
 };
 
 export const usePostRegistrationMessage = () => {
+  const { presentToast } = useToast();
+  const presentCompletedSendingToast = () => {
+    presentToast("인증 번호가 전송되었어요!");
+  };
+
   return useMutation({
     mutationKey: ["registration_message"],
     mutationFn: (phonenumber: string) =>
       postRegistrationMessage({
         user_phone: phonenumber,
       }),
+    onSuccess: () => presentCompletedSendingToast(),
+  });
+};
+
+export const usePostLogout = () => {
+  return useMutation({
+    mutationKey: ["logout"],
+    mutationFn: () => postLogout(),
+    onSuccess: () => {
+      localStorage.removeItem("accessToken");
+      window.location.href = "/";
+    },
   });
 };
 
 export const usePostWithdraw = () => {
   return useMutation({
     mutationKey: ["withdraw"],
-    mutationFn: () => postWithdraw(),
+    mutationFn: () => deleteWithdraw(),
+    onSuccess: () => {
+      localStorage.removeItem("accessToken");
+      window.location.href = "/";
+    },
   });
 };

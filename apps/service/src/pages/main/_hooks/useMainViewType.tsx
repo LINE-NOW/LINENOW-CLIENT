@@ -1,8 +1,9 @@
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { mainViewTypeAtom } from "../_atom/mainViewType";
 import { MainViewType } from "../types";
 import { IconKey } from "@linenow/core/types";
 import { Switch } from "@linenow/core/components";
+import { selectedBoothAtom } from "../_atom/selectedBooth";
 
 interface MainViewTypeConfig {
   toggleType: MainViewType;
@@ -27,12 +28,15 @@ const mainViewTypeConfigs: MainViewTypeConfigs = {
 
 const useMainViewType = () => {
   const [mainViewType, setMainViewType] = useAtom(mainViewTypeAtom);
+  const setSelectedBooth = useSetAtom(selectedBoothAtom);
   const config = mainViewTypeConfigs[mainViewType];
 
   // view type을 전환하는 버튼
   const mainViewTypeSwitchProps: React.ComponentProps<typeof Switch> = {
     icon: config.switchIcon,
-    onClick: () => setMainViewType(config.toggleType),
+    onClick: () => {
+      setMainViewType(config.toggleType), setSelectedBooth(null);
+    },
     children: config.switchLabel,
   };
 
