@@ -61,10 +61,10 @@ const positionStyles: Record<Position, ReturnType<typeof css>> = {
 
 export const getFloatingButtonStyle = (
   buttonType: FloatingButtonType,
-  isBoothSelected: boolean = false
+  viewType: MainViewType = "list"
 ) => {
   const config = floatingButtonStyleConfigs[buttonType];
-  const extraBottom = isBoothSelected ? "6rem" : "0rem";
+  const extraBottom = viewType === "map" ? "6rem" : "0rem";
 
   return css`
     position: absolute;

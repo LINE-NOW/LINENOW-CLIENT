@@ -1,17 +1,13 @@
-import { useAtomValue } from "jotai";
-import { css } from "@emotion/react";
-import { selectedBoothAtom } from "@pages/main/_atom/selectedBooth";
+import { css, Theme } from "@emotion/react";
+import { Link } from "react-router-dom";
+import { useBoothList } from "../boothList/useBoothList";
 import BoothThumbnailBadge, {
   BoothThumbnailBadgeProps,
 } from "@components/booth/BoothThumbnailBadge";
-import { Link } from "react-router-dom";
-import { Theme } from "@emotion/react";
-import { useBoothList } from "../boothList/useBoothList";
 
-const getBoothListItemStyle = () => (theme: Theme) => {
-  return css`
+const getBoothListItemStyle = () => (theme: Theme) =>
+  css`
     padding: 0.75rem 1.25rem 1rem 1.25rem;
-
     background-color: ${theme.backgroundColors.white};
 
     &:hover {
@@ -19,7 +15,6 @@ const getBoothListItemStyle = () => (theme: Theme) => {
       border-radius: 0.5rem;
     }
   `;
-};
 
 const getSelectedBoothCardStyle = () => (theme: Theme) =>
   css`
@@ -29,20 +24,23 @@ const getSelectedBoothCardStyle = () => (theme: Theme) =>
     transform: translateX(-50%);
     width: 100%;
     max-width: ${theme.maxWidth};
-    z-index: 1; /* 플로팅 버튼보다 아래 */
+    z-index: 1;
     padding: 1rem;
     background-color: ${theme.backgroundColors.white};
     box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.05);
   `;
 
-export const SelectedBoothCard = () => {
-  const selectedBoothID = useAtomValue(selectedBoothAtom);
+type Props = {
+  selectedBoothId: number | null;
+};
+
+export const SelectedBoothCard = ({ selectedBoothId }: Props) => {
   const { booths, currentWaitings } = useBoothList();
 
-  if (!selectedBoothID || booths.length === 0) return null;
+  if (!selectedBoothId || booths.length === 0) return null;
 
-  const booth = booths.find((b) => b.boothID === selectedBoothID);
-  const waiting = currentWaitings[selectedBoothID];
+  const booth = booths.find((b) => b.boothID === selectedBoothId);
+  const waiting = currentWaitings[selectedBoothId];
 
   if (!booth || !waiting) return null;
 

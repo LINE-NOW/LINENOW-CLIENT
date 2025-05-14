@@ -1,10 +1,10 @@
 import MainBoothList from "../_components/boothList/MainBoothList";
+
 import { Flex, Label } from "@linenow/core/components";
 
 import useSortBooths from "./useSortBooths";
 import useMainViewType from "./useMainViewType";
 import MainMap from "../_components/map/MainMap";
-import { useAtomValue } from "jotai";
 
 const useMainBoothList = () => {
   const { viewType } = useMainViewType();
@@ -39,7 +39,11 @@ const useMainBoothList = () => {
   const BoothList = () =>
     viewType === "list" ? <MainBoothList /> : <MainMap />;
 
-  return { getBoothListHeaderChildren, BoothList, currentSortBoothOption };
+  return {
+    getBoothListHeaderChildren,
+    BoothList,
+    currentSortBoothOption,
+  };
 };
 
 export default useMainBoothList;
