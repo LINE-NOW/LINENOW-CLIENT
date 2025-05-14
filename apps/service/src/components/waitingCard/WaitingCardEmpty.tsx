@@ -8,7 +8,7 @@ interface Config {
 }
 const configs: Record<MainViewType, Config> = {
   list: {
-    label: "지도로 보기",
+    label: "지도로 둘러보기",
     toggleType: "map",
   },
   map: {
