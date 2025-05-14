@@ -16,7 +16,6 @@ import MapIcon from "./assets/MapIcon";
 import MyLocationIcon from "./assets/MyLocationIcon";
 import PauseIcon from "./assets/PauseIcon";
 import PhoneIcon from "./assets/PhoneIcon";
-import PinIcon from "./assets/PinIcon";
 import PlayIcon from "./assets/PlayIcon";
 import PowerIcon from "./assets/PowerIcon";
 import RefreshIcon from "./assets/RefreshIcon";
@@ -24,7 +23,6 @@ import RightIcon from "./assets/RightIcon";
 import SettingIcon from "./assets/SettingIcon";
 import SortIcon from "./assets/SortIcon";
 import UpIcon from "./assets/UpIcon";
-import WaitingPinIcon from "./assets/WaitingPinIcon";
 import XIcon from "./assets/XIocn";
 
 export type IconType = typeof icons;
@@ -43,7 +41,7 @@ export const icons = {
   logout: LogoutIcon,
   pasue: PauseIcon,
   phone: PhoneIcon,
-  pin: PinIcon,
+
   play: PlayIcon,
   power: PowerIcon,
   refresh: RefreshIcon,
@@ -58,7 +56,6 @@ export const icons = {
   list: ListIcon,
   map: MapIcon,
   my_location: MyLocationIcon,
-  waiting_pin: WaitingPinIcon,
 };
 
 export const IconList = Object.keys(icons);
