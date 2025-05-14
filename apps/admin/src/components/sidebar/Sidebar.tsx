@@ -25,7 +25,7 @@ import {
   modalStopOperation,
 } from "@components/modal/boothStatus";
 import { authAtom } from "@atoms/auth";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { getBoothRestartStatus } from "@apis/domains/boothOperating/apis";
 import { pausedOverlayAtom } from "@hooks/useOverlay";
 
@@ -41,7 +41,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   const { data: boothData, isLoading: boothLoading } = useGetBoothStatus();
   const { mutate: postLogout, isPending: isLoadingLogout } = usePostLogout();
   const [auth] = useAtom(authAtom);
-  const setShowOverlay = useSetAtom(pausedOverlayAtom); // 오버레이 상태 변경
+  const [, setShowOverlay] = useAtom(pausedOverlayAtom);
   const [isRestart, setIsRestart] = useState<boolean>(false);
 
   const [boothStatus, setBoothStatus] = useState<string>("paused");
@@ -59,11 +59,9 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     setLoadings({ isFullLoading: isLoadingLogout });
   }, [isLoadingLogout]);
 
-  // Booth 상태 가져오기
   useEffect(() => {
     const fetchBoothStatus = async () => {
       const statusData = await getBoothRestartStatus();
-      console.log("ㅈㅂㅈㅂ", statusData);
       if (statusData) {
         setBoothStatus(statusData.operating_status);
         setIsRestart(statusData.is_restart);
@@ -79,9 +77,11 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
 
   useEffect(() => {
     if (isRestart === false) {
-      setShowOverlay(true); // is_restart가 false일 때만 오버레이 띄움
+      setShowOverlay(true);
+    } else {
+      setShowOverlay(false);
     }
-  }, [isRestart, setShowOverlay]);
+  }, [isRestart]);
 
   // 로그아웃 처리
   const handleLogout = async () => {
@@ -165,7 +165,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
       // is_restart가 false일 때 운영 시작 모달
       openModal(
         modalStartOperation(() => {
-          setShowOverlay(false); // 오버레이 숨기기
+          setShowOverlay(false);
           postBoothStatus(
             {
               requestBody: {
