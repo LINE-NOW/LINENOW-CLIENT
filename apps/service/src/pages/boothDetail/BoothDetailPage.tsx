@@ -2,8 +2,6 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
-import Separator from "@components/separator/Separator";
-
 import Spinner from "@components/spinner/Spinner";
 import {
   BoothDetailCard,
@@ -16,7 +14,7 @@ import useAuth from "@hooks/useAuth";
 
 import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
 
-import { Button } from "@linenow/core/components";
+import { Button, Flex, Separator } from "@linenow/core/components";
 import { useBottomSheet, useModal } from "@linenow/core/hooks";
 
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
@@ -125,9 +123,11 @@ const BoothDetailPage = () => {
       {booth && (
         <>
           <BoothDetailCard booth={booth} />
-          <BoothDetailContent booth={booth} />
-          <Separator />
-          <BoothDetailNotice booth={booth} />
+          <Flex padding="16px 16px 20px 16px" direction="column" gap="1rem">
+            <BoothDetailContent booth={booth} />
+            <BoothDetailNotice booth={booth} />
+          </Flex>
+          <Separator height={8} />
           <BoothDetailMenu booth={booth} />
 
           <BottomButton

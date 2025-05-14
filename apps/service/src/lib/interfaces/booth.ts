@@ -26,7 +26,9 @@ export interface Booth {
   menus: Menu[];
 
   openTime: string;
-  operatingStatus: BoothStatus; // 부스의 운영 상태
+  operatingStatus: BoothStatus;
+
+  boothStartTime: string;
 }
 
 export interface BoothThumbnail
