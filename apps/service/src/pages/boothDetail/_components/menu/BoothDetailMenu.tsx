@@ -1,5 +1,4 @@
 import { Booth } from "@interfaces/booth";
-import { Title } from "../common/style";
 import * as S from "./BoothDetailMenu.styled";
 
 interface BoothDetailContentProps {
@@ -9,7 +8,7 @@ interface BoothDetailContentProps {
 export const BoothDetailMenu = ({ booth }: BoothDetailContentProps) => {
   return (
     <S.BoothDetailMenuLayout>
-      <Title>메뉴</Title>
+      <S.BoothDetailTitle>메뉴</S.BoothDetailTitle>
       <S.BoothDetailMenuWrapper>
         {booth.menus?.map((menu, index) => (
           <S.BoothDetailMenuArticleWrapper key={index}>

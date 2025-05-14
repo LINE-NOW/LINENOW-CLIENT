@@ -1,27 +1,35 @@
 import { Booth } from "@interfaces/booth";
 import * as S from "./BoothDetailContent.styled";
-import { IconLabel } from "@linenow/core/components";
+import BoothDetailInfo from "@pages/boothDetail/boothDetailInfo/BoothDetailInfo";
+import { useFormatDate } from "@pages/boothDetail/_hooks/useFormatDate";
 
 interface BoothDetailContentProps {
   booth: Booth;
 }
 
 export const BoothDetailContent = ({ booth }: BoothDetailContentProps) => {
+  const formatStartTime = useFormatDate(booth.boothStartTime);
+
   return (
     <S.BoothDetailContentWrapper>
-      <S.BoothDetailContentTitle>{booth.name}</S.BoothDetailContentTitle>
-      <S.BoothDetailContentSummary>
-        {booth.description}
-      </S.BoothDetailContentSummary>
-      <IconLabel
-        gap={"0.13rem"}
-        icon="location_pin"
-        iconProps={{ color: "grayLight", size: 16 }}
-      >
-        <S.BoothDetailContentLocationInfo>
-          {booth.location}
-        </S.BoothDetailContentLocationInfo>
-      </IconLabel>
+      {/* 부스 이름, 상세설명 */}
+      <S.BoothDetailContentTitleContainer>
+        <S.BoothDetailContentTitle>{booth.name}</S.BoothDetailContentTitle>
+        <p>{booth.description}</p>
+      </S.BoothDetailContentTitleContainer>
+
+      <S.BoothDetailLocation>
+        <BoothDetailInfo
+          icon="clock"
+          iconText="예상 운영 시작"
+          infoData={formatStartTime}
+        />
+        <BoothDetailInfo
+          icon="location_pin"
+          iconText="부스 위치"
+          infoData={booth.location}
+        />
+      </S.BoothDetailLocation>
     </S.BoothDetailContentWrapper>
   );
 };

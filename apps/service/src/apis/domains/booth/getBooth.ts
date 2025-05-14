@@ -33,6 +33,7 @@ type GetBoothResponseReturn = Pick<
   | "longitude"
   | "menus"
   | "images"
+  | "boothStartTime"
 >;
 
 const transformBoothResponse = (
@@ -61,6 +62,7 @@ const transformBoothResponse = (
     totalWaitingTeams: _response.total_waiting_teams,
     openTime: _response.booth_start_time,
     latitude: _response.booth_latitude,
+    boothStartTime: _response.booth_start_time,
     longitude: _response.booth_longitude,
     menus: menus,
     images: images,

@@ -6,13 +6,19 @@ export const BoothDetailMenuLayout = styled.section`
   gap: 1rem;
   flex-direction: column;
 
-  padding: 1.5rem 1rem;
+  padding: 1.25rem 1rem 1.75rem 1rem;
+`;
+
+export const BoothDetailTitle = styled.h1`
+  ${fonts.head3}
+  padding: 0rem 0.25rem
 `;
 
 export const BoothDetailMenuWrapper = styled.section`
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
+  padding: 0rem 0.25rem;
 `;
 
 export const BoothDetailMenuArticleWrapper = styled.div`

@@ -4,16 +4,32 @@ import { fonts } from "@linenow/core/styles";
 export const BoothDetailContentWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
-  padding: 1.25rem 1rem;
+  gap: 1.5rem;
+`;
+
+export const BoothDetailContentTitleContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0rem 0.25rem;
+
+  p {
+    ${fonts.body1};
+    color: ${({ theme }) => theme.fontColors.blackLight};
+  }
 `;
 
 export const BoothDetailContentTitle = styled.h1`
   ${fonts.head1};
 `;
 
-export const BoothDetailContentSummary = styled.article`
-  ${fonts.body1};
+export const BoothDetailLocation = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0rem 0.25rem;
+  ${fonts.body2};
+  color: ${({ theme }) => theme.fontColors.blackLight};
 `;
 
 export const BoothDetailContentLocationWrapper = styled.section`
@@ -27,6 +43,6 @@ export const BoothDetailContentLocationIcon = styled.img`
 `;
 
 export const BoothDetailContentLocationInfo = styled.div`
-  ${fonts.body3}
-  color:${({ theme }) => theme.fontColors.gray};
+  ${fonts.body2_b}
+  color:${({ theme }) => theme.fontColors.blackLight};
 `;
