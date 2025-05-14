@@ -43,7 +43,7 @@ const transformBoothsResponse = (
       description: item.booth_description,
       location: item.booth_location,
       latitude: item.booth_latitude,
-      logitude: item.booth_longitude,
+      longitude: item.booth_longitude,
       thumbnail: item.booth_thumbnail,
       operatingStatus: item.operating_status,
       totalWaitingTeams: item.total_waiting_teams,

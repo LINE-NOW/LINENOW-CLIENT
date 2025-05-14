@@ -1,66 +1,35 @@
-import { useState, useEffect } from "react";
 import * as S from "./MainMap.styled";
+import { useGetBoothsLocation } from "@hooks/apis/booth";
+import { useNaverMap } from "@pages/main/_hooks/useNaverMap";
+import { memo, useRef, useState } from "react";
+import { SelectedBoothCard } from "./MainSelectedBoothCard";
 
-let mapInstance: naver.maps.Map | undefined;
+const MainMap = memo(() => {
+  const { data: locations } = useGetBoothsLocation();
 
-const loadScript = (src: string, callback: () => void) => {
-  if (document.querySelector(`script[src="${src}"]`)) {
-    callback();
-    return;
-  }
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = src;
-  script.onload = () => {
-    callback();
+  const selectedBoothIdRef = useRef<number | null>(null);
+  const [selectedBoothId, setSelectedBoothId] = useState<number | null>(null);
+
+  const safeSetSelectedBoothId = (id: number | null) => {
+    if (id === null && selectedBoothIdRef.current !== null) return;
+    selectedBoothIdRef.current = id;
+    setSelectedBoothId(id);
   };
-  document.head.appendChild(script);
-};
 
-const MainMap = ({
-  latitude,
-  longitude,
-}: {
-  latitude: number;
-  longitude: number;
-}) => {
-  const [isScriptLoaded, setScriptLoaded] = useState(false);
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    if (typeof window.naver !== "undefined") {
-      setScriptLoaded(true);
-    } else {
-      loadScript(
-        `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${
-          import.meta.env.VITE_NAVER_MAP_KEY
-        }`,
-        () => setScriptLoaded(true)
-      );
-    }
-  }, []);
+  useNaverMap(
+    mapContainerRef,
+    selectedBoothId,
+    safeSetSelectedBoothId,
+    locations
+  );
 
-  useEffect(() => {
-    if (isScriptLoaded) {
-      setTimeout(() => {
-        mapInstance = new naver.maps.Map("map", {
-          center: new naver.maps.LatLng(latitude, longitude),
-          zoom: 16,
-          zoomControl: true,
-          zoomControlOptions: {
-            style: naver.maps.ZoomControlStyle.SMALL,
-            position: naver.maps.Position.TOP_RIGHT,
-          },
-        });
-
-        // new naver.maps.Marker({
-        //   position: new naver.maps.LatLng(latitude, longitude),
-        //   map: mapInstance,
-        // });
-      }, 500);
-    }
-  }, [isScriptLoaded, latitude, longitude]);
-
-  return <div id="map" css={S.getWrapper}></div>;
-};
-
+  return (
+    <>
+      <div id="map" ref={mapContainerRef} css={S.getWrapper}></div>
+      <SelectedBoothCard selectedBoothId={selectedBoothId} />
+    </>
+  );
+});
 export default MainMap;

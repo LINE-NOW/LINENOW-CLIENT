@@ -20,7 +20,7 @@ export interface Booth {
 
   location: string;
   latitude: string;
-  logitude: string;
+  longitude: string;
 
   images: BoothImage[];
   menus: Menu[];
@@ -38,7 +38,7 @@ export interface BoothThumbnail
     | "description"
     | "location"
     | "latitude"
-    | "logitude"
+    | "longitude"
     | "thumbnail"
     | "operatingStatus"
   > {}
