@@ -1,13 +1,15 @@
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { useMemo } from "react";
 import { authAtom, AuthProps } from "@atoms/auth";
 import useBoothInfo from "./useBoothInfo";
 import { useNavigate } from "react-router-dom";
+import { pausedOverlayAtom } from "./useOverlay";
 
 const useAuth = () => {
   const navigate = useNavigate();
   const [auth, setAuth] = useAtom(authAtom);
   const { clearBoothInfo } = useBoothInfo();
+  const setShowPausedOverlay = useSetAtom(pausedOverlayAtom);
 
   const login = ({ accessToken, refreshToken, adminUser }: AuthProps) => {
     localStorage.setItem("accessToken", accessToken);
@@ -15,11 +17,15 @@ const useAuth = () => {
     localStorage.setItem("user", JSON.stringify(adminUser));
 
     setAuth({ accessToken, refreshToken, adminUser });
+
+    if (adminUser.is_restart) {
+      console.log("Overlay should be hidden after login");
+      setShowPausedOverlay(false); // 오버레이 상태 변경
+    }
     navigate("/");
   };
 
   const logout = () => {
-    // localStorage에서 토큰 삭제
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("user");

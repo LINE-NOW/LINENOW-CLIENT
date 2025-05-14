@@ -1,15 +1,21 @@
-import * as S from "./MainPage.styled";
-import MainNavigation from "./_components/mainNavigation/MainNavigation";
-import { Switch, Toast } from "@linenow/core/components";
-
 // hooks
+import useAuth from "@hooks/useAuth";
+import {
+  useGetMainDataGuest,
+  useGetMainDataUser,
+} from "./_hooks/useGetMainData";
+
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import useMainBoothList from "@pages/main/_hooks/useBoothList";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 
 // apis
+// components
+import { Switch } from "@linenow/core/components";
+
+import * as S from "./MainPage.styled";
+import MainNavigation from "./_components/mainNavigation/MainNavigation";
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
-import useToastFromLocation from "@hooks/useToastFromLocation";
 
 import {
   MyLocationButton,
@@ -17,12 +23,13 @@ import {
 } from "@pages/main/_components/map/MainLocationButton";
 
 const MainPage = () => {
+  const { isLogin } = useAuth();
+
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
   const { getBoothListHeaderChildren, BoothList } = useMainBoothList();
-  const { showToast, toastMessage } = useToastFromLocation();
 
   // refetch queries
-  const queries = [["need value"]];
+  const { queries } = isLogin ? useGetMainDataUser() : useGetMainDataGuest();
 
   return (
     <>
@@ -60,13 +67,6 @@ const MainPage = () => {
           {...mainViewTypeSwitchProps}
         />
       </div>
-
-      {/* toast */}
-      {showToast && (
-        <Toast position="bottom" duration={1}>
-          {toastMessage}
-        </Toast>
-      )}
     </>
   );
 };

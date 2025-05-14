@@ -11,49 +11,51 @@ import { postCancelAllEntering } from "@apis/domains/waiting/postCancelAllEnteri
 import { postCancelAllWaiting } from "@apis/domains/waiting/postCancelAllWaiting";
 import { postSelectEntering } from "@apis/domains/waiting/postSelectEntering";
 import { useToast } from "@linenow/core/hooks";
+import { QUERY_KEY } from "./query";
 
-export const useGetWaitings = (type: "waiting" | "finished") => {
+export const useGetWaitings = (type: "waiting" | "finished" = "waiting") => {
   return useQuery({
-    queryKey: ["waitings", type],
+    queryKey: QUERY_KEY.WAITINGS(type),
     queryFn: () => getWaitings(type),
   });
 };
 
 export const useGetWaitingsCount = () => {
   return useQuery({
-    queryKey: ["waitings_count"],
+    queryKey: QUERY_KEY.WAITINGS_COUNT(),
     queryFn: () => getWaitingsCount,
   });
 };
 
 export const useGetWaiting = (waitingID: number) => {
   return useQuery({
-    queryKey: ["waiting", waitingID],
+    queryKey: QUERY_KEY.WAITING(waitingID),
     queryFn: () => getWaiting(waitingID),
   });
 };
 
 export const useGetWaitingBooth = (waitingID: number) => {
   return useQuery({
-    queryKey: ["waiting_booth", waitingID],
+    queryKey: QUERY_KEY.WAITING_BOOTH(waitingID),
     queryFn: () => getWaitingBooth(waitingID),
   });
 };
 
 export const useGetCancelAllEntering = () => {
   return useQuery({
-    queryKey: ["all_entering"],
+    queryKey: QUERY_KEY.ALL_ENTERINGS(),
     queryFn: () => getCancelAllEntering(),
   });
 };
 
 export const useGetCancelAllWaiting = () => {
   return useQuery({
-    queryKey: ["all_waiting"],
+    queryKey: QUERY_KEY.ALL_WAITINGS(),
     queryFn: () => getCancelAllWaiting(),
   });
 };
 
+// post
 export const usePostCancelAllEntering = () => {
   const { presentToast } = useToast();
   const { data: waitings = [] } = useGetCancelAllEntering();

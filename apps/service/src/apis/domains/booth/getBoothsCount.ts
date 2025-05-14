@@ -7,7 +7,8 @@ interface GetBoothsCountResponse {
 
 export const getBoothsCount = async (): Promise<number | null> => {
   const response = await getResponse<GetBoothsCountResponse>(
-    `/api/v1/booths/count`
+    `/api/v1/booths/count`,
+    { useAuth: false }
   );
   return response?.booth_count || null;
 };

@@ -19,21 +19,20 @@ const SignupFormStepPhone = () => {
   // 인증번호 발급
   const {
     sendAuthMessage,
-    value: authcode,
     isLoading: authIsLoading,
+    isCompleted,
   } = useSendAuth();
 
   const onClickAuthButton = () => {
     if (!fieldRefs.phonenumber) return;
-
     const phonenumber = fieldRefs.phonenumber.value;
     sendAuthMessage(phonenumber);
   };
 
   const authButtonProps: React.ComponentProps<typeof Button> = {
-    variant: authcode === "" ? "blueLight" : "outline",
+    variant: isCompleted ? "outline" : "blueLight",
     disabled: getFieldIsError("phonenumber"),
-    onClick: authcode !== "" ? undefined : onClickAuthButton,
+    onClick: isCompleted ? undefined : onClickAuthButton,
   };
 
   // 검증
@@ -42,12 +41,10 @@ const SignupFormStepPhone = () => {
     return phonePattern.test(value) || "전화번호를 올바르게 작성해주세요";
   };
 
-  const authValidation = (value: string) =>
-    value === authcode || "올바른 인증번호를 입력해주세요";
-
   // props
-  const phoneInput = {
+  const phoneInput: React.ComponentProps<"input"> = {
     ...phoneInputProps,
+    disabled: isCompleted,
     ...register("phonenumber", {
       rules: [phonenumberValidation],
     }),
@@ -60,9 +57,7 @@ const SignupFormStepPhone = () => {
     maxLength: 6,
     inputMode: "numeric",
     autoComplete: "new-password",
-    ...register("authentication", {
-      rules: [authValidation],
-    }),
+    ...register("authentication"),
   };
 
   return (
@@ -77,7 +72,7 @@ const SignupFormStepPhone = () => {
 
         {/* 인증번호 */}
         {authIsLoading && <LoadingView />}
-        {authcode !== "" && <InputText {...authInput} />}
+        {isCompleted && <InputText {...authInput} />}
       </InputTextContainer>
     </>
   );

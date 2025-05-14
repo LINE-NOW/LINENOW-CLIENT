@@ -39,6 +39,7 @@ export interface _Booth {
   operating_status: BoothStatus;
   booth_menu_info: _Menu[];
   booth_image_info: _Image[];
+  total_waiting_teams: number;
 }
 
 export interface _Menu {

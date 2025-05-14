@@ -5,13 +5,13 @@ import { BoothWaiting } from "@interfaces/waiting";
 // 부스 리스트(가나다순)-대기 정보
 type GetBoothsWaitingResponseItem = Pick<
   _Waiting,
-  "booth_id" | "waiting_id" | "waiting_status" | "total_waiting_teams"
+  "booth_id" | "waiting_id" | "waiting_status"
 >;
 type GetBoothsWaitingResponse = Array<GetBoothsWaitingResponseItem>;
 
 type GetBoothsWaitingResponseReturnItem = Pick<
   BoothWaiting,
-  "boothID" | "waitingID" | "waitingStatus" | "totalWaitingTeams"
+  "boothID" | "waitingID" | "waitingStatus"
 >;
 type GetBoothsWaitingResponseReturn = Array<GetBoothsWaitingResponseReturnItem>;
 
@@ -23,7 +23,6 @@ const transformBoothsWaitingResponse = (
       boothID: item.booth_id,
       waitingID: item.waiting_id,
       waitingStatus: item.waiting_status,
-      totalWaitingTeams: item.total_waiting_teams,
     })
   );
 };

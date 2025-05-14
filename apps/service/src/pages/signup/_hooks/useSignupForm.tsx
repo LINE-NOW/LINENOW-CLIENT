@@ -1,3 +1,4 @@
+import { usePostRegistration } from "@hooks/apis/user";
 import { SignupFormData } from "../_components/form";
 import useForm, { FormProvider } from "@hooks/form/useForm";
 
@@ -22,8 +23,18 @@ export const SignupFormProvider = (props: SignupFormProviderProps) => {
 
 const useSingupForm = () => {
   const form = useForm<SignupFormData>();
+
+  const { mutate: postRegistration } = usePostRegistration();
+
   const submitForm = () => {
-    console.log("signup");
+    if (form.isFormValidate)
+      postRegistration({
+        name: form.values.name,
+        phonenumber: form.values.phonenumber,
+        smsCode: form.values.authentication,
+        password: form.values.password,
+        passwordConfirm: form.values.passwordConfirm,
+      });
   };
   return { ...form, submitForm };
 };

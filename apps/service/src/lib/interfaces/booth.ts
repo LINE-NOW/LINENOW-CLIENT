@@ -27,6 +27,7 @@ export interface Booth {
 
   openTime: string;
   operatingStatus: BoothStatus; // 부스의 운영 상태
+  totalWaitingTeams?: number;
 }
 
 export interface BoothThumbnail
