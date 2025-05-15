@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 //components
 import { LinenowProvider } from "@linenow/core/components";
 import { SplashProvider } from "@pages/waitingCheck/_components/splash/SplashContext";
+import EnteringBottomsheetProvider from "@components/bottomSheet/entering/EnteringBottohSheetProvider";
 
 function App() {
   const queryClient = new QueryClient();

@@ -5,6 +5,7 @@ import { Chip, Flex } from "@linenow/core/components";
 import EnteringChip from "./EnteringChip";
 import { useModal } from "@linenow/core/hooks";
 import { useModalConfirmEntering } from "@components/modal/waiting";
+import { css } from "@emotion/react";
 
 interface BoothCardProps
   extends Partial<
@@ -36,6 +37,11 @@ const BoothCard = (props: BoothCardProps) => {
       width="100%"
       alignItem="center"
       onClick={onClick}
+      css={[
+        css`
+          opacity: ${waitingStatus === "waiting" ? 0.3 : 1};
+        `,
+      ]}
     >
       <BoothThumbnailCompact isRightIconVisible={false} {...booth} />
       {waitingStatus === "waiting" && (

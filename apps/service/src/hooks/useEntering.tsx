@@ -1,13 +1,14 @@
 // hooks
-import { useMemo } from "react";
-import { useBottomSheet } from "@linenow/core/hooks";
+import { useEffect, useMemo, useState } from "react";
+
+import { useLocation } from "react-router-dom";
 import { useGetWaitings } from "./apis/waiting";
-import useEnteringContent from "@components/bottomSheet/entering/useEnteringContent";
 
-// components
+const useEntering = () => {
+  const location = useLocation();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-const useEnteringBottomSheet = () => {
-  const { data = [] } = useGetWaitings("waiting");
+  const { data = [], refetch } = useGetWaitings("waiting");
 
   const waitings = useMemo(
     () => data.filter((w) => w.waitingStatus === "waiting"),
@@ -18,21 +19,29 @@ const useEnteringBottomSheet = () => {
     [data]
   );
 
-  const sheetContent = useEnteringContent({
-    enterings,
-    waitings,
-  });
+  useEffect(() => {
+    refetch();
+    openBottomSheet();
+  }, [location.pathname, data]);
 
-  const { openBottomSheet, closeBottomSheet } = useBottomSheet();
-
-  const openEntering = () => {
-    if (enterings.length === 0) return;
-    openBottomSheet({ children: sheetContent });
+  const openBottomSheet = () => {
+    if (enterings.length !== 0) {
+      setIsOpen(true);
+    }
   };
 
-  const closeEntrace = () => closeBottomSheet();
+  const closeBottomSheet = () => {
+    setIsOpen(false);
+  };
 
-  return { openEntering, closeEntrace };
+  return {
+    openBottomSheet,
+    closeBottomSheet,
+    isOpen,
+    data,
+    waitings,
+    enterings,
+  };
 };
 
-export default useEnteringBottomSheet;
+export default useEntering;
