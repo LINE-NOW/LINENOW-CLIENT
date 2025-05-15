@@ -21,7 +21,7 @@ const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
           }
           boothSummary={waitingDetail.booth?.description}
           boothLocationInfo={waitingDetail.booth?.location}
-          header={waitingDetail.waitingTeamsAhead}
+          header={waitingDetail.waitingNum}
           bottom={waitingDetail.personCount}
           navigateTo={navigateTo}
         />

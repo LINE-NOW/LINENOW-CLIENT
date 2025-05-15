@@ -25,6 +25,8 @@ const WaitingDetailPage = () => {
   const { data: waitingBooth } = useGetWaitingBooth(waitingID);
   const { openModal } = useModal();
 
+  console.log("wq:", waitingDetail);
+
   // 애니메이션 관련 코드 주석 처리
   // const { fadeInCard, slideUpCard, showRest, showToast } = useAnimation(location.state?.withAnimation);
 
@@ -98,11 +100,11 @@ const WaitingDetailPage = () => {
 
       <BottomButton
         informationTitle="전체 대기"
-        informationSub={`${waitingDetail?.totalWaitingTeams || 0}팀`}
+        informationSub={`${waitingDetail?.totalWaitingTeams}팀`}
       >
         <Button variant="blueLight">
           <span>내 앞으로 지금</span>
-          <span>{waitingDetail?.waitingTeamsAhead || 0}팀</span>
+          <span>{waitingDetail?.waitingTeamsAhead}팀</span>
         </Button>
         <S.WaitingDetailCancel>
           <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
