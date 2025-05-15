@@ -2,8 +2,6 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { fonts } from "@linenow/core/styles";
 
-import * as A from "@styles/animation";
-
 import { Link } from "react-router-dom";
 
 interface BoothCardWrapperProps {
@@ -12,7 +10,7 @@ interface BoothCardWrapperProps {
   $type: string;
 }
 
-export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
+export const BoothCardWrapper = styled("div")<BoothCardWrapperProps>`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -28,7 +26,6 @@ export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
           border-color: ${theme.borderColors.grayLight};
           border-bottom: 1px solid;
           cursor: pointer;
-          /* animation: ${A.onClickButtonAnimation}; */
         `;
       case "waiting":
         return css`
@@ -71,7 +68,7 @@ export const BoothCardPersonNum = styled.div`
   color: ${({ theme }) => theme.fontColors.blackLight};
 `;
 
-export const BoothCardInformationWrapper = styled.div`
+export const BoothCardInformationWrapper = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.5rem;

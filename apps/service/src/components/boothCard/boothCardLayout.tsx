@@ -30,7 +30,7 @@ const BoothCardLayout = ({
 }: // navigateTo,
 BoothCardProps) => {
   return (
-    <S.BoothCardWrapper to={to || ""} $type={type}>
+    <S.BoothCardWrapper $type={type}>
       {/* 상단 */}
       {header !== undefined && header !== null && (
         <S.BoothCardWaitingNum>
@@ -39,7 +39,7 @@ BoothCardProps) => {
         </S.BoothCardWaitingNum>
       )}
       {/* 중간 */}
-      <S.BoothCardInformationWrapper>
+      <S.BoothCardInformationWrapper to={to || ""}>
         <S.BoothCardInformationImage
           src={boothImage || "/images/image_waitingNoCard.png"}
         />

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./WaitingCheckComponents.styled";
 
 interface WaitingCheckPeopleProps {
@@ -8,12 +8,15 @@ interface WaitingCheckPeopleProps {
 const WaitingCheckPeople = ({ onCheck }: WaitingCheckPeopleProps) => {
   const [checkedPeople, setCheckedPeople] = useState<number | null>(1);
 
+  useEffect(() => {
+    // checkedPeople이 바뀐 후에 onCheck 호출
+    onCheck(checkedPeople);
+  }, [checkedPeople, onCheck]);
+
   const toggleCheck = (num: number) => {
-    setCheckedPeople((prevCheckedPeople) => {
-      const newCheckedPeople = prevCheckedPeople === num ? null : num;
-      onCheck(newCheckedPeople);
-      return newCheckedPeople;
-    });
+    setCheckedPeople((prevCheckedPeople) =>
+      prevCheckedPeople === num ? null : num
+    );
   };
 
   return (
