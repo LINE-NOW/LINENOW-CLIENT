@@ -3,6 +3,7 @@ import { Flex } from "@linenow/core/components";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 import Notice from "@components/notice/Notice";
 import { useGetWaitings } from "@hooks/apis/waiting";
+import MyWaitingEmptyView from "./MyWaitingEmtpyView";
 
 interface MyWaitingListProps {
   type: "waiting" | "finished";
@@ -22,7 +23,7 @@ const MyWaitingList = (props: MyWaitingListProps) => {
       )}
 
       {/* 대기 목록 */}
-      {waitings.length === 0 && <div>EMPTY VIEW</div>}
+      {waitings.length === 0 && <MyWaitingEmptyView type={type} />}
       {waitings.map((waiting, index) => (
         <WaitingCard key={index} {...waiting} />
       ))}
