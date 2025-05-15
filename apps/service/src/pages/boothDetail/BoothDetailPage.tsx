@@ -20,6 +20,7 @@ import { useBottomSheet, useModal } from "@linenow/core/hooks";
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
 import { useModalCancelWaiting } from "@components/modal/waiting";
+import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -128,6 +129,11 @@ const BoothDetailPage = () => {
             <BoothDetailNotice booth={booth} />
           </Flex>
           <Separator height={8} />
+
+          <BoothLocationMap booth={booth} />
+
+          <Separator height={8} />
+
           <BoothDetailMenu booth={booth} />
 
           <BottomButton
