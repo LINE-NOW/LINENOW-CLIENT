@@ -21,6 +21,7 @@ import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSh
 import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
 import { useModalCancelWaiting } from "@components/modal/waiting";
 import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap";
+import EnteringButton from "@components/button/EnteringButton";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -69,7 +70,7 @@ const BoothDetailPage = () => {
       case "finished":
         return undefined;
       default:
-        return `${booth?.totalWaitingTeams || 0}팀`;
+        return `${booth?.totalWaitingTeams}팀`;
     }
   };
 
@@ -87,6 +88,17 @@ const BoothDetailPage = () => {
         </>
       );
     }
+    if (waiting?.waitingStatus === "entering") {
+      return (
+        <>
+          <EnteringButton confirmedAt={waiting.confirmedAt} />
+          <WaitingDetailCancel>
+            <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
+          </WaitingDetailCancel>
+        </>
+      );
+    }
+
     switch (booth?.operatingStatus) {
       case "not_started":
         return (

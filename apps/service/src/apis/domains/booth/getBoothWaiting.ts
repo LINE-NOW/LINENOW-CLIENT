@@ -30,6 +30,7 @@ const transformBoothWaitingResponse = (
     waitingID: _response.waiting_id,
     waitingStatus: _response.waiting_status,
     waitingTeamsAhead: _response.waiting_team_ahead,
+    confirmedAt: _response.confirmed_at,
   };
 };
 
