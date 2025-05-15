@@ -135,24 +135,25 @@ const BoothDetailPage = () => {
           <Separator height={8} />
 
           <BoothDetailMenu booth={booth} />
+          <div style={{ zIndex: 100 }}>
+            <BottomButton
+              informationTitle={getInformationTitle()}
+              informationSub={getInformationSub()}
+            >
+              {isLogin ? (
+                getInformationButton()
+              ) : (
+                // 로그인 하지 않은 경우
+                <Button variant="lime" onClick={handleLoginButtonClick}>
+                  <span>로그인하고 이용하기</span>
+                </Button>
+              )}
 
-          <BottomButton
-            informationTitle={getInformationTitle()}
-            informationSub={getInformationSub()}
-          >
-            {isLogin ? (
-              getInformationButton()
-            ) : (
-              // 로그인 하지 않은 경우
-              <Button variant="lime" onClick={handleLoginButtonClick}>
-                <span>로그인하고 이용하기</span>
-              </Button>
-            )}
-
-            {isModalOpen && (
-              <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
-            )}
-          </BottomButton>
+              {isModalOpen && (
+                <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
+              )}
+            </BottomButton>
+          </div>
         </>
       )}
     </>
