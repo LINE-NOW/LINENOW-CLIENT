@@ -9,6 +9,8 @@ interface Props {
 }
 
 const EnteringContent = ({ enterings, waitings }: Props) => {
+  if (enterings.length === 0) return;
+
   const isSingleEntering = enterings.length === 1;
 
   if (isSingleEntering) {
