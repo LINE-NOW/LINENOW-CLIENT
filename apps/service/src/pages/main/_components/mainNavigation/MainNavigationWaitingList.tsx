@@ -4,15 +4,11 @@ import "swiper/swiper-bundle.css"; // Updated CSS import
 import WaitingCard from "@components/waitingCard/WaitingCard";
 import WaitingCardEmpty from "@components/waitingCard/WaitingCardEmpty";
 
-import { useQueryClient } from "@tanstack/react-query";
-import { QUERY_KEY } from "@hooks/apis/query";
-
-const MainNavigationWaitingList = () => {
-  const queryClient = useQueryClient();
-  const waitings =
-    (queryClient.getQueryData(QUERY_KEY.WAITINGS()) as React.ComponentProps<
-      typeof WaitingCard
-    >[]) ?? [];
+interface MainNavigationWaitingListProps {
+  waitings: React.ComponentProps<typeof WaitingCard>[];
+}
+const MainNavigationWaitingList = (props: MainNavigationWaitingListProps) => {
+  const { waitings } = props;
 
   if (waitings.length === 0) return <WaitingCardEmpty />;
 

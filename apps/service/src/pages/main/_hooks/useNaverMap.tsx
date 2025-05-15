@@ -63,21 +63,25 @@ export const useNaverMap = (
               position: window.naver.maps.Position.TOP_RIGHT,
             },
           });
+
           mapInstanceRef.current = map;
+          window.naver.maps.Event.addListener(map, "click", () => {
+            setSelectedBoothId(null);
+          });
+
           setIsMapReady(true);
         }
       }
     );
   }, []);
 
-  // 마커 업데이트만 분리 (지도 유지)
-  useEffect(() => {
+  const setMarkers = () => {
     if (!isMapReady) return;
 
     const map = mapInstanceRef.current;
 
     if (!map || !booths) return;
-    console.log(booths);
+
     // 기존 마커 제거
     Object.values(markersRef.current).forEach((marker) => marker.setMap(null));
     markersRef.current = {};
@@ -91,7 +95,7 @@ export const useNaverMap = (
         ),
         map,
         icon: {
-          content: renderMarkerIcon(false, {
+          content: renderMarkerIcon(booth.boothID === selectedBoothId, {
             operatingStatus: booth.operatingStatus,
             totalWaitingTeams: booth.totalWaitingTeams,
           }),
@@ -107,19 +111,11 @@ export const useNaverMap = (
 
       markersRef.current[booth.boothID] = marker;
     });
-  }, [booths, isMapReady]);
+  };
 
   useEffect(() => {
-    const markers = markersRef.current;
-    Object.entries(markers).forEach(([id, marker]) => {
-      const boothID = Number(id);
-      const isSelected = boothID === selectedBoothId;
-
-      marker.setIcon({
-        content: renderMarkerIcon(isSelected),
-      });
-    });
-  }, [selectedBoothId]);
+    setMarkers();
+  }, [booths, isMapReady, selectedBoothId]);
 
   useEffect(() => {
     if (!mapInstanceRef.current) return;

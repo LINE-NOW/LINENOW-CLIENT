@@ -11,8 +11,6 @@ const useAuth = () => {
 
     localStorage.setItem("accessToken", accessToken);
     setAuth({ accessToken });
-
-    console.log("로그인 성공!");
   };
 
   const logout = () => {
@@ -20,8 +18,6 @@ const useAuth = () => {
 
     localStorage.removeItem("accessToken");
     setAuth(null);
-
-    console.log("로그아웃 성공!");
   };
 
   const isLogin = useMemo(() => auth != null, [auth]);

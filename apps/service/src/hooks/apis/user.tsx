@@ -80,22 +80,24 @@ export const usePostRegistrationMessage = () => {
 };
 
 export const usePostLogout = () => {
+  const { logout } = useAuth();
   return useMutation({
     mutationKey: ["logout"],
     mutationFn: () => postLogout(),
     onSuccess: () => {
-      localStorage.removeItem("accessToken");
+      logout();
       window.location.href = "/";
     },
   });
 };
 
 export const usePostWithdraw = () => {
+  const { logout } = useAuth();
   return useMutation({
     mutationKey: ["withdraw"],
     mutationFn: () => deleteWithdraw(),
     onSuccess: () => {
-      localStorage.removeItem("accessToken");
+      logout();
       window.location.href = "/";
     },
   });

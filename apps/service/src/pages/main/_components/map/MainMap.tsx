@@ -13,7 +13,6 @@ const MainMap = memo((props: MainMapProps) => {
   const [selectedBoothId, setSelectedBoothId] = useState<number | null>(null);
 
   const safeSetSelectedBoothId = (id: number | null) => {
-    if (id === null && selectedBoothIdRef.current !== null) return;
     selectedBoothIdRef.current = id;
     setSelectedBoothId(id);
   };
