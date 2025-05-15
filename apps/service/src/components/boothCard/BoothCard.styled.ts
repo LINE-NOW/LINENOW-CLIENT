@@ -4,6 +4,7 @@ import { fonts } from "@linenow/core/styles";
 
 import * as A from "@styles/animation";
 
+import isPropValid from "@emotion/is-prop-valid";
 import { Link } from "react-router-dom";
 
 interface BoothCardWrapperProps {
@@ -12,7 +13,9 @@ interface BoothCardWrapperProps {
   $type: string;
 }
 
-export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
+export const BoothCardWrapper = styled(Link, {
+  shouldForwardProp: (prop) => isPropValid(prop) && prop !== "$type",
+})<BoothCardWrapperProps>`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
