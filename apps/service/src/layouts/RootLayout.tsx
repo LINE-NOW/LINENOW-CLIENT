@@ -6,11 +6,14 @@ import {
   ModalProvider,
   ToastProvider,
 } from "@linenow/core/components";
+import { useSocketEnterRoute } from "@hooks/socket/useSocketEnterRoute";
+import useSocketEnterings from "@hooks/socket/useSocketEnterings";
 
 // hooks
 
 const RootLayout = () => {
-  // useCheckWaitingStatus();
+  useSocketEnterRoute();
+  useSocketEnterings();
   return (
     <>
       <ToastProvider />
