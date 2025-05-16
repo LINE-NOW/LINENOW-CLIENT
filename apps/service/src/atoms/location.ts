@@ -1,9 +1,14 @@
 import { atom } from "jotai";
 
+export const DEFAULT_LOCATION = {
+  lat: 37.5584809,
+  lng: 127.0004067,
+};
+
 export const latLngAtom = atom<{
   lat: number;
-  lon: number;
+  lng: number;
 }>({
-  lat: 37.5584809,
-  lon: 127.0004067,
+  lat: DEFAULT_LOCATION.lat,
+  lng: DEFAULT_LOCATION.lng,
 });

@@ -1,7 +1,7 @@
 import { useSetAtom } from "jotai";
 import * as S from "./MainLocationButton.styled";
 import { Button, Icon } from "@linenow/core/components";
-import { latLngAtom } from "@atoms/location";
+import { DEFAULT_LOCATION, latLngAtom } from "@atoms/location";
 
 export const MyLocationButton = ({
   ...buttonProps
@@ -17,8 +17,8 @@ export const MyLocationButton = ({
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        setLatLng({ lat, lon });
+        const lng = position.coords.longitude;
+        setLatLng({ lat, lng });
       },
       (error) => {
         console.error("위치 정보를 가져오는 데 실패했습니다:", error.message);
@@ -51,8 +51,8 @@ export const FestivalLocation = ({
 
   const handleMoveToFestivalLocation = () => {
     setLatLng({
-      lat: 37.55822161540249,
-      lon: 127.00019240184307,
+      lat: DEFAULT_LOCATION.lat,
+      lng: DEFAULT_LOCATION.lng,
     });
   };
 
