@@ -9,10 +9,11 @@ import Spinner from "@components/spinner/Spinner";
 import { useGetWaiting, useGetWaitingBooth } from "@hooks/apis/waiting";
 import { Button, Toast } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
-import WaitingDetailMap from "./_components/WaitingDetailMap";
 
 import useToastFromLocation from "@hooks/useToastFromLocation";
 import { useModalCancelWaiting } from "@components/modal/waiting";
+import { useGetBooth } from "@hooks/apis/booth";
+import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap";
 // import useAnimation from "./hooks/useAnimation";  // 주석 처리
 
 const WaitingDetailPage = () => {
@@ -23,6 +24,9 @@ const WaitingDetailPage = () => {
 
   const { data: waitingDetail, isLoading } = useGetWaiting(waitingID);
   const { data: waitingBooth } = useGetWaitingBooth(waitingID);
+
+  const { data: booth } = useGetBooth(waitingDetail?.boothID || 0);
+
   const { openModal } = useModal();
 
   console.log("wq:", waitingDetail);
@@ -93,7 +97,7 @@ const WaitingDetailPage = () => {
 
       {/* 나머지 부분은 그대로 유지 */}
       {/* <S.WaitingDetailRestWrapper show={true}> */}
-      <WaitingDetailMap />
+      {booth && <BoothLocationMap booth={booth} />}
       <Separator />
       <WaitingDetailCaution />
       {/* </S.WaitingDetailRestWrapper> */}

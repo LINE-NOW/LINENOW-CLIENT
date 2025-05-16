@@ -25,7 +25,7 @@ export const BoothLocationMap = ({ booth }: BoothLocationContentProps) => {
         <S.BoothLocationMapClickableBar
           onClick={() => {
             setViewType("map");
-            navigate("/");
+            navigate("/", { state: booth.boothID });
           }}
         >
           클릭해서 지도 보기
