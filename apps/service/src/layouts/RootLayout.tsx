@@ -16,10 +16,8 @@ import useSocketEnterings from "@hooks/socket/useSocketEnterings";
 const RootLayout = () => {
   useSocketEnterRoute();
   useSocketEnterings();
- const { isLogin } = useAuth();
-
-const RootLayout = () => {
   const { isLogin } = useAuth();
+
   return (
     <>
       {isLogin && <EnteringBottomsheetProvider />}
