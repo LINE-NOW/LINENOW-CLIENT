@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import { loadScript } from "@utils/loadScript";
 import { useAtomValue } from "jotai";
-import { DEFAULT_LOCATION, latLngAtom } from "@atoms/location";
+import { latLngAtom } from "@atoms/location";
 import FocusPin from "../_components/map/pin/FocusPin";
 import DefautlPin from "../_components/map/pin/DefaultPin";
 
@@ -53,13 +53,10 @@ export const useNaverMap = (
         if (!window.naver) return;
         const { naver } = window;
         if (mapRef.current && window) {
-          const now = new naver.maps.LatLng(
-            DEFAULT_LOCATION.lat,
-            DEFAULT_LOCATION.lng
-          );
+          const now = new naver.maps.LatLng(latLng.lat, latLng.lng);
           const map = new naver.maps.Map(mapRef.current, {
             center: now,
-            zoom: 16,
+            zoom: 17,
             zoomControl: true,
             zoomControlOptions: {
               style: window.naver.maps.ZoomControlStyle.SMALL,
