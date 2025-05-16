@@ -7,13 +7,15 @@ import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
 import Spinner from "@components/spinner/Spinner";
 import { useGetWaiting, useGetWaitingBooth } from "@hooks/apis/waiting";
-import { Button, Toast } from "@linenow/core/components";
+import { Button, ButtonLayout, Toast } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
 import WaitingDetailMap from "./_components/WaitingDetailMap";
 
 import useToastFromLocation from "@hooks/useToastFromLocation";
 import { useModalCancelWaiting } from "@components/modal/waiting";
 import EnteringButton from "@components/button/EnteringButton";
+import RefetchButton from "@components/refetchButton/RefetchButton";
+import { QUERY_KEY } from "@hooks/apis/query";
 // import useAnimation from "./hooks/useAnimation";  // 주석 처리
 
 const WaitingDetailPage = () => {
@@ -25,8 +27,6 @@ const WaitingDetailPage = () => {
   const { data: waitingDetail, isLoading } = useGetWaiting(waitingID);
   const { data: waitingBooth } = useGetWaitingBooth(waitingID);
   const { openModal } = useModal();
-
-  console.log("wq:", waitingDetail);
 
   // 애니메이션 관련 코드 주석 처리
   // const { fadeInCard, slideUpCard, showRest, showToast } = useAnimation(location.state?.withAnimation);
@@ -103,14 +103,23 @@ const WaitingDetailPage = () => {
         informationTitle="현재 대기"
         informationSub={`${waitingDetail.totalWaitingTeams}팀`}
       >
-        {waitingDetail.waitingStatus === "waiting" ? (
-          <Button variant="blueLight">
-            <span>내 앞으로 지금</span>
-            <span>{waitingDetail.waitingTeamsAhead}팀</span>
-          </Button>
-        ) : waitingDetail.waitingStatus === "entering" ? (
-          <EnteringButton confirmedAt={waitingDetail.confirmedAt} />
-        ) : null}
+        <ButtonLayout colCount={2} colTemplate="auto 1fr">
+          <RefetchButton
+            queries={[
+              QUERY_KEY.WAITINGS("waiting"),
+              QUERY_KEY.WAITING_BOOTH(waitingID),
+            ]}
+          />
+          {waitingDetail.waitingStatus === "waiting" ? (
+            <Button variant="blueLight" width="100%">
+              <span>내 앞으로 지금</span>
+              <span>{waitingDetail.waitingTeamsAhead}팀</span>
+            </Button>
+          ) : waitingDetail.waitingStatus === "entering" ? (
+            <EnteringButton confirmedAt={waitingDetail.confirmedAt} />
+          ) : null}
+        </ButtonLayout>
+
         <S.WaitingDetailCancel>
           <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
         </S.WaitingDetailCancel>

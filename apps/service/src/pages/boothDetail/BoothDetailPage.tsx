@@ -14,7 +14,12 @@ import useAuth from "@hooks/useAuth";
 
 import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
 
-import { Button, Flex, Separator } from "@linenow/core/components";
+import {
+  Button,
+  ButtonLayout,
+  Flex,
+  Separator,
+} from "@linenow/core/components";
 import { useBottomSheet, useModal } from "@linenow/core/hooks";
 
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
@@ -24,6 +29,8 @@ import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap"
 import EnteringButton from "@components/button/EnteringButton";
 import { useSetAtom } from "jotai";
 import { boothAtom, waitingAtom } from "@atoms/boothWaitingAtoms";
+import RefetchButton from "@components/refetchButton/RefetchButton";
+import { QUERY_KEY } from "@hooks/apis/query";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -90,10 +97,18 @@ const BoothDetailPage = () => {
     if (waiting?.waitingStatus === "waiting") {
       return (
         <>
-          <Button variant="blueLight">
-            <span>내 앞으로 지금</span>
-            <span className="blue">{waiting.waitingTeamsAhead}팀</span>
-          </Button>
+          <ButtonLayout colCount={2} colTemplate="auto 1fr">
+            <RefetchButton
+              queries={[
+                QUERY_KEY.BOOTH(boothNumber ?? 0),
+                QUERY_KEY.BOOTH_WAITING(boothNumber ?? 0),
+              ]}
+            />
+            <Button variant="blueLight" width="100%">
+              <span>내 앞으로 지금</span>
+              <span className="blue">{waiting.waitingTeamsAhead}팀</span>
+            </Button>
+          </ButtonLayout>
           <WaitingDetailCancel>
             <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
           </WaitingDetailCancel>
