@@ -101,7 +101,6 @@ const BoothDetailPage = () => {
       );
     }
     if (waiting?.waitingStatus === "entering") {
-      // 이 부분은 원래대로 유지해야 합니다.
       return (
         <>
           <EnteringButton confirmedAt={waiting.confirmedAt} />
