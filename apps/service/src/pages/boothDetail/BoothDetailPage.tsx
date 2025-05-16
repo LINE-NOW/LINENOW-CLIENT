@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
 import Spinner from "@components/spinner/Spinner";
@@ -22,6 +22,8 @@ import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
 import { useModalCancelWaiting } from "@components/modal/waiting";
 import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap";
 import EnteringButton from "@components/button/EnteringButton";
+import { useSetAtom } from "jotai";
+import { boothAtom, waitingAtom } from "@atoms/boothWaitingAtoms";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -36,6 +38,8 @@ const BoothDetailPage = () => {
 
   const { data: booth, isLoading } = useGetBooth(boothNumber || 0);
   const { data: waiting } = useGetBoothWaiting(boothNumber || 0);
+  const setBooth = useSetAtom(boothAtom);
+  const setWaiting = useSetAtom(waitingAtom);
 
   const { openModal } = useModal();
 
@@ -46,6 +50,14 @@ const BoothDetailPage = () => {
   const closeCheckModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    if (booth) setBooth(booth);
+  }, [booth, setBooth]);
+
+  useEffect(() => {
+    if (waiting) setWaiting(waiting);
+  }, [waiting, setWaiting]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -89,6 +101,7 @@ const BoothDetailPage = () => {
       );
     }
     if (waiting?.waitingStatus === "entering") {
+      // 이 부분은 원래대로 유지해야 합니다.
       return (
         <>
           <EnteringButton confirmedAt={waiting.confirmedAt} />

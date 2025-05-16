@@ -13,6 +13,7 @@ import WaitingDetailMap from "./_components/WaitingDetailMap";
 
 import useToastFromLocation from "@hooks/useToastFromLocation";
 import { useModalCancelWaiting } from "@components/modal/waiting";
+import BoothInfoButton from "@components/bottomButton/WaitingActionButton";
 // import useAnimation from "./hooks/useAnimation";  // 주석 처리
 
 const WaitingDetailPage = () => {
@@ -98,18 +99,13 @@ const WaitingDetailPage = () => {
       <WaitingDetailCaution />
       {/* </S.WaitingDetailRestWrapper> */}
 
-      <BottomButton
-        informationTitle="전체 대기"
-        informationSub={`${waitingDetail?.totalWaitingTeams}팀`}
-      >
-        <Button variant="blueLight">
-          <span>내 앞으로 지금</span>
-          <span>{waitingDetail?.waitingTeamsAhead}팀</span>
-        </Button>
-        <S.WaitingDetailCancel>
-          <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
-        </S.WaitingDetailCancel>
-      </BottomButton>
+      <BoothInfoButton
+        booth={waitingBooth.booth} // booth 정보 전달
+        waiting={waitingDetail} // waiting 정보 전달
+        onCancelClick={onWaitingCancelClick} // 대기 취소 클릭 핸들러 전달
+        isLogin={true} // 로그인 상태에 따라 버튼을 다르게 처리
+        openModal={openModal} // 모달 열기 핸들러 전달
+      />
     </>
   );
 };

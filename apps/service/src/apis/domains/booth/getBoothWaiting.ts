@@ -13,7 +13,7 @@ type GetBoothWaitingResponse = Pick<
   | "confirmed_at"
 >;
 
-type GetBoothWaitingResponseReturn = Pick<
+export type GetBoothWaitingResponseReturn = Pick<
   BoothWaiting,
   | "boothID"
   | "waitingID"
