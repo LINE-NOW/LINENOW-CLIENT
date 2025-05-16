@@ -13,6 +13,7 @@ import WaitingDetailMap from "./_components/WaitingDetailMap";
 
 import useToastFromLocation from "@hooks/useToastFromLocation";
 import { useModalCancelWaiting } from "@components/modal/waiting";
+import EnteringButton from "@components/button/EnteringButton";
 // import useAnimation from "./hooks/useAnimation";  // 주석 처리
 
 const WaitingDetailPage = () => {
@@ -99,13 +100,17 @@ const WaitingDetailPage = () => {
       {/* </S.WaitingDetailRestWrapper> */}
 
       <BottomButton
-        informationTitle="전체 대기"
-        informationSub={`${waitingDetail?.totalWaitingTeams}팀`}
+        informationTitle="현재 대기"
+        informationSub={`${waitingDetail.totalWaitingTeams}팀`}
       >
-        <Button variant="blueLight">
-          <span>내 앞으로 지금</span>
-          <span>{waitingDetail?.waitingTeamsAhead}팀</span>
-        </Button>
+        {waitingDetail.waitingStatus === "waiting" ? (
+          <Button variant="blueLight">
+            <span>내 앞으로 지금</span>
+            <span>{waitingDetail.waitingTeamsAhead}팀</span>
+          </Button>
+        ) : waitingDetail.waitingStatus === "entering" ? (
+          <EnteringButton confirmedAt={waitingDetail.confirmedAt} />
+        ) : null}
         <S.WaitingDetailCancel>
           <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
         </S.WaitingDetailCancel>
