@@ -24,5 +24,7 @@ export { default as Modal, type ModalProps } from "./modal/Modal";
 export { default as ModalProvider } from "./modal/ModalProvider";
 export { default as Toast } from "./toast/Toast";
 export { default as ToastProvider } from "./toast/ToastProvider";
+
+export { default as FixedContainer } from "./fixedContainer/FixedContainer";
 export { default as BottomSheet } from "./bottomSheet/BottomSheet";
 export { default as BottomSheetProvider } from "./bottomSheet/BottomSheetProvider";

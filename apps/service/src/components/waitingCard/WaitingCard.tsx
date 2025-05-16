@@ -16,7 +16,9 @@ export interface WaitingCardProps
     | "waitingTeamsAhead"
     | "booth"
     | "confirmedAt"
-  > {}
+  > {
+  isOpacity?: boolean;
+}
 
 interface Config {
   type?: "black" | "white";
@@ -25,8 +27,14 @@ interface Config {
 }
 
 const WaitingCard = (props: WaitingCardProps) => {
-  const { waitingID, waitingStatus, waitingTeamsAhead, booth, confirmedAt } =
-    props;
+  const {
+    waitingID,
+    waitingStatus,
+    waitingTeamsAhead,
+    booth,
+    confirmedAt,
+    isOpacity = true,
+  } = props;
 
   const getConfig = (): Config => {
     switch (waitingStatus) {
@@ -89,7 +97,7 @@ const WaitingCard = (props: WaitingCardProps) => {
       as="section"
       direction="column"
       gap="0.75rem"
-      css={[S.getWaitingCardStyle(type, disabled)]}
+      css={[S.getWaitingCardStyle(type, isOpacity && disabled)]}
       onClick={disabled ? undefined : navigateWaitingDetail}
     >
       <BoothThumbnailCompact css={[S.getBoothThumbnailStyle()]} {...booth} />

@@ -29,6 +29,7 @@ const BoothThumbnailCompact = (props: BoothThumbnailCompactProps) => {
       gap="0.5rem"
       width="100%"
       alignItem="center"
+      flexShrink={1}
       {...attributes}
     >
       <Flex

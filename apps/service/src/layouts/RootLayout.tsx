@@ -6,13 +6,14 @@ import {
   ModalProvider,
   ToastProvider,
 } from "@linenow/core/components";
-
-// hooks
+import EnteringBottomsheetProvider from "@components/bottomSheet/entering/EnteringBottohSheetProvider";
+import useAuth from "@hooks/useAuth";
 
 const RootLayout = () => {
-  // useCheckWaitingStatus();
+  const { isLogin } = useAuth();
   return (
     <>
+      {isLogin && <EnteringBottomsheetProvider />}
       <ToastProvider />
       <ModalProvider />
       <BottomSheetProvider />
