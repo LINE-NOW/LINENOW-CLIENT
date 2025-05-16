@@ -32,9 +32,8 @@ export const authAtom = atom<AuthProps | null>(null);
 // export const authAtom = atom<AuthState>(undefined);
 // export const authAtom = atom<AuthState>(getLocalStorageTokens());
 
-
 // 마운트 시 localStorage에서 user 정보 가져옴
-// authAtom.onMount = (set) => {
-//   const tokens = getLocalStorageTokens();
-//   set(tokens);
-// };
+authAtom.onMount = (set) => {
+  const tokens = getLocalStorageTokens();
+  set(tokens);
+};
