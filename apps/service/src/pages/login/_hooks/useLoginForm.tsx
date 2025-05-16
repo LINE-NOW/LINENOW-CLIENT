@@ -34,7 +34,6 @@ const useLoginForm = () => {
         phonenumber: form.values.phonenumber,
         password: form.values.password,
       });
-    else console.log("1r45 ");
   };
 
   return {

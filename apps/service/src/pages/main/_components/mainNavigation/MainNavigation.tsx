@@ -1,26 +1,31 @@
 import * as S from "./MainNavigation.styled";
-import MainNavigationWaitingList from "./MainNavigationWaitingList";
 
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import useMainScroll from "@pages/main/_hooks/useMainScroll";
 import useAuth from "@hooks/useAuth";
-import WaitingCardLogin from "@components/waitingCard/WaitingCardLogin";
 import MainNavigationTitleGuest from "./title/MainNavigationTitleGuest";
 import MainNavigationTitleUser from "./title/MainNavigationTitleUser";
 import { Flex } from "@linenow/core/components";
+import { useQueryClient } from "@tanstack/react-query";
+import WaitingCard from "@components/waitingCard/WaitingCard";
+import { QUERY_KEY } from "@hooks/apis/query";
+import MainNavigationContent from "./MainNavigationContent";
 
 interface MainNavigationProps extends React.PropsWithChildren {}
 
 const MainNavigation = (props: MainNavigationProps) => {
-  // useGetWaitings("waiting");
   const { children } = props;
   const { isFold } = useMainScroll();
   const { viewType } = useMainViewType();
 
   const { isLogin } = useAuth();
 
-  const Content = () =>
-    isLogin ? <MainNavigationWaitingList /> : <WaitingCardLogin />;
+  const queryClient = useQueryClient();
+  const waitings =
+    (queryClient.getQueryData(QUERY_KEY.WAITINGS()) as React.ComponentProps<
+      typeof WaitingCard
+    >[]) ?? [];
+
   const Title = () =>
     isLogin ? <MainNavigationTitleUser /> : <MainNavigationTitleGuest />;
 
@@ -39,7 +44,7 @@ const MainNavigation = (props: MainNavigationProps) => {
             <Title />
           </Flex>
 
-          <Content />
+          <MainNavigationContent isLogin={isLogin} waitings={waitings} />
         </div>
 
         {/* 부스 리스트 헤더 */}
