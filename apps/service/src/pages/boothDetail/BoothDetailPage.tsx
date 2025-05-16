@@ -174,7 +174,7 @@ const BoothDetailPage = () => {
           <Separator height={8} />
 
           <BoothDetailMenu booth={booth} />
-          <div style={{ zIndex: 100 }}>
+          <div style={{ zIndex: 3 }}>
             <BottomButton
               informationTitle={getInformationTitle()}
               informationSub={getInformationSub()}
