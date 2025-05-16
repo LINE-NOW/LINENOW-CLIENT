@@ -8,6 +8,15 @@ import {
 } from "@linenow/core/components";
 import EnteringBottomsheetProvider from "@components/bottomSheet/entering/EnteringBottohSheetProvider";
 import useAuth from "@hooks/useAuth";
+import { useSocketEnterRoute } from "@hooks/socket/useSocketEnterRoute";
+import useSocketEnterings from "@hooks/socket/useSocketEnterings";
+
+// hooks
+
+const RootLayout = () => {
+  useSocketEnterRoute();
+  useSocketEnterings();
+ const { isLogin } = useAuth();
 
 const RootLayout = () => {
   const { isLogin } = useAuth();
