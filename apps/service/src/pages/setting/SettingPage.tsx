@@ -28,18 +28,18 @@ const SettingPage = () => {
   };
 
   // 개발자 정보 클릭
-  const handleDeveloperInfoClick = () => {
-    window.open(
-      "https://thorn-freesia-96f.notion.site/09b2230a514848ec9041518f467f86e4?pvs=4",
-      "_blank"
-    );
-  };
+  // const handleDeveloperInfoClick = () => {
+  //   window.open(
+  //     "https://thorn-freesia-96f.notion.site/09b2230a514848ec9041518f467f86e4?pvs=4",
+  //     "_blank"
+  //   );
+  // };
 
   const settingItemProps = [
     { title: "로그아웃", onClick: handleLogoutClick },
     { title: "이용약관", onClick: handleTermsOfServiceClick },
     { title: "1:1 문의", onClick: handleInquiryClick },
-    { title: "개발자 정보", onClick: handleDeveloperInfoClick },
+    // { title: "개발자 정보", onClick: handleDeveloperInfoClick },
   ];
 
   return (

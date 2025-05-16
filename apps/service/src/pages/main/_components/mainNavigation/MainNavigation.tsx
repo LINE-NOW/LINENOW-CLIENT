@@ -1,10 +1,8 @@
 import * as S from "./MainNavigation.styled";
-import MainNavigationWaitingList from "./MainNavigationWaitingList";
 
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import useMainScroll from "@pages/main/_hooks/useMainScroll";
 import useAuth from "@hooks/useAuth";
-import WaitingCardLogin from "@components/waitingCard/WaitingCardLogin";
 import MainNavigationTitleGuest from "./title/MainNavigationTitleGuest";
 import MainNavigationTitleUser from "./title/MainNavigationTitleUser";
 import { Flex } from "@linenow/core/components";

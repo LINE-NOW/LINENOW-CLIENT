@@ -13,46 +13,59 @@ import { postSelectEntering } from "@apis/domains/waiting/postSelectEntering";
 import { useToast } from "@linenow/core/hooks";
 import { QUERY_KEY } from "./query";
 import { postCancelWaiting } from "@apis/domains/waiting/postCancelWaiting";
+import useAuth from "@hooks/useAuth";
 
 export const useGetWaitings = (type: "waiting" | "finished" = "waiting") => {
+  const { isLogin } = useAuth();
   return useQuery({
     queryKey: QUERY_KEY.WAITINGS(type),
     queryFn: () => getWaitings(type),
+    enabled: isLogin,
   });
 };
 
 export const useGetWaitingsCount = () => {
+  const { isLogin } = useAuth();
   return useQuery({
     queryKey: QUERY_KEY.WAITINGS_COUNT(),
     queryFn: () => getWaitingsCount,
+    enabled: isLogin,
   });
 };
 
 export const useGetWaiting = (waitingID: number) => {
+  const { isLogin } = useAuth();
   return useQuery({
     queryKey: QUERY_KEY.WAITING(waitingID),
     queryFn: () => getWaiting(waitingID),
+    enabled: isLogin,
   });
 };
 
 export const useGetWaitingBooth = (waitingID: number) => {
+  const { isLogin } = useAuth();
   return useQuery({
     queryKey: QUERY_KEY.WAITING_BOOTH(waitingID),
     queryFn: () => getWaitingBooth(waitingID),
+    enabled: isLogin,
   });
 };
 
 export const useGetCancelAllEntering = () => {
+  const { isLogin } = useAuth();
   return useQuery({
     queryKey: QUERY_KEY.ALL_ENTERINGS(),
     queryFn: () => getCancelAllEntering(),
+    enabled: isLogin,
   });
 };
 
 export const useGetCancelAllWaiting = () => {
+  const { isLogin } = useAuth();
   return useQuery({
     queryKey: QUERY_KEY.ALL_WAITINGS(),
     queryFn: () => getCancelAllWaiting(),
+    enabled: isLogin,
   });
 };
 
