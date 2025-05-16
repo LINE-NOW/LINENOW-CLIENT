@@ -20,7 +20,7 @@ import {
   Flex,
   Separator,
 } from "@linenow/core/components";
-import { useBottomSheet, useModal } from "@linenow/core/hooks";
+import { useBottomSheet, useModal, useToast } from "@linenow/core/hooks";
 
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
@@ -47,10 +47,20 @@ const BoothDetailPage = () => {
   const { data: waiting } = useGetBoothWaiting(boothNumber || 0);
   const setBooth = useSetAtom(boothAtom);
   const setWaiting = useSetAtom(waitingAtom);
-
   const { openModal } = useModal();
+  const { presentToast } = useToast();
 
   const openCheckModal = () => {
+    if (waiting?.isBlack) {
+      presentToast("노쇼를 3회 이상하여 대기가 불가능합니다.");
+      return;
+    }
+
+    if ((waiting?.waitingCnt ?? 0) >= 3) {
+      presentToast("동시에 최대 3개 부스까지 대기 가능해요.");
+      return;
+    }
+
     setIsModalOpen(true);
   };
 
