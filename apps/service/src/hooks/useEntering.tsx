@@ -1,8 +1,8 @@
 import { useMemo, useRef, useEffect } from "react";
 import { useBottomSheet } from "@linenow/core/hooks";
 import { useGetWaitings } from "./apis/waiting";
-import useEnteringContent from "@components/bottomSheet/entering/useEnteringContent";
 import { Waiting } from "@interfaces/waiting";
+import EnteringContent from "@components/bottomSheet/entering/EnteringContent";
 //TODO: 대기 취소 바텀시트 머지 후 주석 해제
 // import CancelBottomSheetContent from "@components/bottomSheet/cancel/CancelBottomSheet";
 
@@ -20,10 +20,9 @@ const useEnteringBottomSheet = () => {
     [data]
   );
 
-  const sheetContent = useEnteringContent({
-    enterings,
-    waitings,
-  });
+  const sheetContent = (
+    <EnteringContent enterings={enterings} waitings={waitings} />
+  );
 
   const openEntering = () => {
     if (enterings.length === 0) return;
@@ -34,10 +33,9 @@ const useEnteringBottomSheet = () => {
   const openEnteringWithFullData = (enteringData: Waiting[]) => {
     if (enteringData.length === 0) return;
 
-    const externalSheetContent = useEnteringContent({
-      enterings: enteringData,
-      waitings: [],
-    });
+    const externalSheetContent = (
+      <EnteringContent enterings={enteringData} waitings={[]} />
+    );
 
     openBottomSheet({ children: externalSheetContent });
   };
