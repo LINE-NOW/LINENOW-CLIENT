@@ -48,5 +48,12 @@ export const TagListContainer = styled.section`
 export const TagRefreshContainer = styled.section`
   cursor: pointer;
   display: flex;
+  align-items: center;
+  width: 100%;
   justify-content: end;
+`;
+
+export const TagListRefresh = styled.section`
+  display: flex;
+  align-items: center;
 `;

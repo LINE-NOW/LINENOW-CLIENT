@@ -9,7 +9,7 @@ const MainBoothListHeader = (props: React.PropsWithChildren) => {
   return (
     <section css={S.getHeaderWrapperStyle(viewType)}>
       <Label font={viewType === "list" ? "head2" : "head3"} color="black">
-        2024년 동국대학교 가을 축제
+        2025년 동국대학교 봄 축제
       </Label>
       {children}
     </section>
