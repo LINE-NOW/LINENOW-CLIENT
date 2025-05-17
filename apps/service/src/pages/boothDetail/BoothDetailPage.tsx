@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
 import Spinner from "@components/spinner/Spinner";
@@ -21,6 +21,9 @@ import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSh
 import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
 import { useModalCancelWaiting } from "@components/modal/waiting";
 import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap";
+import EnteringButton from "@components/button/EnteringButton";
+import { useSetAtom } from "jotai";
+import { boothAtom, waitingAtom } from "@atoms/boothWaitingAtoms";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -35,6 +38,8 @@ const BoothDetailPage = () => {
 
   const { data: booth, isLoading } = useGetBooth(boothNumber || 0);
   const { data: waiting } = useGetBoothWaiting(boothNumber || 0);
+  const setBooth = useSetAtom(boothAtom);
+  const setWaiting = useSetAtom(waitingAtom);
 
   const { openModal } = useModal();
 
@@ -45,6 +50,14 @@ const BoothDetailPage = () => {
   const closeCheckModal = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    if (booth) setBooth(booth);
+  }, [booth, setBooth]);
+
+  useEffect(() => {
+    if (waiting) setWaiting(waiting);
+  }, [waiting, setWaiting]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -69,7 +82,7 @@ const BoothDetailPage = () => {
       case "finished":
         return undefined;
       default:
-        return `${booth?.totalWaitingTeams || 0}팀`;
+        return `${booth?.totalWaitingTeams}팀`;
     }
   };
 
@@ -87,6 +100,17 @@ const BoothDetailPage = () => {
         </>
       );
     }
+    if (waiting?.waitingStatus === "entering") {
+      return (
+        <>
+          <EnteringButton confirmedAt={waiting.confirmedAt} />
+          <WaitingDetailCancel>
+            <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
+          </WaitingDetailCancel>
+        </>
+      );
+    }
+
     switch (booth?.operatingStatus) {
       case "not_started":
         return (
@@ -135,24 +159,25 @@ const BoothDetailPage = () => {
           <Separator height={8} />
 
           <BoothDetailMenu booth={booth} />
+          <div style={{ zIndex: 100 }}>
+            <BottomButton
+              informationTitle={getInformationTitle()}
+              informationSub={getInformationSub()}
+            >
+              {isLogin ? (
+                getInformationButton()
+              ) : (
+                // 로그인 하지 않은 경우
+                <Button variant="lime" onClick={handleLoginButtonClick}>
+                  <span>로그인하고 이용하기</span>
+                </Button>
+              )}
 
-          <BottomButton
-            informationTitle={getInformationTitle()}
-            informationSub={getInformationSub()}
-          >
-            {isLogin ? (
-              getInformationButton()
-            ) : (
-              // 로그인 하지 않은 경우
-              <Button variant="lime" onClick={handleLoginButtonClick}>
-                <span>로그인하고 이용하기</span>
-              </Button>
-            )}
-
-            {isModalOpen && (
-              <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
-            )}
-          </BottomButton>
+              {isModalOpen && (
+                <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
+              )}
+            </BottomButton>
+          </div>
         </>
       )}
     </>
