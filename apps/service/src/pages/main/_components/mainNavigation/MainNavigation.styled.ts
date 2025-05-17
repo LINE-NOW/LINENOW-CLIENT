@@ -28,7 +28,6 @@ export const getWrapper = (type: MainViewType, isFold: boolean) => {
       `;
 
     return css`
-      z-index: 1;
       position: fixed;
       overflow-y: hidden;
       max-width: ${theme.maxWidth};
