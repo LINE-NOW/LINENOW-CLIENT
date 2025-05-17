@@ -179,7 +179,7 @@ const BoothDetailPage = () => {
           </Flex>
           <Separator height={8} />
 
-          <BoothLocationMap booth={booth} />
+          {!isModalOpen && <BoothLocationMap booth={booth} />}
 
           <Separator height={8} />
 

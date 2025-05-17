@@ -9,10 +9,11 @@ import Spinner from "@components/spinner/Spinner";
 import { useGetWaiting, useGetWaitingBooth } from "@hooks/apis/waiting";
 import { Button, ButtonLayout, Toast } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
-import WaitingDetailMap from "./_components/WaitingDetailMap";
 
 import useToastFromLocation from "@hooks/useToastFromLocation";
 import { useModalCancelWaiting } from "@components/modal/waiting";
+import { useGetBooth } from "@hooks/apis/booth";
+import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap";
 import EnteringButton from "@components/button/EnteringButton";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 import { QUERY_KEY } from "@hooks/apis/query";
@@ -26,6 +27,9 @@ const WaitingDetailPage = () => {
 
   const { data: waitingDetail, isLoading } = useGetWaiting(waitingID);
   const { data: waitingBooth } = useGetWaitingBooth(waitingID);
+
+  const { data: booth } = useGetBooth(waitingDetail?.boothID || 0);
+
   const { openModal } = useModal();
 
   // 애니메이션 관련 코드 주석 처리
@@ -94,7 +98,7 @@ const WaitingDetailPage = () => {
 
       {/* 나머지 부분은 그대로 유지 */}
       {/* <S.WaitingDetailRestWrapper show={true}> */}
-      <WaitingDetailMap />
+      {booth && <BoothLocationMap booth={booth} />}
       <Separator />
       <WaitingDetailCaution />
       {/* </S.WaitingDetailRestWrapper> */}

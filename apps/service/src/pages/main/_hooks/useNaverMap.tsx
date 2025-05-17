@@ -53,10 +53,10 @@ export const useNaverMap = (
         if (!window.naver) return;
         const { naver } = window;
         if (mapRef.current && window) {
-          const now = new naver.maps.LatLng(37.5584809, 127.0004067);
+          const now = new naver.maps.LatLng(latLng.lat, latLng.lng);
           const map = new naver.maps.Map(mapRef.current, {
             center: now,
-            zoom: 16,
+            zoom: 17,
             zoomControl: true,
             zoomControlOptions: {
               style: window.naver.maps.ZoomControlStyle.SMALL,
@@ -65,8 +65,9 @@ export const useNaverMap = (
           });
 
           mapInstanceRef.current = map;
-          window.naver.maps.Event.addListener(map, "click", () => {
+          window.naver.maps.Event.addListener(map, "click", (e: any) => {
             setSelectedBoothId(null);
+            map.panTo(e?.latlng);
           });
 
           setIsMapReady(true);
@@ -121,9 +122,9 @@ export const useNaverMap = (
     if (!mapInstanceRef.current) return;
     const map = mapInstanceRef.current;
     const center = map.getCenter();
-    if (center.y === latLng.lat && center.x === latLng.lon) return;
+    if (center.y === latLng.lat && center.x === latLng.lng) return;
 
-    map.panTo(new naver.maps.LatLng(latLng.lat, latLng.lon));
+    map.panTo(new naver.maps.LatLng(latLng.lat, latLng.lng));
   }, [latLng]);
 
   return { mapRef };
