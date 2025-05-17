@@ -45,7 +45,7 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
   };
 
   const config = useMainWaitingCard({
-    waitingID: waiting.waitingNum,
+    waitingID: waiting.waitingID,
     waitingNum: waiting.waitingNum,
     userName: waiting.user.name,
     waitingStatus: waiting.waitingStatus,
