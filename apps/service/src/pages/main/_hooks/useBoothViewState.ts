@@ -1,8 +1,8 @@
 import { useAtomValue } from "jotai";
-import { selectedBoothAtom } from "@pages/main/_atom/selectedBooth";
+import { isSelectedBoothAtom } from "@pages/main/_atom/selectedBooth";
 
 export const useBoothViewState = () => {
-  const selectedBoothID = useAtomValue(selectedBoothAtom);
+  const selectedBoothID = useAtomValue(isSelectedBoothAtom);
   const isBoothSelected = selectedBoothID !== null;
   return { selectedBoothID, isBoothSelected };
 };
