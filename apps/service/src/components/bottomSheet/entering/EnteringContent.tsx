@@ -8,8 +8,8 @@ interface Props {
   waitings: React.ComponentProps<typeof BoothCard>[];
 }
 
-const EnteringContent = ({ enterings, waitings }: Props) => {
-  if (enterings.length === 0) return;
+const EnteringContent = ({ enterings = [], waitings = [] }: Props) => {
+  if (enterings.length === 0) return null;
 
   const isSingleEntering = enterings.length === 1;
 
@@ -27,17 +27,18 @@ const EnteringContent = ({ enterings, waitings }: Props) => {
 };
 
 export default React.memo(EnteringContent, (prevProps, nextProps) => {
+  const prevEnterings = prevProps.enterings ?? [];
+  const nextEnterings = nextProps.enterings ?? [];
+  const prevWaitings = prevProps.waitings ?? [];
+  const nextWaitings = nextProps.waitings ?? [];
+
   const sameEnterings =
-    prevProps.enterings.length === nextProps.enterings.length &&
-    prevProps.enterings.every(
-      (e, i) => e.waitingID === nextProps.enterings[i].waitingID
-    );
+    prevEnterings.length === nextEnterings.length &&
+    prevEnterings.every((e, i) => e.waitingID === nextEnterings[i].waitingID);
 
   const sameWaitings =
-    prevProps.waitings.length === nextProps.waitings.length &&
-    prevProps.waitings.every(
-      (w, i) => w.waitingID === nextProps.waitings[i].waitingID
-    );
+    prevWaitings.length === nextWaitings.length &&
+    prevWaitings.every((w, i) => w.waitingID === nextWaitings[i].waitingID);
 
   return sameEnterings && sameWaitings;
 });
