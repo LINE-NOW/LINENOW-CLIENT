@@ -1,6 +1,6 @@
 import { Chip } from "@linenow/core/components";
 import { useCountdown } from "@linenow/core/hooks";
-import { getEnteringTime } from "@utils/calculate";
+import { getEnteringTime } from "@linenow/core/utils";
 
 interface EnteringChipProps {
   confirmedAt?: string;

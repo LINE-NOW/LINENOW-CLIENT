@@ -49,7 +49,6 @@ export const TagRefreshContainer = styled.section`
   cursor: pointer;
   display: flex;
   align-items: center;
-  width: 100%;
   justify-content: end;
 `;
 
