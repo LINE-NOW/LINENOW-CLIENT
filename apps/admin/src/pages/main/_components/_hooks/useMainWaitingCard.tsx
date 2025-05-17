@@ -11,6 +11,7 @@ import { usePostWaitingAction } from "@hooks/apis/boothManaging";
 type BackgroundColor = "grayLight" | "blueLight" | "lime" | "limeLight";
 
 interface MainWaitingCardProps {
+  waitingNum: number;
   waitingID: number;
   userName: string;
   waitingStatus: WaitingStatus;
@@ -31,6 +32,7 @@ interface MainWaitingCardConfig {
 
 export const useMainWaitingCard = ({
   waitingID,
+  // waitingNum,
   waitingStatus,
   confirmedAt,
   userName,
