@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import { Icon } from "@linenow/core/components";
 import { useToast } from "@linenow/core/hooks";
+import { useSetAtom } from "jotai";
+import { latLngAtom } from "@atoms/location";
 
 interface BoothLocationContentProps {
   booth: Booth;
@@ -14,6 +16,7 @@ interface BoothLocationContentProps {
 export const BoothLocationMap = ({ booth }: BoothLocationContentProps) => {
   const mapRef = useRef<null | HTMLDivElement>(null);
   const navigate = useNavigate();
+  const setLatLng = useSetAtom(latLngAtom);
   const { setViewType } = useMainViewType();
 
   const { presentToast } = useToast();
@@ -25,7 +28,11 @@ export const BoothLocationMap = ({ booth }: BoothLocationContentProps) => {
         <S.BoothLocationMapClickableBar
           onClick={() => {
             setViewType("map");
-            navigate("/");
+            navigate("/", { state: booth.boothID });
+            setLatLng({
+              lat: Number(booth.latitude),
+              lng: Number(booth.longitude),
+            });
           }}
         >
           클릭해서 지도 보기

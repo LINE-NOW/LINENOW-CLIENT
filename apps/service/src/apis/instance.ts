@@ -31,6 +31,7 @@ export const getResponse = async <TResponse>(
       ...config,
     });
     console.log(`get : ${url}`, response);
+
     return response.data.data;
   } catch (error) {
     throw error as AxiosError;
@@ -63,7 +64,7 @@ export const deleteResponse = async <TResponse>(
     const response = await instance.delete<BaseDTO<TResponse>>(url, {
       ...config,
     });
-    console.log(`delete : ${url}`, response);
+
     return response.data.data;
   } catch (error) {
     throw error as AxiosError;

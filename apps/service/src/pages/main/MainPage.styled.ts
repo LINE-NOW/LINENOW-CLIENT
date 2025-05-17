@@ -59,17 +59,13 @@ const positionStyles: Record<Position, ReturnType<typeof css>> = {
   `,
 };
 
-export const getFloatingButtonStyle = (
-  buttonType: FloatingButtonType,
-  viewType: MainViewType = "list"
-) => {
+export const getFloatingButtonStyle = (buttonType: FloatingButtonType) => {
   const config = floatingButtonStyleConfigs[buttonType];
-  const extraBottom = viewType === "map" ? "6rem" : "0rem";
 
   return css`
     position: absolute;
     ${positionStyles[config.position]}
-    bottom: calc(${config.bottom} + ${extraBottom});
+    bottom: calc(${config.bottom} );
 
     box-shadow: 0px 1px 5px 2px rgba(26, 30, 39, 0.1);
   `;

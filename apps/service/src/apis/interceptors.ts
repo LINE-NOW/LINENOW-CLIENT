@@ -33,6 +33,8 @@ export const handleTokenError = async (error: AxiosError<ErrorDTO>) => {
     localStorage.removeItem("accessToken");
     window.location.href = "/";
   }
+
+  throw error;
 };
 
 export const handleAPIError = (error: AxiosError<ErrorDTO>) => {

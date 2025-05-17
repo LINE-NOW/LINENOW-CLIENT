@@ -11,9 +11,16 @@ interface Countdown {
 
 interface useCountdownProps {
   targetDate: string;
+  timeoverAction?: () => void;
 }
 
-const useCountdown = ({ targetDate }: useCountdownProps) => {
+const useCountdown = (props: useCountdownProps) => {
+  const {
+    targetDate,
+    timeoverAction = () => {
+      history.go(0);
+    },
+  } = props;
   const [countdown, setCountdown] = useState<Countdown>(
     calculateTime(targetDate)
   );
@@ -30,7 +37,7 @@ const useCountdown = ({ targetDate }: useCountdownProps) => {
         if (newCountdown.leftTotal <= 0) {
           clearInterval(intervalId);
           setIsCountDownOver(true);
-          history.go(0);
+          timeoverAction();
           return;
         }
       }, 1000);

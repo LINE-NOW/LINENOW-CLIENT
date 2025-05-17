@@ -7,6 +7,7 @@ import { deleteWithdraw } from "@apis/domains/user/postWithdraw";
 import useAuth from "@hooks/useAuth";
 import { useToast } from "@linenow/core/hooks";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 
 export const useGetBlackuser = () => {
   return useQuery({
@@ -46,6 +47,7 @@ export const usePostRegistration = () => {
     password: string;
     passwordConfirm: string;
   };
+
   return useMutation({
     mutationKey: ["registration"],
     mutationFn: (params: Prameter) =>
@@ -59,6 +61,12 @@ export const usePostRegistration = () => {
     onSuccess: (response) => {
       presentToast("회원가입을 성공했어요!");
       if (response) login({ accessToken: response?.accessToken });
+    },
+
+    onError: (response) => {
+      const error = response as AxiosError;
+
+      if (error.status === 400) alert("인증번호가 올바르지 않습니다!");
     },
   });
 };

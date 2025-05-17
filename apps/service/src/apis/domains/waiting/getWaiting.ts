@@ -7,14 +7,22 @@ import { BoothWaiting } from "@interfaces/waiting";
 // 부스 상세-대기 정보
 type GetWaitingResponse = Pick<
   _Waiting,
-  "waiting_id" | "waiting_status" | "waiting_team_ahead" | "total_waiting_teams"
+  | "waiting_id"
+  | "waiting_status"
+  | "waiting_team_ahead"
+  | "total_waiting_teams"
+  | "confirmed_at"
 > & {
   booth_info: Pick<_Booth, "booth_id">;
 };
 
 type GetWaitingResponseReturn = Pick<
   BoothWaiting,
-  "boothID" | "waitingID" | "waitingStatus" | "waitingTeamsAhead"
+  | "boothID"
+  | "waitingID"
+  | "waitingStatus"
+  | "waitingTeamsAhead"
+  | "confirmedAt"
 > &
   Pick<Booth, "totalWaitingTeams">;
 
@@ -27,6 +35,7 @@ const transformWaitingResponse = (
     waitingTeamsAhead: _response.waiting_team_ahead,
     boothID: _response.booth_info.booth_id,
     totalWaitingTeams: _response.total_waiting_teams,
+    confirmedAt: _response.confirmed_at,
   };
 };
 

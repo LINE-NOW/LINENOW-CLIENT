@@ -10,7 +10,6 @@ const useMainBoothList = () => {
   const { viewType } = useMainViewType();
   const { currentBooths } = useBoothListData();
 
-  // 고민 좀 해보기...
   const getBoothListHeaderChildren = () =>
     viewType === "list" && (
       <Flex justifyContent="space-between">
