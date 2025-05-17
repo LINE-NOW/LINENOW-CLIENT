@@ -76,6 +76,7 @@ const useFormReturn = <TFormData extends TFromDataField>(
   const getFieldIsError = (name: keyof TFormData) => formState[name].isError;
   const getError = (name: keyof TFormData) =>
     formState[name].isTouched ? formState[name].error : undefined;
+
   // 값이 변경을 반영
   const handleChange = (name: keyof TFormData, value: any) => {
     values.current[name] = value;
@@ -101,6 +102,7 @@ const useFormReturn = <TFormData extends TFromDataField>(
     };
 
     setFieldStates(name, {
+      isTouched: true,
       isError: isTextfieldError(),
       error: error,
     });
@@ -117,19 +119,17 @@ const useFormReturn = <TFormData extends TFromDataField>(
     formValidation.current[name] = rules;
 
     return {
-      ref: (el: HTMLInputElement | null) => {
-        refs.current[name] = el;
+      name: name as string,
+      ref: (element: HTMLInputElement | null) => {
+        if (!element) return;
+        const currentValue = values.current[name];
+        element.value = currentValue;
       },
-      vlaue: values.current[name] === undefined ? "" : values.current[name],
+
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
         handleChange(name, e.target.value);
-        validateField(name, e.target.value, {
-          required: e.target.required,
-          minLength: e.target.minLength,
-        });
       },
       onBlur: (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFieldStates(name, { isTouched: true });
         validateField(name, e.target.value, {
           required: e.target.required,
           minLength: e.target.minLength,
@@ -147,11 +147,11 @@ const useFormReturn = <TFormData extends TFromDataField>(
 
   return {
     register,
-
     isFormValidate,
     getFieldIsError,
     values: values.current,
     fieldRefs: refs.current,
+    formState,
   };
 };
 

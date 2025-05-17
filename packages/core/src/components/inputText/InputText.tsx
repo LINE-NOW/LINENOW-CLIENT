@@ -7,7 +7,14 @@ interface InputTextProps extends React.ComponentProps<"input"> {
 }
 
 const InputText = (props: InputTextProps) => {
-  const { type = "text", pattern, onInput, error, ...inputProps } = props;
+  const {
+    type = "text",
+    pattern,
+    onInput,
+    error,
+    children,
+    ...inputProps
+  } = props;
 
   // 정규식에 맞게 입력을 받음
   const checkPattern = (e: React.FormEvent<HTMLInputElement>) => {
@@ -39,6 +46,7 @@ const InputText = (props: InputTextProps) => {
           onInput={handleOnInput}
           {...inputProps}
         />
+        {children}
       </label>
       {error && (
         <Label font="caption" color="red" padding="0rem 0.25rem">

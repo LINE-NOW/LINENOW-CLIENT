@@ -2,13 +2,11 @@ import useSingupForm from "@pages/signup/_hooks/useSignupForm";
 
 //components
 import { Button, Flex } from "@linenow/core/components";
+
 import BottomButton from "@components/bottomButton/BottomButton";
-import SignupFormStepName from "./steps/SinupFormStepName";
-import SignupFormStepPhone from "./steps/SignupFormStepPhone";
-import SignupFormStepPassword from "./steps/SingupFormStepPassword";
 
 const SingupForm = () => {
-  const { isFormValidate, submitForm } = useSingupForm();
+  const { CurrentContent, nextButtonProps, submitForm } = useSingupForm();
 
   return (
     <Flex
@@ -19,15 +17,10 @@ const SingupForm = () => {
       onSubmit={submitForm}
     >
       {/* form */}
-      <SignupFormStepName />
-      <SignupFormStepPhone />
-      <SignupFormStepPassword />
+      {CurrentContent}
 
-      {/* submit */}
       <BottomButton>
-        <Button type="submit" disabled={!isFormValidate} onClick={() => {}}>
-          회원가입하기
-        </Button>
+        <Button {...nextButtonProps} />
       </BottomButton>
     </Flex>
   );

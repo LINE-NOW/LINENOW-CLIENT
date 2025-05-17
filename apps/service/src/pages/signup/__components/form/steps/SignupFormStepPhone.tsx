@@ -12,27 +12,24 @@ import phoneInputProps from "@components/inputText/phone";
 
 // utils
 import { css } from "@emotion/react";
+import AuthButtonCountLabel from "./AuthButton";
 
 const SignupFormStepPhone = () => {
-  const { register, fieldRefs, getFieldIsError } = useSingupForm();
+  const { register, fieldRefs } = useSingupForm();
 
   // 인증번호 발급
   const {
     sendAuthMessage,
     isLoading: authIsLoading,
     isCompleted,
+    setReset,
+    expireAt,
   } = useSendAuth();
 
   const onClickAuthButton = () => {
     if (!fieldRefs.phonenumber) return;
     const phonenumber = fieldRefs.phonenumber.value;
     sendAuthMessage(phonenumber);
-  };
-
-  const authButtonProps: React.ComponentProps<typeof Button> = {
-    variant: isCompleted ? "outline" : "blueLight",
-    disabled: getFieldIsError("phonenumber"),
-    onClick: isCompleted ? undefined : onClickAuthButton,
   };
 
   // 검증
@@ -68,7 +65,27 @@ const SignupFormStepPhone = () => {
                           신중하게 입력해주세요.`}
       >
         {/* 전화번호 */}
-        <InputTextButton button={authButtonProps} {...phoneInput} />
+        <InputTextButton {...phoneInput}>
+          <Button
+            type={"button"}
+            size="medium"
+            variant="blueLight"
+            width="6.25rem"
+            disabled={isCompleted}
+            onClick={onClickAuthButton}
+            css={[
+              css`
+                flex-shrink: 0;
+              `,
+            ]}
+          >
+            {isCompleted ? (
+              <AuthButtonCountLabel setReset={setReset} expireAt={expireAt} />
+            ) : (
+              "인증번호 받기"
+            )}
+          </Button>
+        </InputTextButton>
 
         {/* 인증번호 */}
         {authIsLoading && <LoadingView />}
