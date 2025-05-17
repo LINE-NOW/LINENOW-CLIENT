@@ -17,7 +17,7 @@ const SettingPage = () => {
   // 이용약관 클릭
   const handleTermsOfServiceClick = () => {
     window.open(
-      "https://thorn-freesia-96f.notion.site/c645fe5ebb624ca9a7be3e697ecdf8be?pvs=4",
+      "https://thorn-freesia-96f.notion.site/1f5d72341c498025813dff9f58b0e412",
       "_blank"
     );
   };
