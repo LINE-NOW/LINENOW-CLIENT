@@ -11,16 +11,22 @@ type GetBoothWaitingResponse = Pick<
   | "waiting_status"
   | "waiting_team_ahead"
   | "confirmed_at"
->;
+> & {
+  user_is_black?: boolean;
+  user_waiting_cnt?: number;
+};
 
-type GetBoothWaitingResponseReturn = Pick<
+export type GetBoothWaitingResponseReturn = Pick<
   BoothWaiting,
   | "boothID"
   | "waitingID"
   | "waitingStatus"
   | "waitingTeamsAhead"
   | "confirmedAt"
->;
+> & {
+  isBlack?: boolean;
+  waitingCnt?: number;
+};
 
 const transformBoothWaitingResponse = (
   _response: GetBoothWaitingResponse
@@ -30,6 +36,9 @@ const transformBoothWaitingResponse = (
     waitingID: _response.waiting_id,
     waitingStatus: _response.waiting_status,
     waitingTeamsAhead: _response.waiting_team_ahead,
+    confirmedAt: _response.confirmed_at,
+    isBlack: _response.user_is_black,
+    waitingCnt: _response.user_waiting_cnt,
   };
 };
 
