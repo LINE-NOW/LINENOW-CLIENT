@@ -3,8 +3,7 @@ import { useBottomSheet } from "@linenow/core/hooks";
 import { useGetWaitings } from "./apis/waiting";
 import { Waiting } from "@interfaces/waiting";
 import EnteringContent from "@components/bottomSheet/entering/EnteringContent";
-//TODO: 대기 취소 바텀시트 머지 후 주석 해제
-// import CancelBottomSheetContent from "@components/bottomSheet/cancel/CancelBottomSheet";
+import CancelBottomSheetContent from "@components/bottomSheet/cancel/CancelBottomSheet";
 
 const useEnteringBottomSheet = () => {
   const { data = [] } = useGetWaitings("waiting");
@@ -48,12 +47,11 @@ const useEnteringBottomSheet = () => {
     }
   }, [data]);
 
-  //TODO: 대기 취소 바텀시트 머지 후 주석 해제
-  // const openCancelBottomSheet = (waiting: Waiting) => {
-  //   openBottomSheet({
-  //     children: <CancelBottomSheetContent {...waiting} />,
-  //   });
-  // };
+  const openCancelBottomSheet = (waiting: Waiting) => {
+    openBottomSheet({
+      children: <CancelBottomSheetContent {...waiting} />,
+    });
+  };
 
   const closeEntrace = () => closeBottomSheet();
 
@@ -61,8 +59,7 @@ const useEnteringBottomSheet = () => {
     openEntering,
     closeEntrace,
     openEnteringWithFullData,
-    //TODO: 대기 취소 바텀시트 머지 후 주석 해제
-    // openCancelBottomSheet,
+    openCancelBottomSheet,
   };
 };
 
