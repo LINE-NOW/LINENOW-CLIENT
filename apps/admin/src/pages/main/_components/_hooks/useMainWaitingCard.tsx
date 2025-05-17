@@ -1,7 +1,7 @@
 import { WaitingStatus } from "@linenow-types/status";
 import { Button } from "@linenow/core/components";
-import { useModal } from "@linenow/core/hooks";
-import useCountdown from "@hooks/useCountdown";
+import { useCountdown, useModal } from "@linenow/core/hooks";
+import { getEnteringTime } from "@linenow/core/utils";
 import {
   modalApproveWaiting,
   modalCallWaiting,
@@ -12,9 +12,10 @@ type BackgroundColor = "grayLight" | "blueLight" | "lime" | "limeLight";
 
 interface MainWaitingCardProps {
   waitingID: number;
+  waitingNum: number;
   userName: string;
   waitingStatus: WaitingStatus;
-  targetTime?: string;
+  confirmedAt: string;
 }
 
 interface MainWaitingCardButtonProps
@@ -32,12 +33,13 @@ interface MainWaitingCardConfig {
 export const useMainWaitingCard = ({
   waitingID,
   waitingStatus,
-  targetTime,
+  confirmedAt,
   userName,
 }: MainWaitingCardProps): MainWaitingCardConfig => {
-  const { getTime } = useCountdown({
-    targetDate: targetTime || "1970-01-01T00:00:00.000Z",
-  });
+  const countdown = useCountdown({ targetDate: getEnteringTime(confirmedAt) });
+
+  const getString = countdown?.getString ?? (() => "");
+  const isCountdownOver = countdown?.isCountdownOver ?? true;
 
   const { openModal } = useModal();
   const { mutate: postWaitingAction } = usePostWaitingAction();
@@ -99,7 +101,7 @@ export const useMainWaitingCard = ({
       primaryButton: {
         children: [
           <span key={1}>손님이 오고 있어요!</span>,
-          <span key={2}>{getTime("MMSS")}</span>,
+          <span>{isCountdownOver ? "시간종료" : getString("MMSS")}</span>,
         ],
         variant: "lime",
       },
