@@ -14,8 +14,13 @@ import useAuth from "@hooks/useAuth";
 
 import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
 
-import { Button, Flex, Separator } from "@linenow/core/components";
-import { useBottomSheet, useModal } from "@linenow/core/hooks";
+import {
+  Button,
+  ButtonLayout,
+  Flex,
+  Separator,
+} from "@linenow/core/components";
+import { useBottomSheet, useModal, useToast } from "@linenow/core/hooks";
 
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
@@ -24,6 +29,8 @@ import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap"
 import EnteringButton from "@components/button/EnteringButton";
 import { useSetAtom } from "jotai";
 import { boothAtom, waitingAtom } from "@atoms/boothWaitingAtoms";
+import RefetchButton from "@components/refetchButton/RefetchButton";
+import { QUERY_KEY } from "@hooks/apis/query";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -40,10 +47,20 @@ const BoothDetailPage = () => {
   const { data: waiting } = useGetBoothWaiting(boothNumber || 0);
   const setBooth = useSetAtom(boothAtom);
   const setWaiting = useSetAtom(waitingAtom);
-
   const { openModal } = useModal();
+  const { presentToast } = useToast();
 
   const openCheckModal = () => {
+    if (waiting?.isBlack) {
+      presentToast("노쇼를 3회 이상하여 대기가 불가능합니다.");
+      return;
+    }
+
+    if ((waiting?.waitingCnt ?? 0) >= 3) {
+      presentToast("동시에 최대 3개 부스까지 대기 가능해요.");
+      return;
+    }
+
     setIsModalOpen(true);
   };
 
@@ -90,10 +107,18 @@ const BoothDetailPage = () => {
     if (waiting?.waitingStatus === "waiting") {
       return (
         <>
-          <Button variant="blueLight">
-            <span>내 앞으로 지금</span>
-            <span className="blue">{waiting.waitingTeamsAhead}팀</span>
-          </Button>
+          <ButtonLayout colCount={2} colTemplate="auto 1fr">
+            <RefetchButton
+              queries={[
+                QUERY_KEY.BOOTH(boothNumber ?? 0),
+                QUERY_KEY.BOOTH_WAITING(boothNumber ?? 0),
+              ]}
+            />
+            <Button variant="blueLight" width="100%">
+              <span>내 앞으로 지금</span>
+              <span className="blue">{waiting.waitingTeamsAhead}팀</span>
+            </Button>
+          </ButtonLayout>
           <WaitingDetailCancel>
             <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
           </WaitingDetailCancel>
@@ -159,7 +184,7 @@ const BoothDetailPage = () => {
           <Separator height={8} />
 
           <BoothDetailMenu booth={booth} />
-          <div style={{ zIndex: 100 }}>
+          <div style={{ zIndex: 3 }}>
             <BottomButton
               informationTitle={getInformationTitle()}
               informationSub={getInformationSub()}
