@@ -11,8 +11,8 @@ import { usePostWaitingAction } from "@hooks/apis/boothManaging";
 type BackgroundColor = "grayLight" | "blueLight" | "lime" | "limeLight";
 
 interface MainWaitingCardProps {
-  waitingNum: number;
   waitingID: number;
+  waitingNum: number;
   userName: string;
   waitingStatus: WaitingStatus;
   confirmedAt: string;
@@ -32,14 +32,11 @@ interface MainWaitingCardConfig {
 
 export const useMainWaitingCard = ({
   waitingID,
-  // waitingNum,
   waitingStatus,
   confirmedAt,
   userName,
 }: MainWaitingCardProps): MainWaitingCardConfig => {
-  const countdown = confirmedAt
-    ? useCountdown({ targetDate: getEnteringTime(confirmedAt) })
-    : null;
+  const countdown = useCountdown({ targetDate: getEnteringTime(confirmedAt) });
 
   const getString = countdown?.getString ?? (() => "");
   const isCountdownOver = countdown?.isCountdownOver ?? true;
