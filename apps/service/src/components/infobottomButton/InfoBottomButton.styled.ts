@@ -11,7 +11,7 @@ export const InfoBottomButtonBackground = styled.div`
   top: 50%;
   left: 50%;
 
-  /* z-index: 0; */
+  z-index: 101;
 
   width: 100%;
   max-width: 540px;

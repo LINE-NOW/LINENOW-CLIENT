@@ -22,7 +22,7 @@ export const BottomButtonWrapper = styled.section`
   box-shadow: 0px 0px 4px 4px rgba(26, 30, 39, 0.1);
 
   flex-direction: column;
-  z-index: 9999;
+  z-index: 100;
 `;
 
 export const BottomButtonInformationWrapper = styled.div`

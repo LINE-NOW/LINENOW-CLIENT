@@ -27,7 +27,12 @@ const SingleEnteringContent = (props: Props) => {
       title="지금 입장해주세요!"
       description={`제한 시간 10분 내로 부스에 입장해주세요.\n입장하지 않으실 경우 반드시 입장 취소 버튼을 눌러주세요.\n입장 취소 없이 노쇼할 경우, 전체 부스 대기가 취소돼요.`}
       content={
-        <Flex direction="column" gap="0.75rem" padding="0 0 0.25rem 0">
+        <Flex
+          direction="column"
+          gap="0.75rem"
+          padding="0 0 0.25rem 0"
+          zIndex={101}
+        >
           {isWaiting && <NoticeCard />}
           {waiting && <WaitingDetailCard {...waiting} />}
         </Flex>
