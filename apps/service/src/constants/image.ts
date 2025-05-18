@@ -1,2 +1,6 @@
-export const DEFAULT_BOOTH_THUMBNAIL =
-  "https://mblogthumb-phinf.pstatic.net/MjAyMDA0MDZfMSAg/MDAxNTg2MTQ3ODQ3NjQz.Zr0Iujb5x0RiAHkivC5FOit_pKTD3mOhKgkrOiKyNNUg.3O2yBV6qCwxjxkmjyzaK4rszsDqwiwfleAiXpjcZop0g.JPEG.hwh611/1586147847059.jpg?type=w800";
+export const IMAGE = {
+  DEFAULT_BOOTH_THUMBNAIL: "/images/DEFAULT_BOOTH_THUMBNAIL.png",
+  NOTICEE_DUE_TIME: "/images/NOTICE_DUE_TIME.png",
+  NOTICE_MAX_WAITING: "/images/NOTICE_MAX_WAITING.png",
+  NOTICE_NO_SHOW: "/images/NOTICE_NO_SHOW.png",
+};

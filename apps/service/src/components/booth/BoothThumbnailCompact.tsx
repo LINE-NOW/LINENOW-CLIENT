@@ -3,7 +3,7 @@ import * as S from "./Booth.styled";
 import { Flex, Icon, IconLabel, Label } from "@linenow/core/components";
 import { Booth } from "@interfaces/booth";
 import React from "react";
-import { DEFAULT_BOOTH_THUMBNAIL } from "@constants/image";
+import { IMAGE } from "@constants/image";
 
 export interface BoothThumbnailCompactProps
   extends Pick<Booth, "boothID" | "thumbnail" | "name" | "location">,
@@ -13,7 +13,7 @@ export interface BoothThumbnailCompactProps
 
 const BoothThumbnailCompact = (props: BoothThumbnailCompactProps) => {
   const thumbnail =
-    props.thumbnail === "" ? DEFAULT_BOOTH_THUMBNAIL : props.thumbnail;
+    props.thumbnail === "" ? IMAGE.DEFAULT_BOOTH_THUMBNAIL : props.thumbnail;
 
   const {
     isRightIconVisible = true,
