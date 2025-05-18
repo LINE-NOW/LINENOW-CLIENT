@@ -7,7 +7,7 @@ const SplashContext = createContext({
 
 export const useSplash = () => useContext(SplashContext);
 
-export const SPLASH_DURATION = 600;
+export const SPLASH_DURATION = 2000;
 
 export const SplashProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

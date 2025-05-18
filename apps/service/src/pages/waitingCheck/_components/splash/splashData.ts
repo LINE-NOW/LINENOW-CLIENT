@@ -1,18 +1,8 @@
+import { IMAGE } from "@constants/image";
+
 export const splashData = [
   {
-    img: "/images/image_boothCardThumbnail.png",
-    text: "웨이팅 등록 후 웨이팅 등록 후웨이팅 등록 후웨이팅\n등록 후웨이팅 등록 후웨이팅 등록 후웨이팅 등록 후",
-  },
-  {
-    img: "/images/image_boothCardThumbnail.png",
-    text: "웨이팅 등록 후 웨이팅 등록 후웨이팅 등록 후웨이팅\n등록 후웨이팅 등록 후웨이팅 등록 후웨이팅 등록 후",
-  },
-  {
-    img: "/images/image_boothCardThumbnail.png",
-    text: "웨이팅 등록 후 웨이팅 등록 후웨이팅 등록 후웨이팅\n등록 후웨이팅 등록 후웨이팅 등록 후웨이팅 등록 후",
-  },
-  {
-    img: "/images/image_boothCardThumbnail.png",
-    text: "웨이팅 등록 후 웨이팅 등록 후웨이팅 등록 후웨이팅 등록 후웨이팅 등록 후웨이팅 등록 후웨이팅 등록 후",
+    img: IMAGE.NOTICEE_DUE_TIME,
+    text: "지금 줄 서는 중이에요!",
   },
 ];
