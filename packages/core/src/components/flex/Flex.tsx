@@ -11,6 +11,7 @@ export type FlexStyle = {
   justifyContent?: "center" | "start" | "end" | "space-between";
   overflow?: "visible" | "hidden" | "scroll";
   padding?: string;
+  zIndex?: number | "auto";
 };
 
 export type FlexProps<T extends React.ElementType> = {
@@ -31,7 +32,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
     justifyContent = "start",
     overflow = "hidden",
     padding = "0rem",
-
+    zIndex = "auto",
     ...attributes
   } = props;
 
@@ -51,6 +52,7 @@ const Flex = <T extends React.ElementType>(props: FlexProps<T>) => {
           justifyContent,
           overflow,
           padding,
+          zIndex,
         }),
       ]}
       {...attributes}

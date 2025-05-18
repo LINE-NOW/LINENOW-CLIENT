@@ -16,4 +16,5 @@ export const getFlexStyle = (style: FlexStyle) => css`
   overflow: ${style.overflow};
 
   padding: ${style.padding};
+  z-index: ${style.zIndex};
 `;
