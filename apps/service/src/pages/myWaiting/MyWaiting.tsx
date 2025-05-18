@@ -12,6 +12,7 @@ const MyWaitingPage = () => {
     direction: "column",
     gap: "0.5rem",
     padding: "1.25rem 1rem 1.75rem 1rem",
+    zIndex: 9999,
   };
 
   const queries = [["need_values"]];
