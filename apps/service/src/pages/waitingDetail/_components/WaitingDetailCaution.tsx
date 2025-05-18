@@ -2,20 +2,21 @@ import { Flex } from "@linenow/core/components";
 import * as S from "./WaitingDetailComponents.styled";
 import WaitingDetailCautionItem from "./WaitingDetailCautionItem";
 import SectionTitle from "@components/title/SectionTitle";
+import { IMAGE } from "@constants/image";
 
 const WaitingDetailCaution = () => {
   const contents = [
     {
       text: "부스에 입장하지 않으신다면 반드시 대기를 취소해 주세요. 대기 취소 없이 입장하지 않으시면 부스 운영에 피해가 발생해요.\n노쇼가 확인될 경우, 라인나우 사용이 제한됩니다.",
-      imgSrc: "/images/image_waitingDetailCaution1.png",
+      imgSrc: IMAGE.NOTICE_NO_SHOW,
     },
     {
       text: "동시에 최대 3개의 부스만 대기할 수 있어요. 새로운 부스에 대기하시려면 기존 대기 중인 부스 중 하나를 반드시 취소해 주세요.",
-      imgSrc: "/images/image_waitingDetailCaution2.png",
+      imgSrc: IMAGE.NOTICE_MAX_WAITING,
     },
     {
       text: "입장 차레 시 부스 입장 가능 시간이 부여됩니다. 반드시 10분 이내로 부스에 입장해주세요.\n10분이 지나면 입장이 제한됩니다.",
-      imgSrc: "/images/image_waitingDetailCaution2.png",
+      imgSrc: IMAGE.NOTICEE_DUE_TIME,
     },
   ];
 

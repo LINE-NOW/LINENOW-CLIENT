@@ -2,7 +2,7 @@ import { Booth } from "@interfaces/booth";
 
 import * as S from "./Booth.styled";
 import { Flex, IconLabel, Label } from "@linenow/core/components";
-import { DEFAULT_BOOTH_THUMBNAIL } from "@constants/image";
+import { IMAGE } from "@constants/image";
 
 export interface BoothThumbnailProps
   extends Pick<
@@ -13,7 +13,7 @@ export interface BoothThumbnailProps
 
 const BoothThumbnail = (props: BoothThumbnailProps) => {
   const thumbnail =
-    props.thumbnail === "" ? DEFAULT_BOOTH_THUMBNAIL : props.thumbnail;
+    props.thumbnail === "" ? IMAGE.DEFAULT_BOOTH_THUMBNAIL : props.thumbnail;
 
   const { children, boothID, name, description, location, ...attributes } =
     props;

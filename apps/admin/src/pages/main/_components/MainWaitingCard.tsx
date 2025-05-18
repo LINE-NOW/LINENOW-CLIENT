@@ -49,7 +49,7 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
     waitingNum: waiting.waitingNum,
     userName: waiting.user.name,
     waitingStatus: waiting.waitingStatus,
-    confirmedAt: waiting.confirmedAt,
+    confirmedAt: (waiting.confirmedAt = ""),
   });
 
   const formatDate = (isoDate: string): string => {

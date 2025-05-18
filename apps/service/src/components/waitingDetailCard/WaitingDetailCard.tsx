@@ -1,19 +1,17 @@
+import { css } from "@emotion/react";
 import * as S from "./WaitingDetailCard.styled";
 import BoothThumbnailCompact from "@components/booth/BoothThumbnailCompact";
-import { useGetWaitingBooth } from "@hooks/apis/waiting";
+import { Waiting } from "@interfaces/waiting";
 
 import { Flex, Label } from "@linenow/core/components";
+import { Link } from "react-router-dom";
 
-interface WaitingDetailCardProps {
-  waitingID: number;
-}
+interface WaitingDetailCardProps
+  extends Pick<Waiting, "waitingID" | "booth" | "waitingNum" | "personCount"> {}
 
 const WaitingDetailCard = (props: WaitingDetailCardProps) => {
-  const { waitingID } = props;
-  const { data: waiting, isLoading } = useGetWaitingBooth(waitingID);
+  const { waitingNum, personCount, booth } = props;
 
-  if (isLoading) return <div>로딩중</div>;
-  if (!waiting) return <div>없음</div>;
   return (
     <Flex
       as="section"
@@ -34,11 +32,20 @@ const WaitingDetailCard = (props: WaitingDetailCardProps) => {
           나의 대기 번호
         </Label>
         <Label font="head1_b" color="blue">
-          {waiting.waitingNum}
+          {waitingNum}
         </Label>
       </Flex>
 
-      <BoothThumbnailCompact css={S.getBoothCardStyle} {...waiting.booth} />
+      <Link
+        to={`/booth/${booth.boothID}`}
+        css={[
+          css`
+            width: 100%;
+          `,
+        ]}
+      >
+        <BoothThumbnailCompact css={S.getBoothCardStyle} {...booth} />
+      </Link>
 
       <Flex direction="column" gap="0.25rem" width="100%">
         <Flex direction="row" justifyContent="space-between" width="100%">
@@ -46,7 +53,7 @@ const WaitingDetailCard = (props: WaitingDetailCardProps) => {
             이용인원
           </Label>
           <Label font="body2_b" color="blackLight">
-            {waiting.personCount}명
+            {personCount}명
           </Label>
         </Flex>
 
