@@ -6,9 +6,14 @@ import useMainViewType from "./useMainViewType";
 import MainMap from "../_components/map/MainMap";
 import useBoothListData from "./useBoothListData";
 
+import useSortBooths from "./useSortBooths";
+
 const useMainBoothList = () => {
+  const { currentSortBoothOption, OptionSelect } = useSortBooths();
   const { viewType } = useMainViewType();
-  const { currentBooths } = useBoothListData();
+  const { currentBooths } = useBoothListData({
+    option: currentSortBoothOption,
+  });
 
   const getBoothListHeaderChildren = () =>
     viewType === "list" && (
@@ -16,6 +21,7 @@ const useMainBoothList = () => {
         <Label font="body3" color="gray">
           {currentBooths.length}개의 부스
         </Label>
+        <OptionSelect />
       </Flex>
     );
 
