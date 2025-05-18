@@ -40,7 +40,7 @@ export const useModalCancelAllWaiting = (): ModalProps => {
     content: waitings.map((name, index) => <li key={index}>{name}</li>),
     primaryButton: {
       variant: "grayLight",
-      children: `${waitings.length}개 대기 취소하기`,
+      children: `${waitings.length}개 대기 취소`,
       onClick: onClick,
     },
     secondButton: {
