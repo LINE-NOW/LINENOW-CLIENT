@@ -46,9 +46,10 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
 
   const config = useMainWaitingCard({
     waitingID: waiting.waitingID,
+    waitingNum: waiting.waitingNum,
     userName: waiting.user.name,
     waitingStatus: waiting.waitingStatus,
-    targetTime: waiting.arrivalDueTime,
+    confirmedAt: waiting.confirmedAt,
   });
 
   const formatDate = (isoDate: string): string => {
@@ -76,8 +77,8 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
     >
       <S.MainWaitingCardContentWrapper>
         <S.MainWaitingCardHeader>
-          <span className="waitingID">
-            {waiting.waitingID.toString().padStart(3, "0")}
+          <span className="waitingNum">
+            {waiting.waitingNum.toString().padStart(3, "0")}
           </span>
           <span className="waitingTime">{formatDate(waiting.createdAt)}</span>
 

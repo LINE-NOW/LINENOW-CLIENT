@@ -38,7 +38,7 @@ export const MainWaitingCardHeader = styled.div`
   padding: 0.25rem;
   padding-bottom: 0.75rem;
 
-  > .waitingID {
+  > .waitingNum {
     flex-shrink: 0;
 
     width: 3.25rem;

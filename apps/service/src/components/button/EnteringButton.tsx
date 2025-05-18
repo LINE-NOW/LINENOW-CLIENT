@@ -1,6 +1,6 @@
 import { Button } from "@linenow/core/components";
 import { useCountdown, useToast } from "@linenow/core/hooks";
-import { getEnteringTime } from "@utils/calculate";
+import { getEnteringTime } from "@linenow/core/utils";
 
 interface EnteringButtonProps {
   canClick?: boolean;

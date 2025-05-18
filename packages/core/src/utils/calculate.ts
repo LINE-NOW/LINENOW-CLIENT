@@ -1,4 +1,4 @@
-export const getEnteringTime = (confirmedAt: string) => {
+const getEnteringTime = (confirmedAt: string) => {
   const confirmedAtDate = new Date(confirmedAt);
   if (isNaN(confirmedAtDate.getTime())) {
     return "error";
@@ -11,3 +11,5 @@ export const getEnteringTime = (confirmedAt: string) => {
 
   return getTargetDate();
 };
+
+export default getEnteringTime;
