@@ -42,7 +42,7 @@ type Props = {
 };
 
 export const SelectedBoothCard = ({ selectedBoothId }: Props) => {
-  const { currentBooths } = useBoothListData();
+  const { currentBooths } = useBoothListData({ option: "ASC" });
   const { mainViewTypeSwitchProps } = useMainViewType();
 
   if (selectedBoothId === null || currentBooths.length === 0)

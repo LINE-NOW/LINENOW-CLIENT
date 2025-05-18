@@ -7,7 +7,7 @@ import { BoothWaiting } from "@interfaces/waiting";
 import { useQueryClient } from "@tanstack/react-query";
 
 interface UseBoothListDataProps {
-  option: string;
+  option?: string;
 }
 interface BoothLocation
   extends Pick<Booth, "boothID" | "latitude" | "longitude"> {}
@@ -28,7 +28,7 @@ interface BoothItem
     Pick<BoothWaiting, "waitingStatus"> {}
 
 const useBoothListData = (props: UseBoothListDataProps) => {
-  const { option } = props;
+  const { option = "" } = props;
   const queryClient = useQueryClient();
 
   const booths =
