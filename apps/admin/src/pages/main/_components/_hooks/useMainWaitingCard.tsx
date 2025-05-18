@@ -15,7 +15,7 @@ interface MainWaitingCardProps {
   waitingNum: number;
   userName: string;
   waitingStatus: WaitingStatus;
-  confirmedAt: string;
+  confirmedAt: string | null;
 }
 
 interface MainWaitingCardButtonProps
@@ -36,7 +36,10 @@ export const useMainWaitingCard = ({
   confirmedAt,
   userName,
 }: MainWaitingCardProps): MainWaitingCardConfig => {
-  const countdown = useCountdown({ targetDate: getEnteringTime(confirmedAt) });
+  const countdown = useCountdown({
+    targetDate: confirmedAt ? getEnteringTime(confirmedAt) : null,
+  });
+  console.log("언제와", confirmedAt);
 
   const getString = countdown?.getString ?? (() => "");
   const isCountdownOver = countdown?.isCountdownOver ?? true;

@@ -7,7 +7,7 @@ export interface GetWaitingResponse {
   person_num: number;
   waiting_status: WaitingStatus;
   created_at: string;
-  confirmed_at?: string;
+  confirmed_at: string | null;
   canceled_at?: string;
   user_info: User;
 }

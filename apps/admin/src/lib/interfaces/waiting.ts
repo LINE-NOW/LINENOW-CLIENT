@@ -13,6 +13,6 @@ export interface Waiting {
   arrivalDueTime?: string;
 
   createdAt: string;
-  confirmedAt?: string;
+  confirmedAt: string | null;
   canceledAt?: string;
 }
