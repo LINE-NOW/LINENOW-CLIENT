@@ -63,11 +63,9 @@ export const usePostRegistration = () => {
       presentToast("회원가입을 성공했어요!");
       if (response) login({ accessToken: response?.accessToken });
     },
-
-    onError: (response) => {
-      const error = response as AxiosError;
-
-      if (error.status === 400) alert("인증번호가 올바르지 않습니다!");
+    onError: (error) => {
+      const axiosError = error as AxiosError;
+      if (axiosError.status === 400) alert("인증번호가 올바르지 않습니다!");
     },
   });
 };
@@ -85,6 +83,10 @@ export const usePostRegistrationMessage = () => {
         user_phone: phonenumber,
       }),
     onSuccess: () => presentCompletedSendingToast(),
+    onError: (error) => {
+      const axiosError = error as AxiosError;
+      if (axiosError.status === 400) alert("이미 가입된 전화번호입니다!");
+    },
   });
 };
 
