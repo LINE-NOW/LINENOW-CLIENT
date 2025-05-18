@@ -1,16 +1,17 @@
 import { Button, ButtonLayout, Label } from "@linenow/core/components";
 import * as S from "../BottomSheetContent.styled";
 import { useNavigate } from "react-router-dom";
+import { ROUTE } from "@constants/route";
 
 const LoginBottomSheetContent = () => {
   const navigate = useNavigate();
 
   const handleLoginButton = () => {
-    navigate("/login");
+    navigate(ROUTE.LOGIN);
   };
 
   const handleSignipButton = () => {
-    navigate("/signup");
+    navigate(ROUTE.SIGNUP);
   };
 
   return (

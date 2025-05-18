@@ -18,6 +18,7 @@ import EnteringButton from "@components/button/EnteringButton";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 import { QUERY_KEY } from "@hooks/apis/query";
 import WaitingDetailCard from "@components/waitingDetailCard/WaitingDetailCard";
+import { ROUTE } from "@constants/route";
 // import useAnimation from "./hooks/useAnimation";  // 주석 처리
 
 const WaitingDetailPage = () => {
@@ -45,7 +46,7 @@ const WaitingDetailPage = () => {
   useEffect(() => {
     const handlePopState = (event: PopStateEvent) => {
       event.preventDefault();
-      navigate("/", { replace: true });
+      navigate(ROUTE.DEFAULT, { replace: true });
     };
 
     window.addEventListener("popstate", handlePopState);
@@ -63,6 +64,11 @@ const WaitingDetailPage = () => {
     );
   }
 
+  if (
+    waitingDetail.waitingStatus !== "waiting" &&
+    waitingDetail.waitingStatus !== "entering"
+  )
+    return <S.WaitingDetailNoInfo>취소된 대기입니다.</S.WaitingDetailNoInfo>;
   return (
     <>
       {showToast && (

@@ -1,3 +1,4 @@
+import { ROUTE } from "@constants/route";
 import { AxiosError, InternalAxiosRequestConfig } from "axios";
 
 // API요청 전
@@ -31,7 +32,7 @@ export const handleTokenError = async (error: AxiosError<ErrorDTO>) => {
   if (errorCode === 401) {
     alert("잘못된 접근입니다");
     localStorage.removeItem("accessToken");
-    window.location.href = "/";
+    window.location.href = ROUTE.DEFAULT;
   }
 
   throw error;

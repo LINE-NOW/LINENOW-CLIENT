@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./Navigation.styled";
 import { CommonButton, Icon } from "@linenow/core/components";
+import { ROUTE } from "@constants/route";
 
 const Navigation = () => {
   const location = useLocation();
@@ -13,13 +14,13 @@ const Navigation = () => {
     }
 
     switch (location.pathname) {
-      case "/my-waiting":
+      case ROUTE.MY_WAITING:
         return <S.NavigationLabel>나의 줄서기</S.NavigationLabel>;
-      case "/setting":
+      case ROUTE.SETTING:
         return <S.NavigationLabel>설정</S.NavigationLabel>;
-      case "/login":
+      case ROUTE.LOGIN:
         return <S.NavigationLabel>로그인</S.NavigationLabel>;
-      case "/signup":
+      case ROUTE.SIGNUP:
         return <S.NavigationLabel>회원가입</S.NavigationLabel>;
       default:
         return null;

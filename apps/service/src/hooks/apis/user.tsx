@@ -4,6 +4,7 @@ import { postLogout } from "@apis/domains/user/postLogout";
 import { postRegistration } from "@apis/domains/user/postRegistration";
 import { postRegistrationMessage } from "@apis/domains/user/postRegistrationMessage";
 import { deleteWithdraw } from "@apis/domains/user/postWithdraw";
+import { ROUTE } from "@constants/route";
 import useAuth from "@hooks/useAuth";
 import { useToast } from "@linenow/core/hooks";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -94,7 +95,7 @@ export const usePostLogout = () => {
     mutationFn: () => postLogout(),
     onSuccess: () => {
       logout();
-      window.location.href = "/";
+      window.location.href = ROUTE.DEFAULT;
     },
   });
 };
@@ -106,7 +107,7 @@ export const usePostWithdraw = () => {
     mutationFn: () => deleteWithdraw(),
     onSuccess: () => {
       logout();
-      window.location.href = "/";
+      window.location.href = ROUTE.DEFAULT;
     },
   });
 };

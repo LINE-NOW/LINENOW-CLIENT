@@ -10,6 +10,7 @@ import { Switch } from "@linenow/core/components";
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import { FestivalLocation, MyLocationButton } from "./MainLocationButton";
 import RefetchButton from "@components/refetchButton/RefetchButton";
+import { ROUTE } from "@constants/route";
 
 const getBoothListItemStyle = () => (theme: Theme) =>
   css`
@@ -99,7 +100,7 @@ export const SelectedBoothCard = ({ selectedBoothId }: Props) => {
         />
       </div>
       <Link
-        to={`/booth/${booth.boothID}`}
+        to={ROUTE.BOOTH_DETAIL(booth.boothID)}
         css={(theme) => css`
           ${getSelectedBoothCardStyle()(theme)}
           ${getBoothListItemStyle()(theme)}

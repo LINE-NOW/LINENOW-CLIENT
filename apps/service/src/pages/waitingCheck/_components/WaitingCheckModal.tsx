@@ -5,6 +5,7 @@ import WaitingCheckPeople from "./WaitingCheckPeople";
 import { useNavigate } from "react-router-dom";
 import { Booth } from "@interfaces/booth";
 import { Button, ButtonLayout } from "@linenow/core/components";
+import { ROUTE } from "@constants/route";
 
 interface WaitingCheckModalProps {
   onClose: () => void;
@@ -17,7 +18,7 @@ const WaitingCheckModal = ({ onClose, booth }: WaitingCheckModalProps) => {
 
   const handleConfirm = useCallback(() => {
     if (checkedPeople) {
-      navigate("/check", { state: { checkedPeople, booth } });
+      navigate(ROUTE.WAITING_CHECK, { state: { checkedPeople, booth } });
     }
   }, [checkedPeople, booth, navigate]);
 

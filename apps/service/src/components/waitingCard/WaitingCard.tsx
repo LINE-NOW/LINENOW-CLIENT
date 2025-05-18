@@ -7,6 +7,7 @@ import { Button, Flex } from "@linenow/core/components";
 import BoothThumbnailCompact from "@components/booth/BoothThumbnailCompact";
 import EnteringButton from "@components/button/EnteringButton";
 import WaitingTeamsAheadButton from "@components/button/WaitingTeamsAhead";
+import { ROUTE } from "@constants/route";
 
 export interface WaitingCardProps
   extends Pick<
@@ -90,7 +91,7 @@ const WaitingCard = (props: WaitingCardProps) => {
 
   const navigate = useNavigate();
   const navigateWaitingDetail = () => {
-    navigate(`/waiting/${waitingID}`);
+    navigate(ROUTE.WAITING_DETAIL(waitingID));
   };
   return (
     <Flex

@@ -13,6 +13,7 @@ import {
 import phoneInputProps from "@components/inputText/phone";
 import passwordInputProps from "@components/inputText/password";
 import { useNavigate } from "react-router-dom";
+import { ROUTE } from "@constants/route";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const LoginForm = () => {
 
   // signupButton
   const onClickSignupButton = () => {
-    navigate("/signup");
+    navigate(ROUTE.SIGNUP);
   };
 
   // input props

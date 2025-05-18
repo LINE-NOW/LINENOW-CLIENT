@@ -1,4 +1,5 @@
 // import { useGetWaitings } from "@hooks/apis/waiting";
+import { ROUTE } from "@constants/route";
 import { QUERY_KEY } from "@hooks/apis/query";
 import { Waiting } from "@interfaces/waiting";
 import { Icon, IconLabel, Label, LinkButton } from "@linenow/core/components";
@@ -11,7 +12,7 @@ const MainNavigationTitleUser = () => {
 
   return (
     <>
-      <LinkButton to={`/my-waiting`}>
+      <LinkButton to={ROUTE.MY_WAITING}>
         <IconLabel
           gap={"0.25rem"}
           font="head3"
@@ -27,7 +28,7 @@ const MainNavigationTitleUser = () => {
         </IconLabel>
       </LinkButton>
 
-      <LinkButton to={`/setting`}>
+      <LinkButton to={ROUTE.SETTING}>
         <Icon icon="setting" color="white" />
       </LinkButton>
     </>
