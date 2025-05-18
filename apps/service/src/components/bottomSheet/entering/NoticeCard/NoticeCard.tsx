@@ -16,8 +16,10 @@ const NoticeCard = () => {
       onClick={() => openModal(modal)}
     >
       <Label font="body2" color="blackLight">
-        다른 부스의 대기가 아직 진행중이에요. <br />
-        원활한 운영을 위해 입장하실 부스 외 대기는 취소해주세요!
+        제한 시간 10분 내로 부스에 입장해주세요. <br />
+        입장하지 않으실 경우 반드시 입장 취소 버튼을 눌러주세요.
+        <br />
+        입장 취소 하지 않고 노쇼할 경우, 전체 부스 대기가 취소돼요.
       </Label>
       <IconLabel
         font="chip"
