@@ -13,7 +13,9 @@ export interface BoothThumbnailCompactProps
 
 const BoothThumbnailCompact = (props: BoothThumbnailCompactProps) => {
   const thumbnail =
-    props.thumbnail === "" ? IMAGE.DEFAULT_BOOTH_THUMBNAIL : props.thumbnail;
+    props.thumbnail === "" || props.thumbnail === undefined
+      ? IMAGE.DEFAULT_BOOTH_THUMBNAIL
+      : props.thumbnail;
 
   const {
     isRightIconVisible = true,

@@ -30,10 +30,11 @@ export const useGetBoothsWaiting = () => {
   });
 };
 
-export const useGetBooth = (boothID: number) => {
+export const useGetBooth = (boothID: number, isLoading: boolean = false) => {
   return useQuery({
     queryKey: QUERY_KEY.BOOTH(boothID),
     queryFn: () => getBooth(boothID),
+    enabled: !isLoading,
   });
 };
 
