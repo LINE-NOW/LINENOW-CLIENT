@@ -10,7 +10,7 @@ interface Countdown {
 }
 
 interface useCountdownProps {
-  targetDate: string;
+  targetDate: string | null;
   timeoverAction?: () => void;
 }
 
@@ -63,10 +63,17 @@ const useCountdown = (props: useCountdownProps) => {
 export default useCountdown;
 
 // 목표 날짜까지의 남은 시간을 계산하는 함수
-function calculateTime(targetDate: string): Countdown {
+function calculateTime(targetDate: string | null): Countdown {
+  if (!targetDate) {
+    return {
+      leftTotal: 0,
+      leftMinutes: 0,
+      leftSeconds: 0,
+    };
+  }
+
   const now = new Date();
   const target = new Date(targetDate);
-
   const leftTotal = Math.max(target.getTime() - now.getTime(), 0);
   const leftMinutes = Math.floor(leftTotal / (1000 * 60));
   const leftSeconds = Math.floor((leftTotal % (1000 * 60)) / 1000);
