@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./WaitingDetailPage.styled";
-import BoothCardDetail from "@components/boothCard/boothCardDetail";
+
 import BottomButton from "@components/bottomButton/BottomButton";
 import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
@@ -17,6 +17,7 @@ import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap"
 import EnteringButton from "@components/button/EnteringButton";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 import { QUERY_KEY } from "@hooks/apis/query";
+import WaitingDetailCard from "@components/waitingDetailCard/WaitingDetailCard";
 // import useAnimation from "./hooks/useAnimation";  // 주석 처리
 
 const WaitingDetailPage = () => {
@@ -62,16 +63,6 @@ const WaitingDetailPage = () => {
     );
   }
 
-  const waiting = {
-    waitingNum: waitingBooth.waitingNum,
-    personCount: waitingBooth.personCount,
-    createdAt: waitingBooth.createdAt,
-    booth: waitingBooth.booth,
-    waitingID: waitingID,
-    waitingStatus: waitingDetail.waitingStatus,
-    waitingTeamsAhead: waitingDetail.waitingTeamsAhead,
-  };
-
   return (
     <>
       {showToast && (
@@ -90,11 +81,13 @@ const WaitingDetailPage = () => {
       {/*   </S.WaitingDetailPageBoothCard> */}
       {/* </S.WaitingDetailPageBoothCardWrapper> */}
 
-      <S.WaitingDetailPageBoothCardWrapper>
+      {/* <S.WaitingDetailPageBoothCardWrapper>
         <S.WaitingDetailPageBoothCard>
           <BoothCardDetail waitingDetail={waiting} />
         </S.WaitingDetailPageBoothCard>
-      </S.WaitingDetailPageBoothCardWrapper>
+      </S.WaitingDetailPageBoothCardWrapper> */}
+
+      <WaitingDetailCard {...waitingBooth} />
 
       {/* 나머지 부분은 그대로 유지 */}
       {/* <S.WaitingDetailRestWrapper show={true}> */}
