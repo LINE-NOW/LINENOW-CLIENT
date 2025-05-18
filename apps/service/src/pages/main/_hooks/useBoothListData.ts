@@ -31,6 +31,7 @@ const useBoothListData = () => {
     (queryClient.getQueryData(QUERY_KEY.BOOTHS()) as React.ComponentProps<
       typeof BoothThumbnailBadge
     >[]) ?? [];
+
   const waitings =
     (queryClient.getQueryData(QUERY_KEY.BOOTHS_WAITING()) as BoothWaiting[]) ??
     [];

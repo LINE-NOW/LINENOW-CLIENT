@@ -3,8 +3,8 @@ import { MainViewType } from "@pages/main/types";
 import { changeFoldStateAnimation } from "@styles/animation";
 
 const MAIN_FIXED_COMPONENTS_HEIGHT = {
-  fold: "8.75rem",
-  unfold: "18.75rem",
+  fold: "9.25rem",
+  unfold: "19.25rem",
 };
 
 export const getWrapper = (type: MainViewType, isFold: boolean) => {

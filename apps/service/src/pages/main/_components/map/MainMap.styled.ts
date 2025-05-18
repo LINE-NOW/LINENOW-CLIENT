@@ -11,18 +11,7 @@ export const getWrapper = () => css`
   top: calc(13rem);
   z-index: 1;
 
-  height: calc(100vh - 16rem);
-
-  /* animation: expandHeight 0.8s ease forwards;
-
-  @keyframes expandHeight {
-    0% {
-      height: 13rem;
-    }
-    100% {
-      height: calc(100vh - 16rem);
-    }
-  } */
+  height: calc(100vh - 13rem - 4.75rem);
 `;
 
 export const getButtonStyle = () => css`
