@@ -63,7 +63,11 @@ const SignupFormStepAuth = () => {
         </InputText>
       </InputTextContainer>
 
-      {isExpired && <Button onClick={sendAuthAgain}>인증 번호 재전송</Button>}
+      {isExpired && (
+        <Button onClick={sendAuthAgain} variant="grayLight">
+          인증 번호 재전송
+        </Button>
+      )}
     </>
   );
 };

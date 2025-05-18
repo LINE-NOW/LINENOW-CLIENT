@@ -25,7 +25,7 @@ const useEnteringBottomSheet = () => {
 
   const openEntering = () => {
     if (enterings.length === 0) return;
-    openBottomSheet({ children: sheetContent });
+    openBottomSheet({ children: sheetContent, isCloseButton: true });
   };
 
   // 소켓으로 받은 waiting 데이터로 바텀시트에 데이터 넣어서 열기
