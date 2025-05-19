@@ -11,7 +11,7 @@ export const getWrapper = () => css`
   top: calc(13rem);
   z-index: 1;
 
-  height: calc(100vh - 13rem - 4.75rem);
+  height: calc(100dvh - 13rem - 4.75rem);
 `;
 
 export const getButtonStyle = () => css`
@@ -20,7 +20,7 @@ export const getButtonStyle = () => css`
 
 export const getFloatingButtonWrapperStyle =
   (viewType: MainViewType) => (theme: Theme) => {
-    const getBottom = viewType === "list" ? "1rem" : "4rem";
+    const getBottom = viewType === "list" ? "2rem" : "4rem";
     return css`
       /* main page의 header 보다 위에 */
       z-index: 2;

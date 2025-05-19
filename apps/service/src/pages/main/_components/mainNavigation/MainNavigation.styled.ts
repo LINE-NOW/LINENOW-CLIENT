@@ -23,7 +23,7 @@ export const getWrapper = (type: MainViewType, isFold: boolean) => {
     const getMapStyle =
       type === "map" &&
       css`
-        height: 100vh;
+        height: 100dvh;
         background-color: transparent;
       `;
 
