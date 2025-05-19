@@ -8,6 +8,7 @@ import { Icon } from "@linenow/core/components";
 import { useToast } from "@linenow/core/hooks";
 import { useSetAtom } from "jotai";
 import { latLngAtom } from "@atoms/location";
+import { ROUTE } from "@constants/route";
 
 interface BoothLocationContentProps {
   booth: Booth;
@@ -28,7 +29,7 @@ export const BoothLocationMap = ({ booth }: BoothLocationContentProps) => {
         <S.BoothLocationMapClickableBar
           onClick={() => {
             setViewType("map");
-            navigate("/", { state: booth.boothID });
+            navigate(ROUTE.DEFAULT, { state: booth.boothID });
             setLatLng({
               lat: Number(booth.latitude),
               lng: Number(booth.longitude),

@@ -24,7 +24,7 @@ export const getHeaderWrapperStyle = (type: MainViewType) => {
     return css`
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.25rem;
 
       border-radius: 0.625rem 0.625rem 0rem 0rem;
 

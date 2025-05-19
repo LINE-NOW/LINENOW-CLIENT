@@ -5,7 +5,7 @@ export const getWaitingCardStyle =
   (type: "black" | "white" = "white", isDisabled: boolean = false) =>
   (theme: Theme) =>
     css`
-      ${isDisabled || getHoverAnimation}
+      ${getHoverAnimation}
       border-radius: 0.75rem;
       padding: 0.75rem;
       flex-shrink: 0;
@@ -22,7 +22,7 @@ export const getWaitingCardStyle =
       `}
       ${isDisabled &&
       css`
-        opacity: 0.3;
+        opacity: 0.6;
       `}
     `;
 

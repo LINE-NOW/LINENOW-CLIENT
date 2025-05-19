@@ -5,6 +5,7 @@ import { Waiting } from "@interfaces/waiting";
 
 import { Flex, Label } from "@linenow/core/components";
 import { Link } from "react-router-dom";
+import { ROUTE } from "@constants/route";
 
 interface WaitingDetailCardProps
   extends Pick<Waiting, "waitingID" | "booth" | "waitingNum" | "personCount"> {}
@@ -37,7 +38,7 @@ const WaitingDetailCard = (props: WaitingDetailCardProps) => {
       </Flex>
 
       <Link
-        to={`/booth/${booth.boothID}`}
+        to={ROUTE.BOOTH_DETAIL(booth.boothID)}
         css={[
           css`
             width: 100%;

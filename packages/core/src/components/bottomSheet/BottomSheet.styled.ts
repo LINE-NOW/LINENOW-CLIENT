@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const BottonSheetWrapper = styled.section`
@@ -12,4 +13,10 @@ export const BottonSheetWrapper = styled.section`
   border-radius: 0.75rem 0.75rem 0rem 0rem;
 
   background-color: ${({ theme }) => theme.backgroundColors.white};
+`;
+
+export const getCloseButtonStyle = css`
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
 `;

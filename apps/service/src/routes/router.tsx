@@ -1,3 +1,5 @@
+import { ROUTE } from "@constants/route";
+
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -18,28 +20,28 @@ import LoginPage from "@pages/login/LoginPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: ROUTE.DEFAULT,
     element: <RootLayout />,
     children: [
-      { path: "", element: <MainPage /> },
+      { path: ROUTE.DEFAULT, element: <MainPage /> },
       {
         element: <DefaultLayout />,
         children: [
-          { path: "booth/:boothId", element: <BoothDetailPage /> },
+          { path: ROUTE.BOOTH_DETAIL(), element: <BoothDetailPage /> },
           {
             element: <GuestRoute />,
             children: [
-              { path: "signup", element: <SignupPage /> },
-              { path: "login", element: <LoginPage /> },
+              { path: ROUTE.SIGNUP, element: <SignupPage /> },
+              { path: ROUTE.LOGIN, element: <LoginPage /> },
             ],
           },
           {
             element: <ProtectedRoute />,
             children: [
-              { path: "check", element: <WaitingCheckPage /> },
-              { path: "waiting/:waitingID", element: <WaitingDetailPage /> },
-              { path: "my-waiting", element: <MyWaitingPage /> },
-              { path: "setting", element: <SettingPage /> },
+              { path: ROUTE.WAITING_CHECK, element: <WaitingCheckPage /> },
+              { path: ROUTE.WAITING_DETAIL(), element: <WaitingDetailPage /> },
+              { path: ROUTE.MY_WAITING, element: <MyWaitingPage /> },
+              { path: ROUTE.SETTING, element: <SettingPage /> },
             ],
           },
         ],

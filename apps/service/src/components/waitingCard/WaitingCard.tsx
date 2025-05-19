@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Button, Flex } from "@linenow/core/components";
 import BoothThumbnailCompact from "@components/booth/BoothThumbnailCompact";
 import EnteringButton from "@components/button/EnteringButton";
-import WaitingTeamsAheadButton from "@components/button/WaitingTeamsAhead";
+import WaitingTeamsAheadButton from "@components/button/WaitingTeamsAheadButton";
+import { ROUTE } from "@constants/route";
 
 export interface WaitingCardProps
   extends Pick<
@@ -90,7 +91,7 @@ const WaitingCard = (props: WaitingCardProps) => {
 
   const navigate = useNavigate();
   const navigateWaitingDetail = () => {
-    navigate(`/waiting/${waitingID}`);
+    navigate(ROUTE.WAITING_DETAIL(waitingID));
   };
   return (
     <Flex
@@ -98,7 +99,7 @@ const WaitingCard = (props: WaitingCardProps) => {
       direction="column"
       gap="0.75rem"
       css={[S.getWaitingCardStyle(type, isOpacity && disabled)]}
-      onClick={disabled ? undefined : navigateWaitingDetail}
+      onClick={navigateWaitingDetail}
     >
       <BoothThumbnailCompact css={[S.getBoothThumbnailStyle()]} {...booth} />
       {button}

@@ -4,6 +4,7 @@ import { postLogout } from "@apis/domains/user/postLogout";
 import { postRegistration } from "@apis/domains/user/postRegistration";
 import { postRegistrationMessage } from "@apis/domains/user/postRegistrationMessage";
 import { deleteWithdraw } from "@apis/domains/user/postWithdraw";
+import { ROUTE } from "@constants/route";
 import useAuth from "@hooks/useAuth";
 import { useToast } from "@linenow/core/hooks";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -62,11 +63,9 @@ export const usePostRegistration = () => {
       presentToast("회원가입을 성공했어요!");
       if (response) login({ accessToken: response?.accessToken });
     },
-
-    onError: (response) => {
-      const error = response as AxiosError;
-
-      if (error.status === 400) alert("인증번호가 올바르지 않습니다!");
+    onError: (error) => {
+      const axiosError = error as AxiosError;
+      if (axiosError.status === 400) alert("인증번호가 올바르지 않습니다!");
     },
   });
 };
@@ -84,6 +83,10 @@ export const usePostRegistrationMessage = () => {
         user_phone: phonenumber,
       }),
     onSuccess: () => presentCompletedSendingToast(),
+    onError: (error) => {
+      const axiosError = error as AxiosError;
+      if (axiosError.status === 400) alert("이미 가입된 전화번호입니다!");
+    },
   });
 };
 
@@ -94,7 +97,7 @@ export const usePostLogout = () => {
     mutationFn: () => postLogout(),
     onSuccess: () => {
       logout();
-      window.location.href = "/";
+      window.location.href = ROUTE.DEFAULT;
     },
   });
 };
@@ -106,7 +109,7 @@ export const usePostWithdraw = () => {
     mutationFn: () => deleteWithdraw(),
     onSuccess: () => {
       logout();
-      window.location.href = "/";
+      window.location.href = ROUTE.DEFAULT;
     },
   });
 };

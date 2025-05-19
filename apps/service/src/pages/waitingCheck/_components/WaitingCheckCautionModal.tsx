@@ -7,6 +7,7 @@ import { Button, ButtonLayout } from "@linenow/core/components";
 import { useNavigate } from "react-router-dom";
 import { postWaitingRegister } from "@apis/domains/waiting/postWaiting";
 import { SPLASH_DURATION, useSplash } from "./splash/SplashContext";
+import { ROUTE } from "@constants/route";
 
 interface WaitingCheckCautionModalProps {
   boothID: number;
@@ -41,7 +42,7 @@ const WaitingCheckCautionModal = (props: WaitingCheckCautionModalProps) => {
       }
 
       setTimeout(() => {
-        navigate(`/waiting/${waitingID}`, {
+        navigate(ROUTE.WAITING_DETAIL(waitingID), {
           replace: true,
           state: {
             withAnimation: true,

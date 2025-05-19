@@ -18,7 +18,8 @@ import EnteringButton from "@components/button/EnteringButton";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 import { QUERY_KEY } from "@hooks/apis/query";
 import WaitingDetailCard from "@components/waitingDetailCard/WaitingDetailCard";
-// import useAnimation from "./hooks/useAnimation";  // 주석 처리
+import { ROUTE } from "@constants/route";
+import WaitingTeamsAheadButton from "@components/button/WaitingTeamsAheadButton";
 
 const WaitingDetailPage = () => {
   const navigate = useNavigate();
@@ -26,15 +27,17 @@ const WaitingDetailPage = () => {
   const waitingID = parseInt(params.waitingID || "0", 10);
   const { showToast, toastMessage } = useToastFromLocation();
 
-  const { data: waitingDetail, isLoading } = useGetWaiting(waitingID);
-  const { data: waitingBooth } = useGetWaitingBooth(waitingID);
+  const { data: waitingDetail, isLoading: isWaitingLoading } =
+    useGetWaiting(waitingID);
+  const { data: waitingBooth, isLoading: isBoothLoading } =
+    useGetWaitingBooth(waitingID);
 
-  const { data: booth } = useGetBooth(waitingDetail?.boothID || 0);
+  const { data: booth } = useGetBooth(
+    waitingDetail?.boothID || 0,
+    isBoothLoading
+  );
 
   const { openModal } = useModal();
-
-  // 애니메이션 관련 코드 주석 처리
-  // const { fadeInCard, slideUpCard, showRest, showToast } = useAnimation(location.state?.withAnimation);
 
   const cancelModal = useModalCancelWaiting(waitingDetail?.waitingID ?? 0);
   const onWaitingCancelClick = () => {
@@ -45,7 +48,7 @@ const WaitingDetailPage = () => {
   useEffect(() => {
     const handlePopState = (event: PopStateEvent) => {
       event.preventDefault();
-      navigate("/", { replace: true });
+      navigate(ROUTE.DEFAULT, { replace: true });
     };
 
     window.addEventListener("popstate", handlePopState);
@@ -54,14 +57,19 @@ const WaitingDetailPage = () => {
     };
   }, [navigate]);
 
-  if (isLoading) return <Spinner />;
-  if (!waitingDetail || !waitingBooth) {
+  if (isWaitingLoading || isBoothLoading) return <Spinner />;
+  if (!waitingDetail || !waitingBooth || !booth) {
     return (
       <S.WaitingDetailNoInfo>
         대기 상세 정보를 찾을 수 없습니다.
       </S.WaitingDetailNoInfo>
     );
   }
+
+  const { waitingStatus, waitingTeamsAhead, totalWaitingTeams, confirmedAt } =
+    waitingDetail;
+  const { waitingNum, personCount } = waitingBooth;
+  const isWaiting = waitingStatus === "waiting" || waitingStatus === "entering";
 
   return (
     <>
@@ -71,55 +79,59 @@ const WaitingDetailPage = () => {
         </Toast>
       )}
 
-      {/* <S.WaitingDetailPageBoothCardWrapper isCentered={!slideUpCard}> */}
-      {/*   <S.WaitingDetailPageBoothCard */}
-      {/*     isCentered={!slideUpCard} */}
-      {/*     fadeIn={fadeInCard} */}
-      {/*     slideUp={slideUpCard} */}
-      {/*   > */}
-      {/*     <BoothCardDetail waitingDetail={waiting} /> */}
-      {/*   </S.WaitingDetailPageBoothCard> */}
-      {/* </S.WaitingDetailPageBoothCardWrapper> */}
+      <WaitingDetailCard
+        waitingID={waitingID}
+        waitingNum={waitingNum}
+        personCount={personCount}
+        booth={{ thumbnail: booth.images[0].imageURL, ...booth }}
+      />
 
-      {/* <S.WaitingDetailPageBoothCardWrapper>
-        <S.WaitingDetailPageBoothCard>
-          <BoothCardDetail waitingDetail={waiting} />
-        </S.WaitingDetailPageBoothCard>
-      </S.WaitingDetailPageBoothCardWrapper> */}
-
-      <WaitingDetailCard {...waitingBooth} />
-
-      {/* 나머지 부분은 그대로 유지 */}
-      {/* <S.WaitingDetailRestWrapper show={true}> */}
-      {booth && <BoothLocationMap booth={booth} />}
+      <BoothLocationMap booth={booth} />
       <Separator />
       <WaitingDetailCaution />
-      {/* </S.WaitingDetailRestWrapper> */}
 
       <BottomButton
         informationTitle="현재 대기"
-        informationSub={`${waitingDetail.totalWaitingTeams}팀`}
+        informationSub={`${totalWaitingTeams}팀`}
       >
         <ButtonLayout colCount={2} colTemplate="auto 1fr">
-          <RefetchButton
-            queries={[
-              QUERY_KEY.WAITINGS("waiting"),
-              QUERY_KEY.WAITING_BOOTH(waitingID),
-            ]}
-          />
-          {waitingDetail.waitingStatus === "waiting" ? (
-            <Button variant="blueLight" width="100%">
-              <span>내 앞으로 지금</span>
-              <span>{waitingDetail.waitingTeamsAhead}팀</span>
-            </Button>
-          ) : waitingDetail.waitingStatus === "entering" ? (
-            <EnteringButton confirmedAt={waitingDetail.confirmedAt} />
-          ) : null}
+          {isWaiting && (
+            <RefetchButton
+              queries={[
+                QUERY_KEY.WAITINGS("waiting"),
+                QUERY_KEY.WAITING_BOOTH(waitingID),
+              ]}
+            />
+          )}
+
+          {waitingStatus === "waiting" && (
+            <WaitingTeamsAheadButton waitingTeamsAhead={waitingTeamsAhead} />
+          )}
+
+          {waitingStatus === "entering" && (
+            <EnteringButton confirmedAt={confirmedAt} />
+          )}
+
+          {!isWaiting && (
+            <>
+              <div />
+              <Button disabled>
+                {waitingStatus === "canceled"
+                  ? "대기가 취소되었습니다"
+                  : waitingStatus === "entered"
+                  ? "입장을 완료했습니다."
+                  : waitingStatus === "time_over" &&
+                    "대기시간이 초과되었습니다."}
+              </Button>
+            </>
+          )}
         </ButtonLayout>
 
-        <S.WaitingDetailCancel>
-          <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
-        </S.WaitingDetailCancel>
+        {isWaiting && (
+          <S.WaitingDetailCancel>
+            <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
+          </S.WaitingDetailCancel>
+        )}
       </BottomButton>
     </>
   );
