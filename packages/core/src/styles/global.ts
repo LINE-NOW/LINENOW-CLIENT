@@ -13,6 +13,7 @@ export const global = (maxWidth: string, isAdmin: boolean = false) => css`
     display: flex;
     justify-content: center;
     background-color: ${isAdmin ? "#333740" : ""};
+    font-family: "Pretendard", sans-serif;
   }
 
   #root {
@@ -37,7 +38,8 @@ const resetCSS = css`
   html,
   body {
     font-family: "Pretendard", "system-ui", "-apple-system",
-      "BlinkMacSystemFont", "Open Sans", "Helvetica Neue";
+      "BlinkMacSystemFont", "Open Sans", "Helvetica Neue", sans-serif;
+    font-synthesis: none;
   }
 
   a {
