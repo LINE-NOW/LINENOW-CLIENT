@@ -36,13 +36,14 @@ export const TagListWrapper = styled.div`
   align-items: center;
   width: 100%;
   padding: 1rem 2rem 1.25rem 2rem;
-  overflow-x: scroll;
   justify-content: space-between;
 `;
 
 export const TagListContainer = styled.section`
   display: flex;
   gap: 0.75rem;
+  overflow-x: scroll;
+  padding: 0.5rem;
 `;
 
 export const TagRefreshContainer = styled.section`
