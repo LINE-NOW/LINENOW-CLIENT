@@ -83,7 +83,7 @@ const WaitingDetailPage = () => {
         waitingID={waitingID}
         waitingNum={waitingNum}
         personCount={personCount}
-        booth={{ thumbnail: booth.images[0].imageURL, ...booth }}
+        booth={{ thumbnail: waitingBooth.booth.thumbnail, ...booth }}
       />
 
       <BoothLocationMap booth={booth} />

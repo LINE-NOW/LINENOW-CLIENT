@@ -88,30 +88,33 @@ export const useNaverMap = (
     markersRef.current = {};
 
     // 새 마커 추가
-    booths.forEach((booth) => {
-      const marker = new window.naver.maps.Marker({
-        position: new window.naver.maps.LatLng(
-          Number(booth.latitude),
-          Number(booth.longitude)
-        ),
-        map,
-        icon: {
-          content: renderMarkerIcon(booth.boothID === selectedBoothId, {
-            operatingStatus: booth.operatingStatus,
-            totalWaitingTeams: booth.totalWaitingTeams,
-          }),
-        },
+    booths
+      .slice()
+      .reverse()
+      .forEach((booth) => {
+        const marker = new window.naver.maps.Marker({
+          position: new window.naver.maps.LatLng(
+            Number(booth.latitude),
+            Number(booth.longitude)
+          ),
+          map,
+          icon: {
+            content: renderMarkerIcon(booth.boothID === selectedBoothId, {
+              operatingStatus: booth.operatingStatus,
+              totalWaitingTeams: booth.totalWaitingTeams,
+            }),
+          },
+        });
+
+        marker.set("boothID", booth.boothID); // 추가 속성 저장
+
+        window.naver.maps.Event.addListener(marker, "click", () => {
+          map.panTo(marker.getPosition());
+          setSelectedBoothId(booth.boothID);
+        });
+
+        markersRef.current[booth.boothID] = marker;
       });
-
-      marker.set("boothID", booth.boothID); // 추가 속성 저장
-
-      window.naver.maps.Event.addListener(marker, "click", () => {
-        map.panTo(marker.getPosition());
-        setSelectedBoothId(booth.boothID);
-      });
-
-      markersRef.current[booth.boothID] = marker;
-    });
   };
 
   useEffect(() => {
