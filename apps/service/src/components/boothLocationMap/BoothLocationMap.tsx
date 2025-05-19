@@ -4,7 +4,7 @@ import { Booth } from "@interfaces/booth";
 import { useSmallNaverMap } from "@hooks/useSmallNaverMap";
 import { useNavigate } from "react-router-dom";
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
-import { Icon } from "@linenow/core/components";
+import { Icon, Label } from "@linenow/core/components";
 import { useToast } from "@linenow/core/hooks";
 import { useSetAtom } from "jotai";
 import { latLngAtom } from "@atoms/location";
@@ -24,7 +24,10 @@ export const BoothLocationMap = ({ booth }: BoothLocationContentProps) => {
   useSmallNaverMap(mapRef, booth);
   return (
     <S.BoothLocationMapWrapper>
-      부스 위치
+      <Label font="head3" color="black" css={[S.getTitleLabelStyle()]}>
+        부스 위치
+      </Label>
+
       <S.BoothLocationMap ref={mapRef}>
         <S.BoothLocationMapClickableBar
           onClick={() => {
