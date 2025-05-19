@@ -10,7 +10,7 @@ const fontGenerator = (
   letterSpacing?: string,
   fontFamily?: string
 ) => css`
-  font-family: ${fontFamily ? `${fontFamily};` : ""};
+  font-family: ${fontFamily ? `${fontFamily};` : "Pretendard"};
   font-size: ${size};
   font-weight: ${weight};
   line-height: ${lineHeight};

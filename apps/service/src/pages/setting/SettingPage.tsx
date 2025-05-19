@@ -14,6 +14,11 @@ const SettingPage = () => {
     openModal(logoutModal);
   };
 
+  // 1:1 문의 클릭
+  const handleInquiryClick = () => {
+    window.open("https://open.kakao.com/o/gV5NsYSg", "_blank");
+  };
+
   // 이용약관 클릭
   const handleTermsOfServiceClick = () => {
     window.open(
@@ -22,24 +27,28 @@ const SettingPage = () => {
     );
   };
 
-  // 1:1 문의 클릭
-  const handleInquiryClick = () => {
-    window.open("https://open.kakao.com/o/gV5NsYSg", "_blank");
+  // 위치정보 이용약관 클릭
+  const handleTermsOfLocationClick = () => {
+    window.open(
+      "https://thorn-freesia-96f.notion.site/1f5d72341c49806096fcfc7b694f0013?pvs=74",
+      "_blank"
+    );
   };
 
-  // 개발자 정보 클릭
-  // const handleDeveloperInfoClick = () => {
-  //   window.open(
-  //     "https://thorn-freesia-96f.notion.site/09b2230a514848ec9041518f467f86e4?pvs=4",
-  //     "_blank"
-  //   );
-  // };
+  // 개인정보 이용약관 클릭
+  const handleTermsOfPersonalClick = () => {
+    window.open(
+      "https://thorn-freesia-96f.notion.site/1f5d72341c49807c8cd8cf249f3d04a9?pvs=74",
+      "_blank"
+    );
+  };
 
   const settingItemProps = [
     { title: "로그아웃", onClick: handleLogoutClick },
-    { title: "이용약관", onClick: handleTermsOfServiceClick },
     { title: "1:1 문의", onClick: handleInquiryClick },
-    // { title: "개발자 정보", onClick: handleDeveloperInfoClick },
+    { title: "이용약관", onClick: handleTermsOfServiceClick },
+    { title: "위치정보 이용약관", onClick: handleTermsOfLocationClick },
+    { title: "개인정보 이용동의", onClick: handleTermsOfPersonalClick },
   ];
 
   return (
