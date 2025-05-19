@@ -1,5 +1,10 @@
 import { fonts } from "@linenow/core/styles";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+
+export const getTitleLabelStyle = () => css`
+  padding: 0 0.25rem;
+`;
 
 export const BoothLocationMapWrapper = styled.section`
   ${fonts.head3}
@@ -45,7 +50,7 @@ export const BoothLocationMapLocationWrapper = styled.div`
 
   display: flex;
   justify-content: space-between;
-
+  padding: 0 0.25rem;
   padding-bottom: 0.5rem;
 
   ${fonts.body2}
