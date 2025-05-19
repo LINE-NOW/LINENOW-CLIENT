@@ -15,7 +15,7 @@ const WaitingDetailCaution = () => {
       imgSrc: IMAGE.NOTICE_MAX_WAITING,
     },
     {
-      text: "입장 차레 시 부스 입장 가능 시간이 부여됩니다. 반드시 10분 이내로 부스에 입장해주세요.\n10분이 지나면 입장이 제한됩니다.",
+      text: "입장 차례 시 부스 입장 가능 시간이 부여됩니다. 반드시 10분 이내로 부스에 입장해주세요.\n10분이 지나면 입장이 제한됩니다.",
       imgSrc: IMAGE.NOTICEE_DUE_TIME,
     },
   ];
