@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { fonts } from "@linenow/core/styles";
 
 export const PauseOverlayWrapper = styled.div`
   position: fixed;
@@ -22,28 +23,22 @@ export const PauseOverlayContainer = styled.div`
 export const PauseOverlayTextContainer = styled.section`
   display: flex;
   flex-direction: column;
+  gap: 0.625rem;
   align-items: center;
-  position: absolute;
+  /* position: absolute;
+
   top: 50%;
-  left: 15%;
+  left: 15%; */
 
   /* TODO: 디자인시스템 확인 후 변경 필요 */
   .q {
-    color: #fff;
-    text-align: center;
-    font-family: Pretendard;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
+    ${fonts.head2}
+    color: ${({ theme }) => theme.backgroundColors.gray};
   }
 
   .click {
-    color: #fff;
-    font-family: Pretendard;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 2;
+    ${fonts.head1}
+    color: ${({ theme }) => theme.backgroundColors.white};
   }
 
   .lime {
