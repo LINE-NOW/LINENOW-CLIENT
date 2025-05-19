@@ -25,7 +25,7 @@ const SingleEnteringContent = (props: Props) => {
   return (
     <EnteringBottomSheetContent
       title="지금 입장해주세요!"
-      description={`제한 시간 10분 내로 부스에 입장해주세요.\n입장하지 않으실 경우 반드시 입장 취소 버튼을 눌러주세요.\n입장 취소 없이 노쇼할 경우, 전체 부스 대기가 취소돼요.`}
+      description={`제한 시간 10분 내로 부스에 입장해주세요.\n입장 시간을 초과하시면 대기가 자동 취소됩니다.`}
       content={
         <Flex
           direction="column"

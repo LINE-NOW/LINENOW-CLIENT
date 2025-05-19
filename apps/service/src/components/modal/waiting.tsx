@@ -40,7 +40,7 @@ export const useModalCancelAllWaiting = (): ModalProps => {
     content: waitings.map((name, index) => <li key={index}>{name}</li>),
     primaryButton: {
       variant: "grayLight",
-      children: `${waitings.length}개 대기 취소하기`,
+      children: `${waitings.length}개 대기 취소`,
       onClick: onClick,
     },
     secondButton: {
@@ -79,7 +79,7 @@ export const useModalCancelEntering = (): ModalProps => {
 
   return {
     title: "입장을 취소하시겠어요?",
-    sub: "입장 대기 시간이 삭제돼요.\n정말 입장을 취소할까요?",
+    sub: "이 부스의 입장을 취소할까요?\n등록된 대기가 삭제돼요.",
     primaryButton: {
       variant: "grayLight",
       children: `입장 취소하기`,

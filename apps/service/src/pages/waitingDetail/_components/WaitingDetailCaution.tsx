@@ -7,7 +7,7 @@ import { IMAGE } from "@constants/image";
 const WaitingDetailCaution = () => {
   const contents = [
     {
-      text: "부스에 입장하지 않으신다면 반드시 대기를 취소해 주세요. 대기 취소 없이 입장하지 않으시면 부스 운영에 피해가 발생해요.\n노쇼가 확인될 경우, 라인나우 사용이 제한됩니다.",
+      text: "본인의 차례가 왔을 때 입장하지 않으실 경우, 반드시 입장 취소 버튼을 눌러주세요.\n입장 취소 하지 않고 노쇼할 경우, 전체 부스 대기가 취소돼요.\n노쇼 3회 누적 시 금일 라인나우 이용이 제한돼요.",
       imgSrc: IMAGE.NOTICE_NO_SHOW,
     },
     {
