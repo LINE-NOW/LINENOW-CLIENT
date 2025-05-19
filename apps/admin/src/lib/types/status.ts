@@ -15,4 +15,5 @@ export type WaitingStatusParams =
   | "waiting"
   | "entered"
   | "canceled"
+  | "time_over"
   | undefined;

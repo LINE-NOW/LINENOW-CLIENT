@@ -72,7 +72,7 @@ const MainWaitingCard = ({ waiting }: MainWaitingCardProps) => {
     <S.MainWaitingCardWrapper
       $backgroundColor={config.backgroundColor}
       style={{
-        opacity: `${config.userInfoOpacity}`,
+        opacity: config.userInfoOpacity ?? 1,
       }}
     >
       <S.MainWaitingCardContentWrapper>

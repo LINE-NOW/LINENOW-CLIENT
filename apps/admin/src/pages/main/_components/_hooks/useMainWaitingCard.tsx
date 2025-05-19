@@ -39,7 +39,6 @@ export const useMainWaitingCard = ({
   const countdown = useCountdown({
     targetDate: confirmedAt ? getEnteringTime(confirmedAt) : null,
   });
-  console.log("언제와", confirmedAt);
 
   const getString = countdown?.getString ?? (() => "");
   const isCountdownOver = countdown?.isCountdownOver ?? true;
@@ -108,6 +107,7 @@ export const useMainWaitingCard = ({
         ],
         variant: "lime",
       },
+
       secondButton: approveWaitingButton(true),
     },
     entered: {
