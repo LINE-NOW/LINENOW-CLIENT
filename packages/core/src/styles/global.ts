@@ -45,4 +45,8 @@ const resetCSS = css`
     border: none;
     background-color: transparent;
   }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

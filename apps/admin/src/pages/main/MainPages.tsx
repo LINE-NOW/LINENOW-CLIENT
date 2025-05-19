@@ -27,7 +27,7 @@ const MainPage = () => {
       setIsRestart(false);
     }
   }, [auth]);
-    
+
   const [waitings, setWaitings] = useState<Waiting[]>([]);
   const [boothInfo, setBoothInfo] = useState<BoothInfo>({
     waiting_team_cnt: 0,
