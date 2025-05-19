@@ -21,7 +21,7 @@ const ModalProvider = () => {
     return (
       <FixedContainer
         justifyContent="center"
-        zIndex={20}
+        zIndex={102}
         closeContainer={closeModal}
       >
         <Modal {...props} />
