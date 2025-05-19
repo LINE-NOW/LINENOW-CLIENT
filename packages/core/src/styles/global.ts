@@ -3,6 +3,11 @@ import { css } from "@emotion/react";
 export const global = (maxWidth: string, isAdmin: boolean = false) => css`
   ${resetCSS}
 
+  @font-face {
+    font-family: "Pretendard";
+    src: url("/fonts/PretendardVariable.woff2") format("woff2");
+  }
+
   body {
     width: 100vw;
     display: flex;
@@ -31,8 +36,8 @@ const resetCSS = css`
 
   html,
   body {
-    font-family: "system-ui", "-apple-system", "BlinkMacSystemFont", "Open Sans",
-      "Helvetica Neue";
+    font-family: "Pretendard", "system-ui", "-apple-system",
+      "BlinkMacSystemFont", "Open Sans", "Helvetica Neue";
   }
 
   a {
