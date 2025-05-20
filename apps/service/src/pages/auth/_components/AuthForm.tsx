@@ -5,8 +5,7 @@ import BottomButton from "@components/bottomButton/BottomButton";
 import useAuthForm from "../_hooks/useAuthForm";
 
 const AuthForm = () => {
-  const { CurrentContent, nextButtonProps, submitForm, setNextStepIndex } =
-    useAuthForm();
+  const { CurrentContent, nextButtonProps, submitForm } = useAuthForm();
 
   return (
     <Flex

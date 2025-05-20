@@ -22,7 +22,6 @@ import {
 } from "@linenow/core/components";
 import { useBottomSheet, useModal, useToast } from "@linenow/core/hooks";
 
-import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
 import { useModalCancelWaiting } from "@components/modal/waiting";
 import { BoothLocationMap } from "@components/boothLocationMap/BoothLocationMap";
@@ -31,6 +30,7 @@ import { useSetAtom } from "jotai";
 import { boothAtom, waitingAtom } from "@atoms/boothWaitingAtoms";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 import { QUERY_KEY } from "@hooks/apis/query";
+import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();

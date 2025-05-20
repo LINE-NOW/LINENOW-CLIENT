@@ -19,9 +19,8 @@ const Navigation = () => {
       case ROUTE.SETTING:
         return <S.NavigationLabel>설정</S.NavigationLabel>;
       case ROUTE.LOGIN:
-        return <S.NavigationLabel>로그인</S.NavigationLabel>;
-      case ROUTE.SIGNUP:
-        return <S.NavigationLabel>회원가입</S.NavigationLabel>;
+        return <S.NavigationLabel>로그인/회원가입</S.NavigationLabel>;
+
       default:
         return null;
     }
