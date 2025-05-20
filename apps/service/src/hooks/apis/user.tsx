@@ -59,9 +59,10 @@ export const usePostAuthenticate = () => {
       if (response) login({ accessToken: response?.accessToken });
     },
     onError: (error) => {
-      const axiosError = error as AxiosError<{ is_signup?: boolean }>;
-      const isUser = axiosError.response?.data.is_signup;
-      if (isUser === false) throw "IS_GUEST";
+      const e = error as any;
+      const isUser = e.data.data[0].is_signup;
+
+      if (isUser === false) throw new Error("IS_GUEST");
       else alert("올바르지 않은 인증번호입니다.");
     },
   });

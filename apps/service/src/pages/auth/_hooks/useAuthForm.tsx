@@ -52,12 +52,19 @@ const useAuthForm = () => {
     // 회원인 경우 로그인 진행
     // 회원이 아닐 경우 다음 단계로 넘어감 (회원 가입)
     try {
-      postAuthenticate({
+      await postAuthenticate({
         phonenumber: form.values.phonenumber,
         smsCode: form.values.authentication,
       });
-    } catch (error) {
-      if (error === "IS_GUEST") form.setNextStepIndex();
+    } catch (e: any) {
+      const error = e as Error;
+
+      console.log(error.message);
+      const isGuest = error.message === "IS_GUEST";
+      if (isGuest) {
+        console.log("로그인");
+        form.setNextStepIndex();
+      }
     }
   };
 
@@ -65,6 +72,16 @@ const useAuthForm = () => {
     if (form.values.phonenumber) {
       await postSMS(form.values.phonenumber);
       form.setNextStepIndex();
+    }
+  };
+
+  const handleSingup = async () => {
+    console.log(form.isFormValidate);
+    if (form.values.name) {
+      postRegistration({
+        name: form.values.name,
+        phonenumber: form.values.phonenumber,
+      });
     }
   };
 
@@ -85,9 +102,9 @@ const useAuthForm = () => {
     {
       content: <AuthFormName />,
       nextButtonProps: {
-        type: "button",
         variant: "lime",
         children: "회원가입 완료하기",
+        onClick: handleSingup,
       },
       keys: ["name"],
     },
@@ -97,13 +114,6 @@ const useAuthForm = () => {
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (form.isFormValidate) {
-      postRegistration({
-        name: form.values.name,
-        phonenumber: form.values.phonenumber,
-      });
-    }
   };
 
   return {
