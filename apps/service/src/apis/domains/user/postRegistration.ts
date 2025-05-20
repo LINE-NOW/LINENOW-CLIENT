@@ -5,9 +5,6 @@ import { postResponse } from "@apis/instance";
 type PostRegistrationRequestBody = {
   user_name: string;
   user_phone: string;
-  sms_code: string;
-  user_password1: string;
-  user_password2: string;
 };
 
 type PostRegistrationResponse = {

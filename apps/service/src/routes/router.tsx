@@ -17,6 +17,7 @@ import MyWaitingPage from "@pages/myWaiting/MyWaiting";
 import SignupPage from "@pages/signup/SignupPage";
 import GuestRoute from "./GuestRoute";
 import LoginPage from "@pages/login/LoginPage";
+import AuthPage from "@pages/auth/AuthPage";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
             element: <GuestRoute />,
             children: [
               { path: ROUTE.SIGNUP, element: <SignupPage /> },
-              { path: ROUTE.LOGIN, element: <LoginPage /> },
+              { path: ROUTE.LOGIN, element: <AuthPage /> },
             ],
           },
           {

@@ -1,4 +1,5 @@
 import { getBlackUser } from "@apis/domains/user/getBlackUser";
+import { postAuthenticate } from "@apis/domains/user/postAuthenticate";
 import { postLogin } from "@apis/domains/user/postLogin";
 import { postLogout } from "@apis/domains/user/postLogout";
 import { postRegistration } from "@apis/domains/user/postRegistration";
@@ -38,15 +39,41 @@ export const usePostLogin = () => {
   });
 };
 
+export const usePostAuthenticate = () => {
+  const { login } = useAuth();
+  const { presentToast } = useToast();
+  type Prameter = {
+    phonenumber: string;
+    smsCode: string;
+  };
+
+  return useMutation({
+    mutationKey: ["authenticate"],
+    mutationFn: (params: Prameter) =>
+      postAuthenticate({
+        user_phone: params.phonenumber,
+        sms_code: params.smsCode,
+      }),
+    onSuccess: (response) => {
+      presentToast("로그인을 성공했어요!");
+      if (response) login({ accessToken: response?.accessToken });
+    },
+    onError: (error) => {
+      const axiosError = error as AxiosError<{ is_signup?: boolean }>;
+      const isUser = axiosError.response?.data.is_signup;
+      if (isUser === false) throw "IS_GUEST";
+      else alert("올바르지 않은 인증번호입니다.");
+    },
+  });
+};
+
+// 회원가입
 export const usePostRegistration = () => {
   const { login } = useAuth();
   const { presentToast } = useToast();
   type Prameter = {
     name: string;
     phonenumber: string;
-    smsCode: string;
-    password: string;
-    passwordConfirm: string;
   };
 
   return useMutation({
@@ -55,9 +82,6 @@ export const usePostRegistration = () => {
       postRegistration({
         user_name: params.name,
         user_phone: params.phonenumber,
-        sms_code: params.smsCode,
-        user_password1: params.password,
-        user_password2: params.passwordConfirm,
       }),
     onSuccess: (response) => {
       presentToast("회원가입을 성공했어요!");
