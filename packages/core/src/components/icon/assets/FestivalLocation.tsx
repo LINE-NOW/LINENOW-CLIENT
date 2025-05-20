@@ -1,7 +1,7 @@
 import { IconAssetProps } from "../Icon";
 
 const FestivalLocationIcon = (props: IconAssetProps) => {
-  const { color = "black", size = 24 } = props;
+  const { size = 24 } = props;
 
   return (
     <svg
