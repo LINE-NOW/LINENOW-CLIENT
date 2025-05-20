@@ -6,7 +6,7 @@ import { useState } from "react";
 import { usePostLogin } from "@hooks/apis/auth";
 import LoginInput from "./components/LoginInput";
 
-const MAX_LENGTH = 20;
+const MAX_LENGTH = 40;
 
 const LoginPage = () => {
   const [inputValue, setInputValue] = useState("");
