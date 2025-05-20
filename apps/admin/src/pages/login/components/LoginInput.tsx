@@ -12,7 +12,7 @@ interface LoginInputProps {
 const LoginInput = ({
   value,
   onChange,
-  maxLength = 20,
+  maxLength = 40,
   placeholder = "",
 }: LoginInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
