@@ -10,10 +10,6 @@ const LoginBottomSheetContent = () => {
     navigate(ROUTE.LOGIN);
   };
 
-  const handleSignipButton = () => {
-    navigate(ROUTE.SIGNUP);
-  };
-
   return (
     <S.BottomSheetContentWrapper>
       {/* 타이틀 */}
@@ -30,10 +26,7 @@ const LoginBottomSheetContent = () => {
       {/* 버튼 */}
       <ButtonLayout colCount={1}>
         <Button onClick={handleLoginButton} variant="lime">
-          전화번호로 로그인하기
-        </Button>
-        <Button onClick={handleSignipButton} variant="outline">
-          라인나우 회원가입하기
+          전화번호로 시작하기
         </Button>
       </ButtonLayout>
     </S.BottomSheetContentWrapper>

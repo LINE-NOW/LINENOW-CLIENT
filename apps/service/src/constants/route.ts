@@ -1,7 +1,6 @@
 export const ROUTE = {
   DEFAULT: "/",
   BOOTH_DETAIL: (boothID: number | string = ":boothId") => `/booth/${boothID}`,
-  SIGNUP: `/signup`,
   LOGIN: `/login`,
 
   WAITING_CHECK: `/check`,

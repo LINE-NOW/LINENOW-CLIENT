@@ -1,18 +1,17 @@
-import useSingupForm from "@pages/signup/_hooks/useSignupForm";
-
 //components
 import { Button, Flex } from "@linenow/core/components";
 
 import BottomButton from "@components/bottomButton/BottomButton";
+import useAuthForm from "../_hooks/useAuthForm";
 
-const SingupForm = () => {
-  const { CurrentContent, nextButtonProps, submitForm } = useSingupForm();
+const AuthForm = () => {
+  const { CurrentContent, nextButtonProps, submitForm } = useAuthForm();
 
   return (
     <Flex
       as="form"
       direction="column"
-      gap="2rem"
+      gap="0.5rem"
       padding="1.25rem"
       onSubmit={submitForm}
     >
@@ -25,4 +24,4 @@ const SingupForm = () => {
     </Flex>
   );
 };
-export default SingupForm;
+export default AuthForm;

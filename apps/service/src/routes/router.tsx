@@ -14,9 +14,9 @@ import SettingPage from "@pages/setting/SettingPage";
 import WaitingCheckPage from "@pages/waitingCheck/WaitingCheckPage";
 import WaitingDetailPage from "@pages/waitingDetail/WaitingDetailPage";
 import MyWaitingPage from "@pages/myWaiting/MyWaiting";
-import SignupPage from "@pages/signup/SignupPage";
+import AuthPage from "@pages/auth/AuthPage";
+
 import GuestRoute from "./GuestRoute";
-import LoginPage from "@pages/login/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -30,10 +30,7 @@ const router = createBrowserRouter([
           { path: ROUTE.BOOTH_DETAIL(), element: <BoothDetailPage /> },
           {
             element: <GuestRoute />,
-            children: [
-              { path: ROUTE.SIGNUP, element: <SignupPage /> },
-              { path: ROUTE.LOGIN, element: <LoginPage /> },
-            ],
+            children: [{ path: ROUTE.LOGIN, element: <AuthPage /> }],
           },
           {
             element: <ProtectedRoute />,

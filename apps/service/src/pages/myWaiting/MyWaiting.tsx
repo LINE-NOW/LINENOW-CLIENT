@@ -1,3 +1,4 @@
+import * as S from "./MyWaiting.styled";
 //components
 import { Flex, Separator } from "@linenow/core/components";
 import SectionTitle from "@components/title/SectionTitle";
@@ -36,7 +37,7 @@ const MyWaitingPage = () => {
       </Flex>
 
       {/* 새로고침 버튼 */}
-      <RefetchButton queries={queries} />
+      <RefetchButton queries={queries} css={[S.getFloatingButtonStyle()]} />
     </>
   );
 };

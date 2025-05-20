@@ -1,23 +1,26 @@
-import useSingupForm from "@pages/signup/_hooks/useSignupForm";
-
 import {
   Button,
   InputText,
   InputTextContainer,
   Label,
 } from "@linenow/core/components";
-import React, { useState } from "react";
 
+import useAuthForm from "../_hooks/useAuthForm";
+import PageTitle from "@components/title/PageTitle";
 import { usePostRegistrationMessage } from "@hooks/apis/user";
+import { useState } from "react";
 import { useCountdown } from "@linenow/core/hooks";
 
-// 유효시간 3분
 const MAINTAIN_TIME = 1;
 const getExpiredAt = () =>
   new Date(Date.now() + MAINTAIN_TIME * 60 * 1000).toISOString();
 
-const SignupFormStepAuth = () => {
-  const { register, values } = useSingupForm();
+const AuthFormSMS = () => {
+  // 인증번호 유효시간을 저장
+  const [expiredAt, setExpiredAt] = useState(getExpiredAt());
+  const isExpired = new Date(expiredAt) < new Date();
+
+  const { register, values } = useAuthForm();
 
   const { mutateAsync: sendAuth, reset } = usePostRegistrationMessage();
 
@@ -26,10 +29,6 @@ const SignupFormStepAuth = () => {
     await sendAuth(values.phonenumber);
     setExpiredAt(getExpiredAt());
   };
-
-  const [expiredAt, setExpiredAt] = useState(getExpiredAt());
-
-  const isExpired = new Date(expiredAt) < new Date();
 
   const { getString } = useCountdown({
     targetDate: expiredAt,
@@ -49,12 +48,11 @@ const SignupFormStepAuth = () => {
 
   return (
     <>
-      {/* 인증번호 */}
-      <InputTextContainer
-        label="인증번호를 전송했어요."
-        description={`입력하신 전화번호 ${values.phonenumber}로 인증번호를 전송했어요.
-        전송된 인증번호 5자리를 입력해주세요`}
-      >
+      <PageTitle
+        title={"인증번호를 입력해주세요"}
+        description={`입력하신 전화번호로 인증번호를 전송했어요.\n전송된 인증번호 5자리를 입력해주세요`}
+      />
+      <InputTextContainer>
         <InputText {...authInput}>
           <Label
             color="gray"
@@ -71,5 +69,4 @@ const SignupFormStepAuth = () => {
     </>
   );
 };
-
-export default React.memo(SignupFormStepAuth);
+export default AuthFormSMS;
