@@ -6,7 +6,6 @@ const sortBoothOptions: OptionProps[] = [
   {
     label: "대기 적은 순", // 오름차순
     value: "ASC",
-    defaultChecked: true,
   },
   {
     label: "대기 많은 순", // 내림차순

@@ -22,7 +22,6 @@ const WaitingCheckCautionModal = (props: WaitingCheckCautionModalProps) => {
   const { showSplash } = useSplash();
   const navigate = useNavigate();
 
-  console.log("정보:", boothID, checkedPeople);
   const handleCancel = () => {
     onClose();
   };
@@ -37,7 +36,7 @@ const WaitingCheckCautionModal = (props: WaitingCheckCautionModalProps) => {
 
       const waitingID = result.waiting_id;
       if (!waitingID) {
-        console.warn("응답에 waitingId없음 ㅜ");
+        // console.warn("응답에 waitingId없음 ㅜ");
         return;
       }
 
@@ -52,7 +51,7 @@ const WaitingCheckCautionModal = (props: WaitingCheckCautionModalProps) => {
         });
       }, SPLASH_DURATION);
     } catch (error) {
-      console.error("대기 등록 실패", error);
+      // console.error("대기 등록 실패", error);
     }
   };
 
