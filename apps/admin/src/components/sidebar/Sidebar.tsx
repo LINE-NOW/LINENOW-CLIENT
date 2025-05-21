@@ -60,7 +60,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   }, [isLoadingLogout]);
 
   useEffect(() => {
-    if (boothLoading) return; // 👈 booth 상태 받아오기 전에는 아무것도 안함
+    if (boothLoading) return;
 
     const fetchBoothStatus = async () => {
       const statusData = await getBoothRestartStatus();
@@ -75,7 +75,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     };
 
     fetchBoothStatus();
-  }, [boothLoading, setShowOverlay]); // 👈 boothLoading을 의존성으로 추가
+  }, [boothLoading, setShowOverlay]);
 
   useEffect(() => {
     if (isRestart === false) {
