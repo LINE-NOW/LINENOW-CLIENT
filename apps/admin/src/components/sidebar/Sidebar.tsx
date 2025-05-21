@@ -18,7 +18,7 @@ import {
 import { useEffect, useState } from "react";
 import useIsLoading from "@hooks/useIsLoading";
 import { usePostLogout } from "@hooks/apis/auth";
-import Spinner from "@components/spinner/Spinner";
+// import Spinner from "@components/spinner/Spinner";
 import {
   modalStartOperation,
   modalStartWaiting,
@@ -60,6 +60,8 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   }, [isLoadingLogout]);
 
   useEffect(() => {
+    if (boothLoading) return;
+
     const fetchBoothStatus = async () => {
       const statusData = await getBoothRestartStatus();
       if (statusData) {
@@ -73,7 +75,7 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     };
 
     fetchBoothStatus();
-  }, [setShowOverlay]);
+  }, [boothLoading, setShowOverlay]);
 
   useEffect(() => {
     if (isRestart === false) {
@@ -215,9 +217,9 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
   };
 
   const getButton = () => {
-    if (boothLoading) {
-      return <Spinner />;
-    }
+    // if (boothLoading) {
+    //   return <Spinner />;
+    // }
 
     switch (boothStatus) {
       case "operating":
@@ -237,21 +239,22 @@ const Sidebar = ({ isMobile, isOpen, setIsOpen }: SidebarProps) => {
     <>
       <S.SidebarWrapper>
         <S.SidebarUserInfoWapper>
-          {boothLoading ? (
+          {/* {
+          boothLoading ? (
             <Spinner />
-          ) : (
-            <>
-              <h3>안녕하세요</h3>
-              <h1>
-                <span className="lime">{auth?.adminUser.manager_name}</span> 님
-              </h1>
-              <CommonButton>
-                <S.SidebarLogout onClick={handleLogoutClick}>
-                  로그아웃
-                </S.SidebarLogout>
-              </CommonButton>
-            </>
-          )}
+          ) : ( */}
+          <>
+            <h3>안녕하세요</h3>
+            <h1>
+              <span className="lime">{auth?.adminUser.manager_name}</span> 님
+            </h1>
+            <CommonButton>
+              <S.SidebarLogout onClick={handleLogoutClick}>
+                로그아웃
+              </S.SidebarLogout>
+            </CommonButton>
+          </>
+          {/* )} */}
         </S.SidebarUserInfoWapper>
 
         {/* 대기 팀 관리, 문의하기  */}

@@ -7,5 +7,8 @@ export const useGetWaitings = (status: WaitingStatusParams) => {
   return useQuery({
     queryKey: [BOOTH_QUERY_KEY.WAITINGS, status],
     queryFn: () => getWaitings(status),
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    retry: 1,
   });
 };

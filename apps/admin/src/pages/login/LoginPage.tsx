@@ -12,6 +12,7 @@ const LoginPage = () => {
   const [inputValue, setInputValue] = useState("");
 
   const { mutate: postLogin } = usePostLogin();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
