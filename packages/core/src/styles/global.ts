@@ -1,19 +1,20 @@
 import { css } from "@emotion/react";
+import "pretendard/dist/web/variable/pretendardvariable.css";
 
 export const global = (maxWidth: string, isAdmin: boolean = false) => css`
   ${resetCSS}
-
+  /* 
   @font-face {
     font-family: "Pretendard";
     src: url("/fonts/PretendardVariable.woff2") format("woff2");
-  }
+  } */
 
   body {
     width: 100vw;
     display: flex;
     justify-content: center;
     background-color: ${isAdmin ? "#333740" : ""};
-    font-family: "Pretendard", sans-serif;
+    font-family: "Pretendard Variable", sans-serif;
   }
 
   #root {
