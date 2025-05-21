@@ -59,12 +59,8 @@ const useAuthForm = () => {
     } catch (e: any) {
       const error = e as Error;
 
-      console.log(error.message);
       const isGuest = error.message === "IS_GUEST";
-      if (isGuest) {
-        console.log("로그인");
-        form.setNextStepIndex();
-      }
+      if (isGuest) form.setNextStepIndex();
     }
   };
 
@@ -76,7 +72,6 @@ const useAuthForm = () => {
   };
 
   const handleSingup = async () => {
-    console.log(form.isFormValidate);
     if (form.values.name) {
       postRegistration({
         name: form.values.name,

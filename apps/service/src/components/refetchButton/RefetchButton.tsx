@@ -17,7 +17,6 @@ const useQueriesAreFetching = (queries: QueryKey[]): boolean => {
 const RefetchButton = (props: RefetchButtonProps) => {
   const { queries, ...buttonProps } = props;
 
-  console.log(queries);
   const queryClient = useQueryClient();
   const isFetching = useQueriesAreFetching(queries);
 

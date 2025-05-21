@@ -10,7 +10,8 @@ export const MyLocationButton = ({
 
   const handleMoveToMyLocation = () => {
     if (!navigator.geolocation) {
-      console.error("Geolocation을 지원하지 않는 브라우저입니다.");
+      alert("Geolocation을 지원하지 않는 브라우저입니다.");
+      // console.error("Geolocation을 지원하지 않는 브라우저입니다.");
       return;
     }
 
@@ -21,7 +22,8 @@ export const MyLocationButton = ({
         setLatLng({ lat, lng });
       },
       (error) => {
-        console.error("위치 정보를 가져오는 데 실패했습니다:", error.message);
+        error;
+        // console.error("위치 정보를 가져오는 데 실패했습니다:", error.message);
       },
       {
         enableHighAccuracy: true,

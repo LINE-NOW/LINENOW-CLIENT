@@ -11,7 +11,7 @@ const useWebSocket = (onMessageCallback: (message: any) => void) => {
     const baseSocketUrl = import.meta.env.VITE_BASE_SOCKET_URL;
 
     if (!token) {
-      console.log("토큰이 없습니다!");
+      // console.log("토큰이 없습니다!");
       return;
     }
 
@@ -20,32 +20,32 @@ const useWebSocket = (onMessageCallback: (message: any) => void) => {
     );
 
     socket.onopen = () => {
-      console.log("WebSocket 연결됨");
+      // console.log("WebSocket 연결됨");
     };
 
     socket.onmessage = (event) => {
-      console.log("받은 메시지:", event.data);
+      // console.log("받은 메시지:", event.data);
       try {
         const data = JSON.parse(event.data);
-        console.log("파싱된 데이터:", data);
+        // console.log("파싱된 데이터:", data);
         onMessageCallback?.(data);
       } catch (error) {
-        console.error("JSON 파싱 실패:", error);
+        // console.error("JSON 파싱 실패:", error);
       }
     };
 
-    socket.onerror = (error) => {
-      console.error("WebSocket 에러:", error);
-    };
+    // socket.onerror = (error) => {
+    //   console.error("WebSocket 에러:", error);
+    // };
 
-    socket.onclose = () => {
-      console.log("WebSocket 연결 종료");
-    };
+    // socket.onclose = () => {
+    //   console.log("WebSocket 연결 종료");
+    // };
 
     // cleanup
     return () => {
       socket.close();
-      console.log("웹소켓 종료");
+      // console.log("웹소켓 종료");
     };
   }, [auth, onMessageCallback]);
 
