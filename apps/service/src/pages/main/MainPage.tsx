@@ -16,8 +16,6 @@ import { Switch } from "@linenow/core/components";
 import * as S from "./MainPage.styled";
 import MainNavigation from "./_components/mainNavigation/MainNavigation";
 import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
-import { useAtomValue } from "jotai";
-import { isSelectedBoothAtom } from "./_atom/selectedBooth";
 
 const MainPage = () => {
   const { viewType, mainViewTypeSwitchProps } = useMainViewType();
@@ -27,8 +25,6 @@ const MainPage = () => {
 
   // refetch queries
   const { queries } = isLogin ? useGetMainDataUser() : useGetMainDataGuest();
-  const selectedBoothStatus = useAtomValue(isSelectedBoothAtom);
-  console.log(selectedBoothStatus);
 
   return (
     <>
