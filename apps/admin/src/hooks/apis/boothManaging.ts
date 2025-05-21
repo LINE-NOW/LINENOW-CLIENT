@@ -36,7 +36,10 @@ export const usePostWaitingAction = () => {
 export const useGetBoothStatus = () => {
   return useQuery({
     queryKey: [BOOTH_MANAGING_QUERY_KEY.BOOTH_STATUS, "boothInfo"],
-    queryFn: () => getBoothStatus(),
+    queryFn: getBoothStatus,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    retry: 1,
   });
 };
 
@@ -96,5 +99,7 @@ export const useGetWaitingsCounts = () => {
   return useQuery({
     queryKey: [BOOTH_MANAGING_QUERY_KEY.WAITINGS_COUNTS],
     queryFn: () => getWaitingsCounts(),
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 };
