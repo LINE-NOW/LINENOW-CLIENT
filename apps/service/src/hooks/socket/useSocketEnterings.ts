@@ -27,7 +27,7 @@ const useSocketEnterings = () => {
 
       if (canceled) {
         const mapped = mapToWaiting(canceled);
-        console.log("❌ 대기 취소 소켓 메시지:", mapped);
+        // console.log("❌ 대기 취소 소켓 메시지:", mapped);
         openCancelBottomSheet(mapped);
       }
     },

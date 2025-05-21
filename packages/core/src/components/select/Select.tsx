@@ -22,10 +22,7 @@ const Select = (props: SelectProps) => {
       icon="down"
       iconProps={{ color: "grayLight", size: 16 }}
     >
-      <S.SelectWrapper
-        defaultValue={selectProps.defaultValue || options[0].value}
-        {...selectProps}
-      >
+      <S.SelectWrapper {...selectProps}>
         {options.map((option) => (
           <option key={option.value} {...option}>
             {option.label}
