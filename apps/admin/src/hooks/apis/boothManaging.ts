@@ -101,5 +101,6 @@ export const useGetWaitingsCounts = () => {
     queryFn: () => getWaitingsCounts(),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
+    retry: 1,
   });
 };
