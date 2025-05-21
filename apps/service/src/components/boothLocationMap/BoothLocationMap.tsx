@@ -9,6 +9,7 @@ import { useToast } from "@linenow/core/hooks";
 import { useSetAtom } from "jotai";
 import { latLngAtom } from "@atoms/location";
 import { ROUTE } from "@constants/route";
+import { selectedBoothAtom } from "@pages/main/_atom/selectedBooth";
 
 interface BoothLocationContentProps {
   booth: Booth;
@@ -18,10 +19,12 @@ export const BoothLocationMap = ({ booth }: BoothLocationContentProps) => {
   const mapRef = useRef<null | HTMLDivElement>(null);
   const navigate = useNavigate();
   const setLatLng = useSetAtom(latLngAtom);
+  const setBooth = useSetAtom(selectedBoothAtom);
   const { setViewType } = useMainViewType();
 
   const { presentToast } = useToast();
   useSmallNaverMap(mapRef, booth);
+
   return (
     <S.BoothLocationMapWrapper>
       <Label font="head3" color="black" css={[S.getTitleLabelStyle()]}>
@@ -32,11 +35,12 @@ export const BoothLocationMap = ({ booth }: BoothLocationContentProps) => {
         <S.BoothLocationMapClickableBar
           onClick={() => {
             setViewType("map");
-            navigate(ROUTE.DEFAULT, { state: booth.boothID });
+            setBooth(booth.boothID);
             setLatLng({
               lat: Number(booth.latitude),
               lng: Number(booth.longitude),
             });
+            navigate(ROUTE.DEFAULT);
           }}
         >
           클릭해서 지도 보기

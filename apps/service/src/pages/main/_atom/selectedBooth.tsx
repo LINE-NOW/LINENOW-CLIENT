@@ -1,3 +1,3 @@
 import { atom } from "jotai";
 
-export const isSelectedBoothAtom = atom<boolean>(false);
+export const selectedBoothAtom = atom<number | null>(null);
