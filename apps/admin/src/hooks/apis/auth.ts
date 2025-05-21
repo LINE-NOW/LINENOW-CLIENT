@@ -37,6 +37,9 @@ export const usePostLogin = () => {
     mutationKey: ["auth_login"],
     mutationFn: (requestBody: UsePostLoginProps) =>
       postLogin({ manager_code: requestBody.adminCode }),
+    onMutate: () => {
+      setLoadings({ isFullLoading: true }); // 로그인 요청 시작 시 로딩 시작
+    },
     onSuccess: async (response: LoginResponse) => {
       login({
         accessToken: response.access,
