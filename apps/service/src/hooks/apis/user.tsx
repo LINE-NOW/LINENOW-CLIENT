@@ -1,4 +1,5 @@
 import { getBlackUser } from "@apis/domains/user/getBlackUser";
+import { getUserCount } from "@apis/domains/user/getUserCount";
 import { postAuthenticate } from "@apis/domains/user/postAuthenticate";
 import { postLogin } from "@apis/domains/user/postLogin";
 import { postLogout } from "@apis/domains/user/postLogout";
@@ -15,6 +16,13 @@ export const useGetBlackuser = () => {
   return useQuery({
     queryKey: ["black_user"],
     queryFn: () => getBlackUser(),
+  });
+};
+
+export const useGetUserCount = () => {
+  return useQuery({
+    queryKey: ["user_count"],
+    queryFn: () => getUserCount(),
   });
 };
 
