@@ -31,6 +31,7 @@ import { boothAtom, waitingAtom } from "@atoms/boothWaitingAtoms";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 import { QUERY_KEY } from "@hooks/apis/query";
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
+import WaitingTeamsAheadButton from "@components/button/WaitingTeamsAheadButton";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -114,10 +115,9 @@ const BoothDetailPage = () => {
                 QUERY_KEY.BOOTH_WAITING(boothNumber ?? 0),
               ]}
             />
-            <Button variant="blueLight" width="100%">
-              <span>내 앞으로 지금</span>
-              <span className="blue">{waiting.waitingTeamsAhead}팀</span>
-            </Button>
+            <WaitingTeamsAheadButton
+              waitingTeamsAhead={waiting.waitingTeamsAhead}
+            />
           </ButtonLayout>
           <WaitingDetailCancel>
             <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
