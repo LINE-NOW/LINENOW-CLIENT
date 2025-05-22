@@ -30,7 +30,7 @@ export const getResponse = async <TResponse>(
     const response = await instance.get<BaseDTO<TResponse>>(url, {
       ...config,
     });
-    // console.log(`get : ${url}`, response);
+    console.log(`get : ${url}`, response);
 
     return response.data.data;
   } catch (error) {

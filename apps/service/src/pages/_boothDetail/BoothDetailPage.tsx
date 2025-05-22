@@ -13,14 +13,15 @@ import useAuth from "@hooks/useAuth";
 import { Button, Flex, Label } from "@linenow/core/components";
 import { useBottomSheet } from "@linenow/core/hooks";
 
-import { useGetBooth, useGetBoothWaiting } from "@hooks/apis/booth";
+import { useGetBooth } from "@hooks/apis/booth";
 
 import { useSetAtom } from "jotai";
-import { boothAtom, waitingAtom } from "@atoms/boothWaitingAtoms";
+import { boothAtom } from "@atoms/boothWaitingAtoms";
 
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 
 import SettingButton from "@components/button/SettingButton";
+import { useGetUserCount } from "@hooks/apis/user";
 
 const TestBoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -33,6 +34,7 @@ const TestBoothDetailPage = () => {
   const boothNumber = 25;
 
   const { data: booth, isLoading } = useGetBooth(boothNumber);
+  const { data: userCount } = useGetUserCount();
 
   const setBooth = useSetAtom(boothAtom);
 
@@ -54,11 +56,10 @@ const TestBoothDetailPage = () => {
             <BoothDetailNotice booth={booth} />
           </Flex>
 
-          {isLogin && <SettingButton />}
           <div>
             <BottomButton
               informationTitle={`축제를 기다리는`}
-              informationSub={`40명`}
+              informationSub={`${userCount}명`}
             >
               {isLogin ? (
                 <SettingButton />
