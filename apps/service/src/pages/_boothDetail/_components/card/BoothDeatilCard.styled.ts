@@ -10,7 +10,7 @@ export const BoothDetailCardWrapper = styled.section`
 
 export const BoothDetailCardThumbnail = styled.img`
   width: 100%;
-  height: 23.4375rem;
+  max-height: 400px;
   display: flex;
   object-fit: contain;
 `;
