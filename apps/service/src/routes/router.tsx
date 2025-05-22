@@ -17,8 +17,10 @@ import MyWaitingPage from "@pages/myWaiting/MyWaiting";
 import AuthPage from "@pages/auth/AuthPage";
 
 import GuestRoute from "./GuestRoute";
+import TestBoothDetailPage from "@pages/_boothDetail/BoothDetailPage";
+import TestRootLayout from "@layouts/TestRootLayout";
 
-const router = createBrowserRouter([
+export const prodRouter = createBrowserRouter([
   {
     path: ROUTE.DEFAULT,
     element: <RootLayout />,
@@ -46,4 +48,26 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-export default router;
+
+export const testRouter = createBrowserRouter([
+  {
+    path: ROUTE.DEFAULT,
+    element: <TestRootLayout />,
+    children: [
+      { path: ROUTE.DEFAULT, element: <TestBoothDetailPage /> },
+      {
+        element: <DefaultLayout />,
+        children: [
+          {
+            element: <GuestRoute />,
+            children: [{ path: ROUTE.LOGIN, element: <AuthPage /> }],
+          },
+          {
+            element: <ProtectedRoute />,
+            children: [{ path: ROUTE.SETTING, element: <SettingPage /> }],
+          },
+        ],
+      },
+    ],
+  },
+]);
