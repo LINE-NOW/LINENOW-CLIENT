@@ -13,6 +13,7 @@ import useWebSocket from "@hooks/useSocket";
 import { Waiting } from "@interfaces/waiting";
 import { transformGetWaitingResponse } from "@apis/domains/booth/_interfaces";
 import { BoothInfo } from "@apis/domains/boothManaging/_interfaces";
+import sortWaitings from "./utils/sortWaitings";
 
 const MainPage = () => {
   const { data: waitingsCounts } = useGetWaitingsCounts();
@@ -68,19 +69,25 @@ const MainPage = () => {
     const updatedWaiting = transformGetWaitingResponse(message?.data);
 
     setWaitings((prevWaitings) => {
-      if (status === "waiting") {
-        return [...prevWaitings, updatedWaiting];
-      }
+      let updatedList: Waiting[];
 
-      if (status === "canceled") {
-        return prevWaitings.map((waiting) =>
+      if (status === "waiting") {
+        updatedList = [...prevWaitings, updatedWaiting];
+      } else if (status === "canceled" || status === "time_over") {
+        updatedList = prevWaitings.map((waiting) =>
           waiting.waitingID === updatedWaiting.waitingID
-            ? { ...waiting, waitingStatus: "canceled" }
+            ? { ...waiting, waitingStatus: status }
+            : waiting
+        );
+      } else {
+        updatedList = prevWaitings.map((waiting) =>
+          waiting.waitingID === updatedWaiting.waitingID
+            ? updatedWaiting
             : waiting
         );
       }
 
-      return prevWaitings;
+      return sortWaitings(updatedList);
     });
 
     // 부스 정보 업데이트
@@ -103,10 +110,9 @@ const MainPage = () => {
   const handleTagClick = (tag: string) => {
     setSelectedTag(tag);
   };
-
   useEffect(() => {
     if (data) {
-      setWaitings(data);
+      setWaitings(sortWaitings(data));
     }
   }, [data]);
 
