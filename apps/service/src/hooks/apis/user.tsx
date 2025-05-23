@@ -52,6 +52,7 @@ export const usePostAuthenticate = () => {
       if (response) login({ accessToken: response?.accessToken });
     },
     onError: (error) => {
+      setLoadings({ isFullLoading: false });
       const e = error as any;
       const isUser = e.data.data[0].is_signup;
 
@@ -153,8 +154,13 @@ export const usePostWithdraw = () => {
   return useMutation({
     mutationKey: ["withdraw"],
     mutationFn: () => deleteWithdraw(),
-    onSettled: () => {
+    onSuccess: () => {
       logout();
+    },
+    onError: () => {
+      alert("회원 탈퇴에 실패했습니다.");
+    },
+    onSettled: () => {
       setLoadings({ isFullLoading: false });
     },
   });
