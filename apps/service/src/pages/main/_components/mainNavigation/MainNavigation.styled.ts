@@ -16,6 +16,7 @@ export const getWrapper = (type: MainViewType, isFold: boolean) => {
     const getListStyle =
       type === "list" &&
       css`
+        z-index: 2;
         height: ${getHeight};
         background-color: ${theme.backgroundColors.black};
       `;
