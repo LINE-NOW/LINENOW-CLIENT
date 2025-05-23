@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 // components
 import {
@@ -11,6 +11,7 @@ import {
 import { useSocketEnterRoute } from "@hooks/socket/useSocketEnterRoute";
 import useSocketEnterings from "@hooks/socket/useSocketEnterings";
 import FullSpinner from "@components/spinner/FullSpinner";
+import { useEffect } from "react";
 
 // hooks
 
@@ -18,6 +19,12 @@ const RootLayout = () => {
   useSocketEnterRoute();
   useSocketEnterings();
   // const { isLogin } = useAuth();
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [pathname]);
 
   return (
     <>

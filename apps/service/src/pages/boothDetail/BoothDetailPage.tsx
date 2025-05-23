@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
-import Spinner from "@components/spinner/Spinner";
 import {
   BoothDetailCard,
   BoothDetailContent,
@@ -32,6 +31,7 @@ import RefetchButton from "@components/refetchButton/RefetchButton";
 import { QUERY_KEY } from "@hooks/apis/query";
 import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 import WaitingTeamsAheadButton from "@components/button/WaitingTeamsAheadButton";
+import BoothPageSkeleton from "@components/skeleton/BoothPage.Skeloton";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -165,7 +165,7 @@ const BoothDetailPage = () => {
   };
 
   if (isLoading) {
-    return <Spinner />;
+    return <BoothPageSkeleton />;
   }
 
   return (

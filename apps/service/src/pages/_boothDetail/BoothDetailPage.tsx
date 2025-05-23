@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
-import Spinner from "@components/spinner/Spinner";
 import {
   BoothDetailCard,
   BoothDetailContent,
@@ -22,6 +21,7 @@ import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSh
 
 import SettingButton from "@components/button/SettingButton";
 import { useGetUserCount } from "@hooks/apis/user";
+import BoothPageSkeleton from "@components/skeleton/BoothPage.Skeloton";
 
 const TestBoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -43,7 +43,7 @@ const TestBoothDetailPage = () => {
   }, [booth, setBooth]);
 
   if (isLoading) {
-    return <Spinner />;
+    return <BoothPageSkeleton />;
   }
 
   return (
