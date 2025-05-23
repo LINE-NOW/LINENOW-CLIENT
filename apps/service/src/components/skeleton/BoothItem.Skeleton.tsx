@@ -1,3 +1,4 @@
+import ChipSkeleton from "./Chip.Skeleton";
 import * as S from "./Skeleton.styled";
 import { Flex } from "@linenow/core/components";
 
@@ -16,7 +17,7 @@ const BoothItemSkeleton = () => {
         </Flex>
       </Flex>
       <Flex height="1.5rem" width="100%" justifyContent="end">
-        <div css={[S.getSkeletonStyle("4rem", "1.5rem")]} />
+        <ChipSkeleton />
       </Flex>
     </Flex>
   );
