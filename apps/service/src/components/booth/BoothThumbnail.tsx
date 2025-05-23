@@ -19,7 +19,7 @@ const BoothThumbnail = (props: BoothThumbnailProps) => {
   const { children, boothID, name, description, location, ...attributes } =
     props;
 
-  console.log(boothID + "booth Thumbnail 리렌더링");
+  // console.log(boothID + "booth Thumbnail 리렌더링");
 
   return (
     <Flex
