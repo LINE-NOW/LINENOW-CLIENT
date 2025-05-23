@@ -1,4 +1,5 @@
 import { BoothStatus } from "@linenow-types/status";
+import { BoothWaiting } from "./waiting";
 
 export interface BoothImage {
   imageID: number;
@@ -33,13 +34,15 @@ export interface Booth {
 
 export interface BoothThumbnail
   extends Pick<
-    Booth,
-    | "boothID"
-    | "name"
-    | "description"
-    | "location"
-    | "latitude"
-    | "longitude"
-    | "thumbnail"
-    | "operatingStatus"
-  > {}
+      Booth,
+      | "boothID"
+      | "name"
+      | "description"
+      | "thumbnail"
+      | "location"
+      | "longitude"
+      | "latitude"
+      | "operatingStatus"
+      | "totalWaitingTeams"
+    >,
+    Pick<BoothWaiting, "waitingStatus"> {}

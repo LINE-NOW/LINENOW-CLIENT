@@ -1,16 +1,17 @@
+import { AxiosError } from "axios";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
 import { getBlackUser } from "@apis/domains/user/getBlackUser";
 import { getUserCount } from "@apis/domains/user/getUserCount";
 import { postAuthenticate } from "@apis/domains/user/postAuthenticate";
-import { postLogin } from "@apis/domains/user/postLogin";
 import { postLogout } from "@apis/domains/user/postLogout";
 import { postRegistration } from "@apis/domains/user/postRegistration";
 import { postRegistrationMessage } from "@apis/domains/user/postRegistrationMessage";
 import { deleteWithdraw } from "@apis/domains/user/postWithdraw";
-import { ROUTE } from "@constants/route";
+
 import useAuth from "@hooks/useAuth";
+import useIsLoading from "@hooks/useIsLoading";
 import { useToast } from "@linenow/core/hooks";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 
 export const useGetBlackuser = () => {
   return useQuery({
@@ -26,42 +27,26 @@ export const useGetUserCount = () => {
   });
 };
 
-export const usePostLogin = () => {
-  type Parameter = {
-    phonenumber: string;
-    password: string;
-  };
-
-  const { login } = useAuth();
-
-  return useMutation({
-    mutationKey: ["login"],
-    mutationFn: (params: Parameter) =>
-      postLogin({
-        user_phone: params.phonenumber,
-        user_password: params.password,
-      }),
-    onSuccess: (data) => {
-      if (data != null) login({ accessToken: data.accessToken });
-    },
-  });
-};
-
 export const usePostAuthenticate = () => {
   const { login } = useAuth();
   const { presentToast } = useToast();
+
   type Prameter = {
     phonenumber: string;
     smsCode: string;
   };
 
+  const { setLoadings } = useIsLoading();
+
   return useMutation({
     mutationKey: ["authenticate"],
-    mutationFn: (params: Prameter) =>
-      postAuthenticate({
+    mutationFn: (params: Prameter) => {
+      setLoadings({ isFullLoading: true });
+      return postAuthenticate({
         user_phone: params.phonenumber,
         sms_code: params.smsCode,
-      }),
+      });
+    },
     onSuccess: (response) => {
       presentToast("로그인을 성공했어요!");
       if (response) login({ accessToken: response?.accessToken });
@@ -72,6 +57,9 @@ export const usePostAuthenticate = () => {
 
       if (isUser === false) throw new Error("IS_GUEST");
       else alert("올바르지 않은 인증번호입니다.");
+    },
+    onSettled: () => {
+      setLoadings({ isFullLoading: false });
     },
   });
 };
@@ -85,13 +73,18 @@ export const usePostRegistration = () => {
     phonenumber: string;
   };
 
+  const { setLoadings } = useIsLoading();
+
   return useMutation({
     mutationKey: ["registration"],
-    mutationFn: (params: Prameter) =>
-      postRegistration({
+    mutationFn: (params: Prameter) => {
+      setLoadings({ isFullLoading: true });
+      return postRegistration({
         user_name: params.name,
         user_phone: params.phonenumber,
-      }),
+      });
+    },
+
     onSuccess: (response) => {
       presentToast("회원가입을 성공했어요!");
       if (response) login({ accessToken: response?.accessToken });
@@ -100,49 +93,69 @@ export const usePostRegistration = () => {
       const axiosError = error as AxiosError;
       if (axiosError.status === 400) alert("인증번호가 올바르지 않습니다!");
     },
+    onSettled: () => {
+      setLoadings({ isFullLoading: false });
+    },
   });
 };
 
+// 문자 인증 번호 전송
 export const usePostRegistrationMessage = () => {
   const { presentToast } = useToast();
   const presentCompletedSendingToast = () => {
     presentToast("인증 번호가 전송되었어요!");
   };
 
+  const { setLoadings } = useIsLoading();
+
   return useMutation({
     mutationKey: ["registration_message"],
-    mutationFn: (phonenumber: string) =>
-      postRegistrationMessage({
+    mutationFn: (phonenumber: string) => {
+      setLoadings({ isFullLoading: true });
+      return postRegistrationMessage({
         user_phone: phonenumber,
-      }),
+      });
+    },
     onSuccess: () => presentCompletedSendingToast(),
     onError: (error) => {
       const axiosError = error as AxiosError;
       if (axiosError.status === 400) alert("이미 가입된 전화번호입니다!");
+    },
+    onSettled: () => {
+      setLoadings({ isFullLoading: false });
     },
   });
 };
 
 export const usePostLogout = () => {
   const { logout } = useAuth();
+
+  const { setLoadings } = useIsLoading();
+
   return useMutation({
     mutationKey: ["logout"],
-    mutationFn: () => postLogout(),
-    onSuccess: () => {
+    mutationFn: () => {
+      setLoadings({ isFullLoading: true });
+      return postLogout();
+    },
+
+    onSettled: () => {
       logout();
-      window.location.href = ROUTE.DEFAULT;
+      setLoadings({ isFullLoading: false });
     },
   });
 };
 
 export const usePostWithdraw = () => {
   const { logout } = useAuth();
+  const { setLoadings } = useIsLoading();
+
   return useMutation({
     mutationKey: ["withdraw"],
     mutationFn: () => deleteWithdraw(),
-    onSuccess: () => {
+    onSettled: () => {
       logout();
-      window.location.href = ROUTE.DEFAULT;
+      setLoadings({ isFullLoading: false });
     },
   });
 };

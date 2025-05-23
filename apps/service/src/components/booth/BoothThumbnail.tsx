@@ -3,6 +3,7 @@ import { Booth } from "@interfaces/booth";
 import * as S from "./Booth.styled";
 import { Flex, IconLabel, Label } from "@linenow/core/components";
 import { IMAGE } from "@constants/image";
+import React from "react";
 
 export interface BoothThumbnailProps
   extends Pick<
@@ -17,6 +18,8 @@ const BoothThumbnail = (props: BoothThumbnailProps) => {
 
   const { children, boothID, name, description, location, ...attributes } =
     props;
+
+  // console.log(boothID + "booth Thumbnail 리렌더링");
 
   return (
     <Flex
@@ -61,4 +64,8 @@ const BoothThumbnail = (props: BoothThumbnailProps) => {
   );
 };
 
-export default BoothThumbnail;
+const areEqual = (prev: BoothThumbnailProps, next: BoothThumbnailProps) => {
+  return prev.boothID === next.boothID;
+};
+
+export default React.memo(BoothThumbnail, areEqual);
