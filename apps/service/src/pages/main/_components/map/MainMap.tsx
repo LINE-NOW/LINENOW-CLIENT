@@ -9,6 +9,7 @@ import { selectedBoothAtom } from "@pages/main/_atom/selectedBooth";
 interface MainMapProps {
   booths: BoothPinProps[];
 }
+
 const MainMap = memo((props: MainMapProps) => {
   const { booths } = props;
 

@@ -3,8 +3,8 @@ import { MainViewType } from "@pages/main/types";
 import { changeFoldStateAnimation } from "@styles/animation";
 
 const MAIN_FIXED_COMPONENTS_HEIGHT = {
-  fold: "9.25rem",
-  unfold: "19.25rem",
+  fold: "9.5rem",
+  unfold: "19.5rem",
 };
 
 export const getWrapper = (type: MainViewType, isFold: boolean) => {
@@ -16,6 +16,7 @@ export const getWrapper = (type: MainViewType, isFold: boolean) => {
     const getListStyle =
       type === "list" &&
       css`
+        z-index: 2;
         height: ${getHeight};
         background-color: ${theme.backgroundColors.black};
       `;

@@ -4,6 +4,7 @@ import { Chip, Flex } from "@linenow/core/components";
 import { Booth } from "@interfaces/booth";
 import { SerializedStyles } from "@emotion/react";
 import { BoothWaiting } from "@interfaces/waiting";
+import ChipSkeleton from "@components/skeleton/Chip.Skeleton";
 
 type BoothThumbnailProps = React.ComponentProps<typeof BoothThumbnail>;
 
@@ -11,6 +12,7 @@ export interface BoothThumbnailBadgeProps
   extends BoothThumbnailProps,
     Pick<Booth, "operatingStatus" | "totalWaitingTeams">,
     Pick<BoothWaiting, "waitingStatus"> {
+  isFetching?: boolean;
   css?: SerializedStyles;
 }
 
@@ -20,10 +22,13 @@ const BoothThumbnailBadge = (props: BoothThumbnailBadgeProps) => {
     waitingStatus,
     totalWaitingTeams,
     css,
+    isFetching = false,
     ...boothThumbnailProps
   } = props;
 
   const getBadgeList = () => {
+    if (isFetching) return <ChipSkeleton />;
+
     if (operatingStatus === "not_started") {
       return <Chip variant="grayLight">운영 전</Chip>;
     }

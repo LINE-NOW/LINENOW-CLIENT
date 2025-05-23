@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 
-import Spinner from "@components/spinner/Spinner";
 import {
   BoothDetailCard,
   BoothDetailContent,
@@ -22,6 +21,7 @@ import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSh
 
 import SettingButton from "@components/button/SettingButton";
 import { useGetUserCount } from "@hooks/apis/user";
+import BoothPageSkeleton from "@components/skeleton/BoothPage.Skeloton";
 
 const TestBoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -43,7 +43,7 @@ const TestBoothDetailPage = () => {
   }, [booth, setBooth]);
 
   if (isLoading) {
-    return <Spinner />;
+    return <BoothPageSkeleton />;
   }
 
   return (
@@ -66,7 +66,7 @@ const TestBoothDetailPage = () => {
               ) : (
                 <>
                   <Button variant="lime" onClick={handleLoginButtonClick}>
-                    <span>미리 로그인 해두기</span>
+                    <span>미리 회원가입 해두기</span>
                   </Button>
                   <Label font="caption" color="gray">
                     * 축제 당일에는 접속 인원이 많아 로딩이 걸릴 수 있어요

@@ -9,12 +9,12 @@ export const SpinnerBackground = styled.div`
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  /* z-index: 0; */
+  z-index: 9999999999;
 
   width: 100%;
   height: 100%;
 
-  background-color: rgb(15 15 15 / 70%);
+  /* background-color: rgb(15 15 15 / 70%); */
 `;
 
 export const SpinnerWrapper = styled.div`
@@ -26,26 +26,39 @@ export const SpinnerWrapper = styled.div`
   width: 100%;
 `;
 
-// TODO: - UI 나오는대로 변경
 export const SppinerContent = styled.div`
-  /* display: inline-block; */
+  width: 64px;
+  height: 64px;
+  display: inline-block;
+  position: relative;
 
-  width: 48px;
-  height: 48px;
+  &::after,
+  &::before {
+    content: "";
+    box-sizing: border-box;
+    width: 64px;
+    height: 64px;
+    opacity: 0;
+    border-radius: 50%;
+    background: blue;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: animloader 0.8s linear infinite;
+  }
 
-  border: 5px solid;
-  border-color: #fff;
-  border-bottom-color: blue;
-  border-radius: 50%;
+  &::before {
+    animation-delay: 0.4s;
+  }
 
-  animation: rotation 1s linear infinite;
-
-  @keyframes rotation {
+  @keyframes animloader {
     0% {
-      transform: rotate(0deg);
+      transform: scale(0);
+      opacity: 0;
     }
     100% {
-      transform: rotate(360deg);
+      transform: scale(1);
+      opacity: 0.4;
     }
   }
 `;

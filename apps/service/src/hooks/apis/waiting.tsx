@@ -14,6 +14,7 @@ import { useToast } from "@linenow/core/hooks";
 import { QUERY_KEY } from "./query";
 import { postCancelWaiting } from "@apis/domains/waiting/postCancelWaiting";
 import useAuth from "@hooks/useAuth";
+import useIsLoading from "@hooks/useIsLoading";
 
 export const useGetWaitings = (type: "waiting" | "finished" = "waiting") => {
   const { isLogin } = useAuth();
@@ -73,12 +74,21 @@ export const useGetCancelAllWaiting = () => {
 export const usePostCancelAllEntering = () => {
   const { presentToast } = useToast();
   const { data: waitings = [] } = useGetCancelAllEntering();
+
+  const { setLoadings } = useIsLoading();
+
   return useMutation({
     mutationKey: ["cancel_all_entering"],
-    mutationFn: () => postCancelAllEntering(),
+    mutationFn: () => {
+      setLoadings({ isFullLoading: true });
+      return postCancelAllEntering();
+    },
     onSuccess: () => {
       presentToast(`${waitings.length}개의 입장이 취소 되었습니다!`);
       history.go(0);
+    },
+    onSettled: () => {
+      setLoadings({ isFullLoading: false });
     },
   });
 };
@@ -86,36 +96,63 @@ export const usePostCancelAllEntering = () => {
 export const usePostCancelAllWaiting = () => {
   const { presentToast } = useToast();
   const { data: waitings = [] } = useGetCancelAllWaiting();
+
+  const { setLoadings } = useIsLoading();
+
   return useMutation({
     mutationKey: ["cancel_all_waiting"],
-    mutationFn: () => postCancelAllWaiting(),
+    mutationFn: () => {
+      setLoadings({ isFullLoading: true });
+      return postCancelAllWaiting();
+    },
     onSuccess: () => {
       presentToast(`${waitings.length}개의 대기가 취소 되었습니다!`);
       history.go(0);
+    },
+    onSettled: () => {
+      setLoadings({ isFullLoading: false });
     },
   });
 };
 
 export const usePostSelectEntering = () => {
   const { presentToast } = useToast();
+
+  const { setLoadings } = useIsLoading();
+
   return useMutation({
     mutationKey: ["select_entering"],
-    mutationFn: (waitingID: number) => postSelectEntering(waitingID),
+    mutationFn: (waitingID: number) => {
+      setLoadings({ isFullLoading: true });
+      return postSelectEntering(waitingID);
+    },
     onSuccess: () => {
       presentToast(`입장을 확정하여, 다른 대기는 취소되었어요.`);
       history.go(0);
+    },
+    onSettled: () => {
+      setLoadings({ isFullLoading: false });
     },
   });
 };
 
 export const usePostCancelWaiting = () => {
   const { presentToast } = useToast();
+
+  const { setLoadings } = useIsLoading();
+
   return useMutation({
     mutationKey: ["cancel_waiting"],
-    mutationFn: (waitingID: number) => postCancelWaiting(waitingID),
+    mutationFn: (waitingID: number) => {
+      setLoadings({ isFullLoading: true });
+      return postCancelWaiting(waitingID);
+    },
     onSuccess: () => {
       presentToast(`대기가 취소되었습니다.`);
       history.go(0);
+    },
+    onSettled: () => {
+      setLoadings({ isFullLoading: false });
     },
   });
 };

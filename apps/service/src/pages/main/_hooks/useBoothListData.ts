@@ -1,34 +1,18 @@
 import BoothThumbnailBadge from "@components/booth/BoothThumbnailBadge";
 import { QUERY_KEY } from "@hooks/apis/query";
 
-import { Booth } from "@interfaces/booth";
+import { Booth, BoothThumbnail } from "@interfaces/booth";
 
 import { BoothWaiting } from "@interfaces/waiting";
 import { useQueryClient } from "@tanstack/react-query";
+import useSortBooths from "./useSortBooths";
 
-interface UseBoothListDataProps {
-  option?: string;
-}
 interface BoothLocation
   extends Pick<Booth, "boothID" | "latitude" | "longitude"> {}
 
-interface BoothItem
-  extends Pick<
-      Booth,
-      | "boothID"
-      | "name"
-      | "description"
-      | "thumbnail"
-      | "location"
-      | "latitude"
-      | "longitude"
-      | "totalWaitingTeams"
-      | "operatingStatus"
-    >,
-    Pick<BoothWaiting, "waitingStatus"> {}
+const useBoothListData = () => {
+  const { currentSortBoothOption: option, OptionSelect } = useSortBooths();
 
-const useBoothListData = (props: UseBoothListDataProps) => {
-  const { option = "" } = props;
   const queryClient = useQueryClient();
 
   const booths =
@@ -45,31 +29,33 @@ const useBoothListData = (props: UseBoothListDataProps) => {
       QUERY_KEY.BOOTHS_LOCATION()
     ) as BoothLocation[]) ?? [];
 
-  const combinedBooths: BoothItem[] = booths.map((booth): BoothItem => {
-    let matchedWaiting = waitings.find(
-      (waiting) => waiting.boothID === booth.boothID
-    );
-    let matchedLocation = locations.find(
-      (location) => location.boothID === booth.boothID
-    );
+  const combinedBooths: BoothThumbnail[] = booths.map(
+    (booth): BoothThumbnail => {
+      let matchedWaiting = waitings.find(
+        (waiting) => waiting.boothID === booth.boothID
+      );
+      let matchedLocation = locations.find(
+        (location) => location.boothID === booth.boothID
+      );
 
-    return {
-      boothID: booth.boothID,
-      name: booth.name,
-      description: booth.description,
-      thumbnail: booth.thumbnail,
-      location: booth.location,
-      operatingStatus: booth.operatingStatus,
-      totalWaitingTeams: booth.totalWaitingTeams,
+      return {
+        boothID: booth.boothID,
+        name: booth.name,
+        description: booth.description,
+        thumbnail: booth.thumbnail,
+        location: booth.location,
+        operatingStatus: booth.operatingStatus,
+        totalWaitingTeams: booth.totalWaitingTeams,
 
-      latitude: matchedLocation?.latitude ? matchedLocation.latitude : "0",
-      longitude: matchedLocation?.longitude ? matchedLocation.longitude : "0",
+        latitude: matchedLocation?.latitude ? matchedLocation.latitude : "0",
+        longitude: matchedLocation?.longitude ? matchedLocation.longitude : "0",
 
-      waitingStatus: matchedWaiting?.waitingStatus
-        ? matchedWaiting.waitingStatus
-        : "not_waiting",
-    };
-  });
+        waitingStatus: matchedWaiting?.waitingStatus
+          ? matchedWaiting.waitingStatus
+          : "not_waiting",
+      };
+    }
+  );
 
   const getSortOption = (a: number = 0, b: number = 0) => {
     if (option === "DESC") return b - a;
@@ -105,6 +91,6 @@ const useBoothListData = (props: UseBoothListDataProps) => {
     if (waitingCompare !== 0) return waitingCompare;
     return a.name.localeCompare(b.name, "ko");
   });
-  return { currentBooths };
+  return { currentBooths, OptionSelect };
 };
 export default useBoothListData;

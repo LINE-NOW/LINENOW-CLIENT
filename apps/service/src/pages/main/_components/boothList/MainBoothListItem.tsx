@@ -6,12 +6,10 @@ import BoothThumbnailBadge, {
 } from "@components/booth/BoothThumbnailBadge";
 import { ROUTE } from "@constants/route";
 
-export interface MainBoothListItemProps extends BoothThumbnailBadgeProps {
-  isLast?: boolean;
-}
+export interface MainBoothListItemProps extends BoothThumbnailBadgeProps {}
 
 const MainBoothListItem = (props: MainBoothListItemProps) => {
-  const { isLast = false, ...booth } = props;
+  const { ...booth } = props;
   return (
     <Link
       to={ROUTE.BOOTH_DETAIL(booth.boothID)}

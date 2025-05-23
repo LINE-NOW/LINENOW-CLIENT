@@ -6,11 +6,12 @@ import { useSetAtom } from "jotai";
 import { selectedBoothAtom } from "@pages/main/_atom/selectedBooth";
 
 interface MainBoothListProps {
+  isFetching?: boolean;
   booths: BoothThumbnailBadgeProps[];
 }
 
 const MainBoothList = (props: MainBoothListProps) => {
-  const { booths } = props;
+  const { booths, isFetching = false } = props;
   const setBoothNull = useSetAtom(selectedBoothAtom);
   setBoothNull(null);
   // 리스트가 비어있을 경우
@@ -19,8 +20,9 @@ const MainBoothList = (props: MainBoothListProps) => {
   return (
     <div css={S.getBoothListWrapperStyle()}>
       {booths.map((booth, index) => {
-        const isLast = index === booths.length - 1;
-        return <MainBoothListItem key={index} isLast={isLast} {...booth} />;
+        return (
+          <MainBoothListItem key={index} isFetching={isFetching} {...booth} />
+        );
       })}
     </div>
   );

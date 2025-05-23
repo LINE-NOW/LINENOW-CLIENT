@@ -112,7 +112,7 @@ const MainPage = () => {
   };
   useEffect(() => {
     if (data) {
-      setWaitings(sortWaitings(data));
+      setWaitings(data);
     }
   }, [data]);
 
