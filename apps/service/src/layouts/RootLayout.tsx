@@ -10,6 +10,7 @@ import {
 
 import { useSocketEnterRoute } from "@hooks/socket/useSocketEnterRoute";
 import useSocketEnterings from "@hooks/socket/useSocketEnterings";
+import FullSpinner from "@components/spinner/FullSpinner";
 
 // hooks
 
@@ -21,6 +22,7 @@ const RootLayout = () => {
   return (
     <>
       {/* {isLogin && <EnteringBottomsheetProvider />} */}
+      <FullSpinner />
       <ToastProvider />
       <ModalProvider />
       <BottomSheetProvider />

@@ -6,6 +6,7 @@ import {
   usePostCancelWaiting,
   usePostSelectEntering,
 } from "@hooks/apis/waiting";
+
 import { ModalProps } from "@linenow/core/components";
 
 // 대기 취소 (1개)

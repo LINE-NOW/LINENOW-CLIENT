@@ -66,7 +66,7 @@ const TestBoothDetailPage = () => {
               ) : (
                 <>
                   <Button variant="lime" onClick={handleLoginButtonClick}>
-                    <span>미리 로그인 해두기</span>
+                    <span>미리 회원가입 해두기</span>
                   </Button>
                   <Label font="caption" color="gray">
                     * 축제 당일에는 접속 인원이 많아 로딩이 걸릴 수 있어요
