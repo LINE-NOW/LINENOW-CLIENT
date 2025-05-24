@@ -53,6 +53,10 @@ export const useNaverMap = (
         if (!window.naver) return;
         const { naver } = window;
         if (mapRef.current && window) {
+          const boundary = new naver.maps.LatLngBounds(
+            new naver.maps.LatLng(37.55543737120145, 126.9938094180942),
+            new naver.maps.LatLng(37.56015861201457, 127.00589670324476)
+          );
           const now = new naver.maps.LatLng(latLng.lat, latLng.lng);
           const map = new naver.maps.Map(mapRef.current, {
             center: now,
@@ -62,6 +66,7 @@ export const useNaverMap = (
               style: window.naver.maps.ZoomControlStyle.SMALL,
               position: window.naver.maps.Position.TOP_RIGHT,
             },
+            maxBounds: boundary,
           });
 
           mapInstanceRef.current = map;
