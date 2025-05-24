@@ -60,6 +60,9 @@ export const useNaverMap = (
           const now = new naver.maps.LatLng(latLng.lat, latLng.lng);
           const map = new naver.maps.Map(mapRef.current, {
             center: now,
+            logoControl: false,
+            mapDataControl: false,
+            scaleControl: false,
             zoom: 17,
             zoomControl: true,
             zoomControlOptions: {
