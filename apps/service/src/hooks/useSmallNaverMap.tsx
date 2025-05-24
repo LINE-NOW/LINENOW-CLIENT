@@ -43,6 +43,9 @@ export const useSmallNaverMap = (
           const map = new naver.maps.Map(mapRef.current, {
             center: now,
             zoom: 18,
+            logoControl: false,
+            mapDataControl: false,
+            scaleControl: false,
             // zoomControl: true,
             zoomControlOptions: {
               style: window.naver.maps.ZoomControlStyle.SMALL,

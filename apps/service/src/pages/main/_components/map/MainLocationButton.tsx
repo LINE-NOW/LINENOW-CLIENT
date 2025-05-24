@@ -2,16 +2,16 @@ import { useSetAtom } from "jotai";
 import * as S from "./MainLocationButton.styled";
 import { Button, Icon } from "@linenow/core/components";
 import { DEFAULT_LOCATION, latLngAtom } from "@atoms/location";
+import { useToast } from "@linenow/core/hooks";
 
 export const MyLocationButton = ({
   ...buttonProps
 }: React.ComponentProps<typeof Button>) => {
   const setLatLng = useSetAtom(latLngAtom);
+  const { presentToast } = useToast();
 
   const handleMoveToMyLocation = () => {
     if (!navigator.geolocation) {
-      alert("Geolocation을 지원하지 않는 브라우저입니다.");
-      // console.error("Geolocation을 지원하지 않는 브라우저입니다.");
       return;
     }
 
@@ -22,8 +22,10 @@ export const MyLocationButton = ({
         setLatLng({ lat, lng });
       },
       (error) => {
-        error;
-        // console.error("위치 정보를 가져오는 데 실패했습니다:", error.message);
+        console.log(error);
+        presentToast(
+          "설정에서 브라우저 위치 서비스 켜기 동의 후 사용해 주세요."
+        );
       },
       {
         enableHighAccuracy: true,
