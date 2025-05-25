@@ -30,7 +30,7 @@ export const useNaverMap = (
   const mapInstanceRef = useRef<naver.maps.Map | null>(null);
   const [isMapReady, setIsMapReady] = useState<boolean>(false);
 
-  const [zoom, setZoom] = useState<number>(18);
+  // const [zoom, setZoom] = useState<number>(18);
 
   // 마커 렌더 함수 캐싱
   const renderMarkerIcon = useCallback(
@@ -66,7 +66,7 @@ export const useNaverMap = (
             mapDataControl: false,
             scaleControl: false,
             minZoom: 15,
-            zoom: zoom,
+            zoom: 18,
             maxZoom: 19,
             zoomControl: true,
             zoomControlOptions: {
@@ -82,9 +82,9 @@ export const useNaverMap = (
             map.panTo(e?.latlng);
           });
 
-          naver.maps.Event.addListener(map, "zoom_changed", function (zoom) {
-            setZoom(zoom);
-          });
+          // naver.maps.Event.addListener(map, "zoom_changed", function (zoom) {
+          //   setZoom(zoom);
+          // });
           setIsMapReady(true);
         }
       }
@@ -145,15 +145,15 @@ export const useNaverMap = (
     setMarkers();
   }, [booths, isMapReady, selectedBoothId]);
 
-  useEffect(() => {
-    if (zoom > 17) {
-      setMarkers();
-    } else {
-      Object.values(markersRef.current).forEach((marker) =>
-        marker.setMap(null)
-      );
-    }
-  }, [zoom]);
+  // useEffect(() => {
+  //   if (zoom > 17) {
+  //     setMarkers();
+  //   } else {
+  //     Object.values(markersRef.current).forEach((marker) =>
+  //       marker.setMap(null)
+  //     );
+  //   }
+  // }, [zoom]);
 
   useEffect(() => {
     if (!mapInstanceRef.current) return;
