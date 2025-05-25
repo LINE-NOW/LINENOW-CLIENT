@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Route, useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./Navigation.styled";
 import { CommonButton, Icon } from "@linenow/core/components";
@@ -9,13 +9,13 @@ const Navigation = () => {
   const navigate = useNavigate();
 
   const getNavigationTitle = () => {
-    if (location.pathname.startsWith("/waiting/")) {
+    if (location.pathname.startsWith(ROUTE.WAITING_DETAIL())) {
       return <S.NavigationLabel>나의 대기</S.NavigationLabel>;
     }
 
     switch (location.pathname) {
       case ROUTE.MY_WAITING:
-        return <S.NavigationLabel>나의 줄서기</S.NavigationLabel>;
+        return <S.NavigationLabel>나의 대기</S.NavigationLabel>;
       case ROUTE.SETTING:
         return <S.NavigationLabel>설정</S.NavigationLabel>;
       case ROUTE.LOGIN:
