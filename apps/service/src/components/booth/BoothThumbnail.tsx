@@ -13,13 +13,18 @@ export interface BoothThumbnailProps
     React.ComponentPropsWithRef<"section"> {}
 
 const BoothThumbnail = (props: BoothThumbnailProps) => {
-  const thumbnail =
-    props.thumbnail === "" ? IMAGE.DEFAULT_BOOTH_THUMBNAIL : props.thumbnail;
+  const {
+    children,
+    boothID,
+    name,
+    description,
+    thumbnail,
+    location,
+    ...attributes
+  } = props;
 
-  const { children, boothID, name, description, location, ...attributes } =
-    props;
-
-  // console.log(boothID + "booth Thumbnail 리렌더링");
+  const thumbnailURL =
+    thumbnail === "" ? IMAGE.DEFAULT_BOOTH_THUMBNAIL : props.thumbnail;
 
   return (
     <Flex
@@ -32,7 +37,7 @@ const BoothThumbnail = (props: BoothThumbnailProps) => {
       {/* 이미지 */}
       <Flex
         as="img"
-        src={thumbnail}
+        src={thumbnailURL}
         loading={"lazy"}
         alt={`${name} 부스의 썸네일 사진`}
         css={S.getImageStyle("4.5rem", "0.25rem")}

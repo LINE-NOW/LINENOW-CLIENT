@@ -11,7 +11,7 @@ const FestivalLocationIcon = (props: IconAssetProps) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_235_7101)">
+      <g clipPath="url(#clip0_235_7101)">
         <path
           d="M6.26566 13.9251L0.530538 15.6404C-0.0676908 15.8205 -0.176317 16.3108 0.288098 16.7368L2.03556 18.3171C2.65268 18.8621 3.20525 18.928 3.90738 18.592L8.31539 16.5021V15.9555L6.26566 13.9251Z"
           fill="#F7901E"

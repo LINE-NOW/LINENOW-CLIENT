@@ -9,7 +9,8 @@ export type Variant =
   | "blueLight"
   | "limeLight"
   | "grayLight"
-  | "outline";
+  | "outline"
+  | "black";
 
 interface VariantStyle {
   fontColor: FontColorKey;
@@ -50,6 +51,10 @@ const variantStyles: VariantStyles = {
   grayLight: {
     backgroundColor: "grayLight",
     fontColor: "black",
+  },
+  black: {
+    backgroundColor: "black",
+    fontColor: "white",
   },
 };
 

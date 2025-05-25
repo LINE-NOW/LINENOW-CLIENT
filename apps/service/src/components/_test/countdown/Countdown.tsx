@@ -13,7 +13,7 @@ const Countdown = () => {
         동국대학교 대동제까지
       </Label>
       <Label font="head3" color="lime">
-        {getString("DDMMSS")}
+        {getString("DDHHMMSS")}
       </Label>
     </section>
   );

@@ -1,17 +1,26 @@
-import { BoothThumbnailBadgeProps } from "@components/booth/BoothThumbnailBadge";
-import * as S from "./MainBoothList.styled";
+import { BoothThumbnail } from "@interfaces/booth";
 
-import MainBoothListItem from "./MainBoothListItem";
 import { useSetAtom } from "jotai";
+
 import { selectedBoothAtom } from "@pages/main/_atom/selectedBooth";
+
+import * as S from "./MainBoothList.styled";
+import MainBoothListItem from "./MainBoothListItem";
+
+// gdg
+import GDGBoothListItem from "src/_gdg/GDGBoothListItem";
+import { useGetGDGBooths } from "src/_gdg/hooks";
 
 interface MainBoothListProps {
   isFetching?: boolean;
-  booths: BoothThumbnailBadgeProps[];
+  booths: BoothThumbnail[];
 }
 
 const MainBoothList = (props: MainBoothListProps) => {
   const { booths, isFetching = false } = props;
+
+  const { data: GDGBooths } = useGetGDGBooths();
+
   const setBoothNull = useSetAtom(selectedBoothAtom);
   setBoothNull(null);
   // 리스트가 비어있을 경우
@@ -19,11 +28,17 @@ const MainBoothList = (props: MainBoothListProps) => {
 
   return (
     <div css={S.getBoothListWrapperStyle()}>
-      {booths.map((booth, index) => {
-        return (
-          <MainBoothListItem key={index} isFetching={isFetching} {...booth} />
-        );
-      })}
+      {booths.map((booth, index) => (
+        <MainBoothListItem
+          key={`LINENOW ${index}`}
+          isFetching={isFetching}
+          {...booth}
+        />
+      ))}
+
+      {GDGBooths?.map((booth, index) => (
+        <GDGBoothListItem key={`GDG ${index}`} {...booth} />
+      ))}
     </div>
   );
 };
