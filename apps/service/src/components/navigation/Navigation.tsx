@@ -31,7 +31,7 @@ const Navigation = () => {
     if (location.key !== "default") {
       window.history.back();
     } else {
-      navigate("");
+      navigate(ROUTE.DEFAULT);
     }
   };
 
