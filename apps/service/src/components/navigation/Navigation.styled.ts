@@ -27,6 +27,7 @@ export const NavigationLabel = styled.h2`
 `;
 
 export const getFloatingOnBoardingStyle = () => css`
+  cursor: pointer;
   position: absolute;
   left: 3rem;
   top: 28px;

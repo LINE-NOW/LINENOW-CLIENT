@@ -49,6 +49,9 @@ const Navigation = () => {
           <img
             src={IMAGE.NAVIGATION_ON_BOARDING}
             css={S.getFloatingOnBoardingStyle}
+            onClick={() => {
+              navigate(ROUTE.DEFAULT);
+            }}
           />
         )}
       </Flex>
