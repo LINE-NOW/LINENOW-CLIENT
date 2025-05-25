@@ -6,7 +6,6 @@ import { selectedBoothAtom } from "@pages/main/_atom/selectedBooth";
 
 import * as S from "./MainBoothList.styled";
 import MainBoothListItem from "./MainBoothListItem";
-import getBadges from "@components/booth/getBadges";
 
 // gdg
 import GDGBoothListItem from "src/_gdg/GDGBoothListItem";
@@ -31,13 +30,8 @@ const MainBoothList = (props: MainBoothListProps) => {
     <div css={S.getBoothListWrapperStyle()}>
       {booths.map((booth, index) => (
         <MainBoothListItem
-          key={`라인나우 ${index}`}
-          badges={getBadges({
-            isFetching: isFetching,
-            operatingStatus: booth.operatingStatus,
-            totalWaitingTeams: booth.totalWaitingTeams,
-            waitingStatus: booth.waitingStatus,
-          })}
+          key={`LINENOW ${index}`}
+          isFetching={isFetching}
           {...booth}
         />
       ))}

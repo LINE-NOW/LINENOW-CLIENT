@@ -14,11 +14,11 @@ export interface GDGBoothListItemProps
 }
 
 const GDGBoothListItem = (props: GDGBoothListItemProps) => {
-  const { ...booth } = props;
+  const { GDGID, ...booth } = props;
 
   const navigateGDG = () => {
     closeModal();
-    window.open(`https://www.dirvana.co.kr/booth/${booth.GDGID}`, "_blank");
+    window.open(`https://www.dirvana.co.kr/booth/${GDGID}`, "_blank");
   };
 
   const gdgModal: ModalProps = {

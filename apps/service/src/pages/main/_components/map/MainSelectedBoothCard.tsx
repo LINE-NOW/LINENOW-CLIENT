@@ -2,15 +2,14 @@ import * as S from "./MainMap.styled";
 import { css, Theme } from "@emotion/react";
 import { Link } from "react-router-dom";
 
-import BoothThumbnailBadge, {
-  BoothThumbnailBadgeProps,
-} from "@components/booth/BoothThumbnailBadge";
+import BoothThumbnailBadge from "@components/booth/BoothThumbnailBadge";
 import useBoothListData from "@pages/main/_hooks/useBoothListData";
 import { Switch } from "@linenow/core/components";
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
 import { FestivalLocation, MyLocationButton } from "./MainLocationButton";
 import RefetchButton from "@components/refetchButton/RefetchButton";
 import { ROUTE } from "@constants/route";
+import getBadges from "@components/booth/getBadges";
 
 const getBoothListItemStyle = () => (theme: Theme) =>
   css`
@@ -75,7 +74,17 @@ export const SelectedBoothCard = ({ selectedBoothId }: Props) => {
 
   if (!booth) return null;
 
-  const badgeProps: BoothThumbnailBadgeProps = { ...booth };
+  const {
+    boothID,
+    name,
+    description,
+    thumbnail,
+    location,
+    operatingStatus,
+    waitingStatus,
+    totalWaitingTeams,
+  } = booth;
+
   return (
     <>
       <div css={S.getFloatingButtonWrapperStyle("map")}>
@@ -100,13 +109,24 @@ export const SelectedBoothCard = ({ selectedBoothId }: Props) => {
         />
       </div>
       <Link
-        to={ROUTE.BOOTH_DETAIL(booth.boothID)}
+        to={ROUTE.BOOTH_DETAIL(boothID)}
         css={(theme) => css`
           ${getSelectedBoothCardStyle()(theme)}
           ${getBoothListItemStyle()(theme)}
         `}
       >
-        <BoothThumbnailBadge {...badgeProps} />
+        <BoothThumbnailBadge
+          boothID={boothID}
+          thumbnail={thumbnail}
+          name={name}
+          description={description}
+          location={location}
+          badges={getBadges({
+            operatingStatus: operatingStatus,
+            totalWaitingTeams: totalWaitingTeams,
+            waitingStatus: waitingStatus,
+          })}
+        />
       </Link>
     </>
   );
