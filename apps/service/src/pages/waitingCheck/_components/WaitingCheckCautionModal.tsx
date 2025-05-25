@@ -36,7 +36,7 @@ const WaitingCheckCautionModal = (props: WaitingCheckCautionModalProps) => {
 
       const waitingID = result.waiting_id;
       if (!waitingID) {
-        // console.warn("응답에 waitingId없음 ㅜ");
+        // console.warn("응답에 waitingID없음 ㅜ");
         return;
       }
 

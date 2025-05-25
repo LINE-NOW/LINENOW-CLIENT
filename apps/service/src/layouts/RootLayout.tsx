@@ -18,7 +18,6 @@ import { useEffect } from "react";
 const RootLayout = () => {
   useSocketEnterRoute();
   useSocketEnterings();
-  // const { isLogin } = useAuth();
 
   const { pathname } = useLocation();
 
@@ -28,7 +27,6 @@ const RootLayout = () => {
 
   return (
     <>
-      {/* {isLogin && <EnteringBottomsheetProvider />} */}
       <FullSpinner />
       <ToastProvider />
       <ModalProvider />

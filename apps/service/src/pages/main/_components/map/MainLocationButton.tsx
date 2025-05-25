@@ -41,7 +41,8 @@ export const MyLocationButton = ({
         setLatLng({ lat, lng });
       },
       (error) => {
-        console.log(error);
+        error;
+        // console.log(error);
         presentToast(
           "설정에서 브라우저 위치 서비스 켜기 동의 후 사용해 주세요."
         );
