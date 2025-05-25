@@ -42,11 +42,18 @@ export const useSmallNaverMap = (
           );
           const map = new naver.maps.Map(mapRef.current, {
             center: now,
-            zoom: 18,
+            zoom: 20,
             logoControl: false,
             mapDataControl: false,
             scaleControl: false,
-            // zoomControl: true,
+            zoomControl: false,
+            draggable: false,
+            pinchZoom: false,
+            scrollWheel: false,
+            keyboardShortcuts: false,
+            disableDoubleTapZoom: true,
+            disableDoubleClickZoom: true,
+            disableTwoFingerTapZoom: true,
             zoomControlOptions: {
               style: window.naver.maps.ZoomControlStyle.SMALL,
               position: window.naver.maps.Position.TOP_RIGHT,
@@ -83,3 +90,42 @@ export const useSmallNaverMap = (
     });
   }, [isMapReady]);
 };
+
+/**
+ * 
+ *  // screenPosition을 interface에 선언  
+  screenPosition?: { x: number; y: number };
+}
+
+(...)
+
+this.markers = this.markers.map((marker) => {
+        try {
+          const lat = marker.position.lat();
+          const lng = marker.position.lng();
+
+          // 2. 직접 좌표 변환 로직 구현
+          // 마커의 경/위도를 지도 경계 내 상대적 위치(0~1)로 변환
+          const relativeX = (lng - minLng) / boundsWidth;
+          const relativeY = (maxLat - lat) / boundsHeight; // 위도는 위에서 아래로 감소하므로 반전
+
+          // 상대적 위치를 픽셀 좌표로 변환
+          const x = relativeX * mapSize.width;
+          const y = relativeY * mapSize.height;
+
+          // 계산된 화면 좌표
+          const position = { x, y };
+
+          // 마커 정보 유지하면서 업데이트된 화면 좌표 정보 추가
+          return {
+            ...marker,
+            screenPosition: position,
+          };
+        } catch (error) {
+          // 오류 발생 시 기존 마커 정보 반환
+          localConsole?.error(`마커 ${marker.id} 좌표 변환 오류:`, error);
+          return marker;
+        }
+ * 
+ * 
+ */

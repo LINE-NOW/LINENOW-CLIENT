@@ -63,7 +63,9 @@ export const useNaverMap = (
             logoControl: false,
             mapDataControl: false,
             scaleControl: false,
+            minZoom: 15,
             zoom: 17,
+            maxZoom: 19,
             zoomControl: true,
             zoomControlOptions: {
               style: window.naver.maps.ZoomControlStyle.SMALL,
@@ -111,6 +113,8 @@ export const useNaverMap = (
               operatingStatus: booth.operatingStatus,
               totalWaitingTeams: booth.totalWaitingTeams,
             }),
+            scaledSize: new naver.maps.Size(30, 37),
+            origin: new naver.maps.Point(0, 0),
           },
         });
 
