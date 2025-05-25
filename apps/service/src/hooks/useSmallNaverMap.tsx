@@ -42,7 +42,7 @@ export const useSmallNaverMap = (
           );
           const map = new naver.maps.Map(mapRef.current, {
             center: now,
-            zoom: 20,
+            zoom: 18,
             logoControl: false,
             mapDataControl: false,
             scaleControl: false,
@@ -82,6 +82,9 @@ export const useSmallNaverMap = (
       map,
       icon: {
         content: renderMarkerIcon(),
+        size: new naver.maps.Size(36, 44),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(18, 44),
       },
     });
 
