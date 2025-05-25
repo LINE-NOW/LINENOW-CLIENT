@@ -1,21 +1,26 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./Navigation.styled";
-import { CommonButton, Icon } from "@linenow/core/components";
+import { CommonButton, Flex, Icon } from "@linenow/core/components";
 import { ROUTE } from "@constants/route";
+import { IMAGE } from "@constants/image";
 
 const Navigation = () => {
   const location = useLocation();
+  const checkPrevDomainIsLinenow = () => {
+    return !(location.key === "default" && location.pathname !== ROUTE.DEFAULT);
+  };
+
   const navigate = useNavigate();
 
   const getNavigationTitle = () => {
-    if (location.pathname.startsWith("/waiting/")) {
+    if (location.pathname.startsWith(ROUTE.WAITING_DETAIL())) {
       return <S.NavigationLabel>나의 대기</S.NavigationLabel>;
     }
 
     switch (location.pathname) {
       case ROUTE.MY_WAITING:
-        return <S.NavigationLabel>나의 줄서기</S.NavigationLabel>;
+        return <S.NavigationLabel>나의 대기</S.NavigationLabel>;
       case ROUTE.SETTING:
         return <S.NavigationLabel>설정</S.NavigationLabel>;
       case ROUTE.LOGIN:
@@ -27,19 +32,26 @@ const Navigation = () => {
   };
 
   const handleBackButton = () => {
-    // location.key가 없으면 이전 페이지가 없다고 판단하고, 홈으로 이동
-    if (location.key !== "default") {
+    if (checkPrevDomainIsLinenow()) {
       window.history.back();
     } else {
-      navigate("");
+      navigate(ROUTE.DEFAULT);
     }
   };
 
   return (
     <S.NavigationWrapper>
-      <CommonButton onClick={handleBackButton}>
-        <Icon icon="left" color="gray" />
-      </CommonButton>
+      <Flex>
+        <CommonButton onClick={handleBackButton}>
+          <Icon icon="left" color="gray" />
+        </CommonButton>
+        {checkPrevDomainIsLinenow() || (
+          <img
+            src={IMAGE.NAVIGATION_ON_BOARDING}
+            css={S.getFloatingOnBoardingStyle}
+          />
+        )}
+      </Flex>
 
       {getNavigationTitle()}
     </S.NavigationWrapper>

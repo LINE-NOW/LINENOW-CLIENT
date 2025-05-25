@@ -3,4 +3,5 @@ export const IMAGE = {
   NOTICEE_DUE_TIME: "/images/NOTICE_DUE_TIME.png",
   NOTICE_MAX_WAITING: "/images/NOTICE_MAX_WAITING.png",
   NOTICE_NO_SHOW: "/images/NOTICE_NO_SHOW.png",
+  NAVIGATION_ON_BOARDING: "/images/NAVIGATION_ONBOARDING.svg",
 };

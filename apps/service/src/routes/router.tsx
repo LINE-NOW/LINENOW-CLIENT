@@ -29,7 +29,10 @@ export const prodRouter = createBrowserRouter([
       {
         element: <DefaultLayout />,
         children: [
-          { path: ROUTE.BOOTH_DETAIL(), element: <BoothDetailPage /> },
+          {
+            path: ROUTE.BOOTH_DETAIL(":boothID"),
+            element: <BoothDetailPage />,
+          },
           {
             element: <GuestRoute />,
             children: [{ path: ROUTE.LOGIN, element: <AuthPage /> }],
@@ -38,7 +41,10 @@ export const prodRouter = createBrowserRouter([
             element: <ProtectedRoute />,
             children: [
               { path: ROUTE.WAITING_CHECK, element: <WaitingCheckPage /> },
-              { path: ROUTE.WAITING_DETAIL(), element: <WaitingDetailPage /> },
+              {
+                path: ROUTE.WAITING_DETAIL(":waitingID"),
+                element: <WaitingDetailPage />,
+              },
               { path: ROUTE.MY_WAITING, element: <MyWaitingPage /> },
               { path: ROUTE.SETTING, element: <SettingPage /> },
             ],

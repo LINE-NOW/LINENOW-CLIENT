@@ -8,7 +8,7 @@ export interface ModalProps {
   title?: string;
   sub?: React.ReactNode;
   content?: React.ReactNode;
-  secondButton?: Omit<React.ComponentProps<typeof Button>, "size" | "variant">;
+  secondButton?: Omit<React.ComponentProps<typeof Button>, "size">;
   primaryButton?: Omit<React.ComponentProps<typeof Button>, "size">;
 }
 

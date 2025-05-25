@@ -40,9 +40,9 @@ const BoothDetailPage = () => {
   const handleLoginButtonClick = () => {
     openBottomSheet({ children: <LoginBottomSheetContent /> });
   };
-  const { boothId } = useParams<{ boothId: string }>();
+  const { boothID } = useParams<{ boothID: string }>();
 
-  const boothNumber = boothId ? parseInt(boothId, 10) : null;
+  const boothNumber = boothID ? parseInt(boothID, 10) : null;
 
   const { data: booth, isLoading } = useGetBooth(boothNumber || 0);
   const { data: waiting } = useGetBoothWaiting(boothNumber || 0);

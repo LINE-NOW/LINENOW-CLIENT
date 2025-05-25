@@ -60,22 +60,55 @@ const AgreeBottomSheetContent = (props: AgreeBottomSheetContentProps) => {
     },
   };
 
+  const toggleAllCheck = () => {
+    const newValue = !isAllChecked;
+    setCheckList({
+      policy: newValue,
+      personal: newValue,
+      location: newValue,
+    });
+  };
+  const CheckAll = () => {
+    return (
+      <Flex
+        as={"button"}
+        onClick={toggleAllCheck}
+        padding="0.5rem 0"
+        alignItem="center"
+        gap="0.25rem"
+      >
+        <Icon icon="check" color={isAllChecked ? "blue" : "grayLight"} />
+        <Label color="black" font="head3">
+          필수 이용약관 모두 동의하기
+        </Label>
+      </Flex>
+    );
+  };
+
   const CheckLabel = (key: keyof AgreeList) => {
     const isChecked = checkList[key];
     const label = agreeList[key].label;
     const url = agreeList[key].url;
 
     return (
-      <Flex direction="row" gap="0.5rem">
+      <Flex
+        width="100%"
+        flexGrow={1}
+        direction="row"
+        gap="0.5rem"
+        alignItem="center"
+        justifyContent="space-between"
+      >
         <Flex
           as={"button"}
           onClick={() => {
             setCheckList({ ...checkList, [key]: !checkList[key] });
           }}
+          padding="0.25rem 0"
           gap="0.25rem"
         >
-          <Icon icon="check" color={isChecked ? "blue" : "grayLight"} />
-          <Label>{label}</Label>
+          <Icon icon="check" color={isChecked ? "gray" : "grayLight"} />
+          <Label color="blackLight">{label}</Label>
         </Flex>
 
         <Icon
@@ -95,6 +128,9 @@ const AgreeBottomSheetContent = (props: AgreeBottomSheetContentProps) => {
         <Label font="head1" color="black">
           이용약관을 확인해주세요
         </Label>
+        {/* <Label font="body1" color="blackLight">
+          이용약관 동의 후 입력하신 전화번호로 인증번호가 전송돼요.
+        </Label> */}
       </S.BottomSheetTitleWrapper>
 
       <Flex direction="column" gap="0.25rem">
@@ -102,8 +138,9 @@ const AgreeBottomSheetContent = (props: AgreeBottomSheetContentProps) => {
         {CheckLabel("personal")}
         {CheckLabel("location")}
       </Flex>
-
+      <CheckAll />
       {/* 버튼 */}
+
       <ButtonLayout colCount={1}>
         <Button
           type="button"
