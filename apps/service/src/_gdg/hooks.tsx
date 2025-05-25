@@ -5,5 +5,7 @@ export const useGetGDGBooths = () => {
   return useQuery({
     queryKey: ["gdg", "booths"],
     queryFn: () => getGDGBooths(),
+    staleTime: Infinity,
+    gcTime: Infinity,
   });
 };
