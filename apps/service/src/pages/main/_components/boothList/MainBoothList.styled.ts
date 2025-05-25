@@ -52,6 +52,7 @@ export const getBoothListWrapperStyle = () => (theme: Theme) =>
     min-height: calc(100vh + 2px);
 
     padding-top: 0.5rem;
+    padding-bottom: 5rem;
     background-color: ${theme.backgroundColors.white};
   `;
 
