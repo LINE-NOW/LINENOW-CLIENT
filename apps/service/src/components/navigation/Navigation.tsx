@@ -1,4 +1,4 @@
-import { Route, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./Navigation.styled";
 import { CommonButton, Icon } from "@linenow/core/components";

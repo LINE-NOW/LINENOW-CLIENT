@@ -12,13 +12,13 @@ import { useSocketEnterRoute } from "@hooks/socket/useSocketEnterRoute";
 import useSocketEnterings from "@hooks/socket/useSocketEnterings";
 import FullSpinner from "@components/spinner/FullSpinner";
 import { useEffect } from "react";
+import NavigateHomeButton from "@components/navigation/NavigateHomeButton";
 
 // hooks
 
 const RootLayout = () => {
   useSocketEnterRoute();
   useSocketEnterings();
-  // const { isLogin } = useAuth();
 
   const { pathname } = useLocation();
 
@@ -28,7 +28,7 @@ const RootLayout = () => {
 
   return (
     <>
-      {/* {isLogin && <EnteringBottomsheetProvider />} */}
+      <NavigateHomeButton />
       <FullSpinner />
       <ToastProvider />
       <ModalProvider />
