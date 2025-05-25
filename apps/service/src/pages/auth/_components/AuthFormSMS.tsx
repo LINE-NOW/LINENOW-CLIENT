@@ -11,7 +11,7 @@ import { usePostRegistrationMessage } from "@hooks/apis/user";
 import { useState } from "react";
 import { useCountdown } from "@linenow/core/hooks";
 
-const MAINTAIN_TIME = 1;
+const MAINTAIN_TIME = 3;
 const getExpiredAt = () =>
   new Date(Date.now() + MAINTAIN_TIME * 60 * 1000).toISOString();
 

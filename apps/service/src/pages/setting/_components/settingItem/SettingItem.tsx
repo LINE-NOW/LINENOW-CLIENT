@@ -1,4 +1,5 @@
-import * as S from './SettingItem.styled';
+import { Label } from "@linenow/core/components";
+import * as S from "./SettingItem.styled";
 
 export interface SettingItemProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,7 +10,9 @@ export interface SettingItemProps
 const SettingItem = ({ onClick, title, ...props }: SettingItemProps) => {
   return (
     <S.SettingItemComponentWrapper onClick={onClick} {...props}>
-      <S.SettingItemComponentText>{title}</S.SettingItemComponentText>
+      <Label font="head3" color="black">
+        {title}
+      </Label>
     </S.SettingItemComponentWrapper>
   );
 };
