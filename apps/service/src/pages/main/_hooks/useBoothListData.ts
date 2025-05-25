@@ -1,4 +1,3 @@
-import BoothThumbnailBadge from "@components/booth/BoothThumbnailBadge";
 import { QUERY_KEY } from "@hooks/apis/query";
 
 import { Booth, BoothThumbnail } from "@interfaces/booth";
@@ -16,9 +15,7 @@ const useBoothListData = () => {
   const queryClient = useQueryClient();
 
   const booths =
-    (queryClient.getQueryData(QUERY_KEY.BOOTHS()) as React.ComponentProps<
-      typeof BoothThumbnailBadge
-    >[]) ?? [];
+    (queryClient.getQueryData(QUERY_KEY.BOOTHS()) as BoothThumbnail[]) ?? [];
 
   const waitings =
     (queryClient.getQueryData(QUERY_KEY.BOOTHS_WAITING()) as BoothWaiting[]) ??
