@@ -1,27 +1,27 @@
 import { useEffect } from "react";
-import BottomButton from "@components/bottomButton/BottomButton";
 
+// hooks
+import { useBottomSheet } from "@linenow/core/hooks";
+
+import useAuth from "@hooks/useAuth";
+import { useGetBooth } from "@hooks/apis/booth";
+import { useGetUserCount } from "@hooks/apis/user";
+
+// components
+import { Button, Flex, Label } from "@linenow/core/components";
+import SettingButton from "@components/button/SettingButton";
+import BottomButton from "@components/bottomButton/BottomButton";
+import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
 import {
   BoothDetailCard,
   BoothDetailContent,
   BoothDetailNotice,
-} from "./_components";
+} from "@pages/boothDetail/_components";
+import BoothPageSkeleton from "@components/skeleton/BoothPage.Skeloton";
 
-import useAuth from "@hooks/useAuth";
-
-import { Button, Flex, Label } from "@linenow/core/components";
-import { useBottomSheet } from "@linenow/core/hooks";
-
-import { useGetBooth } from "@hooks/apis/booth";
-
+// atoms
 import { useSetAtom } from "jotai";
 import { boothAtom } from "@atoms/boothWaitingAtoms";
-
-import LoginBottomSheetContent from "@components/bottomSheet/login/LoginBottomSheetContent";
-
-import SettingButton from "@components/button/SettingButton";
-import { useGetUserCount } from "@hooks/apis/user";
-import BoothPageSkeleton from "@components/skeleton/BoothPage.Skeloton";
 
 const TestBoothDetailPage = () => {
   const { isLogin } = useAuth();
