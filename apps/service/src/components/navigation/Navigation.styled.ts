@@ -11,7 +11,7 @@ export const NavigationWrapper = styled.header`
   transform: translate(-50%, 0%);
   top: 0;
   left: 50%;
-  /* z-index: 0; */
+  z-index: 2;
 
   width: 100%;
   max-width: 540px;
