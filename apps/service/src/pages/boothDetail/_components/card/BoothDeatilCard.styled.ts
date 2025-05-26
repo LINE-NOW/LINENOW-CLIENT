@@ -26,13 +26,13 @@ export const BoothDetailCardIndicatorWrapper = styled.section`
 `;
 
 export const BoothDetailCardIndicator = styled.div<{ $active: boolean }>`
-  width: 0.25rem;
-  height: 0.25rem;
+  width: 6px;
+  height: 6px;
 
   border-radius: 50%;
 
   background-color: ${({ $active, theme }) =>
-    $active ? theme.backgroundColors.blue : theme.backgroundColors.grayLight};
+    $active ? theme.backgroundColors.blue : "#ECF0F9"};
 
   transition: background-color 0.3s ease;
 `;

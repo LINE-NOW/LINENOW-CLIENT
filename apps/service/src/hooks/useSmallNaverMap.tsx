@@ -46,7 +46,14 @@ export const useSmallNaverMap = (
             logoControl: false,
             mapDataControl: false,
             scaleControl: false,
-            // zoomControl: true,
+            zoomControl: false,
+            draggable: false,
+            pinchZoom: false,
+            scrollWheel: false,
+            keyboardShortcuts: false,
+            disableDoubleTapZoom: true,
+            disableDoubleClickZoom: true,
+            disableTwoFingerTapZoom: true,
             zoomControlOptions: {
               style: window.naver.maps.ZoomControlStyle.SMALL,
               position: window.naver.maps.Position.TOP_RIGHT,
@@ -75,6 +82,9 @@ export const useSmallNaverMap = (
       map,
       icon: {
         content: renderMarkerIcon(),
+        size: new naver.maps.Size(36, 44),
+        origin: new naver.maps.Point(0, 0),
+        anchor: new naver.maps.Point(18, 44),
       },
     });
 

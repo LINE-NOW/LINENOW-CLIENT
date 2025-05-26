@@ -1,5 +1,6 @@
 import {
   Button,
+  Flex,
   InputText,
   InputTextContainer,
   Label,
@@ -66,6 +67,13 @@ const AuthFormSMS = () => {
           인증 번호 재전송
         </Button>
       )}
+      <Flex padding="0 0.25rem">
+        <Label
+          font="caption"
+          color="gray"
+          children={`인증번호는 3분 동안만 사용할 수 있어요.\n유효한 인증번호가 남아있다면 인증번호를 새로 발급할 수 없습니다.`}
+        />
+      </Flex>
     </>
   );
 };

@@ -120,7 +120,8 @@ export const usePostRegistrationMessage = () => {
     onSuccess: () => presentCompletedSendingToast(),
     onError: (error) => {
       const axiosError = error as AxiosError;
-      if (axiosError.status === 400) alert("이미 가입된 전화번호입니다!");
+      if (axiosError.status === 429)
+        alert("인증번호는 3분에 한 번 전송할 수 있어요!");
     },
     onSettled: () => {
       setLoadings({ isFullLoading: false });

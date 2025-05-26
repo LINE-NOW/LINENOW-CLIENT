@@ -128,9 +128,11 @@ const AgreeBottomSheetContent = (props: AgreeBottomSheetContentProps) => {
         <Label font="head1" color="black">
           이용약관을 확인해주세요
         </Label>
-        {/* <Label font="body1" color="blackLight">
-          이용약관 동의 후 입력하신 전화번호로 인증번호가 전송돼요.
-        </Label> */}
+        <Label
+          font="body1"
+          color="blackLight"
+          children={`이용약관 동의 후 입력하신 전화번호로 인증번호가 전송돼요.`}
+        />
       </S.BottomSheetTitleWrapper>
 
       <Flex direction="column" gap="0.25rem">

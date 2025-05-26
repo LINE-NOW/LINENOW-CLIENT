@@ -6,7 +6,7 @@ export const BoothDetailMenuLayout = styled.section`
   gap: 1rem;
   flex-direction: column;
 
-  padding: 1.25rem 1rem 1.75rem 1rem;
+  padding: 1.25rem 1rem 3rem 1rem;
 `;
 
 export const BoothDetailTitle = styled.h1`
@@ -26,12 +26,13 @@ export const BoothDetailMenuArticleWrapper = styled.div`
   justify-content: space-between;
 
   width: 100%;
+  align-items: center;
 `;
 
 export const BoothDetailMenuArticle = styled.article`
   overflow: hidden;
   text-overflow: ellipsis;
-
+  white-space: pre-line;
   color: ${({ theme }) => theme.fontColors.blackLight};
   ${fonts.body2}
 `;

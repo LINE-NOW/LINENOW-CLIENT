@@ -2,8 +2,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./Navigation.styled";
 import { CommonButton, Flex, Icon } from "@linenow/core/components";
+import NavigationOnboarding from "./NavigationOnboarding";
+
 import { ROUTE } from "@constants/route";
-import { IMAGE } from "@constants/image";
 
 const Navigation = () => {
   const location = useLocation();
@@ -45,15 +46,7 @@ const Navigation = () => {
         <CommonButton onClick={handleBackButton}>
           <Icon icon="left" color="gray" />
         </CommonButton>
-        {checkPrevDomainIsLinenow() || (
-          <img
-            src={IMAGE.NAVIGATION_ON_BOARDING}
-            css={S.getFloatingOnBoardingStyle}
-            onClick={() => {
-              navigate(ROUTE.DEFAULT);
-            }}
-          />
-        )}
+        {checkPrevDomainIsLinenow() || <NavigationOnboarding />}
       </Flex>
 
       {getNavigationTitle()}

@@ -1,5 +1,4 @@
-import { Icon, IconLabel } from "@linenow/core/components";
-import * as S from "./BoothDetailInfo.styled";
+import { Flex, Icon, IconLabel, Label } from "@linenow/core/components";
 
 interface BoothDetailInfoProps {
   icon: React.ComponentProps<typeof Icon>["icon"];
@@ -13,19 +12,20 @@ const BoothDetailInfo = ({
   infoData,
 }: BoothDetailInfoProps) => {
   return (
-    <S.BoothDetailInfoWrapper>
-      <S.BoothDetailInfoIconContainer>
+    <Flex gap="1rem" alignItem="start">
+      <Flex width="6rem">
         <IconLabel
-          gap={"4px"}
+          gap={"0.25rem"}
           icon={icon}
           font="body2"
           iconProps={{ color: "gray", size: 16 }}
         >
           {iconText}
         </IconLabel>
-      </S.BoothDetailInfoIconContainer>
-      <S.BoothDetailInfoData>{infoData}</S.BoothDetailInfoData>
-    </S.BoothDetailInfoWrapper>
+      </Flex>
+
+      <Label font="body2_b">{infoData}</Label>
+    </Flex>
   );
 };
 

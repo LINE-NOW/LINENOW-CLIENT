@@ -30,6 +30,8 @@ export const useNaverMap = (
   const mapInstanceRef = useRef<naver.maps.Map | null>(null);
   const [isMapReady, setIsMapReady] = useState<boolean>(false);
 
+  // const [zoom, setZoom] = useState<number>(18);
+
   // 마커 렌더 함수 캐싱
   const renderMarkerIcon = useCallback(
     (focus: boolean, props?: React.ComponentProps<typeof DefautlPin>) => {
@@ -63,7 +65,9 @@ export const useNaverMap = (
             logoControl: false,
             mapDataControl: false,
             scaleControl: false,
-            zoom: 17,
+            minZoom: 15,
+            zoom: 18,
+            maxZoom: 19,
             zoomControl: true,
             zoomControlOptions: {
               style: window.naver.maps.ZoomControlStyle.SMALL,
@@ -78,6 +82,9 @@ export const useNaverMap = (
             map.panTo(e?.latlng);
           });
 
+          // naver.maps.Event.addListener(map, "zoom_changed", function (zoom) {
+          //   setZoom(zoom);
+          // });
           setIsMapReady(true);
         }
       }
@@ -111,6 +118,15 @@ export const useNaverMap = (
               operatingStatus: booth.operatingStatus,
               totalWaitingTeams: booth.totalWaitingTeams,
             }),
+            size:
+              booth.boothID === selectedBoothId
+                ? new naver.maps.Size(36, 44)
+                : new naver.maps.Size(66, 30),
+            origin: new naver.maps.Point(0, 0),
+            anchor:
+              booth.boothID === selectedBoothId
+                ? new naver.maps.Point(18, 44)
+                : new naver.maps.Point(33, 30),
           },
         });
 
@@ -128,6 +144,16 @@ export const useNaverMap = (
   useEffect(() => {
     setMarkers();
   }, [booths, isMapReady, selectedBoothId]);
+
+  // useEffect(() => {
+  //   if (zoom > 17) {
+  //     setMarkers();
+  //   } else {
+  //     Object.values(markersRef.current).forEach((marker) =>
+  //       marker.setMap(null)
+  //     );
+  //   }
+  // }, [zoom]);
 
   useEffect(() => {
     if (!mapInstanceRef.current) return;
