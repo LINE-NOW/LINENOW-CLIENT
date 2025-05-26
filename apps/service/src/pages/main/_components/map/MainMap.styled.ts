@@ -9,7 +9,6 @@ export const getWrapper = () => css`
 
   position: absolute;
   top: calc(13rem);
-  z-index: 1;
 
   height: calc(100dvh - 13rem - 4.75rem);
 `;

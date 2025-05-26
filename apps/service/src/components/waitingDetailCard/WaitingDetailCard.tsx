@@ -15,6 +15,7 @@ const WaitingDetailCard = (props: WaitingDetailCardProps) => {
 
   return (
     <Flex
+      width="100%"
       as="section"
       direction="column"
       alignItem="center"
