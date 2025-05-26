@@ -4,13 +4,7 @@ import { Booth } from "@interfaces/booth";
 import { useSmallNaverMap } from "@hooks/useSmallNaverMap";
 import { useNavigate } from "react-router-dom";
 import useMainViewType from "@pages/main/_hooks/useMainViewType";
-import {
-  CommonButton,
-  Flex,
-  Icon,
-  IconLabel,
-  Label,
-} from "@linenow/core/components";
+import { CommonButton, Flex, IconLabel, Label } from "@linenow/core/components";
 import { useToast } from "@linenow/core/hooks";
 import { useSetAtom } from "jotai";
 import { latLngAtom } from "@atoms/location";

@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { fonts } from "@linenow/core/styles";
 
