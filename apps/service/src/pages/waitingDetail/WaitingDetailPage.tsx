@@ -7,7 +7,7 @@ import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
 import Spinner from "@components/spinner/Spinner";
 import { useGetWaiting, useGetWaitingBooth } from "@hooks/apis/waiting";
-import { Button, ButtonLayout, Toast } from "@linenow/core/components";
+import { Button, ButtonLayout, Flex, Toast } from "@linenow/core/components";
 import { useModal } from "@linenow/core/hooks";
 
 import useToastFromLocation from "@hooks/useToastFromLocation";
@@ -79,12 +79,14 @@ const WaitingDetailPage = () => {
         </Toast>
       )}
 
-      <WaitingDetailCard
-        waitingID={waitingID}
-        waitingNum={waitingNum}
-        personCount={personCount}
-        booth={{ thumbnail: waitingBooth.booth.thumbnail, ...booth }}
-      />
+      <Flex width="100%" padding="0.625rem 0.625rem 0.375rem 0.625rem">
+        <WaitingDetailCard
+          waitingID={waitingID}
+          waitingNum={waitingNum}
+          personCount={personCount}
+          booth={{ thumbnail: waitingBooth.booth.thumbnail, ...booth }}
+        />
+      </Flex>
 
       <BoothLocationMap booth={booth} />
       <Separator />
