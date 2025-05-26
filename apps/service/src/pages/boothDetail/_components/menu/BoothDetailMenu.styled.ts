@@ -26,12 +26,13 @@ export const BoothDetailMenuArticleWrapper = styled.div`
   justify-content: space-between;
 
   width: 100%;
+  align-items: center;
 `;
 
 export const BoothDetailMenuArticle = styled.article`
   overflow: hidden;
   text-overflow: ellipsis;
-
+  white-space: pre-line;
   color: ${({ theme }) => theme.fontColors.blackLight};
   ${fonts.body2}
 `;
