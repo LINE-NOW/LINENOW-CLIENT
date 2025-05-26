@@ -16,6 +16,8 @@ export const BoothLocationMapWrapper = styled.section`
 
 export const BoothLocationMap = styled.div`
   /* 지도 높이는 고정으로 생각해서 하단처럼 지정합니다! */
+  cursor: pointer;
+
   position: relative;
   height: 12.5rem;
   width: 100%;
@@ -41,27 +43,4 @@ export const BoothLocationMapClickableBar = styled.div`
   opacity: 0.8;
 
   ${fonts.caption};
-
-  cursor: pointer;
-`;
-
-export const BoothLocationMapLocationWrapper = styled.div`
-  width: 100%;
-
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0.25rem;
-  padding-bottom: 0.5rem;
-
-  ${fonts.body2}
-`;
-
-export const BoothLocationMapLocationCopyWrapper = styled.div`
-  display: flex;
-  gap: 0.25rem;
-
-  color: ${({ theme }) => theme.fontColors.blackLight};
-  ${fonts.chip}
-
-  cursor: pointer;
 `;
