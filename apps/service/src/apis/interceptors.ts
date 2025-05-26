@@ -28,7 +28,7 @@ export interface ErrorDTO {
 // access token이 잘못된 경우
 export const handleTokenError = async (error: AxiosError<ErrorDTO>) => {
   if (error.config?.useAuth && error.response?.data.code === 401) {
-    alert("잘못된 접근입니다");
+    // alert("잘못된 접근입니다");
     localStorage.removeItem("accessToken");
     window.location.href = ROUTE.DEFAULT;
   }
