@@ -5,29 +5,41 @@ import { Flex, Label } from "@linenow/core/components";
 
 import { IMAGE } from "@constants/image";
 import { ROUTE } from "@constants/route";
+import { useEffect, useState } from "react";
 
 const NavigationOnboarding = () => {
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState<boolean>(true);
 
-  return (
-    <Flex
-      alignItem="center"
-      css={getAnimation}
-      onClick={() => {
-        navigate(ROUTE.DEFAULT);
-      }}
-    >
-      <img src={IMAGE.NAVIGATION_ON_BOARDING} />
-      <div css={getWrapperStyle}>
-        <Label font="caption" color="white">
-          라인나우에 오신 것을 환영해요!
-        </Label>
-        <Label font="body2_b" color="white">
-          더 많은 부스 둘러보기
-        </Label>
-      </div>
-    </Flex>
-  );
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 5000); // 5초 뒤에 사라짐
+    return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 클리어
+  }, []);
+
+  if (isVisible)
+    return (
+      <Flex
+        alignItem="center"
+        css={getAnimation}
+        onClick={() => {
+          navigate(ROUTE.DEFAULT);
+        }}
+      >
+        <img src={IMAGE.NAVIGATION_ON_BOARDING} />
+        <div css={getWrapperStyle}>
+          <Label font="caption" color="white">
+            라인나우에 오신 것을 환영해요!
+          </Label>
+          <Label font="body2_b" color="white">
+            더 많은 부스 둘러보기
+          </Label>
+        </div>
+      </Flex>
+    );
+
+  return null;
 };
 
 export default NavigationOnboarding;
