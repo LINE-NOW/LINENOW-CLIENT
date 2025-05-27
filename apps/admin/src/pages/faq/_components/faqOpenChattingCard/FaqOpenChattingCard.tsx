@@ -11,7 +11,7 @@ export const FaqOpenChattingCard = () => {
       </S.FaqOpenChattingCardOnlineWrapper>
       <S.FaqOpenChattingKakaoBtn
         onClick={() => {
-          window.location.href = "https://open.kakao.com/o/gV5NsYSg";
+          window.location.href = "https://open.kakao.com/o/sLjZGLxh";
         }}
       >
         <S.FaqOpenChattingKakaoWrapper>
