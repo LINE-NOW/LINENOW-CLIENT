@@ -16,7 +16,7 @@ const SettingPage = () => {
 
   // 1:1 문의 클릭
   const handleInquiryClick = () => {
-    window.open("https://open.kakao.com/o/gV5NsYSg", "_blank");
+    window.open("https://open.kakao.com/o/sg7mkNxh", "_blank");
   };
 
   // 이용약관 클릭
