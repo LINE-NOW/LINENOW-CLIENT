@@ -194,7 +194,7 @@ const BoothDetailPage = () => {
               ) : (
                 // 로그인 하지 않은 경우
                 <Button variant="lime" onClick={handleLoginButtonClick}>
-                  <span>로그인하고 이용하기</span>
+                  <span>전화번호 인증 후 대기 걸기</span>
                 </Button>
               )}
 
