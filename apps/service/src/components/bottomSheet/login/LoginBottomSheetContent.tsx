@@ -26,7 +26,7 @@ const LoginBottomSheetContent = () => {
       {/* 버튼 */}
       <ButtonLayout colCount={1}>
         <Button onClick={handleLoginButton} variant="lime">
-          전화번호로 시작하기
+          전화번호로 빠르게 시작하기
         </Button>
       </ButtonLayout>
     </S.BottomSheetContentWrapper>

@@ -15,12 +15,12 @@ const NoticeCard = () => {
       css={S.getContainerStyle}
       onClick={() => openModal(modal)}
     >
-      <Label font="body2" color="blackLight">
-        제한 시간 10분 내로 부스에 입장해주세요. <br />
-        입장하지 않으실 경우 반드시 입장 취소 버튼을 눌러주세요.
-        <br />
-        입장 취소 하지 않고 노쇼할 경우, 전체 부스 대기가 취소돼요.
-      </Label>
+      <Label
+        font="body2"
+        color="blackLight"
+        children={`이용하지 않으실 경우 반드시 대기를 취소해주세요.\n입장 취소 없이 노쇼 시, 전체 대기가 취소됩니다.`}
+      />
+
       <IconLabel
         font="chip"
         color="blue"
