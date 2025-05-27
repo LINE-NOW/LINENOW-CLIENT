@@ -13,8 +13,8 @@ const WaitingCardLogin = () => {
   return (
     <WaitingCardNotice
       titleLabel={"라인나우로 편하게 대기해보세요!"}
-      descriptionLabel={"로그인 후 이용하실 수 있습니다."}
-      button={{ variant: "lime", children: "전화번호로 시작하기" }}
+      descriptionLabel={"전화번호 인증 시 부스 대기가 가능해요."}
+      button={{ variant: "lime", children: "전화번호로 빠르게 시작하기" }}
       onClick={handleButton}
     />
   );
