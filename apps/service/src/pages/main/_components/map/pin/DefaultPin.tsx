@@ -16,7 +16,7 @@ const DefautlPin = (props: DefautlPinProps) => {
         return "운영 종료";
       default:
         return totalWaitingTeams === 0
-          ? `대기 없음`
+          ? `빠른 입장`
           : `대기 ${totalWaitingTeams}팀`;
     }
   };
