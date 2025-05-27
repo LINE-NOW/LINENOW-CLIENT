@@ -29,7 +29,9 @@ const getBadges = (params: GetBadgesParams) => {
       {waitingStatus === "waiting" && <Chip variant="blue">대기 중</Chip>}
       {waitingStatus === "entering" && <Chip variant="lime">입장 가능</Chip>}
       <Chip variant="blueLight">
-        {totalWaitingTeams === 0 ? `대기 없음` : `대기 ${totalWaitingTeams}팀`}
+        {totalWaitingTeams === 0
+          ? `빠른 입장 가능`
+          : `대기 ${totalWaitingTeams}팀`}
       </Chip>
     </>
   );
