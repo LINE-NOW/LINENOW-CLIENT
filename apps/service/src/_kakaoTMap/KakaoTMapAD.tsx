@@ -1,13 +1,6 @@
-import { useModal } from "@linenow/core/hooks";
 import * as S from "./KakaoTMapAD.styled";
 
-import {
-  CommonButton,
-  Flex,
-  Icon,
-  Label,
-  ModalProps,
-} from "@linenow/core/components";
+import { CommonButton, Flex, Icon, Label } from "@linenow/core/components";
 
 const KakaoTMapAD = () => {
   const navigateTMap = () => {
