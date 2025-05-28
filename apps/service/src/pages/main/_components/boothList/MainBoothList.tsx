@@ -11,6 +11,10 @@ import MainBoothListItem from "./MainBoothListItem";
 import GDGBoothListItem from "src/_gdg/GDGBoothListItem";
 import { useGetGDGBooths } from "src/_gdg/hooks";
 
+// kakao Tmap
+import KakaoTMapAD from "src/_kakaoTMap/KakaoTMapAD";
+import React from "react";
+
 interface MainBoothListProps {
   isFetching?: boolean;
   booths: BoothThumbnail[];
@@ -29,11 +33,10 @@ const MainBoothList = (props: MainBoothListProps) => {
   return (
     <div css={S.getBoothListWrapperStyle()}>
       {booths.map((booth, index) => (
-        <MainBoothListItem
-          key={`LINENOW ${index}`}
-          isFetching={isFetching}
-          {...booth}
-        />
+        <React.Fragment key={`LINENOW_FRAGMENT_${index}`}>
+          <MainBoothListItem isFetching={isFetching} {...booth} />
+          {index === 2 && <KakaoTMapAD />}
+        </React.Fragment>
       ))}
 
       {GDGBooths?.map((booth, index) => (
