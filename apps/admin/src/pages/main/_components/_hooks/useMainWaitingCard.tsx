@@ -81,6 +81,11 @@ export const useMainWaitingCard = ({
     onClick: handleApproveWaitingButton,
   });
 
+  const actualWaitingStatus: WaitingStatus =
+    waitingStatus === "entering" && isCountdownOver
+      ? "time_over"
+      : waitingStatus;
+
   const mainWaitingCardConfig: Record<WaitingStatus, MainWaitingCardConfig> = {
     waiting: {
       backgroundColor: "blueLight",
@@ -103,7 +108,7 @@ export const useMainWaitingCard = ({
       primaryButton: {
         children: [
           <span key={1}>손님이 오고 있어요!</span>,
-          <span>{isCountdownOver ? "시간종료" : getString("MMSS")}</span>,
+          <span>{getString("MMSS")}</span>,
         ],
         variant: "lime",
       },
@@ -142,5 +147,5 @@ export const useMainWaitingCard = ({
     },
   };
 
-  return mainWaitingCardConfig[waitingStatus];
+  return mainWaitingCardConfig[actualWaitingStatus];
 };
